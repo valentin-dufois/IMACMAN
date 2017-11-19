@@ -30,3 +30,6 @@
 *.exe
 *.out
 *.app
+
+#Xcode user files
+IMACMAN.xcodeproj/project.xcworkspace/
