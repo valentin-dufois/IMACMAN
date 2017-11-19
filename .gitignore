@@ -33,3 +33,7 @@
 
 #Xcode user files
 IMACMAN.xcodeproj/project.xcworkspace/
+
+#Project binary
+IMACMAN/Game/IMACMAN
+IMACMAN/Game/build/

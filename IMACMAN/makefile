@@ -29,7 +29,7 @@ $(TARGET): $(OBJECTS)
 	@echo "========================================\n"
 	@echo "  $(CC) $^ -o $(TARGET) $(LIB)\n"; $(CC) $^ -o $(TARGET) $(LIB)
 	@echo "  Cleaning objects..."
-	@$(RM) -r $(BUILDDIR) $(TARGET)
+	@$(RM) -r $(BUILDDIR)
 	@echo "\n========================================"
 	@echo "   $(TARGETNAME) successfully compiled!"
 	@echo "   Type \"./$(target) to launch $(TARGETNAME)\""
