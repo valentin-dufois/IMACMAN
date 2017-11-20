@@ -32,7 +32,7 @@ $(TARGET): $(OBJECTS)
 	@$(RM) -r $(BUILDDIR)
 	@echo "\n========================================"
 	@echo "   $(TARGETNAME) successfully compiled!"
-	@echo "   Type \"./$(target) to launch $(TARGETNAME)\""
+	@echo "   Type \"./$(TARGET) to launch $(TARGETNAME)\""
 	@echo "========================================\n"
 
 # COMPILE THE SOURCES

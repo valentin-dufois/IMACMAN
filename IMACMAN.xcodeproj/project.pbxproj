@@ -60,7 +60,8 @@
 		3997F0C01FC21C8A009CECC9 /* IMACMAN */ = {
 			isa = PBXGroup;
 			children = (
-				3997F0CC1FC22C3F009CECC9 /* Library */,
+				39DC5E6C1FC2D39200D5EC7B /* Scenes */,
+				3997F0CC1FC22C3F009CECC9 /* Utils */,
 				3997F0CB1FC22C35009CECC9 /* Engines */,
 				3997F0CA1FC22C2A009CECC9 /* Game */,
 				3997F0C11FC21C8A009CECC9 /* main.cpp */,
@@ -85,11 +86,11 @@
 			path = Engines;
 			sourceTree = "<group>";
 		};
-		3997F0CC1FC22C3F009CECC9 /* Library */ = {
+		3997F0CC1FC22C3F009CECC9 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			path = Library;
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		3997F0CD1FC22C5A009CECC9 /* assets */ = {
@@ -144,6 +145,13 @@
 			children = (
 			);
 			path = build;
+			sourceTree = "<group>";
+		};
+		39DC5E6C1FC2D39200D5EC7B /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Scenes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -316,18 +324,22 @@
 		3997F0C61FC21C8A009CECC9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = KJ993GM677;
+				DEVELOPMENT_TEAM = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
 		};
 		3997F0C71FC21C8A009CECC9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = KJ993GM677;
+				DEVELOPMENT_TEAM = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};
