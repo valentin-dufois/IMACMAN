@@ -23,6 +23,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3970E5171FC2E7140007F948 /* boost */ = {isa = PBXFileReference; lastKnownFileType = folder; path = boost; sourceTree = "<group>"; };
+		3970E5181FC2EBB30007F948 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		3997F0BE1FC21C8A009CECC9 /* IMACMAN */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = IMACMAN; sourceTree = BUILT_PRODUCTS_DIR; };
 		3997F0C11FC21C8A009CECC9 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		3997F0C81FC22BBB009CECC9 /* makefile */ = {isa = PBXFileReference; explicitFileType = sourcecode.make; indentWidth = 1; path = makefile; sourceTree = "<group>"; tabWidth = 1; usesTabs = 1; };
@@ -43,6 +45,7 @@
 		3997F0B51FC21C8A009CECC9 = {
 			isa = PBXGroup;
 			children = (
+				3970E5181FC2EBB30007F948 /* README.md */,
 				39CC1AC41FC2440A00C7A7C8 /* .gitignore */,
 				3997F0C01FC21C8A009CECC9 /* IMACMAN */,
 				3997F0BF1FC21C8A009CECC9 /* Products */,
@@ -60,7 +63,8 @@
 		3997F0C01FC21C8A009CECC9 /* IMACMAN */ = {
 			isa = PBXGroup;
 			children = (
-				39DC5E6C1FC2D39200D5EC7B /* Scenes */,
+				39DC5FAA1FC2E5F8001515C0 /* Scenes */,
+				39DC5FA81FC2E456001515C0 /* libs */,
 				3997F0CC1FC22C3F009CECC9 /* Utils */,
 				3997F0CB1FC22C35009CECC9 /* Engines */,
 				3997F0CA1FC22C2A009CECC9 /* Game */,
@@ -147,7 +151,15 @@
 			path = build;
 			sourceTree = "<group>";
 		};
-		39DC5E6C1FC2D39200D5EC7B /* Scenes */ = {
+		39DC5FA81FC2E456001515C0 /* libs */ = {
+			isa = PBXGroup;
+			children = (
+				3970E5171FC2E7140007F948 /* boost */,
+			);
+			path = libs;
+			sourceTree = "<group>";
+		};
+		39DC5FAA1FC2E5F8001515C0 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
 			);
@@ -155,6 +167,23 @@
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
+
+/* Begin PBXLegacyTarget section */
+		3970E51D1FC2F3970007F948 /* Makefile */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "$(ACTION)";
+			buildConfigurationList = 3970E51E1FC2F3970007F948 /* Build configuration list for PBXLegacyTarget "Makefile" */;
+			buildPhases = (
+			);
+			buildToolPath = /usr/bin/make;
+			buildWorkingDirectory = "/Users/val/Cours/Synthèse d'images/IMACMAN/IMACMAN";
+			dependencies = (
+			);
+			name = Makefile;
+			passBuildSettingsInEnvironment = 0;
+			productName = Makfeile;
+		};
+/* End PBXLegacyTarget section */
 
 /* Begin PBXNativeTarget section */
 		3997F0BD1FC21C8A009CECC9 /* IMACMAN */ = {
@@ -183,6 +212,10 @@
 				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = "Valentin Dufois";
 				TargetAttributes = {
+					3970E51D1FC2F3970007F948 = {
+						CreatedOnToolsVersion = 9.0;
+						ProvisioningStyle = Automatic;
+					};
 					3997F0BD1FC21C8A009CECC9 = {
 						CreatedOnToolsVersion = 9.0;
 						ProvisioningStyle = Automatic;
@@ -202,6 +235,7 @@
 			projectRoot = "";
 			targets = (
 				3997F0BD1FC21C8A009CECC9 /* IMACMAN */,
+				3970E51D1FC2F3970007F948 /* Makefile */,
 			);
 		};
 /* End PBXProject section */
@@ -218,6 +252,31 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		3970E51F1FC2F3970007F948 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEBUGGING_SYMBOLS = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		3970E5201FC2F3970007F948 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		3997F0C31FC21C8A009CECC9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -327,6 +386,7 @@
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
+				HEADER_SEARCH_PATHS = IMACMAN/libs/boost/;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
@@ -338,6 +398,7 @@
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
+				HEADER_SEARCH_PATHS = IMACMAN/libs/boost/;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
@@ -346,6 +407,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		3970E51E1FC2F3970007F948 /* Build configuration list for PBXLegacyTarget "Makefile" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3970E51F1FC2F3970007F948 /* Debug */,
+				3970E5201FC2F3970007F948 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		3997F0B91FC21C8A009CECC9 /* Build configuration list for PBXProject "IMACMAN" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

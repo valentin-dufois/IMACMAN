@@ -11,15 +11,16 @@ CC := g++
 SRCDIR := .
 BUILDDIR := Game/build
 SRCEXT := cpp
+LIBDIR := libs
 
 # FIND ALL PROJECT SOURCES
-SOURCES := $(shell find $(SRCDIR) -type f -name "**.$(SRCEXT)")
+SOURCES := $(shell find $(SRCDIR) -type f -name "**.$(SRCEXT)" -not -path "./$(LIBDIR)/*")
 OBJECTS := $(patsubst $(SRCDIR)/%,$(BUILDDIR)/%,$(SOURCES:.$(SRCEXT)=.o))
 
 # COMPILER FLAGS
 CFLAGS := -g -std=c++11 -Wall
-LIB :=
-INC :=
+LIB := $(pkg-config --libs assimp)
+INC := -I libs/boost $(pkg-config --cflags assimp)
 
 # BUILD THE PROGRAM
 $(TARGET): $(OBJECTS)
