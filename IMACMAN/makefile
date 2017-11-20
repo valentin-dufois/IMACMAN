@@ -15,12 +15,33 @@ LIBDIR := libs
 
 # FIND ALL PROJECT SOURCES
 SOURCES := $(shell find $(SRCDIR) -type f -name "**.$(SRCEXT)" -not -path "./$(LIBDIR)/*")
-OBJECTS := $(patsubst $(SRCDIR)/%,$(BUILDDIR)/%,$(SOURCES:.$(SRCEXT)=.o))
+OBJECTS := $(patsubst %.cpp,$(BUILDDIR)/%.o,$(SOURCES:.$(SRCEXT)=.o))
+
 
 # COMPILER FLAGS
-CFLAGS := -g -std=c++11 -Wall
-LIB := $(pkg-config --libs assimp)
+CFLAGS := -std=c++11 -Wall
+LIB := $(pkg-config --libs assimp) -framework OpenGL
 INC := -I libs/boost $(pkg-config --cflags assimp)
+
+
+# OS-DEPENDANT COMPILER FLAGS
+# Windows (cygwin)
+ifeq "$(OS)" "Windows_NT"
+LIB := $(LIB) -lGL
+INC := $(INC)
+
+# OS X
+else ifeq "$(OSTYPE)" "darwin"
+LIB := $(LIB) -framework OpenGL
+INC := $(INC)
+
+# Linux (default)
+else
+LIB := $(LIB)
+INC := $(INC) -lGL
+endif
+
+
 
 # BUILD THE PROGRAM
 $(TARGET): $(OBJECTS)
