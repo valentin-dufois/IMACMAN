@@ -15,61 +15,64 @@ LIBDIR := libs
 
 # FIND ALL PROJECT SOURCES
 SOURCES := $(shell find $(SRCDIR) -type f -name "**.$(SRCEXT)" -not -path "./$(LIBDIR)/*")
-OBJECTS := $(patsubst %.cpp,$(BUILDDIR)/%.o,$(SOURCES:.$(SRCEXT)=.o))
+OBJECTS := $(SOURCES:.$(SRCEXT)=.o)
 
 
 # COMPILER FLAGS
 CFLAGS := -std=c++11 -Wall
-LIB := $(pkg-config --libs assimp) -framework OpenGL
+LIB := $(pkg-config --libs assimp)
 INC := -I libs/boost $(pkg-config --cflags assimp)
 
 
 # OS-DEPENDANT COMPILER FLAGS
+UNAME_S = $(shell uname -s)
 # Windows (cygwin)
-ifeq "$(OS)" "Windows_NT"
-LIB := $(LIB) -lGL
-INC := $(INC)
+ifeq ($(OS),Windows_NT)
+	OSLIB := -lGL
+	OSINC :=
 
 # OS X
-else ifeq "$(OSTYPE)" "darwin"
-LIB := $(LIB) -framework OpenGL
-INC := $(INC)
+else ifeq ($(UNAME_S),Darwin)
+	OSLIB = -framework OpenGL -framework SDL2
+	OSINC :=
 
 # Linux (default)
 else
-LIB := $(LIB)
-INC := $(INC) -lGL
+	OSLIB :=
+	OSINC := -lGL
 endif
 
 
-
 # BUILD THE PROGRAM
-$(TARGET): $(OBJECTS)
+$(TARGET): clean hello linker
+
+hello:
+	@echo "\n========================================"
+	@echo "   COMPILING $(TARGETNAME) on $(UNAME_S)"
+	@echo "========================================\n"
+
+linker: $(OBJECTS)
 	@echo "\n  Compiling ok!"
 	@echo "\n========================================"
 	@echo "   LINKING"
 	@echo "========================================\n"
-	@echo "  $(CC) $^ -o $(TARGET) $(LIB)\n"; $(CC) $^ -o $(TARGET) $(LIB)
+	@echo "  $(CC) $^ -o $(TARGET) $(LIB) $(OSLIB)\n"; $(CC) $^ -o $(TARGET) $(LIB) $(OSLIB)
 	@echo "  Cleaning objects..."
-	@$(RM) -r $(BUILDDIR)
+	@$(RM) -r $(OBJECTS)
 	@echo "\n========================================"
 	@echo "   $(TARGETNAME) successfully compiled!"
 	@echo "   Type \"./$(TARGET) to launch $(TARGETNAME)\""
 	@echo "========================================\n"
 
 # COMPILE THE SOURCES
-$(BUILDDIR)/%.o: $(SRCDIR)/%.$(SRCEXT) startMessage
-	@echo "  $(CC) $(CFLAGS) $(INC) -c -o $@ $<"; $(CC) $(CFLAGS) $(INC) -c -o $@ $<
+$(BUILDDIR)/%.o: $(SRCDIR)/%.$(SRCEXT)
+	@echo "  $(CC) $(CFLAGS) $(INC) $(OSINC) -c -o $@ $<"; $(CC) $(CFLAGS) $(INC) $(OSINC) -c -o $@ $<
 
-startMessage:
-	@echo "\n========================================"
-	@echo "   COMPILING IMACMAN"
-	@echo "========================================\n"
 	@mkdir -p $(BUILDDIR)
 
 # REMOVE ALL OBJECTS
 clean:
 	@echo " Cleaning...";
-	@echo " $(RM) -r $(BUILDDIR) $(TARGET)"; $(RM) -r $(BUILDDIR) $(TARGET)
+	@echo " $(RM) -r $(OBJECTS) $(TARGET)"; $(RM) -r $(OBJECTS) $(TARGET)
 
 .PHONY: clean

@@ -7,11 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3976C3BA1FC42A84008CC4F1 /* Core.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3976C3B81FC42A84008CC4F1 /* Core.cpp */; };
+		3976C3BD1FC42ACC008CC4F1 /* Igniter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3976C3BB1FC42ACC008CC4F1 /* Igniter.cpp */; };
+		3976C3BF1FC42D5D008CC4F1 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3976C3BE1FC42D5D008CC4F1 /* SDL2.framework */; };
 		3997F0C21FC21C8A009CECC9 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3997F0C11FC21C8A009CECC9 /* main.cpp */; };
-		39B5E6DE1FC364C200B99CC2 /* RessourcesEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39B5E6DC1FC364C200B99CC2 /* RessourcesEngine.cpp */; };
-		39B5E6E11FC3654E00B99CC2 /* RessourceElement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39B5E6DF1FC3654E00B99CC2 /* RessourceElement.cpp */; };
-		39B5E6E51FC371E900B99CC2 /* Image.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39B5E6E31FC371E900B99CC2 /* Image.cpp */; };
 		39B5E6E81FC3727700B99CC2 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39B5E6E71FC3727700B99CC2 /* OpenGL.framework */; };
+		39BC2F1D1FC4313F00FE22E8 /* GameObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39BC2F1B1FC4313F00FE22E8 /* GameObject.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -29,10 +30,15 @@
 /* Begin PBXFileReference section */
 		3970E5171FC2E7140007F948 /* boost */ = {isa = PBXFileReference; lastKnownFileType = folder; path = boost; sourceTree = "<group>"; };
 		3970E5181FC2EBB30007F948 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		3976C3B81FC42A84008CC4F1 /* Core.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Core.cpp; sourceTree = "<group>"; };
+		3976C3B91FC42A84008CC4F1 /* Core.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Core.hpp; sourceTree = "<group>"; };
+		3976C3BB1FC42ACC008CC4F1 /* Igniter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Igniter.cpp; sourceTree = "<group>"; };
+		3976C3BC1FC42ACC008CC4F1 /* Igniter.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Igniter.hpp; sourceTree = "<group>"; };
+		3976C3BE1FC42D5D008CC4F1 /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
 		3997F0BE1FC21C8A009CECC9 /* IMACMAN */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = IMACMAN; sourceTree = BUILT_PRODUCTS_DIR; };
 		3997F0C11FC21C8A009CECC9 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		3997F0C81FC22BBB009CECC9 /* makefile */ = {isa = PBXFileReference; explicitFileType = sourcecode.make; indentWidth = 1; path = makefile; sourceTree = "<group>"; tabWidth = 1; usesTabs = 1; };
-		39B5E6DA1FC3642000B99CC2 /* main.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = main.hpp; sourceTree = "<group>"; tabWidth = 1; usesTabs = 1; };
+		3997F0C81FC22BBB009CECC9 /* makefile */ = {isa = PBXFileReference; explicitFileType = sourcecode.make; indentWidth = 1; path = makefile; sourceTree = "<group>"; tabWidth = 5; usesTabs = 1; };
+		39B5E6DA1FC3642000B99CC2 /* main.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = main.hpp; sourceTree = "<group>"; tabWidth = 4; usesTabs = 1; };
 		39B5E6DC1FC364C200B99CC2 /* RessourcesEngine.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = RessourcesEngine.cpp; sourceTree = "<group>"; };
 		39B5E6DD1FC364C200B99CC2 /* RessourcesEngine.hpp */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.cpp.h; path = RessourcesEngine.hpp; sourceTree = "<group>"; tabWidth = 1; };
 		39B5E6DF1FC3654E00B99CC2 /* RessourceElement.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = RessourceElement.cpp; sourceTree = "<group>"; };
@@ -40,6 +46,8 @@
 		39B5E6E31FC371E900B99CC2 /* Image.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Image.cpp; sourceTree = "<group>"; };
 		39B5E6E41FC371E900B99CC2 /* Image.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Image.hpp; sourceTree = "<group>"; };
 		39B5E6E71FC3727700B99CC2 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		39BC2F1B1FC4313F00FE22E8 /* GameObject.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = GameObject.cpp; sourceTree = "<group>"; };
+		39BC2F1C1FC4313F00FE22E8 /* GameObject.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = GameObject.hpp; sourceTree = "<group>"; };
 		39CC1AC41FC2440A00C7A7C8 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -48,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3976C3BF1FC42D5D008CC4F1 /* SDL2.framework in Frameworks */,
 				39B5E6E81FC3727700B99CC2 /* OpenGL.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -55,6 +64,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3976C3B71FC42A03008CC4F1 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				3976C3B81FC42A84008CC4F1 /* Core.cpp */,
+				3976C3B91FC42A84008CC4F1 /* Core.hpp */,
+				3976C3BB1FC42ACC008CC4F1 /* Igniter.cpp */,
+				3976C3BC1FC42ACC008CC4F1 /* Igniter.hpp */,
+				39BC2F1B1FC4313F00FE22E8 /* GameObject.cpp */,
+				39BC2F1C1FC4313F00FE22E8 /* GameObject.hpp */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
 		3997F0B51FC21C8A009CECC9 = {
 			isa = PBXGroup;
 			children = (
@@ -77,6 +99,7 @@
 		3997F0C01FC21C8A009CECC9 /* IMACMAN */ = {
 			isa = PBXGroup;
 			children = (
+				3976C3B71FC42A03008CC4F1 /* Core */,
 				39DC5FAA1FC2E5F8001515C0 /* Scenes */,
 				39DC5FA81FC2E456001515C0 /* libs */,
 				3997F0CC1FC22C3F009CECC9 /* Utils */,
@@ -191,6 +214,7 @@
 		39B5E6E61FC3727600B99CC2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3976C3BE1FC42D5D008CC4F1 /* SDL2.framework */,
 				39B5E6E71FC3727700B99CC2 /* OpenGL.framework */,
 			);
 			name = Frameworks;
@@ -290,10 +314,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3976C3BA1FC42A84008CC4F1 /* Core.cpp in Sources */,
+				39BC2F1D1FC4313F00FE22E8 /* GameObject.cpp in Sources */,
+				3976C3BD1FC42ACC008CC4F1 /* Igniter.cpp in Sources */,
 				3997F0C21FC21C8A009CECC9 /* main.cpp in Sources */,
-				39B5E6E51FC371E900B99CC2 /* Image.cpp in Sources */,
-				39B5E6DE1FC364C200B99CC2 /* RessourcesEngine.cpp in Sources */,
-				39B5E6E11FC3654E00B99CC2 /* RessourceElement.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -434,6 +458,10 @@
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+				);
 				HEADER_SEARCH_PATHS = IMACMAN/libs/boost/;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -446,6 +474,10 @@
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+				);
 				HEADER_SEARCH_PATHS = IMACMAN/libs/boost/;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
