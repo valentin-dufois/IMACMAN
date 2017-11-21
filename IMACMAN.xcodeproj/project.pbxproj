@@ -9,9 +9,17 @@
 /* Begin PBXBuildFile section */
 		3997F0C21FC21C8A009CECC9 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3997F0C11FC21C8A009CECC9 /* main.cpp */; };
 		39B5E6DE1FC364C200B99CC2 /* RessourcesEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39B5E6DC1FC364C200B99CC2 /* RessourcesEngine.cpp */; };
-		39B5E6E11FC3654E00B99CC2 /* RessourceElement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39B5E6DF1FC3654E00B99CC2 /* RessourceElement.cpp */; };
 		39B5E6E51FC371E900B99CC2 /* Image.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39B5E6E31FC371E900B99CC2 /* Image.cpp */; };
 		39B5E6E81FC3727700B99CC2 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39B5E6E71FC3727700B99CC2 /* OpenGL.framework */; };
+		39B5E6EB1FC3875D00B99CC2 /* Sound.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39B5E6E91FC3875D00B99CC2 /* Sound.cpp */; };
+		39B5E6EF1FC387C000B99CC2 /* Mesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39B5E6ED1FC387C000B99CC2 /* Mesh.cpp */; };
+		39B5E6F21FC3898E00B99CC2 /* Level.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39B5E6F01FC3898E00B99CC2 /* Level.cpp */; };
+		39B5E6FA1FC38D1100B99CC2 /* ImageImporter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39B5E6F81FC38D1100B99CC2 /* ImageImporter.cpp */; };
+		39B5E6FD1FC38F0800B99CC2 /* Shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39B5E6FB1FC38F0800B99CC2 /* Shader.cpp */; };
+		39B5E7001FC3902800B99CC2 /* SoundImporter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39B5E6FE1FC3902800B99CC2 /* SoundImporter.cpp */; };
+		39B5E7031FC3905300B99CC2 /* MeshImporter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39B5E7011FC3905300B99CC2 /* MeshImporter.cpp */; };
+		39B5E7061FC3907C00B99CC2 /* LevelImporter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39B5E7041FC3907C00B99CC2 /* LevelImporter.cpp */; };
+		39B5E7091FC3908B00B99CC2 /* ShaderImporter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39B5E7071FC3908B00B99CC2 /* ShaderImporter.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -31,15 +39,33 @@
 		3970E5181FC2EBB30007F948 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		3997F0BE1FC21C8A009CECC9 /* IMACMAN */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = IMACMAN; sourceTree = BUILT_PRODUCTS_DIR; };
 		3997F0C11FC21C8A009CECC9 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		3997F0C81FC22BBB009CECC9 /* makefile */ = {isa = PBXFileReference; explicitFileType = sourcecode.make; indentWidth = 1; path = makefile; sourceTree = "<group>"; tabWidth = 1; usesTabs = 1; };
+		3997F0C81FC22BBB009CECC9 /* makefile */ = {isa = PBXFileReference; explicitFileType = sourcecode.make; indentWidth = 1; path = makefile; sourceTree = "<group>"; tabWidth = 4; usesTabs = 1; };
 		39B5E6DA1FC3642000B99CC2 /* main.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = main.hpp; sourceTree = "<group>"; tabWidth = 1; usesTabs = 1; };
 		39B5E6DC1FC364C200B99CC2 /* RessourcesEngine.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = RessourcesEngine.cpp; sourceTree = "<group>"; };
 		39B5E6DD1FC364C200B99CC2 /* RessourcesEngine.hpp */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.cpp.h; path = RessourcesEngine.hpp; sourceTree = "<group>"; tabWidth = 1; };
-		39B5E6DF1FC3654E00B99CC2 /* RessourceElement.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = RessourceElement.cpp; sourceTree = "<group>"; };
-		39B5E6E01FC3654E00B99CC2 /* RessourceElement.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = RessourceElement.hpp; sourceTree = "<group>"; };
+		39B5E6E01FC3654E00B99CC2 /* Asset.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Asset.hpp; sourceTree = "<group>"; };
 		39B5E6E31FC371E900B99CC2 /* Image.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Image.cpp; sourceTree = "<group>"; };
 		39B5E6E41FC371E900B99CC2 /* Image.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Image.hpp; sourceTree = "<group>"; };
 		39B5E6E71FC3727700B99CC2 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		39B5E6E91FC3875D00B99CC2 /* Sound.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Sound.cpp; sourceTree = "<group>"; };
+		39B5E6EA1FC3875D00B99CC2 /* Sound.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Sound.hpp; sourceTree = "<group>"; };
+		39B5E6ED1FC387C000B99CC2 /* Mesh.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Mesh.cpp; sourceTree = "<group>"; };
+		39B5E6EE1FC387C000B99CC2 /* Mesh.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Mesh.hpp; sourceTree = "<group>"; };
+		39B5E6F01FC3898E00B99CC2 /* Level.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Level.cpp; sourceTree = "<group>"; };
+		39B5E6F11FC3898E00B99CC2 /* Level.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Level.hpp; sourceTree = "<group>"; };
+		39B5E6F51FC38C0D00B99CC2 /* Importer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Importer.hpp; sourceTree = "<group>"; };
+		39B5E6F81FC38D1100B99CC2 /* ImageImporter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ImageImporter.cpp; sourceTree = "<group>"; };
+		39B5E6F91FC38D1100B99CC2 /* ImageImporter.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ImageImporter.hpp; sourceTree = "<group>"; };
+		39B5E6FB1FC38F0800B99CC2 /* Shader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Shader.cpp; sourceTree = "<group>"; };
+		39B5E6FC1FC38F0800B99CC2 /* Shader.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Shader.hpp; sourceTree = "<group>"; };
+		39B5E6FE1FC3902800B99CC2 /* SoundImporter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SoundImporter.cpp; sourceTree = "<group>"; };
+		39B5E6FF1FC3902800B99CC2 /* SoundImporter.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SoundImporter.hpp; sourceTree = "<group>"; };
+		39B5E7011FC3905300B99CC2 /* MeshImporter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MeshImporter.cpp; sourceTree = "<group>"; };
+		39B5E7021FC3905300B99CC2 /* MeshImporter.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MeshImporter.hpp; sourceTree = "<group>"; };
+		39B5E7041FC3907C00B99CC2 /* LevelImporter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = LevelImporter.cpp; sourceTree = "<group>"; };
+		39B5E7051FC3907C00B99CC2 /* LevelImporter.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = LevelImporter.hpp; sourceTree = "<group>"; };
+		39B5E7071FC3908B00B99CC2 /* ShaderImporter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ShaderImporter.cpp; sourceTree = "<group>"; };
+		39B5E7081FC3908B00B99CC2 /* ShaderImporter.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ShaderImporter.hpp; sourceTree = "<group>"; };
 		39CC1AC41FC2440A00C7A7C8 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -170,6 +196,7 @@
 		39B5E6DB1FC3649F00B99CC2 /* RessourcesEngine */ = {
 			isa = PBXGroup;
 			children = (
+				39B5E6F31FC38BF900B99CC2 /* Importers */,
 				39B5E6E21FC367F100B99CC2 /* Elements */,
 				39B5E6DC1FC364C200B99CC2 /* RessourcesEngine.cpp */,
 				39B5E6DD1FC364C200B99CC2 /* RessourcesEngine.hpp */,
@@ -180,10 +207,17 @@
 		39B5E6E21FC367F100B99CC2 /* Elements */ = {
 			isa = PBXGroup;
 			children = (
-				39B5E6DF1FC3654E00B99CC2 /* RessourceElement.cpp */,
-				39B5E6E01FC3654E00B99CC2 /* RessourceElement.hpp */,
+				39B5E6E01FC3654E00B99CC2 /* Asset.hpp */,
 				39B5E6E31FC371E900B99CC2 /* Image.cpp */,
 				39B5E6E41FC371E900B99CC2 /* Image.hpp */,
+				39B5E6E91FC3875D00B99CC2 /* Sound.cpp */,
+				39B5E6EA1FC3875D00B99CC2 /* Sound.hpp */,
+				39B5E6ED1FC387C000B99CC2 /* Mesh.cpp */,
+				39B5E6EE1FC387C000B99CC2 /* Mesh.hpp */,
+				39B5E6F01FC3898E00B99CC2 /* Level.cpp */,
+				39B5E6F11FC3898E00B99CC2 /* Level.hpp */,
+				39B5E6FB1FC38F0800B99CC2 /* Shader.cpp */,
+				39B5E6FC1FC38F0800B99CC2 /* Shader.hpp */,
 			);
 			path = Elements;
 			sourceTree = "<group>";
@@ -194,6 +228,24 @@
 				39B5E6E71FC3727700B99CC2 /* OpenGL.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		39B5E6F31FC38BF900B99CC2 /* Importers */ = {
+			isa = PBXGroup;
+			children = (
+				39B5E6F51FC38C0D00B99CC2 /* Importer.hpp */,
+				39B5E6F81FC38D1100B99CC2 /* ImageImporter.cpp */,
+				39B5E6F91FC38D1100B99CC2 /* ImageImporter.hpp */,
+				39B5E6FE1FC3902800B99CC2 /* SoundImporter.cpp */,
+				39B5E6FF1FC3902800B99CC2 /* SoundImporter.hpp */,
+				39B5E7011FC3905300B99CC2 /* MeshImporter.cpp */,
+				39B5E7021FC3905300B99CC2 /* MeshImporter.hpp */,
+				39B5E7041FC3907C00B99CC2 /* LevelImporter.cpp */,
+				39B5E7051FC3907C00B99CC2 /* LevelImporter.hpp */,
+				39B5E7071FC3908B00B99CC2 /* ShaderImporter.cpp */,
+				39B5E7081FC3908B00B99CC2 /* ShaderImporter.hpp */,
+			);
+			path = Importers;
 			sourceTree = "<group>";
 		};
 		39DC5FA81FC2E456001515C0 /* libs */ = {
@@ -290,10 +342,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				39B5E6EF1FC387C000B99CC2 /* Mesh.cpp in Sources */,
+				39B5E6FD1FC38F0800B99CC2 /* Shader.cpp in Sources */,
 				3997F0C21FC21C8A009CECC9 /* main.cpp in Sources */,
+				39B5E7001FC3902800B99CC2 /* SoundImporter.cpp in Sources */,
 				39B5E6E51FC371E900B99CC2 /* Image.cpp in Sources */,
+				39B5E7031FC3905300B99CC2 /* MeshImporter.cpp in Sources */,
+				39B5E6F21FC3898E00B99CC2 /* Level.cpp in Sources */,
 				39B5E6DE1FC364C200B99CC2 /* RessourcesEngine.cpp in Sources */,
-				39B5E6E11FC3654E00B99CC2 /* RessourceElement.cpp in Sources */,
+				39B5E7061FC3907C00B99CC2 /* LevelImporter.cpp in Sources */,
+				39B5E6FA1FC38D1100B99CC2 /* ImageImporter.cpp in Sources */,
+				39B5E6EB1FC3875D00B99CC2 /* Sound.cpp in Sources */,
+				39B5E7091FC3908B00B99CC2 /* ShaderImporter.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
