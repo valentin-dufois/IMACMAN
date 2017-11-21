@@ -9,6 +9,7 @@
 #ifndef Asset_hpp
 #define Asset_hpp
 
+#include <iostream>
 #include "../RessourcesEngine.hpp"
 
 class Asset

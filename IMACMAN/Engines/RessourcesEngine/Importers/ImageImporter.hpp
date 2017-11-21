@@ -9,16 +9,18 @@
 #ifndef ImageImporter_hpp
 #define ImageImporter_hpp
 
+//Forward declaration
+class Asset;
+
 #include "Importer.hpp"
 
 class ImageImporter: public Importer
 {
 public:
-	Asset getAsset(std::string path);
-
+	Asset * getAsset(std::string path);
+	~ImageImporter();
 private:
 	
-
 };
 
 #endif /* ImageImporter_hpp */

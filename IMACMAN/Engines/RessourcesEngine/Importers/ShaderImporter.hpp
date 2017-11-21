@@ -9,6 +9,18 @@
 #ifndef ShaderImporter_hpp
 #define ShaderImporter_hpp
 
-#include <stdio.h>
+//Forward declaration
+class Asset;
+
+#include "Importer.hpp"
+
+class ShaderImporter: public Importer
+{
+public:
+	Asset * getAsset(std::string path);
+
+private:
+
+};
 
 #endif /* ShaderImporter_hpp */

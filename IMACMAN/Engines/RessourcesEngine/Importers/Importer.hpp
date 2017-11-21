@@ -9,20 +9,16 @@
 #ifndef Importer_hpp
 #define Importer_hpp
 
-#include "../RessourcesEngine.hpp"
+#include <iostream>
+
+//Forward declaration
+class Asset;
 
 class Importer
 {
 public:
-	 virtual Asset getAsset(std::string path) = 0;
+	 virtual Asset * getAsset(std::string path) = 0;
 };
-
-//Forward declaration
-class ImageImporter;
-class SoundImporter;
-class MeshImporter;
-class LevelImporter;
-class ShaderImporter;
 
 #include "ImageImporter.hpp"
 #include "SoundImporter.hpp"

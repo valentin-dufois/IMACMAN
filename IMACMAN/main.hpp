@@ -11,6 +11,8 @@
 ////////////////////
 // Standard includes
 #include <iostream>
+#include <fstream>
+#include <map>
 
 
 ///////////////////
@@ -32,4 +34,6 @@
 #include "Core/GameObject.hpp"
 #include "Core/Core.hpp"
 #include "Core/Igniter.hpp"
+
+#include "Engines/RessourcesEngine/RessourcesEngine.hpp"
 

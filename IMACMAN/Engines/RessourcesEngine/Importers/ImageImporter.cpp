@@ -7,3 +7,13 @@
 //
 
 #include "ImageImporter.hpp"
+
+Asset * ImageImporter::getAsset(std::string path)
+{
+	return nullptr;
+}
+
+ImageImporter::~ImageImporter()
+{
+
+}

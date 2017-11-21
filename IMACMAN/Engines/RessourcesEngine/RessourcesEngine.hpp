@@ -26,18 +26,43 @@ enum ressourceType
 				LEVEL
 };
 
-//Forward declarations
-class Asset;
-
 //Get engine dependancies
+#include "Importers/Importer.hpp"
 #include "Elements/Asset.hpp"
 
 
 //The engine
 class RessourcesEngine
 {
-				
+public:
+				static void instanciate();
+
+				//Assets manipulation
+				rId loadAsset(std::string &path, ressourceType type);
+				Asset * getAsset(rId assetID);
+
+private:
+				//Singleton
+				static bool m_instanciated;
+				RessourcesEngine();
+
+				//Assets holders
+				std::map<std::string, rId> m_loadedPaths;
+				std::map<rId, Asset *> m_assets;
+				uint m_ressourcesLoadedCount;
+
+				Importer * getImporter(ressourceType &type);
+
+				//Utilities
+				std::string buildPath(std::string &file, ressourceType &type);
+				bool fileExist(std::string filePath);
 };
+
+
+//Engine inclusions
+#include "Importers/Importer.hpp"
+#include "Elements/Asset.hpp"
+
 
 #endif /* RessourcesEngine_hpp */
 

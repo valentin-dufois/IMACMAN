@@ -9,6 +9,18 @@
 #ifndef LevelImporter_hpp
 #define LevelImporter_hpp
 
-#include <stdio.h>
+//Forward declaration
+class Asset;
+
+#include "Importer.hpp"
+
+class LevelImporter: public Importer
+{
+public:
+	Asset * getAsset(std::string path);
+
+private:
+
+};
 
 #endif /* LevelImporter_hpp */

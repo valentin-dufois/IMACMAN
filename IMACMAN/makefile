@@ -28,12 +28,12 @@ INC := -I libs/boost $(pkg-config --cflags assimp)
 UNAME_S = $(shell uname -s)
 # Windows (cygwin)
 ifeq ($(OS),Windows_NT)
-	OSLIB := -lGL
+	OSLIB := -lGL -lSDL -lSDL_image
 	OSINC :=
 
 # OS X
 else ifeq ($(UNAME_S),Darwin)
-	OSLIB = -framework OpenGL -framework SDL2
+	OSLIB = -framework OpenGL -framework SDL2 -framework SDL2_image
 	OSINC :=
 
 # Linux (default)

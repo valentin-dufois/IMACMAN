@@ -20,6 +20,8 @@ void Core::ignite()
 //The main loop
 void Core::main()
 {
+	int startTime, elapsedTime;
+
 	while(GameObj->isRunning())
 	{
 		////////////////////////////////
@@ -28,6 +30,17 @@ void Core::main()
 		//Actions
 
 
+		startTime = SDL_GetTicks();
+
+		/*Clear the screen*/
+		glClear(GL_COLOR_BUFFER_BIT);
+		SDL_GL_SwapWindow(GameObj->mainWindow);
+
+		elapsedTime = SDL_GetTicks() - startTime;
+		if(elapsedTime < 16.6f)
+		{
+			SDL_Delay(16.6f - elapsedTime);
+		}
 
 
 		//Render

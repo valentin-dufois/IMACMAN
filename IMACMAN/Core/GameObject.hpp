@@ -9,6 +9,9 @@
 #ifndef GameObject_hpp
 #define GameObject_hpp
 
+//Forward declaration
+class RessourcesEngine;
+
 class GameObject
 {
 public:
@@ -16,8 +19,9 @@ public:
 	//Singleton constructor
 	static void instanciate();
 
+	RessourcesEngine * ressourceEngine;
+
 	/*
-	RessourceEngine * ressourceEngine;
 	GameEngine * gameEngine;
 	RenderEngine * renderEngine;
 	*/
