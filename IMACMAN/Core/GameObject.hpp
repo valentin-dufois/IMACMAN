@@ -12,6 +12,10 @@
 class GameObject
 {
 public:
+
+	//Singleton constructor
+	static void instanciate();
+
 	/*
 	RessourceEngine * ressourceEngine;
 	GameEngine * gameEngine;
@@ -25,8 +29,14 @@ public:
 	bool isRunning();
 
 private:
+	//Singleton
+	GameObject() {};
+	bool static m_instanciated;
+
+
 	//Game states
 	bool m_running = true;
+
 };
 
 extern GameObject * GameObj;

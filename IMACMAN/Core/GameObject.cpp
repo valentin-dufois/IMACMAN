@@ -9,6 +9,15 @@
 #include "../main.hpp"
 
 GameObject * GameObj = nullptr;
+bool GameObject::m_instanciated = false;
+
+void GameObject::instanciate()
+{
+	if(m_instanciated)
+		return;
+
+	GameObj = new GameObject();
+}
 
 bool GameObject::isRunning()
 {

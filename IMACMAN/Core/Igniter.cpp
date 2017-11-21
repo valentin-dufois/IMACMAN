@@ -11,7 +11,7 @@
 
 void Igniter::igniteGameObject()
 {
-	GameObj = new GameObject();
+	GameObject::instanciate();
 }
 
 
