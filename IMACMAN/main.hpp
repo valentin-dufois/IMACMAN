@@ -6,23 +6,30 @@
 //  Copyright © 2017 Valentin Dufois. All rights reserved.
 //
 
-#ifndef main_h
-#define main_h
+#pragma once
 
-//Standard includes
+////////////////////
+// Standard includes
 #include <iostream>
 
-//Needed libraries
+
+///////////////////
+// Needed libraries
 #ifdef __APPLE__
-
-#include <OpenGL/gl.h>
-
+#    include <OpenGL/gl.h>
 #else
-
-#include <GL/gl.h>
-
+#    include <GL/gl.h>
 #endif
-//CYGGWIN/LINUX
+
+#include <SDL2/SDL.h>
 
 
-#endif /* main_h */
+///////////////////
+// IMACMAN global object
+
+///////////////////
+// IMACMAN Includes
+#include "Core/GameObject.hpp"
+#include "Core/Core.hpp"
+#include "Core/Igniter.hpp"
+
