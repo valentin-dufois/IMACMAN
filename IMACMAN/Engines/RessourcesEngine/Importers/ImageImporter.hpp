@@ -11,8 +11,9 @@
 
 //Forward declaration
 class Asset;
+class Importer;
 
-#include "Importer.hpp"
+#include <iostream>
 
 class ImageImporter: public Importer
 {

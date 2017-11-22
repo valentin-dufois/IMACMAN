@@ -17,7 +17,8 @@ class Asset;
 class Importer
 {
 public:
-	 virtual Asset * getAsset(std::string path) = 0;
+	virtual Asset * getAsset(std::string path) = 0;
+	virtual ~Importer() {}
 };
 
 #include "ImageImporter.hpp"

@@ -59,10 +59,5 @@ private:
 };
 
 
-//Engine inclusions
-#include "Importers/Importer.hpp"
-#include "Elements/Asset.hpp"
-
-
 #endif /* RessourcesEngine_hpp */
 

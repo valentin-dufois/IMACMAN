@@ -19,6 +19,8 @@ void RessourcesEngine::instanciate()
 		return;
 
 	GameObj->ressourceEngine = new RessourcesEngine();
+
+	m_instanciated = true;
 }
 
 
@@ -26,6 +28,7 @@ RessourcesEngine::RessourcesEngine()
 {
 	m_ressourcesLoadedCount = 0;
 }
+
 
 
 rId RessourcesEngine::loadAsset(std::string &path, ressourceType type)
