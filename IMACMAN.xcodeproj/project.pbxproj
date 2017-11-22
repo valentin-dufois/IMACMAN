@@ -13,6 +13,8 @@
 		3997F0C21FC21C8A009CECC9 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3997F0C11FC21C8A009CECC9 /* main.cpp */; };
 		39B5E6E81FC3727700B99CC2 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39B5E6E71FC3727700B99CC2 /* OpenGL.framework */; };
 		39BC2F1D1FC4313F00FE22E8 /* GameObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39BC2F1B1FC4313F00FE22E8 /* GameObject.cpp */; };
+		564CCCBB1FC569A60061D5E1 /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 564CCCB91FC569A60061D5E1 /* Player.cpp */; };
+		564CCCBE1FC58E280061D5E1 /* GameEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 564CCCBC1FC58E280061D5E1 /* GameEngine.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -49,6 +51,10 @@
 		39BC2F1B1FC4313F00FE22E8 /* GameObject.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = GameObject.cpp; sourceTree = "<group>"; };
 		39BC2F1C1FC4313F00FE22E8 /* GameObject.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = GameObject.hpp; sourceTree = "<group>"; };
 		39CC1AC41FC2440A00C7A7C8 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		564CCCB91FC569A60061D5E1 /* Player.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Player.cpp; path = IMACMAN/Engines/GameEngine/Player.cpp; sourceTree = SOURCE_ROOT; };
+		564CCCBA1FC569A60061D5E1 /* Player.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = Player.hpp; path = IMACMAN/Engines/GameEngine/Player.hpp; sourceTree = SOURCE_ROOT; };
+		564CCCBC1FC58E280061D5E1 /* GameEngine.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = GameEngine.cpp; path = IMACMAN/Engines/GameEngine/GameEngine.cpp; sourceTree = SOURCE_ROOT; };
+		564CCCBD1FC58E280061D5E1 /* GameEngine.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = GameEngine.hpp; path = IMACMAN/Engines/GameEngine/GameEngine.hpp; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +130,7 @@
 		3997F0CB1FC22C35009CECC9 /* Engines */ = {
 			isa = PBXGroup;
 			children = (
+				564CCCB81FC569830061D5E1 /* GameEngine */,
 				39B5E6DB1FC3649F00B99CC2 /* RessourcesEngine */,
 			);
 			path = Engines;
@@ -235,6 +242,18 @@
 			path = Scenes;
 			sourceTree = "<group>";
 		};
+		564CCCB81FC569830061D5E1 /* GameEngine */ = {
+			isa = PBXGroup;
+			children = (
+				564CCCB91FC569A60061D5E1 /* Player.cpp */,
+				564CCCBA1FC569A60061D5E1 /* Player.hpp */,
+				564CCCBC1FC58E280061D5E1 /* GameEngine.cpp */,
+				564CCCBD1FC58E280061D5E1 /* GameEngine.hpp */,
+			);
+			name = GameEngine;
+			path = "New Group";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXLegacyTarget section */
@@ -317,7 +336,9 @@
 				3976C3BA1FC42A84008CC4F1 /* Core.cpp in Sources */,
 				39BC2F1D1FC4313F00FE22E8 /* GameObject.cpp in Sources */,
 				3976C3BD1FC42ACC008CC4F1 /* Igniter.cpp in Sources */,
+				564CCCBE1FC58E280061D5E1 /* GameEngine.cpp in Sources */,
 				3997F0C21FC21C8A009CECC9 /* main.cpp in Sources */,
+				564CCCBB1FC569A60061D5E1 /* Player.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

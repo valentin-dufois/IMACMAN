@@ -11,7 +11,7 @@
 ////////////////////
 // Standard includes
 #include <iostream>
-
+#include <string>
 
 ///////////////////
 // Needed libraries
@@ -33,3 +33,5 @@
 #include "Core/Core.hpp"
 #include "Core/Igniter.hpp"
 
+#include "Engines/GameEngine/Player.hpp"
+#include "Engines/GameEngine/GameEngine.hpp"

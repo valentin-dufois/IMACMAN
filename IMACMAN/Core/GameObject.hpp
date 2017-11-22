@@ -16,9 +16,10 @@ public:
 	//Singleton constructor
 	static void instanciate();
 
+	GameEngine * gameEngine;
+	
 	/*
 	RessourceEngine * ressourceEngine;
-	GameEngine * gameEngine;
 	RenderEngine * renderEngine;
 	*/
 
