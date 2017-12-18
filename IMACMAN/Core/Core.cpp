@@ -28,7 +28,7 @@ void Core::main()
 		//The main loop
 
 		//Actions
-
+		//GameObj->gameEngine->doActionsOfAllScenes();
 
 		startTime = SDL_GetTicks();
 
@@ -36,14 +36,17 @@ void Core::main()
 		glClear(GL_COLOR_BUFFER_BIT);
 		SDL_GL_SwapWindow(GameObj->mainWindow);
 
-		elapsedTime = SDL_GetTicks() - startTime;
+		/*elapsedTime = SDL_GetTicks() - startTime;
 		if(elapsedTime < 16.6f)
 		{
 			SDL_Delay(16.6f - elapsedTime);
-		}
+		}*/
+
+		std::cin.get();
 
 
 		//Render
+		//GameObj->renderEngine->render();
 
 		//
 		/////////////////////////////////

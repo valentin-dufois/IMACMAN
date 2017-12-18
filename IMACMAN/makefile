@@ -7,9 +7,8 @@ TARGETNAME := IMACMAN
 TARGET := Game/$(TARGETNAME)
 
 # SETUP
-CC := g++
+CXX := g++
 SRCDIR := .
-BUILDDIR := Game/build
 SRCEXT := cpp
 LIBDIR := libs
 
@@ -17,48 +16,52 @@ LIBDIR := libs
 SOURCES := $(shell find $(SRCDIR) -type f -name "**.$(SRCEXT)" -not -path "./$(LIBDIR)/*")
 OBJECTS := $(SOURCES:.$(SRCEXT)=.o)
 
-
 # COMPILER FLAGS
-CFLAGS := -std=c++11 -Wall
-LIB := $(pkg-config --libs assimp)
-INC := -I libs/boost $(pkg-config --cflags assimp)
-
+CXXFLAGS := -g -std=c++11 -Wall -pedantic
+LDLIBS := $(pkg-config --libs assimp)
+LDFLAGS := -I $(LIBDIR)/boost $(pkg-config --cflags assimp) -L$(LIBDIR)
 
 # OS-DEPENDANT COMPILER FLAGS
-UNAME_S = $(shell uname -s)
+UNAME_S := $(shell uname -s)
 # Windows (cygwin)
 ifeq ($(OS),Windows_NT)
-	OSLIB := -lGL -lSDL -lSDL_image
-	OSINC :=
+LDLIBS += -lGL -lSDL -lSDL_image
+LDFLAGS +=
 
 # OS X
 else ifeq ($(UNAME_S),Darwin)
-	OSLIB = -framework OpenGL -framework SDL2 -framework SDL2_image
-	OSINC :=
+LDLIBS += -framework OpenGL -framework SDL2 -framework SDL2_image
+LDFLAGS +=
+CXXFLAGS +=
+CXX := g++
+
 
 # Linux (default)
 else
-	OSLIB :=
-	OSINC := -lGL
+LDLIBS += -lGL
+LDFLAGS +=
+CXXFLAGS +=
 endif
 
 
 # BUILD THE PROGRAM
-$(TARGET): clean hello linker
+$(TARGET): hello linker
 
+#SAY HELLO
 hello:
 	@echo "\n========================================"
 	@echo "   COMPILING $(TARGETNAME) on $(UNAME_S)"
 	@echo "========================================\n"
 
+#LINK EVERYTHING
 linker: $(OBJECTS)
 	@echo "\n  Compiling ok!"
 	@echo "\n========================================"
 	@echo "   LINKING"
 	@echo "========================================\n"
-	@echo "  $(CC) $^ -o $(TARGET) $(LIB) $(OSLIB)\n"; $(CC) $^ -o $(TARGET) $(LIB) $(OSLIB)
-	@echo "  Cleaning objects..."
-	@$(RM) -r $(OBJECTS)
+	@echo "  $(CXX) $^ -o $(TARGET) $(LDFLAGS) $(LDLIBS) $(OSLIB)\n"; $(CXX) $^ -o $(TARGET) $(LDFLAGS) $(LDLIBS) $(OSLIB)
+#    @echo "  Cleaning objects..."
+#    @$(RM) -r $(OBJECTS)
 	@echo "\n========================================"
 	@echo "   $(TARGETNAME) successfully compiled!"
 	@echo "   Type \"./$(TARGET) to launch $(TARGETNAME)\""
@@ -66,8 +69,7 @@ linker: $(OBJECTS)
 
 # COMPILE THE SOURCES
 $(BUILDDIR)/%.o: $(SRCDIR)/%.$(SRCEXT)
-	@echo "  $(CC) $(CFLAGS) $(INC) $(OSINC) -c -o $@ $<"; $(CC) $(CFLAGS) $(INC) $(OSINC) -c -o $@ $<
-
+	@echo "  $(CXX) $(CXXFLAGS) $(LDFLAGS) -c -o $@ $<"; $(CXX) $(CXXFLAGS) $(LDFLAGS) -c -o $@ $<
 	@mkdir -p $(BUILDDIR)
 
 # REMOVE ALL OBJECTS
@@ -76,3 +78,5 @@ clean:
 	@echo " $(RM) -r $(OBJECTS) $(TARGET)"; $(RM) -r $(OBJECTS) $(TARGET)
 
 .PHONY: clean
+
+
