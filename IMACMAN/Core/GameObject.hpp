@@ -9,6 +9,11 @@
 #ifndef GameObject_hpp
 #define GameObject_hpp
 
+//Forward declaration
+class RessourcesEngine;
+class RenderEngine;
+class GameEngine;
+
 class GameObject
 {
 public:
@@ -17,11 +22,8 @@ public:
 	static void instanciate();
 
 	GameEngine * gameEngine;
-	
-	/*
-	RessourceEngine * ressourceEngine;
+	RessourcesEngine * ressourceEngine;
 	RenderEngine * renderEngine;
-	*/
 
 	//The window, managed by SDL
 	SDL_Window * mainWindow;

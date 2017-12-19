@@ -12,17 +12,22 @@
 // Standard includes
 #include <iostream>
 #include <string>
+#include <fstream>
+#include <map>
 
 ///////////////////
 // Needed libraries
 #ifdef __APPLE__
 #    include <OpenGL/gl.h>
+#    include <SDL2/SDL.h>
+#    include <SDL2_Image/SDL_image.h>
 #else
 #    include <GL/gl.h>
+#    include <SDL2/SDL.h>
+#    include <SDL2/SDL_image.h>
 #endif
 
-#include <SDL2/SDL.h>
-
+#include <SDL2/SDL_opengl.h>
 
 ///////////////////
 // IMACMAN global object
@@ -35,3 +40,5 @@
 
 #include "Engines/GameEngine/Player.hpp"
 #include "Engines/GameEngine/GameEngine.hpp"
+#include "Engines/RessourcesEngine/RessourcesEngine.hpp"
+#include "Engines/RenderEngine/RenderEngine.hpp"

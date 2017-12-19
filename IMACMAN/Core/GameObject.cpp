@@ -17,6 +17,8 @@ void GameObject::instanciate()
 		return;
 
 	GameObj = new GameObject();
+
+	m_instanciated = true;
 }
 
 bool GameObject::isRunning()
