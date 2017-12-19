@@ -14,23 +14,45 @@
 
 //Get engine dependancies
 #include "../RessourcesEngine/RessourcesEngine.hpp"
+//#include "Elements/Elements.hpp"
+//#include "Managers/Managers.hpp"
 
 //The engine
 class RenderEngine
 {
 public:
+				// Renderer configuration
+				bool lights = true;
+				bool RenderLights = true;
+				bool thirdPersCamera = false;
+
 				static void instanciate();
 
 private:
 				//Singleton
 				static bool m_instanciated;
+				//std::vector<Gluint> m_VAOs;
 				RenderEngine();
+				~RenderEngine();
+
+				//Lighting
+				//TODO: std::vector<DirectionalLight*> m_directionalLights;
+				//TODO: std::vector<PointLight*> m_PointLights;
+
+				//Camera
+				//TODO: Camera* m_Camera;
+
 
         //Scene manipulation
         uint m_scenesLoadedCount;
 
-				//Utilities
+				//VBO
+				//std::vector<Gluint> m_VBOs;
 
+				void setAllVBOs(uint size);
+				void pushVBO();
+				//vector<Gluint> getAllVBOs();
+				//Gluint* getSingleVBO(const uint index);
 };
 
 #endif /* RenderEngine_hpp */

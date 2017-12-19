@@ -23,7 +23,9 @@ void RenderEngine::instanciate()
 	m_instanciated = true;
 }
 
-
+/**
+ * Private constructor
+ */
 RenderEngine::RenderEngine()
 {
 	m_scenesLoadedCount = 0;

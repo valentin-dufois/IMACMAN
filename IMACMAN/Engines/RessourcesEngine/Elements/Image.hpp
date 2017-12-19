@@ -15,11 +15,12 @@ class Image : public Asset
 {
 private:
     //Structural infos
-    
+
     //Image infos
     uint m_width;
     uint m_height;
+
+    //
 };
 
 #endif /* Image_hpp */
-

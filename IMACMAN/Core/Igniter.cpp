@@ -62,7 +62,16 @@ void Igniter::igniteSDL()
 
 	if((SDL_IMAGE_LOADED_FLAGS&SDL_IMAGE_FLAGS) != SDL_IMAGE_FLAGS)
 		throw std::runtime_error("SDL_image could not be loaded.");
+}
 
+void Igniter::igniteOpenGL()
+{
+	GLenum glewInitError = glewInit();
+	if(GLEW_OK != glewInitError) {
+		std::cerr << glewGetErrorString(glewInitError) << std::endl;
+	  return EXIT_FAILURE;
+	}
 
-
+	std::cout << "OpenGL Version : " << glGetString(GL_VERSION) << std::endl;
+	std::cout << "GLEW Version : " << glewGetString(GLEW_VERSION) << std::endl;
 }
