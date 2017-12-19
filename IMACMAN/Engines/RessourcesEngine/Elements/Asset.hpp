@@ -20,14 +20,14 @@ private:
     ressourceType m_type;
 
 public:
-    
+
     //Constructor
     Asset(rId rID, ressourceType type): m_rID(rID), m_type(type) {};
-    
+
     //Getters
-	rId getID() const { return m_rID; }
-	ressourceType getType() const { return m_type; }
-	virtual uint getSize() = 0;
+    rId getID() const { return m_rID; }
+    ressourceType getType() const { return m_type; }
+    virtual uint getSize() = 0;
 };
 
 #endif /* Asset_hpp */

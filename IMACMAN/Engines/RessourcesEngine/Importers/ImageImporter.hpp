@@ -21,7 +21,7 @@ public:
 	Asset * getAsset(std::string path);
 	~ImageImporter();
 private:
-	
+
 };
 
 #endif /* ImageImporter_hpp */

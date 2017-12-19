@@ -7,25 +7,46 @@
 //
 
 #include "../../../main.hpp"
+#include "../Elements/Image.hpp"
 
 Asset * ImageImporter::getAsset(std::string path)
 {
 	//Load image
-	SDL_Surface * imageSurface = IMG_Load(path.c_str());
+	SDL_Surface * imgSurface = IMG_Load(path.c_str());
 
 	//Is image loaded ?
-	if(!imageSurface)
+	if(!imgSurface) {
 		throw std::runtime_error("Could not load " + path + " : " + std::string(IMG_GetError()));
+	}
 
+	//Specifies texture parameters
+	GLenum imgTexType = GL_TEXTURE_2D;
+	GLuint texture;
+	GLenum mode = GL_RGB;
 
-	//Image is ok, let's extract informations
-	uint i_height = imageSurface->w;
-	uint i_width = imageSurface->h;
+	if(imgSurface->format->BytesPerPixel == 4) {
+	    mode = GL_RGBA;
+	}
 
-	GLenum imageMode;
-	
+	//Init and bind an OpenGL texture
+	glGenTextures(1, &texture);
+	glBindTexture(imgTexType, texture);
 
-	return nullptr;
+	//Insert data in the 2D texture
+	glTexImage2D(imgTexType, 0, mode, imgSurface->w, imgSurface->h, 0, mode, GL_FLOAT, imgSurface->pixels);
+	//Define preset for graphic card
+	glTexParameteri(imgTexType, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(imgTexType, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	// Debinding of the texture
+	glBindTexture(imgTexType, 0);
+
+	//Create a New Image Asset
+	Image* image = Image(0, IMAGE, imgSurface->w, imgSurface->h, (imgSurface->w * imgSurface->h));
+
+	// clean up the SDL_Surface
+  SDL_FreeSurface(imgSurface);
+
+	return image;
 }
 
 ImageImporter::~ImageImporter()
