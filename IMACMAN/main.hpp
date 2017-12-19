@@ -19,13 +19,15 @@
 // Needed libraries
 #ifdef __APPLE__
 #    include <OpenGL/gl.h>
+#    include <SDL2/SDL.h>
+#    include <SDL2_Image/SDL_image.h>
 #else
 #    include <GL/gl.h>
+#    include <SDL2/SDL.h>
+#    include <SDL2/SDL_image.h>
 #endif
 
-#include <SDL2/SDL.h>
-#include <SDL2_Image/SDL_image.h>
-
+#include <SDL2/SDL_opengl.h>
 
 ///////////////////
 // IMACMAN global object
@@ -37,4 +39,4 @@
 #include "Core/Igniter.hpp"
 
 #include "Engines/RessourcesEngine/RessourcesEngine.hpp"
-
+#include "Engines/RenderEngine/RenderEngine.hpp"

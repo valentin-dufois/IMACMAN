@@ -8,7 +8,6 @@
 
 #include "../main.hpp"
 
-
 void Igniter::igniteGameObject()
 {
 	GameObject::instanciate();

@@ -11,6 +11,7 @@
 
 //Forward declaration
 class RessourcesEngine;
+class RenderEngine;
 
 class GameObject
 {
@@ -20,6 +21,7 @@ public:
 	static void instanciate();
 
 	RessourcesEngine * ressourceEngine;
+	RenderEngine * renderEngine;
 
 	/*
 	GameEngine * gameEngine;

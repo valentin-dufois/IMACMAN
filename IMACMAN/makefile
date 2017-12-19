@@ -25,7 +25,7 @@ LDFLAGS := -I $(LIBDIR)/boost $(pkg-config --cflags assimp) -L$(LIBDIR)
 UNAME_S := $(shell uname -s)
 # Windows (cygwin)
 ifeq ($(OS),Windows_NT)
-LDLIBS += -lGL -lSDL -lSDL_image
+LDLIBS += -lGL -lSDL2 -lSDL2_image
 LDFLAGS +=
 
 # OS X
@@ -35,10 +35,9 @@ LDFLAGS +=
 CXXFLAGS +=
 CXX := g++
 
-
 # Linux (default)
 else
-LDLIBS += -lGL
+LDLIBS += -lGL -lSDL2 -lSDL2_image
 LDFLAGS +=
 CXXFLAGS +=
 endif
@@ -78,5 +77,3 @@ clean:
 	@echo " $(RM) -r $(OBJECTS) $(TARGET)"; $(RM) -r $(OBJECTS) $(TARGET)
 
 .PHONY: clean
-
-
