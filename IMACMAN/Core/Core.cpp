@@ -15,6 +15,7 @@ void Core::ignite()
 
 	igniter.igniteGameObject();
 	igniter.igniteSDL();
+	igniter.igniteOpenGL();
 }
 
 //The main loop

@@ -13,6 +13,7 @@
 #include <iostream>
 #include <fstream>
 #include <map>
+#include <vector>
 
 
 ///////////////////
@@ -40,3 +41,6 @@
 
 #include "Engines/RessourcesEngine/RessourcesEngine.hpp"
 #include "Engines/RenderEngine/RenderEngine.hpp"
+
+//Create type for unsigned short ints
+using usint = unsigned short int;

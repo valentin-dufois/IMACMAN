@@ -23,7 +23,7 @@ Asset * ImageImporter::getAsset(std::string path)
 	uint i_width = imageSurface->h;
 
 	GLenum imageMode;
-	
+	//
 
 	return nullptr;
 }

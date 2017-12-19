@@ -25,7 +25,6 @@ public:
 
 	/*
 	GameEngine * gameEngine;
-	RenderEngine * renderEngine;
 	*/
 
 	//The window, managed by SDL
