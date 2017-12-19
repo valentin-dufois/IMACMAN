@@ -11,8 +11,11 @@
 ////////////////////
 // Standard includes
 #include <iostream>
-#include <string>
 #include <fstream>
+#include <string>
+#include <chrono>
+#include <thread>
+#include <vector>
 #include <map>
 
 ///////////////////
@@ -31,6 +34,7 @@
 
 ///////////////////
 // IMACMAN global object
+#define FRAMERATE 1000/60
 
 ///////////////////
 // IMACMAN Includes
