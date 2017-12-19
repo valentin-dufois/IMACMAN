@@ -32,7 +32,6 @@ void Core::main()
 		//Actions
 		//GameObj->gameEngine->doActionsOfAllScenes();
 
-
 		/*Clear the screen*/
 		glClear(GL_COLOR_BUFFER_BIT);
 

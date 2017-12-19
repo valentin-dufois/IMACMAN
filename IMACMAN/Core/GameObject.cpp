@@ -21,7 +21,7 @@ void GameObject::instanciate()
 	m_instanciated = true;
 }
 
-bool GameObject::isRunning()
+void GameObject::addScene(Scene * scene)
 {
-	return m_running;
+	m_scenes.push_back(scene);
 }
