@@ -18,11 +18,25 @@ private:
     //Image infos
     uint m_width;
     uint m_height;
-    std::unique_ptr<glm::vec4[]> m_pixels;
+    std::vector<SDL_Color> m_pixels;
+    bool m_alphaChannel;
 
 public:
     //Constructor
-    Image(rId rID, ressourceType type, uint width, uint height): Asset(rID, type), m_width(width), m_height(height), m_pixels(new glm::vec4[width * height]) {};
+    Image(rId rID, ressourceType type, uint width, uint height, std::vector<SDL_Color> pixels): Asset(rID, type), m_width(width), m_height(height), m_pixels(pixels){}
+
+    //Getters
+    uint getWidth() const;
+    uint getHeight() const;
+    uint getSize() const;
+    uint getAlphaChannel() const;
+
+    //Setters
+    void setWidth(const uint width);
+    void setHeight(const uint height);
+    void setAlphaChannel(const uint alphaChannel);
+
+    //Utils
 
 };
 

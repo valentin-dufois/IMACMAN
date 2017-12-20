@@ -13,12 +13,14 @@
 class Asset;
 class Importer;
 
+#include "../../../main.hpp"
 #include <iostream>
 
 class ImageImporter: public Importer
 {
 public:
 	Asset * getAsset(std::string path);
+	std::vector<SDL_Color> getColorPixels(SDL_Surface* surface);
 	~ImageImporter();
 private:
 

@@ -27,7 +27,6 @@ public:
     //Getters
     rId getID() const { return m_rID; }
     ressourceType getType() const { return m_type; }
-    virtual uint getSize() = 0;
 };
 
 #endif /* Asset_hpp */
