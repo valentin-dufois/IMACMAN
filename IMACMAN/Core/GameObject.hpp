@@ -9,13 +9,13 @@
 #ifndef GameObject_hpp
 #define GameObject_hpp
 
-#include "../main.hpp"
-
 //Forward declarations
 class GameEngine;
 class RessourcesEngine;
 class RenderEngine;
 class Scene;
+
+#include "../main.hpp"
 
 class GameObject
 {
@@ -52,7 +52,7 @@ public:
 
 	 @param scene The scene to add
 	 */
-	void addScene(Scene * scene);
+	inline void addScene(Scene * scene) { m_scenes.push_back(scene); };
 
 	/**
 	 Return all scene currently in loop
@@ -60,6 +60,23 @@ public:
 	 @return The scenes in a vector
 	 */
 	std::vector<Scene *> getScenes() const { return m_scenes; };
+
+	/**
+	 Remove the given scene from the loop
+
+	 - important: The function does NOT destruct the scene. It only removes its reference.
+	 The scene must be removed afterward
+
+	 @param scene The scene to remove
+	 */
+	void removeScene(Scene * scene);
+
+	/**
+	 Return a newly generated UUID
+
+	 @return UUID
+	 */
+	inline boost::uuids::uuid getUUID() { return m_uuidGenerator(); };
 
 private:
 	//Singleton
@@ -71,6 +88,9 @@ private:
 
 	//Scenes
 	std::vector<Scene *> m_scenes;
+
+	//UUID
+	boost::uuids::random_generator m_uuidGenerator;
 
 };
 

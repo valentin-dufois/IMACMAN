@@ -15,6 +15,9 @@ void Core::ignite()
 
 	igniter.igniteGameObject();
 	igniter.igniteSDL();
+
+	//Init random generator
+	srand((uint)time(NULL));
 }
 
 //The main loop

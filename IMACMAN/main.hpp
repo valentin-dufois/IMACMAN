@@ -18,29 +18,39 @@
 #include <vector>
 #include <map>
 
+
 ///////////////////
 // Needed libraries
+#include <GL/glew.h>
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_opengl.h>
+
 #ifdef __APPLE__
-#    include <OpenGL/gl.h>
-#    include <SDL2/SDL.h>
 #    include <SDL2_Image/SDL_image.h>
 #else
-#    include <GL/gl.h>
-#    include <SDL2/SDL.h>
 #    include <SDL2/SDL_image.h>
 #endif
 
-#include <SDL2/SDL_opengl.h>
 
-///////////////////
+/////////////////
+//UUID generation
+#include <boost/uuid/uuid.hpp>
+#include <boost/uuid/uuid_generators.hpp>
+#include <boost/uuid/uuid_io.hpp>
+
+
+////////////////////////
 // IMACMAN global object
 #define FRAMERATE 1000/60
+
 
 ///////////////////
 // IMACMAN Includes
 #include "Core/GameObject.hpp"
 #include "Core/Core.hpp"
 #include "Core/Igniter.hpp"
+
+#include "Scenes/Scene.hpp"
 
 #include "Engines/GameEngine/Player.hpp"
 #include "Engines/GameEngine/GameEngine.hpp"

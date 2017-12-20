@@ -17,6 +17,7 @@ class Asset;
 class Scene
 {
 public:
+
 	/**
 	 Initialize the scene
 	 */
@@ -26,6 +27,11 @@ public:
 	 Execute all the actions in the scene
 	 */
 	virtual void execute() = 0;
+
+	/**
+	 Destructor, used to properly free all the memory used by the scene
+	 */
+	virtual ~Scene() {};
 
 	/**
 	 Enable the scene
@@ -42,7 +48,7 @@ public:
 
 	 @return True if enabled, false otherwise
 	 */
-	bool isEnabled() const { return m_enable; };
+	inline bool isEnabled() const { return m_enable; };
 
 	/**
 	 Return all the assets of the scene
@@ -52,11 +58,20 @@ public:
 	inline std::vector<Asset *> getAssets() const { return m_assets; };
 
 	/**
-	 Destructor, used to properly free all the memory used by the scene
+	 Return the unique ID of the scene
+
+	 @return UUID
 	 */
-	virtual ~Scene() {};
+	inline boost::uuids::uuid getUUID() const { return m_sceneID; };
+
+	/**
+	 Scene constructor, generate the scene UUID
+	 */
+	Scene():m_sceneID(GameObj->getUUID()) {};
 
 private:
+
+	boost::uuids::uuid m_sceneID;
 
 	bool m_enable;
 	std::vector<Asset *> m_assets;
