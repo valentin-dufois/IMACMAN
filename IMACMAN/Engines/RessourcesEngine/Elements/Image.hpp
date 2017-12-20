@@ -16,27 +16,21 @@ class Image : public Asset
 {
 private:
     //Image infos
-    uint m_width;
-    uint m_height;
-    std::vector<SDL_Color> m_pixels;
-    bool m_alphaChannel;
+    SDL_Surface *m_image;
 
 public:
     //Constructor
-    Image(rId rID, ressourceType type, uint width, uint height, std::vector<SDL_Color> pixels): Asset(rID, type), m_width(width), m_height(height), m_pixels(pixels){}
+    Image(rId rID, ressourceType type, SDL_Surface *img): Asset(rID, type), m_image(img){}
 
     //Getters
-    uint getWidth() const;
-    uint getHeight() const;
-    uint getSize() const;
-    uint getAlphaChannel() const;
+    SDL_Surface* getImage() const;
+    int getImageSize() const;
 
     //Setters
-    void setWidth(const uint width);
-    void setHeight(const uint height);
-    void setAlphaChannel(const uint alphaChannel);
+    void setImage(SDL_Surface* image);
 
     //Utils
+    bool scaleImage(const int width = 100, const int height = 100);
 
 };
 

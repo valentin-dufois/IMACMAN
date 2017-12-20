@@ -21,6 +21,7 @@ class ImageImporter: public Importer
 public:
 	Asset * getAsset(std::string path);
 	std::vector<SDL_Color> getColorPixels(SDL_Surface* surface);
+	void bindTextureToOpengl(GLuint textureID, SDL_Surface* surface);
 	~ImageImporter();
 private:
 

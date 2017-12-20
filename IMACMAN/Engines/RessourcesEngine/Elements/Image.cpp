@@ -9,39 +9,32 @@
 #include "Image.hpp"
 
 //Getters
-uint Image::getWidth() const
+SDL_Surface* Image::getImage() const
 {
-  return m_width;
+  return m_image;
 }
 
-uint Image::getHeight() const
+int Image::getImageSize() const
 {
-  return m_height;
-}
-
-uint Image::getSize() const
-{
-  return m_width * m_height;
-}
-
-uint Image::getAlphaChannel() const {
-  return m_alphaChannel;
+  return m_image->w * m_image->h;
 }
 
 //Setters
-void Image::setWidth(const uint width)
+void Image::setImage(SDL_Surface* image)
 {
-  m_width = width;
-}
+  //Is image loaded ?
+	if(!image) {
+		throw std::runtime_error("There is no Image at this pointer.");
+	}
 
-void Image::setHeight(const uint height)
-{
-  m_height = height;
-}
+	//Convert to RGBA surface
+	SDL_Surface * formattedImage = SDL_ConvertSurfaceFormat(image, SDL_PIXELFORMAT_RGBA8888, 0);
+	if(!formattedImage) {
+		SDL_FreeSurface(image);
+		throw std::runtime_error("Could not formate the image.");
+	}
 
-void Image::setAlphaChannel(const uint alphaChannel)
-{
-  m_alphaChannel = alphaChannel;
+  m_image = formattedImage;
 }
 
 //Utils
