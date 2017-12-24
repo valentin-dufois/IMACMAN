@@ -26,7 +26,7 @@
 #include <SDL2/SDL_opengl.h>
 
 #ifdef __APPLE__
-#    include <SDL2_Image/SDL_image.h>
+#    include <SDL2_image/SDL_image.h>
 #else
 #    include <SDL2/SDL_image.h>
 #endif
