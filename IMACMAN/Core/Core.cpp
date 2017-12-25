@@ -7,6 +7,7 @@
 //
 
 #include "../main.hpp"
+#include <SDL2/SDL_image.h>
 
 //Ignite the different aspects of the game
 void Core::ignite()

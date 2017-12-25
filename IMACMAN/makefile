@@ -13,7 +13,7 @@ SRCEXT := cpp
 LIBDIR := libs
 
 # FIND ALL PROJECT SOURCES
-SOURCES := $(shell find $(SRCDIR) -type f -name "**.$(SRCEXT)" -not -path "./$(LIBDIR)/*")
+SOURCES := $(shell tree $(SRCDIR) -type f -name "**.$(SRCEXT)" -not -path "./$(LIBDIR)/*")
 OBJECTS := $(SOURCES:.$(SRCEXT)=.o)
 
 # COMPILER FLAGS
@@ -25,7 +25,7 @@ LDFLAGS := -I $(LIBDIR)/boost $(pkg-config --cflags assimp) -L$(LIBDIR)
 UNAME_S := $(shell uname -s)
 # Windows (cygwin)
 ifeq ($(OS),Windows_NT)
-LDLIBS += -lGL -lSDL -lSDL_image
+LDLIBS += -lGL -lSDL2 -lSDL2_image
 LDFLAGS +=
 
 # OS X
@@ -38,7 +38,7 @@ CXX := g++
 
 # Linux (default)
 else
-LDLIBS += -lGL
+LDLIBS += -lGL -lSDL2 -lSDL2_image
 LDFLAGS +=
 CXXFLAGS +=
 endif
