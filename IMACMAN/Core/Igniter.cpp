@@ -13,8 +13,6 @@ void Igniter::igniteGameObject()
 	GameObject::instanciate();
 }
 
-
-
 void Igniter::igniteSDL()
 {
 	//////////////
@@ -69,7 +67,7 @@ void Igniter::igniteOpenGL()
 	GLenum glewInitError = glewInit();
 	if(GLEW_OK != glewInitError) {
 		std::cerr << glewGetErrorString(glewInitError) << std::endl;
-	  return EXIT_FAILURE;
+	  return;
 	}
 
 	std::cout << "OpenGL Version : " << glGetString(GL_VERSION) << std::endl;

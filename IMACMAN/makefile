@@ -37,7 +37,7 @@ CXX := g++
 
 # Linux (default)
 else
-LDLIBS += -lGL -lSDL2 -lSDL2_image -lGLEW
+LDLIBS += -lGLEW -lGLU -lGL -lSDL2 -lSDL2_image
 LDFLAGS +=
 CXXFLAGS +=
 endif
