@@ -19,13 +19,13 @@ OBJECTS := $(SOURCES:.$(SRCEXT)=.o)
 # COMPILER FLAGS
 CXXFLAGS := -g -std=c++11 -Wall -pedantic
 LDLIBS := $(pkg-config --libs assimp)
-LDFLAGS := -I $(LIBDIR)/boost $(pkg-config --cflags assimp) -L$(LIBDIR)
+LDFLAGS := -I $(pkg-config --cflags assimp) -L$(LIBDIR)
 
 # OS-DEPENDANT COMPILER FLAGS
 UNAME_S := $(shell uname -s)
 # Windows (cygwin)
 ifeq ($(OS),Windows_NT)
-LDLIBS += -lGL -lSDL2 -lSDL2_image
+LDLIBS += -lGL -lSDL2 -lSDL2_image -lGLEW
 LDFLAGS +=
 
 # OS X
@@ -35,10 +35,9 @@ LDFLAGS +=
 CXXFLAGS +=
 CXX := g++
 
-
 # Linux (default)
 else
-LDLIBS += -lGL -lSDL2 -lSDL2_image
+LDLIBS += -lGL -lSDL2 -lSDL2_image -lGLEW
 LDFLAGS +=
 CXXFLAGS +=
 endif
@@ -78,5 +77,3 @@ clean:
 	@echo " $(RM) -r $(OBJECTS) $(TARGET)"; $(RM) -r $(OBJECTS) $(TARGET)
 
 .PHONY: clean
-
-

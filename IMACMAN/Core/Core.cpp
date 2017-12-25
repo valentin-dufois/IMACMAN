@@ -16,38 +16,38 @@ void Core::ignite()
 
 	igniter.igniteGameObject();
 	igniter.igniteSDL();
+
+	//Init random generator
+	srand((uint)time(NULL));
 }
 
 //The main loop
 void Core::main()
 {
-	int startTime, elapsedTime;
+	std::chrono::high_resolution_clock::time_point start, end;
 
 	while(GameObj->isRunning())
 	{
 		////////////////////////////////
 		//The main loop
 
+		start = std::chrono::high_resolution_clock::now();
+
 		//Actions
 		//GameObj->gameEngine->doActionsOfAllScenes();
 
-		startTime = SDL_GetTicks();
-
 		/*Clear the screen*/
 		glClear(GL_COLOR_BUFFER_BIT);
-		SDL_GL_SwapWindow(GameObj->mainWindow);
-
-		/*elapsedTime = SDL_GetTicks() - startTime;
-		if(elapsedTime < 16.6f)
-		{
-			SDL_Delay(16.6f - elapsedTime);
-		}*/
-
-		std::cin.get();
-
 
 		//Render
 		//GameObj->renderEngine->render();
+
+		SDL_GL_SwapWindow(GameObj->mainWindow);
+
+		end = std::chrono::high_resolution_clock::now();
+
+		//Tempo
+		Core::tempo(start, end);
 
 		//
 		/////////////////////////////////
@@ -55,3 +55,17 @@ void Core::main()
 
 	//End of game, clear everything
 }
+
+void Core::tempo(std::chrono::high_resolution_clock::time_point start, std::chrono::high_resolution_clock::time_point end)
+{
+	std::chrono::milliseconds elapsed, toWait;
+
+	elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
+
+	if(elapsed.count() < FRAMERATE)
+	{
+		toWait = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::milliseconds(FRAMERATE) - elapsed);
+		std::this_thread::sleep_for(toWait);
+	}
+}
+
