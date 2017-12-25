@@ -13,46 +13,48 @@
 #include "../../main.hpp"
 
 //Get engine dependancies
-#include "../RessourcesEngine/RessourcesEngine.hpp"
-//#include "Elements/Elements.hpp"
-//#include "Managers/Managers.hpp"
+#include "Manager/Manager.hpp"
+
+//Managers types
+enum managerType
+{
+	GRID_MANAGER,
+	PACMAN_MANAGER,
+	GHOST_MANAGER
+};
 
 //The engine
 class RenderEngine
 {
 public:
-				// Renderer configuration
-				bool lights = true;
-				bool RenderLights = true;
+				// Renderer configuration accessible by all
 				bool thirdPersCamera = false;
 
+				//Singleton
 				static void instanciate();
 
 private:
 				//Singleton
 				static bool m_instanciated;
-				//std::vector<Gluint> m_VAOs;
-				RenderEngine();
+
+				//Factory
+				Manager * getManager(managerType type);
+
+				//Attributs
+				GLuint m_gridVBO;
+				GLuint m_pacmanVBO;
+				std::vector<GLuint> m_ghostsVBO;
+
+				//OpenGL Error
+				GLenum error;
+
+				//Constructor
+				RenderEngine(GLuint gridVBO = 1, GLuint pacmanVBO = 2, std::vector<GLuint> ghostsVBO = {3, 4, 5, 6});
 				~RenderEngine();
 
-				//Lighting
-				//TODO: std::vector<DirectionalLight*> m_directionalLights;
-				//TODO: std::vector<PointLight*> m_PointLights;
+				//Utils
+				void initVBO(GLenum bufferType, GLuint * index, managerType type, GLuint nbOfVBO = 1);
 
-				//Camera
-				//TODO: Camera* m_Camera;
-
-
-        //Scene manipulation
-        uint m_scenesLoadedCount;
-
-				//VBO
-				//std::vector<Gluint> m_VBOs;
-
-				void setAllVBOs(uint size);
-				void pushVBO();
-				//vector<Gluint> getAllVBOs();
-				//Gluint* getSingleVBO(const uint index);
 };
 
 #endif /* RenderEngine_hpp */
