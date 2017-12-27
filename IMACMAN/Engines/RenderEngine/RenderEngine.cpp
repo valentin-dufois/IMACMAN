@@ -49,7 +49,7 @@ void RenderEngine::initVBO(GLenum bufferType, GLuint * index, managerType type, 
 	glGenBuffers(nbOfVBO, index);
 	//Bind the VBO to OpenGL
 	glBindBuffer(bufferType, *index);
-	//Fill the VBO with data
+	//Fill the VBO with data (Factory pattern)
 	manager->fillVBO();
 	//Unbind the VBO from OpenGL
 	glBindBuffer(bufferType, 0);
