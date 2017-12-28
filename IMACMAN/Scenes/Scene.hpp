@@ -69,6 +69,11 @@ public:
 	 */
 	Scene():m_sceneID(GameObj->getUUID()) {};
 
+	bool operator == (Scene * scene)
+	{
+		return getUUID() == scene->getUUID();
+	};
+
 private:
 
 	boost::uuids::uuid m_sceneID;

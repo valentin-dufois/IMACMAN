@@ -46,6 +46,10 @@ public:
 	 */
 	inline bool isRunning() const { return m_running; };
 
+	/**
+	 Mark game to stop
+	 */
+	inline void endGame() { m_running = false; };
 	
 	/**
 	 Add a new scene to the loop

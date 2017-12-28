@@ -25,7 +25,7 @@ OBJECTS := $(SOURCES:.$(SRCEXT)=.o)
 # COMPILER FLAGS
 CXXFLAGS := -g -std=c++11 -Wall -pedantic -I$(LIBDIR)
 LDLIBS := $(pkg-config --libs assimp)
-LDFLAGS := -I$(pkg-config --cflags assimp)
+LDFLAGS := $(pkg-config --cflags assimp)
 
 # OS-DEPENDANT COMPILER FLAGS
 # Windows (cygwin)
@@ -35,7 +35,7 @@ LDFLAGS +=
 
 # OS X
 else ifeq ($(UNAME_S),Darwin)
-LDLIBS += -framework OpenGL -framework SDL2 -framework SDL2_image
+LDLIBS += -framework OpenGL -framework SDL2 -framework SDL2_image -lGLEW
 LDFLAGS +=
 CXXFLAGS +=
 CXX := g++

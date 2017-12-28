@@ -7,7 +7,6 @@
 //
 
 #include "../main.hpp"
-#include <SDL2/SDL_image.h>
 
 //Ignite the different aspects of the game
 void Core::ignite()
@@ -35,7 +34,7 @@ void Core::main()
 		start = std::chrono::high_resolution_clock::now();
 
 		//Actions
-		//GameObj->gameEngine->doActionsOfAllScenes();
+		GameObj->gameEngine->executeScenes();
 
 		/*Clear the screen*/
 		glClear(GL_COLOR_BUFFER_BIT);

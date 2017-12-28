@@ -25,7 +25,7 @@ void GameObject::removeScene(Scene * scene)
 {
 	for(std::vector<Scene *>::iterator it = m_scenes.begin(); it != m_scenes.end(); ++it)
 	{
-		if((*it)->getUUID() == scene->getUUID())
+		if((*it) == scene)
 		{
 			m_scenes.erase(it);
 			return;
