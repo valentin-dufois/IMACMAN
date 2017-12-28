@@ -17,13 +17,13 @@ class Mesh : public Asset
 	//Structural infos
 	
 	//Mesh infos
-	uint m_vertexCount;
+	unsigned int m_vertexCount;
 	
 	//Vertex infos
-	uint m_vertexSize;
-	uint m_positionOffset;
-	uint m_normalOffset;
-	uint m_textureOffset;
+	unsigned int m_vertexSize;
+	unsigned int m_positionOffset;
+	unsigned int m_normalOffset;
+	unsigned int m_textureOffset;
 };
 
 #endif /* Mesh_hpp */

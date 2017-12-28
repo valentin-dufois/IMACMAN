@@ -17,8 +17,8 @@ class Level : public Asset
 	//Structural infos
 	
 	//level infos
-	uint m_width;
-	uint m_height;
+	unsigned int m_width;
+	unsigned int m_height;
 	
 	//Level grid
 };

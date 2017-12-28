@@ -32,7 +32,6 @@
 #    include <SDL2/SDL_image.h>
 #endif
 
-
 /////////////////
 //UUID generation
 #include <boost/uuid/uuid.hpp>

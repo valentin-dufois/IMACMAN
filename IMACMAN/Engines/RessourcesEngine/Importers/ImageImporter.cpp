@@ -19,8 +19,8 @@ Asset * ImageImporter::getAsset(std::string path)
 
 
 	//Image is ok, let's extract informations
-	uint i_height = imageSurface->w;
-	uint i_width = imageSurface->h;
+	unsigned int i_height = imageSurface->w;
+	unsigned int i_width = imageSurface->h;
 
 	GLenum imageMode;
 	//
