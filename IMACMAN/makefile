@@ -17,9 +17,9 @@ SOURCES := $(shell tree $(SRCDIR) -type f -name "**.$(SRCEXT)" -not -path "./$(L
 OBJECTS := $(SOURCES:.$(SRCEXT)=.o)
 
 # COMPILER FLAGS
-CXXFLAGS := -g -std=c++11 -Wall -pedantic
+CXXFLAGS := -g -std=c++11 -Wall -pedantic -I$(LIBDIR)
 LDLIBS := $(pkg-config --libs assimp)
-LDFLAGS := -I $(pkg-config --cflags assimp) -L$(LIBDIR)
+LDFLAGS := -I$(pkg-config --cflags assimp)
 
 # OS-DEPENDANT COMPILER FLAGS
 UNAME_S := $(shell uname -s)
@@ -37,9 +37,9 @@ CXX := g++
 
 # Linux (default)
 else
-LDLIBS += -lGLEW -lGLU -lGL -lSDL2 -lSDL2_image
+LDLIBS += -lGLEW -lGL -lSDL2 -lSDL2_image
 LDFLAGS +=
-CXXFLAGS +=
+CXXFLAGS += 
 endif
 
 
