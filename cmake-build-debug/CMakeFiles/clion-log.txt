@@ -1,0 +1,4 @@
+"D:\Programs\CLion 2017.3\bin\cmake\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - MinGW Makefiles" D:\Workspace\IMAC-2\Synthese_image\IMACMAN\GIT\IMACMAN
+-- Configuring done
+-- Generating done
+-- Build files have been written to: D:/Workspace/IMAC-2/Synthese_image/IMACMAN/GIT/IMACMAN/cmake-build-debug

@@ -17,9 +17,19 @@ void GameObject::instanciate()
 		return;
 
 	GameObj = new GameObject();
+
+	m_instanciated = true;
 }
 
-bool GameObject::isRunning()
+void GameObject::removeScene(Scene * scene)
 {
-	return m_running;
+	for(std::vector<Scene *>::iterator it = m_scenes.begin(); it != m_scenes.end(); ++it)
+	{
+		if((*it)->getUUID() == scene->getUUID())
+		{
+			m_scenes.erase(it);
+			return;
+		}
+	}
 }
+

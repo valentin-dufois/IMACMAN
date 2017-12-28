@@ -14,6 +14,7 @@ class Igniter
 public:
 	void igniteGameObject();
 	void igniteSDL();
+	void igniteOpenGL();
 	void igniteEngines();
 };
 

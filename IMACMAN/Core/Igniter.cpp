@@ -8,17 +8,15 @@
 
 #include "../main.hpp"
 
-
 void Igniter::igniteGameObject()
 {
 	GameObject::instanciate();
 }
 
-
-
 void Igniter::igniteSDL()
 {
-	//Init sdl
+	//////////////
+	//INIT SDL
 	if(0 != SDL_Init(SDL_INIT_VIDEO)) {
 		std::cerr << SDL_GetError() << std::endl;
 		return;
@@ -55,4 +53,23 @@ void Igniter::igniteSDL()
 	SDL_GL_MakeCurrent(GameObj->mainWindow, glContext);
 
 	//glewExperimental = GL_TRUE;
+
+	//Init SDL Image
+	int SDL_IMAGE_FLAGS = IMG_INIT_JPG|IMG_INIT_PNG;
+	int SDL_IMAGE_LOADED_FLAGS = IMG_Init(SDL_IMAGE_FLAGS);
+
+	if((SDL_IMAGE_LOADED_FLAGS&SDL_IMAGE_FLAGS) != SDL_IMAGE_FLAGS)
+		throw std::runtime_error("SDL_image could not be loaded.");
+}
+
+void Igniter::igniteOpenGL()
+{
+	GLenum glewInitError = glewInit();
+	if(GLEW_OK != glewInitError) {
+		std::cerr << glewGetErrorString(glewInitError) << std::endl;
+	  return;
+	}
+
+	std::cout << "OpenGL Version : " << glGetString(GL_VERSION) << std::endl;
+	std::cout << "GLEW Version : " << glewGetString(GLEW_VERSION) << std::endl;
 }
