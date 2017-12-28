@@ -85,6 +85,9 @@ void GameEngine::parseEvents()
 			case  SDLK_DOWN:  m_keys.DOWN = newVal; break;
 			case  SDLK_LEFT:  m_keys.LEFT = newVal; break;
 			case SDLK_RIGHT: m_keys.RIGHT = newVal; break;
+			case SDLK_ESCAPE:  m_keys.ESC = newVal; break;
+			case SDLK_BACKSPACE: m_keys.BACKSPACE = newVal; break;
+
 		}
 	}
 }

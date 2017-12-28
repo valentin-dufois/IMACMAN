@@ -43,6 +43,8 @@ struct keyboard
 	bool DOWN = false;
 	bool LEFT = false;
 	bool RIGHT = false;
+	bool ESC = false;
+	bool BACKSPACE = false;
 };
 
 class GameEngine{
