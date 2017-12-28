@@ -12,17 +12,22 @@ SRCDIR := .
 SRCEXT := cpp
 LIBDIR := libs
 
+UNAME_S := $(shell uname -s)
+
 # FIND ALL PROJECT SOURCES
+ifeq ($(OS),Windows_NT)
+SOURCES := $(shell tree $(SRCDIR) -type f -name "**.$(SRCEXT)" -not -path "./$(LIBDIR)/*")
+else
 SOURCES := $(shell find $(SRCDIR) -type f -name "**.$(SRCEXT)" -not -path "./$(LIBDIR)/*")
+endif
 OBJECTS := $(SOURCES:.$(SRCEXT)=.o)
 
 # COMPILER FLAGS
-CXXFLAGS := -g -std=c++11 -Wall -pedantic
+CXXFLAGS := -g -std=c++11 -Wall -pedantic -I$(LIBDIR)
 LDLIBS := $(pkg-config --libs assimp)
-LDFLAGS := -I $(pkg-config --cflags assimp) -L$(LIBDIR)
+LDFLAGS := -I$(pkg-config --cflags assimp)
 
 # OS-DEPENDANT COMPILER FLAGS
-UNAME_S := $(shell uname -s)
 # Windows (cygwin)
 ifeq ($(OS),Windows_NT)
 LDLIBS += -lGL -lSDL2 -lSDL2_image -lGLEW
@@ -37,9 +42,9 @@ CXX := g++
 
 # Linux (default)
 else
-LDLIBS += -lGL -lSDL2 -lSDL2_image -lGLEW -lGLU
+LDLIBS += -lGLEW -lGL -lSDL2 -lSDL2_image
 LDFLAGS +=
-CXXFLAGS +=
+CXXFLAGS += 
 endif
 
 

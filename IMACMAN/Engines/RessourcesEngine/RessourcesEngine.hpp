@@ -14,7 +14,7 @@
 
 
 //Create type for ressource IDs
-using rId = uint;
+using rId = unsigned int;
 
 //Ressources types
 enum ressourceType
@@ -49,7 +49,7 @@ private:
 				//Assets holders
 				std::map<std::string, rId> m_loadedPaths;
 				std::map<rId, Asset *> m_assets;
-				uint m_ressourcesLoadedCount;
+				unsigned int m_ressourcesLoadedCount;
 
 				Importer * getImporter(ressourceType &type);
 
