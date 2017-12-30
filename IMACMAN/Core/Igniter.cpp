@@ -11,6 +11,10 @@
 void Igniter::igniteGameObject()
 {
 	GameObject::instanciate();
+
+	GameEngine::instanciate();
+	RessourcesEngine::instanciate();
+	//RenderEngine::instanciate();
 }
 
 void Igniter::igniteSDL()

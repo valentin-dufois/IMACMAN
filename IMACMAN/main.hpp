@@ -12,6 +12,7 @@
 // Standard includes
 #include <iostream>
 #include <fstream>
+#include <sstream>
 #include <string>
 #include <chrono>
 #include <thread>
@@ -32,6 +33,12 @@
 #    include <SDL2/SDL_image.h>
 #endif
 
+#include <ft2build.h>
+#include FT_FREETYPE_H
+
+#include <glm/glm.hpp>
+
+
 /////////////////
 //UUID generation
 #include <boost/uuid/uuid.hpp>
@@ -50,12 +57,16 @@
 #include "Core/Core.hpp"
 #include "Core/Igniter.hpp"
 
-#include "Scenes/Scene.hpp"
+#include "Utils/SDL.hpp"
+#include "Utils/ShaderProgram.hpp"
+#include "Utils/Selector/Selector.hpp"
 
 #include "Engines/GameEngine/Player.hpp"
 #include "Engines/GameEngine/GameEngine.hpp"
 #include "Engines/RessourcesEngine/RessourcesEngine.hpp"
 #include "Engines/RenderEngine/RenderEngine.hpp"
+
+#include "Scenes/Scene.hpp"
 
 //Create type for unsigned short ints
 using usint = unsigned short int;

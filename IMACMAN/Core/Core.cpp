@@ -26,6 +26,9 @@ void Core::main()
 {
 	std::chrono::high_resolution_clock::time_point start, end;
 
+	//Load the first scene
+	sceneTest001::load();
+
 	while(GameObj->isRunning())
 	{
 		////////////////////////////////
@@ -36,13 +39,8 @@ void Core::main()
 		//Actions
 		GameObj->gameEngine->executeScenes();
 
-		/*Clear the screen*/
-		glClear(GL_COLOR_BUFFER_BIT);
-
 		//Render
-		//GameObj->renderEngine->render();
-
-		SDL_GL_SwapWindow(GameObj->mainWindow);
+		GameObj->gameEngine->renderScenes();
 
 		end = std::chrono::high_resolution_clock::now();
 

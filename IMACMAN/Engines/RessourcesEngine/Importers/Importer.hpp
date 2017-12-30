@@ -9,7 +9,7 @@
 #ifndef Importer_hpp
 #define Importer_hpp
 
-#include <iostream>
+#include "../../../main.hpp"
 
 //Forward declaration
 class Asset;
@@ -26,5 +26,6 @@ public:
 #include "MeshImporter.hpp"
 #include "LevelImporter.hpp"
 #include "ShaderImporter.hpp"
+#include "FontImporter.hpp"
 
 #endif /* Importer_hpp */

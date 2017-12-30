@@ -20,6 +20,7 @@ public:
 	Asset * getAsset(std::string path);
 
 private:
+	GLenum getShaderType(std::string path);
 
 };
 

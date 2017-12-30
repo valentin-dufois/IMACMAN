@@ -27,12 +27,35 @@ void GameEngine::executeScenes()
 	//Update events
 	parseEvents();
 
+
 	//get all scenes
 	std::vector<Scene *> scenes = GameObj->getScenes();
 
 	//Execute all scenes
 	for(std::vector<Scene *>::iterator it = scenes.begin(); it != scenes.end(); ++it)
-		(*it)->execute();
+	{
+		if((*it)->isEnabled())
+			(*it)->execute();
+	}
+}
+
+void GameEngine::renderScenes()
+{
+	/*Clear the screen*/
+	glClear(GL_COLOR_BUFFER_BIT);
+
+	//get all scenes
+	std::vector<Scene *> scenes = GameObj->getScenes();
+	
+	//Render all scenes
+	for(std::vector<Scene *>::iterator it = scenes.begin(); it != scenes.end(); ++it)
+	{
+		if((*it)->isEnabled())
+		(*it)->render();
+	}
+
+	//Swap buffers
+	SDL_GL_SwapWindow(GameObj->mainWindow);
 }
 
 void GameEngine::parseEvents()
@@ -87,6 +110,7 @@ void GameEngine::parseEvents()
 			case SDLK_RIGHT: m_keys.RIGHT = newVal; break;
 			case SDLK_ESCAPE:  m_keys.ESC = newVal; break;
 			case SDLK_BACKSPACE: m_keys.BACKSPACE = newVal; break;
+			case SDLK_RETURN: m_keys.ENTER = newVal; break;
 
 		}
 	}

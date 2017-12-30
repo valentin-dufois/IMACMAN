@@ -12,50 +12,100 @@
 //Link to main
 #include "../../main.hpp"
 
-
 //Create type for ressource IDs
-using rId = unsigned int;
+using rId = unsigned short int;
 
 //Ressources types
 enum ressourceType
 {
-				IMAGE,
-				SHADER,
-				SOUND,
-				MESH,
-				LEVEL
+	IMAGE,
+	SHADER,
+	SOUND,
+	MESH,
+	LEVEL,
+	FONT
 };
 
+class Importer;
+
 //Get engine dependancies
-#include "Importers/Importer.hpp"
 #include "Elements/Asset.hpp"
+#include "Importers/Importer.hpp"
 
 
 //The engine
 class RessourcesEngine
 {
 public:
-				static void instanciate();
+	/**
+	 Instanciate the RessourcesEngine in the gameObj as a Singleton
+	 */
+	static void instanciate();
 
-				//Assets manipulation
-				rId loadAsset(std::string &path, ressourceType type);
-				Asset * getAsset(rId assetID);
+	/**
+	 Return an ID to an asset.
+	 Import the asset if needed. Prevent multiple importation
+
+	 @param path Path to the asset in its type folder
+	 @param type Type of the asset
+	 @return The asset ressourceID
+	 */
+	rId loadAsset(std::string path, ressourceType type);
+
+	/**
+	 Return an asset
+	 This function return nullptr if the asset ID is not found
+
+	 @param assetID ID of the asset
+	 @return Pointer to the asset
+	 */
+	Asset * getAsset(rId assetID);
+
+	/**
+	 Return the handle to FreeType
+
+	 @return The FreeType Library
+	 */
+	inline FT_Library getFTLibrary() const { return m_FTLibrary; };
 
 private:
-				//Singleton
-				static bool m_instanciated;
-				RessourcesEngine();
+	//Singleton
+	static bool m_instanciated;
+	RessourcesEngine();
 
-				//Assets holders
-				std::map<std::string, rId> m_loadedPaths;
-				std::map<rId, Asset *> m_assets;
-				unsigned int m_ressourcesLoadedCount;
+	//Assets holders
+	std::map<std::string, rId> m_loadedPaths;
+	std::map<rId, Asset *> m_assets;
+	unsigned int m_ressourcesLoadedCount;
 
-				Importer * getImporter(ressourceType &type);
+	/**
+	 Return the appropriate importer for the given assets type
 
-				//Utilities
-				std::string buildPath(std::string &file, ressourceType &type);
-				bool fileExist(std::string filePath);
+	 @param type Type of the asset
+	 @return The importer for the given type
+	 */
+	Importer * getImporter(ressourceType &type);
+
+	//Utilities
+	/**
+	 Build the asset path in its appropriate folder
+
+	 @param file relative path to the asset
+	 @param type Asset type
+	 @return The full path to the asset
+	 */
+	std::string buildPath(std::string &file, ressourceType &type);
+
+	/**
+	 Tell if the given file exist
+
+	 @param filePath Path to the file
+	 @return True if it exists, false otherwise
+	 */
+	bool fileExist(std::string filePath);
+
+	//FreeType handle
+	FT_Library m_FTLibrary;
 };
 
 

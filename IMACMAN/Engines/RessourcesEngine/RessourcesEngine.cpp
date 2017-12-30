@@ -18,20 +18,24 @@ void RessourcesEngine::instanciate()
 	if(m_instanciated)
 		return;
 
-	GameObj->ressourceEngine = new RessourcesEngine();
+	GameObj->ressourcesEngine = new RessourcesEngine();
 
 	m_instanciated = true;
 }
 
 
-RessourcesEngine::RessourcesEngine()
+RessourcesEngine::RessourcesEngine(): m_ressourcesLoadedCount(0)
 {
-	m_ressourcesLoadedCount = 0;
+	//Init FreeType Library
+	if(FT_Init_FreeType( &m_FTLibrary ) )
+	{
+		throw new std::runtime_error("Could not load FreeType.");
+	}
 }
 
 
 
-rId RessourcesEngine::loadAsset(std::string &path, ressourceType type)
+rId RessourcesEngine::loadAsset(std::string path, ressourceType type)
 {
 	std::string assetPath = buildPath(path, type);
 
@@ -72,37 +76,35 @@ Asset * RessourcesEngine::getAsset(rId assetID)
 	//Is this asset already loaded ?
 	if(m_assets.find(assetID) == m_assets.end())
 		throw std::runtime_error("Error fetching ressource. The ressource #" + std::to_string(assetID) + " does not exist.");
-		//error
 
-	return nullptr;
+	return m_assets[assetID];
 }
 
 
 
 Importer * RessourcesEngine::getImporter(ressourceType &type)
 {
-	Importer * importer = nullptr;
-
 	switch (type)
 	{
 		case IMAGE:
-			importer = new ImageImporter();
+			return new ImageImporter();
 			break;
-		/*case SHADER:
-			importer = new ShaderImporter();
+		case SHADER:
+			return new ShaderImporter();
 			break;
 		case SOUND:
-			importer = new SoundImporter();
+			return new ImageImporter();
 			break;
 		case MESH:
-			importer = new MeshImporter();
+			return new ImageImporter();
 			break;
 		case LEVEL:
-			importer = new LevelImporter();
-			break;*/
+			return new ImageImporter();
+			break;
+		case FONT:
+			return new FontImporter();
+		break;
 	}
-
-	return importer;
 }
 
 
@@ -126,6 +128,9 @@ std::string RessourcesEngine::buildPath(std::string &file, ressourceType &type)
 			break;
 		case LEVEL:
 			prefix = "assets/levels/";
+			break;
+		case FONT:
+			prefix = "assets/fonts/";
 			break;
 	}
 

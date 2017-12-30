@@ -11,12 +11,14 @@
 
 #include "../main.hpp"
 
-//Forward declarations
-class Asset;
-
 class Scene
 {
 public:
+
+	/**
+	 Fast-forward method to instanciate, init and in the scene GameObj
+	 */
+	static void load();
 
 	/**
 	 Initialize the scene
@@ -27,6 +29,11 @@ public:
 	 Execute all the actions in the scene
 	 */
 	virtual void execute() = 0;
+
+	/**
+	 Render the scene on the screen
+	 */
+	virtual void render() = 0;
 
 	/**
 	 Destructor, used to properly free all the memory used by the scene
@@ -51,13 +58,6 @@ public:
 	inline bool isEnabled() const { return m_enable; };
 
 	/**
-	 Return all the assets of the scene
-
-	 @return The assets in a vector
-	 */
-	inline std::vector<Asset *> getAssets() const { return m_assets; };
-
-	/**
 	 Return the unique ID of the scene
 
 	 @return UUID
@@ -69,6 +69,12 @@ public:
 	 */
 	Scene():m_sceneID(GameObj->getUUID()) {};
 
+	/**
+	 Comparison operator for the scenes
+	 Two scenes are equals if they have the same UUID.
+
+	 @return True if the scenes are the same
+	 */
 	bool operator == (Scene * scene)
 	{
 		return getUUID() == scene->getUUID();
@@ -78,9 +84,10 @@ private:
 
 	boost::uuids::uuid m_sceneID;
 
-	bool m_enable;
-	std::vector<Asset *> m_assets;
+	bool m_enable = true;
 };
+
+#include "sceneTest001.hpp"
 
 
 #endif /* Scene_h */

@@ -45,6 +45,7 @@ struct keyboard
 	bool RIGHT = false;
 	bool ESC = false;
 	bool BACKSPACE = false;
+	bool ENTER = false;
 };
 
 class GameEngine{
@@ -58,6 +59,11 @@ public:
 	 Catch new events then execute all scenes on the AppObj
 	 */
 	void executeScenes();
+
+	/**
+	 Render all scenes
+	 */
+	void renderScenes();
 
 	/**
 	 Return the key struct

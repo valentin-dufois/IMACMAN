@@ -9,25 +9,53 @@
 #ifndef Asset_hpp
 #define Asset_hpp
 
-#include <iostream>
-#include "../RessourcesEngine.hpp"
+#include "../../../main.hpp"
+
+class Font;
+class Shader;
 
 class Asset
 {
-private:
-    //Ressource properties
-    rId m_rID;
-    ressourceType m_type;
-
 public:
-    
-    //Constructor
-    Asset(rId rID, ressourceType type): m_rID(rID), m_type(type) {};
-    
-    //Getters
-	rId getID() const { return m_rID; }
-	ressourceType getType() const { return m_type; }
-	virtual unsigned int getSize() = 0;
+
+	/**
+	 Asset constructor
+
+	 - Warning : Must be called by Asset childs
+
+	 @param type Type of the asset
+	 */
+	Asset(ressourceType type): m_type(type) {};
+
+	/**
+	 Return the type of the asset
+
+	 @return assetsType
+	 */
+	inline ressourceType getType()
+	{
+		return m_type;
+	};
+
+	/**
+	 Casting operator for Font assets
+
+	 @return Return the asset as a Font, nullptr if the asset is not a Font
+	 */
+	 operator Font*();
+
+	/**
+	 Casting operator for Shader assets
+
+	 @return Return the asset as a Shader, nullptr if the asset is not a Shader
+	 */
+	operator Shader*();
+
+protected:
+	ressourceType m_type;
 };
+
+#include "Font.hpp"
+#include "Shader.hpp"
 
 #endif /* Asset_hpp */

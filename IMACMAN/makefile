@@ -24,28 +24,24 @@ OBJECTS := $(SOURCES:.$(SRCEXT)=.o)
 
 # COMPILER FLAGS
 CXXFLAGS := -g -std=c++11 -Wall -pedantic -I$(LIBDIR)
-LDLIBS := $(pkg-config --libs assimp)
-LDFLAGS := $(pkg-config --cflags assimp)
+LDLIBS := `pkg-config --libs assimp` `pkg-config --libs freetype2`
+LDFLAGS := `pkg-config --cflags assimp` `pkg-config --cflags freetype2`
 
 # OS-DEPENDANT COMPILER FLAGS
 # Windows (cygwin)
 ifeq ($(OS),Windows_NT)
 LDLIBS += -lGL -lSDL2 -lSDL2_image -lGLEW
-LDFLAGS +=
 
 # OS X
 else ifeq ($(UNAME_S),Darwin)
 LDLIBS += -framework OpenGL -framework SDL2 -framework SDL2_image -lGLEW
-LDFLAGS +=
-CXXFLAGS +=
-CXX := g++
 
 # Linux (default)
 else
 LDLIBS += -lGLEW -lGL -lSDL2 -lSDL2_image
-LDFLAGS +=
-CXXFLAGS += 
 endif
+
+CXXFLAGS += $(LDFLAGS)
 
 
 # BUILD THE PROGRAM

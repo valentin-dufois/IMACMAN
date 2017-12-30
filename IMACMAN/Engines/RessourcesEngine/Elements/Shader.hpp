@@ -13,12 +13,26 @@
 
 class Shader : public Asset
 {
-	private:
-	//Structural infos
+public:
+	Shader(std::string shaderPath, GLenum shaderType): Asset(SHADER), m_shaderPath(shaderPath), m_shaderID(glCreateShader(shaderType)), m_shaderType(shaderType) {};
+
+	inline void setSource(const char * source)
+	{
+		glShaderSource(m_shaderID, 1, &source, 0);
+	}
+
+	void compile();
+
+	inline GLuint getShaderID() const { return m_shaderID; };
+
+private:
 	
 	//Shader infos
+	std::string m_shaderPath;
 	GLuint m_shaderID;
-	bool m_isCompiled;
+	GLenum m_shaderType;
+
+	const std::string getCompileLog() const;
 };
 
 #endif /* Shader_hpp */

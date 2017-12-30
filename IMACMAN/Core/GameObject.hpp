@@ -30,7 +30,7 @@ public:
 	 * Engines
 	 */
 	GameEngine * gameEngine;
-	RessourcesEngine * ressourceEngine;
+	RessourcesEngine * ressourcesEngine;
 	RenderEngine * renderEngine;
 
 	/**
