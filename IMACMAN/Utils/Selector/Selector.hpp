@@ -9,10 +9,10 @@
 #ifndef Selector_hpp
 #define Selector_hpp
 
-#include <iostream>
-#include <vector>
-
+#include "Core/GameObject.hpp"
+#include "Engines/GameEngine/GameEngine.hpp"
 #include "Item.hpp"
+#include <vector>
 
 class Selector
 {

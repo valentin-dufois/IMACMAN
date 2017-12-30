@@ -6,7 +6,7 @@
 //  Copyright © 2017 Valentin Dufois. All rights reserved.
 //
 
-#include "../../../main.hpp"
+#include "ImageImporter.hpp"
 
 Asset * ImageImporter::getAsset(std::string path)
 {

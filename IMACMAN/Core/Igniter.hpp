@@ -9,6 +9,13 @@
 #ifndef Igniter_hpp
 #define Igniter_hpp
 
+#include "libraries.hpp"
+#include "Core/GameObject.hpp"
+
+#include "Engines/GameEngine/GameEngine.hpp"
+#include "Engines/RessourcesEngine/RessourcesEngine.hpp"
+#include "Engines/RenderEngine/RenderEngine.hpp"
+
 class Igniter
 {
 public:

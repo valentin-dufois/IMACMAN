@@ -19,16 +19,16 @@ void sceneTest001::load()
 void sceneTest001::init()
 {
 	//Load and get the font
-	m_fontID = GameObj->ressourcesEngine->loadAsset("Neoneon.otf", FONT);
-	Font * font = *GameObj->ressourcesEngine->getAsset(m_fontID);
+	rId fontID = GameObj->ressourcesEngine->loadAsset("Neoneon.otf", FONT);
+	Font * font = *GameObj->ressourcesEngine->getAsset(fontID);
 
 	//Set font size
 	font->setHeight(24.f);
 
 	//Generate
-	//m_fontFace = font->genFontFace();
+	m_fontFace = font->genFontFace();
 
-	ShaderProgram program("triangle.vs.glsl", "triangle.fs.glsl");
+	m_program = new ShaderProgram("triangle.vs.glsl", "triangle.fs.glsl");
 
 	std::cout << "loaded" << std::endl;
 }
@@ -40,7 +40,7 @@ void sceneTest001::execute()
 
 void sceneTest001::render()
 {
-
+	m_program->use();
 
 
 

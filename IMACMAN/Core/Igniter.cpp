@@ -6,7 +6,7 @@
 //  Copyright © 2017 Valentin Dufois. All rights reserved.
 //
 
-#include "../main.hpp"
+#include "Igniter.hpp"
 
 void Igniter::igniteGameObject()
 {

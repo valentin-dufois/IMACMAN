@@ -14,6 +14,10 @@ class Asset;
 
 #include "Importer.hpp"
 
+#include <fstream>
+#include <vector>
+#include <sstream>
+
 class ShaderImporter: public Importer
 {
 public:

@@ -9,7 +9,17 @@
 #ifndef Core_hpp
 #define Core_hpp
 
-#include "../main.hpp"
+#include "libraries.hpp"
+#include "GameObject.hpp"
+#include "Igniter.hpp"
+#include "Scenes/Scene.hpp"
+
+////////////////
+//Game Framerate
+#define FRAMERATE 1000/60
+
+#include <chrono>
+#include <thread>
 
 class Core
 {

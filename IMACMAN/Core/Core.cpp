@@ -6,7 +6,7 @@
 //  Copyright © 2017 Valentin Dufois. All rights reserved.
 //
 
-#include "../main.hpp"
+#include "Core.hpp"
 
 //Ignite the different aspects of the game
 void Core::ignite()

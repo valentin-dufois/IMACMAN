@@ -6,7 +6,7 @@
 //  Copyright © 2017 Valentin Dufois. All rights reserved.
 //
 
-#include "../../../main.hpp"
+#include "Font.hpp"
 
 Font::Font(FT_Face &face): Asset(FONT), m_face(face)
 {

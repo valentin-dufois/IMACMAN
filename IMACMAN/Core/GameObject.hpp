@@ -15,7 +15,7 @@ class RessourcesEngine;
 class RenderEngine;
 class Scene;
 
-#include "../main.hpp"
+#include "libraries.hpp"
 
 class GameObject
 {

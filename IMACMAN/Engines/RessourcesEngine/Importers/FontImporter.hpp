@@ -13,7 +13,7 @@
 class Asset;
 class Importer;
 
-#include "../../../main.hpp"
+#include "Importer.hpp"
 
 class FontImporter: public Importer
 {

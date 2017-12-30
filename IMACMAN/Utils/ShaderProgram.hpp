@@ -9,10 +9,13 @@
 #ifndef ShaderProgram_hpp
 #define ShaderProgram_hpp
 
-#include "../main.hpp"
-
 //Forward declaration
 class Shader;
+class ShaderProgram;
+
+#include "libraries.hpp"
+#include "Core/GameObject.hpp"
+#include "Engines/RessourcesEngine/RessourcesEngine.hpp"
 
 class ShaderProgram
 {

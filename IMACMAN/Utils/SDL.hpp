@@ -9,7 +9,8 @@
 #ifndef SDL_hpp
 #define SDL_hpp
 
-#include "../main.hpp"
+#include "libraries.hpp"
+#include "Core/GameObject.hpp"
 
 namespace SDL
 {

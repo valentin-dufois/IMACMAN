@@ -9,9 +9,6 @@
 #ifndef RessourcesEngine_hpp
 #define RessourcesEngine_hpp
 
-//Link to main
-#include "../../main.hpp"
-
 //Create type for ressource IDs
 using rId = unsigned short int;
 
@@ -28,9 +25,13 @@ enum ressourceType
 
 class Importer;
 
-//Get engine dependancies
-#include "Elements/Asset.hpp"
+#include "libraries.hpp"
+#include "Core/GameObject.hpp"
 #include "Importers/Importer.hpp"
+#include "Elements/Asset.hpp"
+
+#include <vector>
+#include <map>
 
 
 //The engine

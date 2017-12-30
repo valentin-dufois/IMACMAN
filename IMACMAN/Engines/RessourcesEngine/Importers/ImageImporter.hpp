@@ -13,7 +13,7 @@
 class Asset;
 class Importer;
 
-#include <iostream>
+#include "Importer.hpp"
 
 class ImageImporter: public Importer
 {

@@ -9,10 +9,13 @@
 #ifndef Asset_hpp
 #define Asset_hpp
 
-#include "../../../main.hpp"
-
+//////////////////////
+//Forward declarations
 class Font;
 class Shader;
+
+#include "libraries.hpp"
+#include "../RessourcesEngine.hpp"
 
 class Asset
 {

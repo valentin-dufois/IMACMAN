@@ -6,7 +6,7 @@
 //  Copyright © 2017 Valentin Dufois. All rights reserved.
 //
 
-#include "../../main.hpp"
+#include "Item.hpp"
 
 Item::Item(uint posX, uint posY, uint width, uint height, std::string caption, std::function<void()> callback):
 	m_smallItem(false),

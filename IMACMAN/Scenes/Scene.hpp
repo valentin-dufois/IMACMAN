@@ -9,7 +9,8 @@
 #ifndef Scene_h
 #define Scene_h
 
-#include "../main.hpp"
+#include "libraries.hpp"
+#include "Core/GameObject.hpp"
 
 class Scene
 {

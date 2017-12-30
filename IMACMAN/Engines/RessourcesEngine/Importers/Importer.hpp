@@ -9,10 +9,10 @@
 #ifndef Importer_hpp
 #define Importer_hpp
 
-#include "../../../main.hpp"
-
-//Forward declaration
 class Asset;
+
+#include "libraries.hpp"
+#include "../Elements/Asset.hpp"
 
 class Importer
 {

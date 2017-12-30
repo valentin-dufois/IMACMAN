@@ -9,7 +9,14 @@
 #ifndef Font_hpp
 #define Font_hpp
 
+//Forward Declaration
+class Asset;
+
 #include "Asset.hpp"
+#include "Utils/SDL.hpp"
+
+#include <iostream>
+
 
 //////////////////
 //Font structures
@@ -27,7 +34,7 @@ struct FontFace
 	std::vector<FontCharacter> chars;
 };
 
-//////////////////
+/////////////
 //Font class
 class Font : public Asset
 {

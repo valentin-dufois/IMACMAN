@@ -9,7 +9,9 @@
 #ifndef sceneTest001_hpp
 #define sceneTest001_hpp
 
-#include "../main.hpp"
+#include "Scene.hpp"
+#include "Engines/RessourcesEngine/Elements/Asset.hpp"
+#include "Utils/ShaderProgram.hpp"
 
 using rId = unsigned short int;
 
@@ -43,7 +45,8 @@ public:
 
 private:
 
-	rId m_fontID;
+	ShaderProgram * m_program;
+	FontFace m_fontFace;
 };
 
 #endif /* sceneTest001_hpp */

@@ -9,7 +9,10 @@
 #ifndef GameEngine_hpp
 #define GameEngine_hpp
 
-#include <iostream>
+#include "Core/GameObject.hpp"
+#include "Scenes/Scene.hpp"
+
+#include <vector>
 
 struct keyboard
 {

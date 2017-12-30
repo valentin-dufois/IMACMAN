@@ -98,6 +98,7 @@
 		3997F0C81FC22BBB009CECC9 /* makefile */ = {isa = PBXFileReference; explicitFileType = sourcecode.make; indentWidth = 1; path = makefile; sourceTree = "<group>"; tabWidth = 5; usesTabs = 1; };
 		39A929F71FF7F1BD00A71CFA /* ShaderProgram.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ShaderProgram.cpp; sourceTree = "<group>"; };
 		39A929F81FF7F1BD00A71CFA /* ShaderProgram.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ShaderProgram.hpp; sourceTree = "<group>"; };
+		39A929FA1FF83DE500A71CFA /* libraries.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = libraries.hpp; sourceTree = "<group>"; };
 		39B5E6DA1FC3642000B99CC2 /* main.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = main.hpp; sourceTree = "<group>"; tabWidth = 4; usesTabs = 1; };
 		39B5E6DC1FC364C200B99CC2 /* RessourcesEngine.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = RessourcesEngine.cpp; sourceTree = "<group>"; };
 		39B5E6DD1FC364C200B99CC2 /* RessourcesEngine.hpp */ = {isa = PBXFileReference; indentWidth = 1; lastKnownFileType = sourcecode.cpp.h; path = RessourcesEngine.hpp; sourceTree = "<group>"; tabWidth = 4; usesTabs = 1; };
@@ -484,6 +485,7 @@
 				3997F0CA1FC22C2A009CECC9 /* Game */,
 				3997F0C11FC21C8A009CECC9 /* main.cpp */,
 				39B5E6DA1FC3642000B99CC2 /* main.hpp */,
+				39A929FA1FF83DE500A71CFA /* libraries.hpp */,
 				3997F0C81FC22BBB009CECC9 /* makefile */,
 			);
 			path = IMACMAN;
@@ -1225,6 +1227,7 @@
 					IMACMAN/libs/,
 					/usr/local/include,
 					/usr/local/Cellar/freetype/2.8/include/freetype2,
+					IMACMAN/,
 				);
 				LIBRARY_SEARCH_PATHS = (
 					/usr/local/lib,
@@ -1250,6 +1253,7 @@
 					IMACMAN/libs/,
 					/usr/local/include,
 					/usr/local/Cellar/freetype/2.8/include/freetype2,
+					IMACMAN/,
 				);
 				LIBRARY_SEARCH_PATHS = (
 					/usr/local/lib,

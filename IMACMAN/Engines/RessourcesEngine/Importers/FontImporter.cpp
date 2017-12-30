@@ -6,7 +6,7 @@
 //  Copyright © 2017 Valentin Dufois. All rights reserved.
 //
 
-#include "../../../main.hpp"
+#include "FontImporter.hpp"
 
 Asset * FontImporter::getAsset(std::string path)
 {
