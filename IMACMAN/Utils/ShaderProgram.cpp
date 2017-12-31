@@ -31,7 +31,7 @@ ShaderProgram::ShaderProgram(std::string vsPath, std::string fsPath): m_programI
 		return; //Compile OK
 
 	//Compile error, display message
-	throw new std::runtime_error("Unable to compile program : " + getCompileLog());
+	throw std::runtime_error("Unable to compile program : " + getCompileLog());
 }
 
 const std::string ShaderProgram::getCompileLog() const

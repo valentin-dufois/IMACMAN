@@ -46,5 +46,5 @@ GLenum ShaderImporter::getShaderType(std::string path)
 		return GL_FRAGMENT_SHADER;
 
 	//else
-	throw new std::runtime_error("Unsupported shader format : " + shaderType);
+	throw std::runtime_error("Unsupported shader format : " + shaderType);
 }

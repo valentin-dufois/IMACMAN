@@ -30,6 +30,8 @@ class Importer;
 #include "Importers/Importer.hpp"
 #include "Elements/Asset.hpp"
 
+#include <glm/gtc/constants.hpp>
+
 #include <vector>
 #include <map>
 
@@ -38,7 +40,7 @@ class Importer;
 class RessourcesEngine
 {
 public:
-	/**
+	 /**
 	 Instanciate the RessourcesEngine in the gameObj as a Singleton
 	 */
 	static void instanciate();
@@ -68,6 +70,24 @@ public:
 	 @return The FreeType Library
 	 */
 	inline FT_Library getFTLibrary() const { return m_FTLibrary; };
+
+ 	/**
+ 	 Generate a 3D cube as a mesh
+
+ 	 @param size Width of each edge
+ 	 @return The cube in a Mesh object
+ 	 */
+ 	Mesh * genCube(const uint &size);
+
+	/**
+	 Generate a Sphere as a mesh
+
+	 @param radius Diameter of the sphere
+	 @param precisionLat Smoothness of the sphere
+	 @param precisionLong Smoothness of the sphere
+	 @return The sphere in a mesh object
+	 */
+	Mesh * genSphere(const float &radius, const uint &precisionLat, const uint &precisionLong);
 
 private:
 	//Singleton

@@ -12,6 +12,7 @@
 //////////////////////
 //Forward declarations
 class Font;
+class Mesh;
 class Shader;
 
 #include "libraries.hpp"
@@ -48,6 +49,13 @@ public:
 	 operator Font*();
 
 	/**
+	 Casting operator for Mesh assets
+
+	 @return Return the asset as a Mesh, nullptr if the asset is not a Mesh
+	 */
+	operator Mesh*();
+
+	/**
 	 Casting operator for Shader assets
 
 	 @return Return the asset as a Shader, nullptr if the asset is not a Shader
@@ -59,6 +67,7 @@ protected:
 };
 
 #include "Font.hpp"
+#include "Mesh.hpp"
 #include "Shader.hpp"
 
 #endif /* Asset_hpp */

@@ -1,3 +1,0 @@
-"D:\Programs\CLion 2017.3\bin\cmake\bin\cmake.exe" -E remove -f CMakeFiles\IMACMAN.dir/objects.a
-D:\Programs\minGW\bin\ar.exe cr CMakeFiles\IMACMAN.dir/objects.a @CMakeFiles\IMACMAN.dir\objects1.rsp
-D:\Programs\minGW\bin\g++.exe -g   -Wl,--whole-archive CMakeFiles\IMACMAN.dir/objects.a -Wl,--no-whole-archive  -o IMACMAN.exe -Wl,--out-implib,libIMACMAN.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\IMACMAN.dir\linklibs.rsp

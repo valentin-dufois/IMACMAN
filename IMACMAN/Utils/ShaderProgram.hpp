@@ -20,9 +20,20 @@ class ShaderProgram;
 class ShaderProgram
 {
 public:
+	ShaderProgram(const GLuint &programID): m_programID(programID) {};
 	ShaderProgram(std::string vsPath, std::string fsPath);
 
+	/**
+	 Use this program for futur renderings
+	 */
 	inline void use() const { glUseProgram(m_programID); };
+
+	/**
+	 Get the GL program ID
+
+	 @return The program ID
+	 */
+	inline GLuint getProgramID() const { return m_programID; };
 
 private:
 	GLuint m_programID;

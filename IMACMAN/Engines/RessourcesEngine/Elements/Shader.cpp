@@ -18,7 +18,7 @@ void Shader::compile()
 	if(status == GL_TRUE)
 		return;
 
-	throw new std::runtime_error("Unable to compile shader " + m_shaderPath + " : " + getCompileLog());
+	throw std::runtime_error("Unable to compile shader " + m_shaderPath + " : " + getCompileLog());
 }
 
 const std::string Shader::getCompileLog() const

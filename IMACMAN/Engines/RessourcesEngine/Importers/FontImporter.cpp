@@ -14,7 +14,7 @@ Asset * FontImporter::getAsset(std::string path)
 
 	if(FT_New_Face(GameObj->ressourcesEngine->getFTLibrary(), path.c_str(), 0, &face))
 	{
-		throw new std::runtime_error("Could not load font " + path);
+		throw std::runtime_error("Could not load font " + path);
 	}
 
 	return new Font(face);

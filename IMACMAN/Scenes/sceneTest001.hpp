@@ -13,7 +13,14 @@
 #include "Engines/RessourcesEngine/Elements/Asset.hpp"
 #include "Utils/ShaderProgram.hpp"
 
-using rId = unsigned short int;
+struct Vertex2DUV
+{
+	glm::vec2 position;
+	glm::vec2 uv;
+
+	Vertex2DUV(){}
+	Vertex2DUV(glm::vec2 position, glm::vec2 uv):position(position), uv(uv){}
+};
 
 class sceneTest001: public Scene
 {
@@ -47,6 +54,8 @@ private:
 
 	ShaderProgram * m_program;
 	FontFace m_fontFace;
+
+	GLuint m_vao;
 };
 
 #endif /* sceneTest001_hpp */

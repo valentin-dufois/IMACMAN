@@ -96,12 +96,17 @@
 		3997F0BE1FC21C8A009CECC9 /* IMACMAN */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = IMACMAN; sourceTree = BUILT_PRODUCTS_DIR; };
 		3997F0C11FC21C8A009CECC9 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		3997F0C81FC22BBB009CECC9 /* makefile */ = {isa = PBXFileReference; explicitFileType = sourcecode.make; indentWidth = 1; path = makefile; sourceTree = "<group>"; tabWidth = 5; usesTabs = 1; };
+		39A216771FF84BA100CA9ADD /* triangle.vs.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = triangle.vs.glsl; sourceTree = "<group>"; };
+		39A216781FF84BA100CA9ADD /* tex2D.fs.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tex2D.fs.glsl; sourceTree = "<group>"; };
+		39A216791FF84BA100CA9ADD /* triangle.fs.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = triangle.fs.glsl; sourceTree = "<group>"; };
+		39A2167A1FF84BA100CA9ADD /* tex2D.vs.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tex2D.vs.glsl; sourceTree = "<group>"; };
+		39A2167C1FF84BA200CA9ADD /* Neoneon.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Neoneon.otf; sourceTree = "<group>"; };
 		39A929F71FF7F1BD00A71CFA /* ShaderProgram.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ShaderProgram.cpp; sourceTree = "<group>"; };
 		39A929F81FF7F1BD00A71CFA /* ShaderProgram.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ShaderProgram.hpp; sourceTree = "<group>"; };
 		39A929FA1FF83DE500A71CFA /* libraries.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = libraries.hpp; sourceTree = "<group>"; };
 		39B5E6DA1FC3642000B99CC2 /* main.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = main.hpp; sourceTree = "<group>"; tabWidth = 4; usesTabs = 1; };
 		39B5E6DC1FC364C200B99CC2 /* RessourcesEngine.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = RessourcesEngine.cpp; sourceTree = "<group>"; };
-		39B5E6DD1FC364C200B99CC2 /* RessourcesEngine.hpp */ = {isa = PBXFileReference; indentWidth = 1; lastKnownFileType = sourcecode.cpp.h; path = RessourcesEngine.hpp; sourceTree = "<group>"; tabWidth = 4; usesTabs = 1; };
+		39B5E6DD1FC364C200B99CC2 /* RessourcesEngine.hpp */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.cpp.h; path = RessourcesEngine.hpp; sourceTree = "<group>"; tabWidth = 4; usesTabs = 1; };
 		39B5E6E01FC3654E00B99CC2 /* Asset.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Asset.hpp; sourceTree = "<group>"; };
 		39B5E6E31FC371E900B99CC2 /* Image.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Image.cpp; sourceTree = "<group>"; };
 		39B5E6E41FC371E900B99CC2 /* Image.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Image.hpp; sourceTree = "<group>"; };
@@ -525,7 +530,8 @@
 		3997F0CD1FC22C5A009CECC9 /* assets */ = {
 			isa = PBXGroup;
 			children = (
-				3997F0D41FC22C87009CECC9 /* fonts */,
+				39A2167B1FF84BA200CA9ADD /* fonts */,
+				39A216761FF84BA100CA9ADD /* shaders */,
 				3997F0D21FC22C78009CECC9 /* meshs */,
 				3997F0D11FC22C72009CECC9 /* levels */,
 				3997F0D01FC22C6B009CECC9 /* sounds */,
@@ -562,18 +568,30 @@
 			path = meshs;
 			sourceTree = "<group>";
 		};
-		3997F0D41FC22C87009CECC9 /* fonts */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = fonts;
-			sourceTree = "<group>";
-		};
 		3997F0D61FC22DFC009CECC9 /* build */ = {
 			isa = PBXGroup;
 			children = (
 			);
 			path = build;
+			sourceTree = "<group>";
+		};
+		39A216761FF84BA100CA9ADD /* shaders */ = {
+			isa = PBXGroup;
+			children = (
+				39A216771FF84BA100CA9ADD /* triangle.vs.glsl */,
+				39A216781FF84BA100CA9ADD /* tex2D.fs.glsl */,
+				39A2167A1FF84BA100CA9ADD /* tex2D.vs.glsl */,
+				39A216791FF84BA100CA9ADD /* triangle.fs.glsl */,
+			);
+			path = shaders;
+			sourceTree = "<group>";
+		};
+		39A2167B1FF84BA200CA9ADD /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				39A2167C1FF84BA200CA9ADD /* Neoneon.otf */,
+			);
+			path = fonts;
 			sourceTree = "<group>";
 		};
 		39B5E6DB1FC3649F00B99CC2 /* RessourcesEngine */ = {

@@ -8,10 +8,7 @@
 
 #include "Font.hpp"
 
-Font::Font(FT_Face &face): Asset(FONT), m_face(face)
-{
-	std::cout << "Font initialized" << std::endl;
-}
+Font::Font(FT_Face &face): Asset(FONT), m_face(face) {}
 
 void Font::setHeight(const float &newSize)
 {
