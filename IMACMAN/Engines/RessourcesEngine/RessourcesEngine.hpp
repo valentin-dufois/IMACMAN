@@ -18,6 +18,7 @@ enum ressourceType
 	IMAGE,
 	SHADER,
 	SOUND,
+	PRIMITIVE,
 	MESH,
 	LEVEL,
 	FONT

@@ -69,8 +69,6 @@ rId RessourcesEngine::loadAsset(std::string path, ressourceType type)
 	return newAssetId;
 }
 
-
-
 Asset * RessourcesEngine::getAsset(rId assetID)
 {
 	//Is this asset already loaded ?

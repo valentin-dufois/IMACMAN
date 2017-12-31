@@ -89,6 +89,7 @@ private:
 };
 
 #include "sceneTest001.hpp"
+#include "sceneTest002.hpp"
 
 
 #endif /* Scene_h */
