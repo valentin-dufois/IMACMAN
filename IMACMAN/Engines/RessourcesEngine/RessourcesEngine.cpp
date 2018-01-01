@@ -267,8 +267,8 @@ std::string RessourcesEngine::buildPath(std::string &file, ressourceType &type)
 			prefix = "assets/fonts/";
 			break;
 	}
-
-	return prefix + file;
+	;
+	return GameObj->getAppPath() + prefix + file;
 }
 
 bool RessourcesEngine::fileExist(std::string filePath)

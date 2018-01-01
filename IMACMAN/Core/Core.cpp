@@ -9,11 +9,11 @@
 #include "Core.hpp"
 
 //Ignite the different aspects of the game
-void Core::ignite()
+void Core::ignite(std::string appPath)
 {
 	Igniter igniter = Igniter();
 
-	igniter.igniteGameObject();
+	igniter.igniteGameObject(appPath);
 	igniter.igniteSDL();
 	igniter.igniteOpenGL();
 

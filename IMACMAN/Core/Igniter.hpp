@@ -16,10 +16,12 @@
 #include "Engines/RessourcesEngine/RessourcesEngine.hpp"
 #include "Engines/RenderEngine/RenderEngine.hpp"
 
+#include "Utils/FilePath.hpp"
+
 class Igniter
 {
 public:
-	void igniteGameObject();
+	void igniteGameObject(std::string appPath);
 	void igniteSDL();
 	void igniteOpenGL();
 	void igniteEngines();

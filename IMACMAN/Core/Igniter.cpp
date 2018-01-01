@@ -8,13 +8,23 @@
 
 #include "Igniter.hpp"
 
-void Igniter::igniteGameObject()
+void Igniter::igniteGameObject(std::string appPath)
 {
-	GameObject::instanciate();
+	//Get app path
+	FilePath applicationPath(appPath.c_str());
 
+	std::cout << applicationPath.dirPath() << std::endl;
+
+	//Instanciate GameObj
+	GameObject::instanciate(applicationPath.dirPath());
+
+
+	//Instanciate Engines
 	GameEngine::instanciate();
 	RessourcesEngine::instanciate();
 	//RenderEngine::instanciate();
+
+	
 }
 
 void Igniter::igniteSDL()

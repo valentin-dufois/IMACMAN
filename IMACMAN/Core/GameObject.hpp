@@ -24,7 +24,7 @@ public:
 	/**
 	 Instancite the object as a Singleton
 	 */
-	static void instanciate();
+	static void instanciate(std::string appPath);
 
 	/**
 	 * Engines
@@ -37,6 +37,8 @@ public:
 	 * The window, managed by SDL
 	 */
 	SDL_Window * mainWindow;
+
+	inline std::string getAppPath() const { return m_appPath; };
 
 	/**
 	 Tell if the app is currently running
@@ -84,10 +86,11 @@ public:
 
 private:
 	//Singleton
-	GameObject() {};
+	GameObject(std::string appPath): m_appPath(appPath) {};
 	bool static m_instanciated;
 
 	//Game states
+	std::string m_appPath;
 	bool m_running = true;
 
 	//Scenes

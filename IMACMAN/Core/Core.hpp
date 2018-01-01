@@ -27,7 +27,7 @@ public:
 	/**
 	 Init the required components of the app
 	 */
-	void ignite();
+	void ignite(std::string appPath);
 
 	/**
 	 Main loop of the app

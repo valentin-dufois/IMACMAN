@@ -8,15 +8,17 @@
 
 #include "GameObject.hpp"
 
+#include <iostream>
+
 GameObject * GameObj = nullptr;
 bool GameObject::m_instanciated = false;
 
-void GameObject::instanciate()
+void GameObject::instanciate(std::string appPath)
 {
 	if(m_instanciated)
 		return;
 
-	GameObj = new GameObject();
+	GameObj = new GameObject(appPath + "/");
 
 	m_instanciated = true;
 }
