@@ -389,6 +389,7 @@
 		39C2BB711FF7D7FB00589342 /* rotate_normalized_axis.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = rotate_normalized_axis.hpp; sourceTree = "<group>"; };
 		39C2BB721FF7D7FB00589342 /* projection.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = projection.inl; sourceTree = "<group>"; };
 		39C2BB731FF7D7FB00589342 /* type_aligned.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = type_aligned.hpp; sourceTree = "<group>"; };
+		39C68A581FFA8AE900FC5C9D /* FilePath.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FilePath.hpp; sourceTree = "<group>"; };
 		39CC1AC41FC2440A00C7A7C8 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		564CCCB91FC569A60061D5E1 /* Player.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Player.cpp; path = IMACMAN/Engines/GameEngine/Player.cpp; sourceTree = SOURCE_ROOT; };
 		564CCCBA1FC569A60061D5E1 /* Player.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = Player.hpp; path = IMACMAN/Engines/GameEngine/Player.hpp; sourceTree = SOURCE_ROOT; };
@@ -518,6 +519,7 @@
 		3997F0CC1FC22C3F009CECC9 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				39C68A581FFA8AE900FC5C9D /* FilePath.hpp */,
 				393375D71FF532C400024EB1 /* Selector */,
 				39579A131FF57A6600FC09D3 /* SDL.cpp */,
 				39579A141FF57A6600FC09D3 /* SDL.hpp */,
@@ -1236,6 +1238,7 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/";
 				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1254,6 +1257,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SYMROOT = IMACMAN/Game;
 			};
 			name = Debug;
 		};
@@ -1262,6 +1266,7 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/";
 				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1280,6 +1285,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SYMROOT = IMACMAN/Game;
 			};
 			name = Release;
 		};
