@@ -7,3 +7,19 @@
 //
 
 #include "Level.hpp"
+
+//Getters
+uint Level::getWidth() const
+{
+    return m_width;
+}
+
+uint Level::getHeight() const
+{
+    return m_height;
+}
+
+std::vector<int> Level::getLevelGrid() const
+{
+    return m_levelGrid;
+}

@@ -9,9 +9,11 @@
 #ifndef sceneTest002_hpp
 #define sceneTest002_hpp
 
-#include "../main.hpp"
-
-using rId = unsigned short int;
+#include "Scene.hpp"
+#include "libraries.hpp"
+#include "Engines/RessourcesEngine/RessourcesEngine.hpp"
+#include "Engines/RenderEngine/RenderEngine.hpp"
+#include "Utils/ShaderProgram.hpp"
 
 class sceneTest002: public Scene
 {
@@ -39,12 +41,13 @@ public:
 	/**
 	 Destructor, used to properly free all the memory used by the scene
 	 */
-	~sceneTest002() {};
+	~sceneTest002() {}
 
 private:
 
 	rId m_sceneID;
-	//Sphere sphere;
+	Level * m_level;
+	Mesh * m_cube;
 	
 };
 

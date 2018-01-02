@@ -7,7 +7,6 @@
 //
 
 #include "sceneTest002.hpp"
-#include "../Utils/Primitive/Sphere.hpp"
 
 void sceneTest002::load()
 {
@@ -20,24 +19,30 @@ void sceneTest002::load()
 void sceneTest002::init()
 {
 	m_sceneID = 1;
-	GLuint sphereID = 1;
-	Sphere sphere = Sphere(1, 32, 16);
-	GameObject->renderEngine->initVBO(GL_ARRAY_BUFFER, sphereID, 1);
+	rId levelID = GameObj->ressourcesEngine->loadAsset("level01.txt", LEVEL);
+	m_level = *GameObj->ressourcesEngine->getAsset(levelID);
+
+	m_cube = GameObj->ressourcesEngine->genCube(1);
+	std::vector<Vertex> vertices = m_cube->getVertexList();
+	
+	/*GameObj->renderEngine->loadPlateBoard(
+		GL_ARRAY_BUFFER,
+		"testVBO",
+		managerType::GRID_MANAGER,
+		&vertices,
+		36,
+		1
+	);*/
 
 	std::cout << "loaded" << std::endl;
 }
 
 void sceneTest002::execute()
 {
-	std::cout << "executed" << std::endl;
+	//std::cout << "executed" << std::endl;
 }
 
 void sceneTest002::render()
 {
-
-
-
-
-
-	std::cout << "rendered" << std::endl;
+	//std::cout << "rendered" << std::endl;
 }

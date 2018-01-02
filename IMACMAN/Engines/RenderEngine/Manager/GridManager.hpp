@@ -9,6 +9,9 @@
 #ifndef GridManager_hpp
 #define GridManager_hpp
 
+#include "libraries.hpp"
+#include "Engines/GameEngine/Grid.hpp"
+
 //Forward declaration
 class Manager;
 
@@ -26,7 +29,14 @@ public:
   //Setters
 
   //Utils
-  void fillVBO();
+  void init();
+  void render();
+  
+  void fillVBO(uint nbOfVertex, std::vector<Vertex> * vertices);
+  void fillVAO();
+
+  void updateVBO();
+  void updateVAO();
 };
 
 #endif /* GridManager_hpp */

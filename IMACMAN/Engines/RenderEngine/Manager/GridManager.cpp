@@ -6,11 +6,47 @@
 //  Copyright © 2017 Gaëlle Calmels. All rights reserved.
 //
 
-#include "../../../main.hpp"
+#include <iostream>
 
+#include "Manager.hpp"
 #include "GridManager.hpp"
 
-void GridManager::fillVBO()
+void GridManager::init()
+{
+
+}
+
+void GridManager::render()
+{
+  
+}
+
+void GridManager::fillVBO(uint nbOfVertex, std::vector<Vertex> * vertices)
 {
   std::cout << "Fill the grid VBO\n" << std::endl;
+  
+  GLsizeiptr size = nbOfVertex * sizeof(GLfloat);
+
+	//Fill VBO with data
+	glBufferData(
+    GL_ARRAY_BUFFER,
+    size,
+    vertices->data(),
+    GL_STATIC_DRAW
+  );
+}
+
+void GridManager::fillVAO()
+{
+  std::cout << "Fill the grid VAO\n" << std::endl;
+}
+
+void GridManager::updateVBO()
+{
+
+}
+
+void GridManager::updateVAO()
+{
+
 }

@@ -9,6 +9,9 @@
 #ifndef GhostsManager_hpp
 #define GhostsManager_hpp
 
+#include "libraries.hpp"
+#include "Engines/GameEngine/Ghost.hpp"
+
 //Forward declaration
 class Manager;
 
@@ -26,7 +29,14 @@ public:
   //Setters
 
   //Utils
-  void fillVBO();
+  void init(Ghost &ghost);
+  void render();
+
+  void fillVBO(uint nbOfVertex, std::vector<Vertex> * vertices);
+  void fillVAO();
+
+  void updateVBO();
+  void updateVAO();
 };
 
 #endif /* GhostsManager_hpp */

@@ -8,12 +8,25 @@
 
 #include "Asset.hpp"
 
+ressourceType Asset::getType()
+{
+	return m_type;
+};
+
 Asset::operator Font*()
 {
 	if(getType() != FONT)
 		throw std::runtime_error("Invalid conversion.\nInvalid conversion from Asset * to Font * : Given Asset * is not a Font.");
 
 	return reinterpret_cast<Font *>(this);
+}
+
+Asset::operator Level*()
+{
+	if(getType() != LEVEL)
+		throw std::runtime_error("Invalid conversion.\nInvalid conversion from Asset * to Level * : Given Asset * is not a Level.");
+
+	return reinterpret_cast<Level *>(this);
 }
 
 Asset::operator Mesh*()

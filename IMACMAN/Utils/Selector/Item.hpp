@@ -10,6 +10,7 @@
 #define Item_hpp
 
 #include <iostream>
+#include <functional>
 
 class Item
 {

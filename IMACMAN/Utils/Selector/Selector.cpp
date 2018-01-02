@@ -9,7 +9,8 @@
 #include "Selector.hpp"
 
 Selector::Selector():
-m_currentItem(nullptr) {};
+	m_currentItem(nullptr)
+{}
 
 void Selector::addItem(Item * newItem)
 {

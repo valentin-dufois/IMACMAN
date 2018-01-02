@@ -11,51 +11,54 @@
 
 #include "Asset.hpp"
 #include "Utils/ShaderProgram.hpp"
+#include "Utils/Vertex.hpp"
 #include <glm/glm.hpp>
-
-struct Vertex
-{
-	glm::vec3 position;
-	glm::vec4 color;		//Used if Mesh.type = COLORED
-	glm::vec2 UV;			//Used if Mesh.type = TEXTURED
-
-	glm::vec3 normal;
-
-	unsigned int vertexSize;
-	unsigned int positionOffset;
-	unsigned int normalOffset;
-	unsigned int textureOffset;
-
-	Vertex() {};
-	Vertex(glm::vec3 pos): position(pos) {};
-};
-
-enum MeshType
-{
-	COLORED,
-	TEXTURED
-};
 
 class Mesh : public Asset
 {
+private:
+	//Vertex
+	std::vector<Vertex> m_vertexList;
+	uint m_vertexCount;
+	
+	uint m_positionOffset;
+	uint m_normalOffset;
+	uint m_textureOffset;
+
+	//Style
+	bool m_textured;
+	GLuint m_textureID;
+	GLuint m_programID;
+
 public:
+	//Constructor
+	Mesh(const std::vector<Vertex> &vertexList):
+		Asset(MESH),
+		m_vertexList(vertexList),
+		m_vertexCount(vertexList.size()),
+		m_positionOffset(3),
+		m_normalOffset(3),
+		m_textureOffset(2),
+		m_textured(false),
+		m_textureID(0),
+		m_programID(0)
+	{}
 
-	Mesh(const std::vector<Vertex> &vertexList);
+	//Getters
+	std::vector<Vertex> getVertexList() { return m_vertexList; }
+	GLsizeiptr getVertexCount() { return m_vertexCount; }
+	 
 
+	//Utils
 	inline void fillVertex(const std::vector<Vertex> &vertexList) { m_vertexList = vertexList; };
-
+	
 	void appendVertex(const std::vector<Vertex> &vertexList);
 	void appendVertex(const Vertex &vertex);
 
-	inline void setType(const MeshType &type) { m_type = type; };
+	inline void setType(const bool &type) { m_textured = type; };
 
 	inline void setTexture(GLuint textureID) { m_textureID = textureID; };
 	inline void setProgram(GLuint programID) { m_programID = programID; };
-
-	GLuint genVBO();
-	GLuint genVAO();
-
-	void render() const;
 
 	/**
 	 Return all vertex in the mesh
@@ -63,21 +66,6 @@ public:
 	 @return An array of vertex
 	 */
 	inline std::vector<Vertex> getVertexList() const { return m_vertexList; };
-
-private:
-
-	//Vertex
-	std::vector<Vertex> m_vertexList;
-	uint m_vertexCount;
-
-	//Style
-	MeshType m_type;
-	GLuint m_textureID;
-	GLuint m_programID;
-
-	//OpenGL
-	GLuint m_vbo;
-	GLuint m_vao;
 };
 
 #endif /* Mesh_hpp */
