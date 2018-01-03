@@ -51,6 +51,19 @@ struct keyboard
 	bool ENTER = false;
 };
 
+enum levelSyntax {
+	FLOOR,
+	WALL,
+	PAC_GUM,
+	SUPER_PAC_GUM,
+	PACMAN_POS,
+	BLINKY_POS,
+	PINKY_POS,
+	INKY_POS,
+	CLYDE_POS
+};
+
+
 class GameEngine{
 public:
 	/**
@@ -80,6 +93,11 @@ public:
 	 */
 	inline void flushKeys() { m_keys = {}; };
 
+	/**
+	 Init the level
+	 */
+	void initLevel();
+	
 private:
 	//Singleton
 	static bool m_instanciated;

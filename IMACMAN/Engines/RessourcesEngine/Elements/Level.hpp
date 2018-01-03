@@ -12,18 +12,6 @@
 #include "Asset.hpp"
 #include <glm/glm.hpp>
 
-enum levelSyntax {
-	FLOOR,
-	WALL,
-	PAC_GUM,
-	SUPER_PAC_GUM,
-	PACMAN_POS,
-	BLINKY_POS,
-	PINKY_POS,
-	INKY_POS,
-	CLYDE_POS
-};
-
 class Level : public Asset
 {
 private:
@@ -33,22 +21,28 @@ private:
 	uint m_width;
 	uint m_height;
 	std::vector<int> m_levelGrid;
+	std::vector<int> m_levelPacGum;
+	std::vector<int> m_levelSuperGum;
 	
 	//Level grid
 public:
 	//Constructors
-	Level(uint width, uint height, std::vector<int> grid):
+	Level(uint width, uint height, std::vector<int> grid, std::vector<int> pacGum, std::vector<int> superGum):
 		Asset(LEVEL),
 		m_width(width),
 		m_height(height),
-		m_levelGrid(grid)
+		m_levelGrid(grid),
+		m_levelPacGum(pacGum),
+		m_levelSuperGum(superGum)
 	{}
 
 	//Getters
 	uint getWidth() const;
 	uint getHeight() const;
 	std::vector<int> getLevelGrid() const;
-
+	std::vector<int> getLevelPacGum() const;
+	std::vector<int> getLevelSuperGum() const;
+	
 	//Utils
 };
 

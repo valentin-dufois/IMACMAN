@@ -115,3 +115,7 @@ void GameEngine::parseEvents()
 		}
 	}
 }
+
+void GameEngine::initLevel(){
+	
+}

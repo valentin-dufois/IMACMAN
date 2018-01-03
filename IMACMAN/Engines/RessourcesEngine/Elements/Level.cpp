@@ -23,3 +23,13 @@ std::vector<int> Level::getLevelGrid() const
 {
     return m_levelGrid;
 }
+
+std::vector<int> Level::getLevelPacGum() const
+{
+	return m_levelPacGum;
+}
+
+std::vector<int> Level::getLevelSuperGum() const
+{
+	return m_levelSuperGum;
+}
