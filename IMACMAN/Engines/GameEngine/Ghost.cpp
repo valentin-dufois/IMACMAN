@@ -13,6 +13,10 @@ void Ghost::setPosition(glm::vec2 position){
 	m_position = position;
 }
 
+void Ghost::setPositionInit(glm::vec2 positionInit){
+	m_positionInit = positionInit;
+}
+
 void Ghost::setIsAlive(bool isAlive){
 	m_isAlive = isAlive;
 }
@@ -32,6 +36,10 @@ uint Ghost::getId() const{
 
 glm::vec2 Ghost::getPosition() const{
 	return m_position;
+}
+
+glm::vec2 Ghost::getPositionInit() const{
+	return m_positionInit;
 }
 
 bool Ghost::getIsAlive() const{

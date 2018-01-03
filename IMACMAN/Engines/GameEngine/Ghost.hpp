@@ -14,6 +14,7 @@ public:
 	void setName(std::string name);
 	void setId(uint id);
 	void setPosition(glm::vec2 position);
+	void setPositionInit(glm::vec2 positionInit);
 	void setIsAlive(bool isAlive);
 	void setIsAfraid(bool isAfraid);
 	
@@ -21,6 +22,7 @@ public:
 	std::string getName() const;
 	uint getId() const;
 	glm::vec2 getPosition() const;
+	glm::vec2 getPositionInit() const;
 	bool getIsAlive() const;
 	bool getIsAfraid() const;
 	
@@ -28,6 +30,7 @@ private:
 	std::string m_name;
 	uint m_id;
 	glm::vec2 m_position;
+	glm::vec2 m_positionInit;
 	bool m_isAlive;
 	bool m_isAfraid;
 };

@@ -13,6 +13,10 @@ void Pacman::setPosition(glm::vec2 position){
 	m_position = position;
 }
 
+void Pacman::setPositionInit(glm::vec2 positionInit){
+	m_positionInit = positionInit;
+}
+
 void Pacman::setIsSuper(bool isSuper){
 	m_isSuper = isSuper;
 }
@@ -25,3 +29,16 @@ std::string Pacman::getName() const{
 uint Pacman::getId() const{
 	return m_id;
 }
+
+glm::vec2 Pacman::getPosition() const{
+	return m_position;
+}
+
+glm::vec2 Pacman::getPositionInit() const{
+	return m_positionInit;
+}
+
+bool Pacman::getIsSuper() const{
+	return m_isSuper;
+}
+

@@ -14,6 +14,13 @@
 
 #include <vector>
 
+class Pacman;
+class Ghost;
+class Grid;
+class PacGum;
+class Wall;
+class Player;
+
 struct keyboard
 {
 	bool A = false;
@@ -63,7 +70,6 @@ enum levelSyntax {
 	CLYDE_POS
 };
 
-
 class GameEngine{
 public:
 	/**
@@ -102,7 +108,17 @@ private:
 	//Singleton
 	static bool m_instanciated;
 	GameEngine();
+	
+	//Attributes
+//	Pacman m_pacman;
+//	std::vector<Ghost> m_ghosts;
+//	std::vector<PacGum> m_pacgums;
+//	std::vector<Wall> m_walls;
+//	Player m_player;
 
+	//Level file for the position
+	std::vector<int> m_level;
+	
 	//Events
 	keyboard m_keys;
 	/**
