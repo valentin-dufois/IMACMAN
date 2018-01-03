@@ -7,16 +7,18 @@
 class Pacman {
 public:
 
-	Pacman();
+	Pacman(std::string name, uint id, glm::vec2 position, bool isSuper) : m_name(name), m_id(id), m_position(position), m_isSuper(isSuper){};
 	~Pacman();
 	
 	//SETTERS
 	void setName(std::string name);
 	void setId(uint id);
-//	void set
+	void setPosition(glm::vec2 position);
+	void setIsSuper(bool isSuper);
 	
 	//GETTERS
-	
+	std::string getName() const;
+	uint getId() const;
 	
 private:
 	std::string m_name;

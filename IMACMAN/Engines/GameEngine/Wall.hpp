@@ -5,11 +5,12 @@
 #include <glm/glm.hpp>
 
 class Wall {
-    private:
-    glm::vec2 m_position;
-
-    public:
-
+public:
+	void setPosition(glm::vec2 position);
+	
+	glm::vec2 getPosition() const;
+private:
+	glm::vec2 m_position;
 };
 
 #endif /* WALL_HPP */
