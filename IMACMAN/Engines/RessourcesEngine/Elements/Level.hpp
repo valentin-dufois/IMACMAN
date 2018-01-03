@@ -21,27 +21,20 @@ private:
 	uint m_width;
 	uint m_height;
 	std::vector<int> m_levelGrid;
-	std::vector<int> m_levelPacGum;
-	std::vector<int> m_levelSuperGum;
 	
-	//Level grid
 public:
 	//Constructors
-	Level(uint width, uint height, std::vector<int> grid, std::vector<int> pacGum, std::vector<int> superGum):
+	Level(uint width, uint height, std::vector<int> grid):
 		Asset(LEVEL),
 		m_width(width),
 		m_height(height),
-		m_levelGrid(grid),
-		m_levelPacGum(pacGum),
-		m_levelSuperGum(superGum)
+		m_levelGrid(grid)
 	{}
 
 	//Getters
 	uint getWidth() const;
 	uint getHeight() const;
 	std::vector<int> getLevelGrid() const;
-	std::vector<int> getLevelPacGum() const;
-	std::vector<int> getLevelSuperGum() const;
 	
 	//Utils
 };
