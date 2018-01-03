@@ -7,7 +7,7 @@
 class PacGum {
 public:
 	
-	PacGum(glm::vec2 position) : m_position(position), m_ate(0);
+	PacGum(glm::vec2 position) : m_position(position), m_ate(0){};
 	~PacGum();
 	
 	//SETTERS
