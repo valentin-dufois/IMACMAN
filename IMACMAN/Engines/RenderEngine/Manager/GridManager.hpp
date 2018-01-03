@@ -10,7 +10,7 @@
 #define GridManager_hpp
 
 #include "libraries.hpp"
-#include "Engines/GameEngine/Grid.hpp"
+#include "Utils/Enums.hpp"
 
 //Forward declaration
 class Manager;

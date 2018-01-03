@@ -22,17 +22,20 @@ void sceneTest002::init()
 	rId levelID = GameObj->ressourcesEngine->loadAsset("level01.txt", LEVEL);
 	m_level = *GameObj->ressourcesEngine->getAsset(levelID);
 
-	m_cube = GameObj->ressourcesEngine->genCube(1);
-	std::vector<Vertex> vertices = m_cube->getVertexList();
+	m_sphere = GameObj->ressourcesEngine->genSphere(1, 4, 4);
+	std::vector<Vertex> vertices = m_sphere->getVertexList();
 	
-	/*GameObj->renderEngine->loadPlateBoard(
-		GL_ARRAY_BUFFER,
-		"testVBO",
-		managerType::GRID_MANAGER,
+	GameObj->renderEngine->initVBO(
+		GameObj->renderEngine->getBufferPtr(MANAGER_TYPE::PACMAN_M),
+		MANAGER_TYPE::PACMAN_M,
 		&vertices,
 		36,
 		1
-	);*/
+	);
+
+	GameObj->renderEngine->initVAO(
+		MANAGER_TYPE::PACMAN_M
+	);
 
 	std::cout << "loaded" << std::endl;
 }

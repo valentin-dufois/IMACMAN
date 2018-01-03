@@ -81,7 +81,7 @@ Asset * RessourcesEngine::getAsset(rId assetID)
 Mesh RessourcesEngine::genCube(const uint &size)
 {
 	std::vector<Vertex> vertexList;
-	uint demisize = size >> 2;
+	uint demisize = size >> 1;
 
 	glm::vec3
 		A(-demisize, -demisize, -demisize),

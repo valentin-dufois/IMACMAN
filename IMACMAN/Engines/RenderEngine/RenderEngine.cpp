@@ -26,86 +26,136 @@ void RenderEngine::instanciate()
 /**
  * Private constructor
  */
-RenderEngine::RenderEngine(GLuint gridVBO, GLuint pacmanVBO, std::vector<GLuint> ghostsVBO)
+RenderEngine::RenderEngine()
 {
-	m_gridVBO = gridVBO;
-	m_pacmanVBO = pacmanVBO;
-	//initVBO(GL_ARRAY_BUFFER, &m_pacmanVBO, GRID_MANAGER);
+	GLuint gridVBO, pacmanVBO, blinkyVBO, pinkyVBO, inkyVBO, clydeVBO;
+	GLuint vao;
+	
+	m_gridVBO = &gridVBO;
+	m_pacmanVBO = &pacmanVBO;
+	m_ghostsVBO = {
+		&blinkyVBO,
+		&pinkyVBO,
+		&inkyVBO,
+		&clydeVBO
+	};
 
-	m_ghostsVBO = ghostsVBO;
-	//initVBO(GL_ARRAY_BUFFER, &m_ghostsVBO[0] , GRID_MANAGER);
-	//initVBO(GL_ARRAY_BUFFER, &m_ghostsVBO[1], GRID_MANAGER);
-	//initVBO(GL_ARRAY_BUFFER, &m_ghostsVBO[2], GRID_MANAGER);
+	m_VAO = &vao;
+
+	//initVBO(GL_ARRAY_BUFFER, &m_ghostsVBO[0] , GRID);
 }
 
-void loadPlateBoard()
+void RenderEngine::loadPlateBoard()
 {
 
 }
 
-void loadGrid()
+// GRID FUNCTIONS HERE
+void RenderEngine::loadGrid()
 {
 
 }
 
-void RenderEngine::initVBO(GLenum bufferType, GLuint * index, managerType type, std::vector<Vertex> * vertices, uint nbOfVertex, GLuint nbOfVBO)
+void RenderEngine::updateGrid()
 {
-	//Get Manager for the future VBO
+
+}
+
+void RenderEngine::renderGrid()
+{
+
+}
+
+void RenderEngine::initVBO(GLuint * index, enum MANAGER_TYPE type, std::vector<Vertex> * vertices, uint nbOfVertex, GLuint nbOfVBO)
+{
+	//Get Manager for VBO
 	Manager * manager = getManager(type);
-	//Generate VBO
+	
+	//Generate & bind VBO
 	glGenBuffers(nbOfVBO, index);
-	//Bind the VBO to OpenGL
-	glBindBuffer(bufferType, *index);
-	//Fill the VBO with data (Factory pattern)
+	glBindBuffer(GL_VERTEX_ARRAY, *index);
+
+	//Fill VBO with data
 	manager->fillVBO(nbOfVertex, vertices);
-	//Unbind the VBO from OpenGL
-	glBindBuffer(bufferType, 0);
+
+	//Unbind VBO
+	glBindBuffer(GL_VERTEX_ARRAY, 0);
 }
 
-void RenderEngine::initVAO()
+void RenderEngine::initVAO(enum MANAGER_TYPE type)
 {
-	/*
-	if(m_vbo == 0)
-		return; //No VBO, no VAO!
-
 	//Bind VAO
-	glGenVertexArrays(1, &m_vao);
-	glBindVertexArray(m_vao);
+	glGenVertexArrays(1, m_VAO);
+	glBindVertexArray(*m_VAO);
 
-	//Define vertice properties array hooks
-	const GLuint VERTEX_ATTR_POSITION = 1;
-	const GLuint VERTEX_ATTR_COLOR = 2;
-	const GLuint VERTEX_ATTR_UV = 3;
 	glEnableVertexAttribArray(VERTEX_ATTR_POSITION);
+	glEnableVertexAttribArray(VERTEX_ATTR_NORMAL);
 	glEnableVertexAttribArray(VERTEX_ATTR_COLOR);
-	glEnableVertexAttribArray(VERTEX_ATTR_UV);
+
+	GLuint * VBOptr = getBufferPtr(type);
 
 	//Bind mesh VBO
-	glBindBuffer(GL_ARRAY_BUFFER, m_vbo);
+	glBindBuffer(
+		GL_ARRAY_BUFFER,
+		*VBOptr
+	);
 
 	//Specify vertice properties positions
-	glVertexAttribPointer(VERTEX_ATTR_POSITION, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), 0);
-	glVertexAttribPointer(VERTEX_ATTR_COLOR, 4, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const GLvoid *) offsetof(Vertex, color));
-	glVertexAttribPointer(VERTEX_ATTR_UV, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const GLvoid *) offsetof(Vertex, UV));
+	glVertexAttribPointer(VERTEX_ATTR_POSITION, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), 0);
+	glVertexAttribPointer(VERTEX_ATTR_NORMAL, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), (const GLvoid *) offsetof(Vertex, normal));
+	glVertexAttribPointer(VERTEX_ATTR_COLOR, 4, GL_FLOAT, GL_FALSE, 4 * sizeof(GLfloat), (const GLvoid *) offsetof(Vertex, color));
 
 	//Unbind everything
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
-	glBindVertexArray(0);*/
+	glBindVertexArray(0);
 }
 
-Manager * RenderEngine::getManager(managerType type)
+GLuint * RenderEngine::getBufferPtr(enum MANAGER_TYPE type)
+{
+	GLuint * bufferPtr;
+
+	switch (type) {
+		case MANAGER_TYPE::GRID_M :
+			bufferPtr = m_gridVBO;
+			break;
+		case MANAGER_TYPE::PACMAN_M :
+			bufferPtr = m_pacmanVBO;
+			break;
+		case MANAGER_TYPE::BLINKY_M :
+			bufferPtr = m_ghostsVBO[0];
+			break;
+		case MANAGER_TYPE::PINKY_M :
+			bufferPtr = m_ghostsVBO[1];
+			break;
+		case MANAGER_TYPE::INKY_M :
+			bufferPtr = m_ghostsVBO[2];
+			break;
+		case MANAGER_TYPE::CLYDE_M :
+			bufferPtr = m_ghostsVBO[3];
+			break;
+		default: 
+			break;
+	}
+
+	return bufferPtr;
+}
+
+Manager * RenderEngine::getManager(enum MANAGER_TYPE type)
 {
 	Manager * manager = nullptr;
 
 	switch (type)
 	{
-		case GRID_MANAGER:
+		case MANAGER_TYPE::GRID_M :
 			manager = new GridManager();
 			break;
-		case PACMAN_MANAGER:
+		case MANAGER_TYPE::PACMAN_M :
 			manager = new PacmanManager();
 			break;
-		case GHOST_MANAGER:
+		case MANAGER_TYPE::BLINKY_M :
+		case MANAGER_TYPE::PINKY_M :
+		case MANAGER_TYPE::INKY_M :
+		case MANAGER_TYPE::CLYDE_M :
 			manager = new GhostsManager();
 			break;
 		default:

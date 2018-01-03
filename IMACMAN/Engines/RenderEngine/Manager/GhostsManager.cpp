@@ -23,7 +23,17 @@ void GhostsManager::render()
 
 void GhostsManager::fillVBO(uint nbOfVertex, std::vector<Vertex> * vertices)
 {
-  std::cout << "Fill the Ghosts VBOS\n" << std::endl;
+  std::cout << "Fill the Ghosts VBO\n" << std::endl;
+  
+  GLsizeiptr size = nbOfVertex * sizeof(GLfloat);
+
+	//Fill VBO with data
+	glBufferData(
+    GL_ARRAY_BUFFER,
+    size,
+    vertices->data(),
+    GL_STATIC_DRAW
+  );
 }
 
 void GhostsManager::fillVAO()

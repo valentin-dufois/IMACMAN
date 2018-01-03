@@ -10,7 +10,6 @@
 #define PacmanManager_hpp
 
 #include "libraries.hpp"
-#include "Engines/GameEngine/Pacman.hpp"
 
 //Forward declaration
 class Manager;

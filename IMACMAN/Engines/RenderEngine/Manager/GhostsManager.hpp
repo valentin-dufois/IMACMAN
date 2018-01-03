@@ -10,7 +10,7 @@
 #define GhostsManager_hpp
 
 #include "libraries.hpp"
-#include "Engines/GameEngine/Ghost.hpp"
+#include "Engines/GameEngine/GItem/Ghost.hpp"
 
 //Forward declaration
 class Manager;
@@ -19,9 +19,11 @@ class Manager;
 class GhostsManager: public Manager
 {
 protected:
+  std::vector<uint> m_firstIndiceGhosts;
 
 public:
   //Constructor
+  GhostsManager(): Manager(), m_firstIndiceGhosts({0}) {}
 	~GhostsManager() {}
 
   //Getters

@@ -1,0 +1,7 @@
+1. coder fonction move dans DynamicItem.hpp
+    move renvoi la prochaine position
+    on fait la vérification à postériori puis on applique mouve ou pas
+
+1.1 gérer clavier gameengine pour envoyer direction à fonction move
+
+2. coder fonction getItem dans Grid.hpp/cpp

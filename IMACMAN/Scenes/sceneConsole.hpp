@@ -6,17 +6,18 @@
 //  Copyright © 2017 Valentin Dufois. All rights reserved.
 //
 
-#ifndef sceneTest002_hpp
-#define sceneTest002_hpp
+#ifndef sceneConsole_hpp
+#define sceneConsole_hpp
 
 #include "Scene.hpp"
 #include "libraries.hpp"
 #include "Engines/RessourcesEngine/RessourcesEngine.hpp"
 #include "Engines/RenderEngine/RenderEngine.hpp"
 #include "Utils/ShaderProgram.hpp"
-#include "Utils/Enums.hpp"
 
-class sceneTest002: public Scene
+#include <map>
+
+class sceneConsole: public Scene
 {
 public:
 	/**
@@ -42,14 +43,25 @@ public:
 	/**
 	 Destructor, used to properly free all the memory used by the scene
 	 */
-	~sceneTest002() {}
+	~sceneConsole() {}
 
 private:
-
 	rId m_sceneID;
+	std::map<int, char> m_map = {
+		{0, ' '},
+		{1, '@'},
+		{2, '.'},
+		{3, '*'},
+		{4, 'F'},
+		{5, 'P'},
+		{6, 'B'},
+		{7, 'Y'},
+		{8, 'I'},
+		{9, 'C'}
+	};
+
 	Level * m_level;
-	Mesh * m_sphere;
 	
 };
 
-#endif /* sceneTest002_hpp */
+#endif /* sceneConsole_hpp */

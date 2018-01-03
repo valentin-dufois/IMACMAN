@@ -20,15 +20,7 @@ void GameEngine::instanciate()
 	m_instanciated = true;
 }
 
-GameEngine::GameEngine(){
-	//Init all this with their constructors
-//	Pacman m_pacman;
-//	std::vector<Ghost> m_ghosts;
-//	std::vector<PacGum> m_pacgums;
-//	std::vector<Wall> m_walls;
-//	Player m_player;
-//	std::vector<int> m_level;
-	
+GameEngine::GameEngine() {
 }
 
 void GameEngine::executeScenes()

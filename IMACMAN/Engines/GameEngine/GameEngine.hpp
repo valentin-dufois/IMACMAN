@@ -58,18 +58,6 @@ struct keyboard
 	bool ENTER = false;
 };
 
-enum levelSyntax {
-	FLOOR,
-	WALL,
-	PAC_GUM,
-	SUPER_PAC_GUM,
-	PACMAN_POS,
-	BLINKY_POS,
-	PINKY_POS,
-	INKY_POS,
-	CLYDE_POS
-};
-
 class GameEngine{
 public:
 	/**
@@ -108,13 +96,6 @@ private:
 	//Singleton
 	static bool m_instanciated;
 	GameEngine();
-	
-	//Attributes
-//	Pacman m_pacman;
-//	std::vector<Ghost> m_ghosts;
-//	std::vector<PacGum> m_pacgums;
-//	std::vector<Wall> m_walls;
-//	Player m_player;
 
 	//Level file for the position
 	std::vector<int> m_level;

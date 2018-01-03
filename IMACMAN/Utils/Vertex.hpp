@@ -8,10 +8,9 @@
 struct Vertex
 {
 	glm::vec3 position;
+	glm::vec3 normal;
 	glm::vec4 color;		//Used if Mesh.type = COLORED
 	glm::vec2 UV;			//Used if Mesh.type = TEXTURED
-
-	glm::vec3 normal;
 
 	Vertex() {};
 	Vertex(glm::vec3 pos): position(pos) {};

@@ -10,29 +10,28 @@
 #define Player_hpp
 
 #include <iostream>
-
-enum PlayerType {AI,Human};
+#include "Utils/Enums.hpp"
 
 class Player{
 public:
 	
-	Player(PlayerType type, std::string name) : m_type(type), m_name(name), m_life(3), m_score(0){};
+	Player(enum PLAYER_TYPE type, std::string name) : m_type(type), m_name(name), m_life(3), m_score(0){};
 	~Player();
 	
 	//SETTERS
-	void setType(PlayerType type);
+	void setType(enum PLAYER_TYPE type);
 	void setName(std::string name);
 	void setLife(uint life);
 	void setScore(double score);
 	
 	//GETTERS
-	PlayerType getPlayerType() const;
+	enum PLAYER_TYPE getPlayerType() const;
 	std::string getName() const;
 	uint getLife() const;
 	double getScore() const;
 	
 private:
-	PlayerType m_type;
+	PLAYER_TYPE m_type;
 	std::string m_name;
 	uint m_life;
 	double m_score;

@@ -90,6 +90,7 @@ private:
 
 #include "sceneTest001.hpp"
 #include "sceneTest002.hpp"
+#include "sceneConsole.hpp"
 
 
 #endif /* Scene_h */

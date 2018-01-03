@@ -12,6 +12,7 @@
 //Link to main
 #include "libraries.hpp"
 #include "Utils/Vertex.hpp"
+#include "Utils/Enums.hpp"
 
 //The engine
 class Manager
