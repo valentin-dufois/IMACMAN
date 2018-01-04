@@ -5,22 +5,18 @@
 
 class Fruit: public StaticItem {
 private:
-	bool m_eaten;
 
 public:
 	//CONSTRUCTOR
-	Fruit(glm::vec2 position, uint score = 100, bool superGum = false, bool eaten = false) :
-		StaticItem(position, score),
-		m_eaten(eaten)
+	Fruit(glm::vec2 position, uint score = 100, enum ITEM_SYNTAX type = FRUIT, bool eaten = false) :
+		StaticItem(position, score, type)
 	{};
 	//DESTRUCTOR
-	~Fruit();
+	~Fruit() = default;
 	
 	//GETTERS
-	bool getEatenState() const;
 
 	//SETTERS
-	void updateEatenState(bool eaten);
 };
 
 #endif /* FRUIT_HPP */

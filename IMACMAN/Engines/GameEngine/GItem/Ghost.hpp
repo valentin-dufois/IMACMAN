@@ -10,12 +10,12 @@ private:
 
 public:
 
-	Ghost(std::string name, glm::vec2 position, uint score = 100, bool isAlive = true, bool isAfraid = false) :
-		DynamicItem(position, name, score),
+	Ghost(glm::vec2 position, std::string name, enum ITEM_SYNTAX type, uint score = 100, bool isAlive = true, bool isAfraid = false) :
+		DynamicItem(position, name, score, type),
 		m_isAlive(isAlive),
 		m_isAfraid(isAfraid)
 	{}
-	~Ghost();
+	~Ghost() = default;
 	
 	//SETTERS
 	void setIsAlive(bool isAlive);

@@ -20,28 +20,36 @@ void sceneConsole::init()
 {
 	m_sceneID = 1;
 
+	//Fetch a level
 	rId levelID = GameObj->ressourcesEngine->loadAsset("level01.txt", LEVEL);
-	m_level = *GameObj->ressourcesEngine->getAsset(levelID);
+	Level * level = *GameObj->ressourcesEngine->getAsset(levelID);
+	
+	//Load the level inside the Game Engine
+	GameObj->gameEngine->loadLevel(level);
 
-	std::cout << "loaded" << std::endl;
 }
 
 void sceneConsole::execute()
 {
-	//std::cout << "executed" << std::endl;
+	Grid * grid = GameObj->gameEngine->getGrid();
+	DynamicItem * pacman = reinterpret_cast<DynamicItem *>(grid->getItem(ITEM_SYNTAX::PACMAN));
+
+	if (GameObj->gameEngine->getKeys().UP) {
+		pacman->updateDirection(DIRECTION::UP);
+	} else if (GameObj->gameEngine->getKeys().DOWN) {
+		pacman->updateDirection(DIRECTION::DOWN);
+	} else if (GameObj->gameEngine->getKeys().LEFT) {
+		pacman->updateDirection(DIRECTION::LEFT);
+	} else if (GameObj->gameEngine->getKeys().RIGHT) {
+		pacman->updateDirection(DIRECTION::RIGHT);
+	}
+
+	grid->moveItems();
 }
 
 void sceneConsole::render()
 {
 	system("clear");
-	char c;
-	std::cout << "PACMAN CONSOLE" << std::endl;
-
-	for (uint i = 0; i < m_level->getHeight(); ++i) {
-		for (uint j = 0; j < m_level->getWidth(); ++j) {
-			c = m_map[(m_level->getLevelGrid()[i * m_level->getWidth() + j])];
-			std::cout << c << " ";
-		}
-		std::cout << std::endl;
-	}
+	std::cout << "----------[ PACMAN CONSOLE ]----------" << std::endl;
+	GameObj->gameEngine->displayLevel();
 }

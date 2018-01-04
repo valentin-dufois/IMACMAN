@@ -6,24 +6,21 @@
 class PacGum: public StaticItem {
 private:
 	bool m_superGum;
-	bool m_eaten;
 
 public:
 	//CONSTRUCTOR
-	PacGum(glm::vec2 position, uint score = 10, bool superGum = false, bool eaten = false) :
-		StaticItem(position, score),
-		m_superGum(superGum),
-		m_eaten(eaten)
+	PacGum(glm::vec2 position, uint score = 10, bool superGum = false) :
+		StaticItem(position, score, (superGum == false ? PAC_GUM : SUPER_PAC_GUM)),
+		m_superGum(superGum)
 	{};
 	//DESTRUCTOR
-	~PacGum();
+	~PacGum() = default;
 	
 	//GETTERS
-	bool getEatenState() const;
 	bool getSuperGumState() const;
 
 	//SETTERS
-	void updateEatenState(bool eaten);
+
 };
 
 #endif /* PACGUM_HPP */

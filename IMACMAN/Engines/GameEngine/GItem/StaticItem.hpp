@@ -8,17 +8,17 @@ protected:
 
 public:
     //CONSTRUCTOR
-	StaticItem(glm::vec2 position, uint score):
-        GItem(position, score)
+	StaticItem(glm::vec2 position, uint score, enum ITEM_SYNTAX type):
+        GItem(position, score, type)
     {}
     //DESTRUCTOR
-	~StaticItem();
+	~StaticItem() = default;
 
     //GETTERS
 
     //SETTERS
 
-    //METHODS
+    //METHODS  
 };
 
 #endif /* STATIC_ITEM_HPP */

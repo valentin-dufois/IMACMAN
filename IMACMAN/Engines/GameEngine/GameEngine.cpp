@@ -28,15 +28,15 @@ void GameEngine::executeScenes()
 	//Update events
 	parseEvents();
 
-
 	//get all scenes
 	std::vector<Scene *> scenes = GameObj->getScenes();
 
 	//Execute all scenes
 	for(std::vector<Scene *>::iterator it = scenes.begin(); it != scenes.end(); ++it)
 	{
-		if((*it)->isEnabled())
+		if((*it)->isEnabled()) {
 			(*it)->execute();
+		}
 	}
 }
 
@@ -51,8 +51,9 @@ void GameEngine::renderScenes()
 	//Render all scenes
 	for(std::vector<Scene *>::iterator it = scenes.begin(); it != scenes.end(); ++it)
 	{
-		if((*it)->isEnabled())
-		(*it)->render();
+		if((*it)->isEnabled()) {
+			(*it)->render();
+		}
 	}
 
 	//Swap buffers
@@ -117,7 +118,18 @@ void GameEngine::parseEvents()
 	}
 }
 
-void GameEngine::initLevel(){
-	
-	
+void GameEngine::loadLevel(Level * level){
+	m_level = Grid(
+		level->getWidth(),
+		level->getHeight(),
+		level->getLevelGrid()
+	);
+}
+
+void GameEngine::displayLevel() {
+	m_level.displayGrid();
+}
+
+Grid * GameEngine::getGrid() {
+	return &m_level;
 }

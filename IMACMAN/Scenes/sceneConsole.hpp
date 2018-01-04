@@ -11,6 +11,7 @@
 
 #include "Scene.hpp"
 #include "libraries.hpp"
+#include "Engines/GameEngine/GameEngine.hpp"
 #include "Engines/RessourcesEngine/RessourcesEngine.hpp"
 #include "Engines/RenderEngine/RenderEngine.hpp"
 #include "Utils/ShaderProgram.hpp"
@@ -47,21 +48,6 @@ public:
 
 private:
 	rId m_sceneID;
-	std::map<int, char> m_map = {
-		{0, ' '},
-		{1, '@'},
-		{2, '.'},
-		{3, '*'},
-		{4, 'F'},
-		{5, 'P'},
-		{6, 'B'},
-		{7, 'Y'},
-		{8, 'I'},
-		{9, 'C'}
-	};
-
-	Level * m_level;
-	
 };
 
 #endif /* sceneConsole_hpp */

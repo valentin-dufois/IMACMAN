@@ -11,39 +11,48 @@ protected:
 
 public:
     //CONSTRUCTOR
-	DynamicItem(glm::vec2 position, std::string name, uint score):
-        GItem(position, score),
+	DynamicItem(glm::vec2 position, std::string name, uint score, enum ITEM_SYNTAX type):
+        GItem(position, score, type),
         m_name(name),
         m_positionInitial(position),
         m_currentDirection(RIGHT)
     {}
     //DESTRUCTOR
-	~DynamicItem();
+	~DynamicItem() = default;
 
     //GETTERS
 	std::string getName() const { return m_name; }
+    enum DIRECTION getDirection() const { return m_currentDirection; }
 
     //SETTERS
 	void setName(std::string name) { m_name = name; }
+    void updateDirection(enum DIRECTION direction) { m_currentDirection = direction; }
 
     //METHODS
-    void move() {
+    glm::vec2 getNextPosition() {
+        glm::vec2 nextPos = this->getPosition();
+
         switch (m_currentDirection) {
             case DIRECTION::UP:
-                std::cout << "move UP" << std::endl;
+                nextPos.x += -1.f;
+                nextPos.y += 0.f;
                 break;
             case DIRECTION::DOWN:
-                std::cout << "move DOWN" << std::endl;
+                nextPos.x += 1.f;
+                nextPos.y += 0.f;
                 break;
             case DIRECTION::LEFT:
-                std::cout << "move LEFT" << std::endl;
+                nextPos.x += 0.f;
+                nextPos.y += -1.f;
                 break;
             case DIRECTION::RIGHT:
-                std::cout << "move RIGHT" << std::endl;
+                nextPos.x += 0.f;
+                nextPos.y += 1.f;
                 break;
             default:
                 break;
         }
+        return nextPos;
     }
 };
 

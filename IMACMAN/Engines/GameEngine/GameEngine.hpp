@@ -9,17 +9,12 @@
 #ifndef GameEngine_hpp
 #define GameEngine_hpp
 
+#include "Grid.hpp"
 #include "Core/GameObject.hpp"
+#include "Engines/RessourcesEngine/RessourcesEngine.hpp"
 #include "Scenes/Scene.hpp"
 
 #include <vector>
-
-class Pacman;
-class Ghost;
-class Grid;
-class PacGum;
-class Wall;
-class Player;
 
 struct keyboard
 {
@@ -77,10 +72,9 @@ public:
 
 	/**
 	 Return the key struct
-
 	 @return The keyboard structure
 	 */
-	inline keyboard getkeys() const { return m_keys; };
+	inline keyboard getKeys() const { return m_keys; };
 
 	/**
 	 Reset all keys to false.
@@ -90,15 +84,17 @@ public:
 	/**
 	 Init the level
 	 */
-	void initLevel();
+	void loadLevel(Level * level);
+	void displayLevel();
+	Grid * getGrid();
 	
 private:
 	//Singleton
 	static bool m_instanciated;
 	GameEngine();
 
-	//Level file for the position
-	std::vector<int> m_level;
+	//Attributs
+	Grid m_level;
 	
 	//Events
 	keyboard m_keys;
