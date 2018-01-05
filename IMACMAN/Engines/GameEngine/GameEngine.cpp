@@ -148,11 +148,11 @@ Grid * GameEngine::getGrid() {
 
 void GameEngine::updateSpecialCountDowns() {
 	if (m_pacman->getSuperCounter() == 0 && m_pacman->isSuper()) {
-		m_pacman->setIsSuper(100);
-		m_Blinky->setIsAfraid(100);
-		m_Pinky->setIsAfraid(100);
-		m_Inky->setIsAfraid(100);
-		m_Clyde->setIsAfraid(100);
+		m_pacman->setIsSuper(30);
+		m_Blinky->setIsAfraid(30);
+		m_Pinky->setIsAfraid(30);
+		m_Inky->setIsAfraid(30);
+		m_Clyde->setIsAfraid(30);
 	}
 
 	if (m_pacman->getSuperCounter() > 0) {

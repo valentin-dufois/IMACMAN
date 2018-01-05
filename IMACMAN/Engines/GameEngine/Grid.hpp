@@ -56,6 +56,8 @@ public:
     void updateCase(DynamicItem * pac, std::vector<GItem *> cell);
     uint pacmanGhostCollision(Pacman * pac, Ghost * ghost);
     void displayGrid();
+	
+	void moveGhost(Ghost * ghost);
 };
 
 #endif /* GRID_HPP */

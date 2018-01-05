@@ -176,3 +176,34 @@ void Grid::displayGrid() {
         std::cout << std::endl;
     }
 }
+
+void Grid::moveGhost(Ghost * ghost){
+	enum DIRECTION nextDirection;
+	glm::vec2 nextPosition = ghost->getNextPosition();
+
+	//Parcourir le tableau d'item pour savoir si c'est un mur
+	
+	//WHAT GHOST IT IS?
+	switch(ghost->getItemType()) {
+		case ITEM_SYNTAX::BLINKY:
+			if(nextPosition == glm::vec2(0,0)){
+				std::cout << "Blinky if going right" << std::endl;
+			}
+			//FOLLOWS PACMAN ALL THE TIME//
+			break;
+		case ITEM_SYNTAX::PINKY:
+			//vise l'endroit ou se dirige Pac-Man (seulement une fois sur 4 apparemment). Recherche de la position de Pacman, on calcule si en allant à une case à droite ou une case à gauche on s'en approche. Si on s'en approche, on prend cette direction.//
+			break;
+		case ITEM_SYNTAX::INKY:
+			//de temps en temps, part dans la direction opposees de Pac-Man: recherche de la position de Pac-Man, puis selon la position du fantome, on calcule si en allant à une case à droite ou une case à gauche on s'en éloigne. Si on s'en éloigne, on prend cette direction.
+			break;
+		case ITEM_SYNTAX::CLYDE:
+			//de temps en temps, change de direction: donc au hasard
+			break;
+		default:
+			break;
+	}
+	
+	//Le faire sortir après un timer
+	ghost->updateDirection(nextDirection);
+}
