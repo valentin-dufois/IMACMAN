@@ -28,6 +28,12 @@ void GameEngine::executeScenes()
 	//Update events
 	parseEvents();
 
+	//Check Pacman State
+	if (m_pacman->getLives() == 0) {
+		std::cout << "GAME OVER" << std::endl;
+	}
+	updateSpecialCountDowns();
+
 	//get all scenes
 	std::vector<Scene *> scenes = GameObj->getScenes();
 
@@ -124,6 +130,12 @@ void GameEngine::loadLevel(Level * level){
 		level->getHeight(),
 		level->getLevelGrid()
 	);
+
+	m_pacman = reinterpret_cast<Pacman *>(m_level.getItem(ITEM_SYNTAX::PACMAN));
+	m_Blinky = reinterpret_cast<Ghost *>(m_level.getItem(ITEM_SYNTAX::BLINKY));
+	m_Pinky = reinterpret_cast<Ghost *>(m_level.getItem(ITEM_SYNTAX::PINKY));
+	m_Inky = reinterpret_cast<Ghost *>(m_level.getItem(ITEM_SYNTAX::INKY));
+	m_Clyde = reinterpret_cast<Ghost *>(m_level.getItem(ITEM_SYNTAX::CLYDE));
 }
 
 void GameEngine::displayLevel() {
@@ -132,4 +144,22 @@ void GameEngine::displayLevel() {
 
 Grid * GameEngine::getGrid() {
 	return &m_level;
+}
+
+void GameEngine::updateSpecialCountDowns() {
+	if (m_pacman->getSuperCounter() == 0 && m_pacman->isSuper()) {
+		m_pacman->setIsSuper(100);
+		m_Blinky->setIsAfraid(100);
+		m_Pinky->setIsAfraid(100);
+		m_Inky->setIsAfraid(100);
+		m_Clyde->setIsAfraid(100);
+	}
+
+	if (m_pacman->getSuperCounter() > 0) {
+		m_pacman->updateSuperCounter();
+		m_Blinky->updateAfraidCounter();
+		m_Pinky->updateAfraidCounter();
+		m_Inky->updateAfraidCounter();
+		m_Clyde->updateAfraidCounter();
+	}
 }

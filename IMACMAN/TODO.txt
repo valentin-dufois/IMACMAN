@@ -1,7 +1,7 @@
-1. coder fonction move dans DynamicItem.hpp
-    move renvoi la prochaine position
-    on fait la vérification à postériori puis on applique mouve ou pas
+GERER CONDITION DE VICTOIRE ou de DEFAITE
+    gerer collisions fantomes (manger ou être mangé)
+        gerer super pac gum (decrementer decompte (!!!! EN TEMPS REEL PAS EN TICS)
+    gerer manger toutes les pac gums
 
-1.1 gérer clavier gameengine pour envoyer direction à fonction move
-
-2. coder fonction getItem dans Grid.hpp/cpp
+BONUS IA FANTOMES
+    preparer les signatures et les emplacements

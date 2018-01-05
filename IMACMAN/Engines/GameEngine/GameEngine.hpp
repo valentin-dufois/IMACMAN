@@ -87,6 +87,8 @@ public:
 	void loadLevel(Level * level);
 	void displayLevel();
 	Grid * getGrid();
+
+	void updateSpecialCountDowns();
 	
 private:
 	//Singleton
@@ -95,6 +97,11 @@ private:
 
 	//Attributs
 	Grid m_level;
+	Pacman * m_pacman;
+	Ghost * m_Blinky;
+	Ghost * m_Pinky;
+	Ghost * m_Inky;
+	Ghost * m_Clyde;
 	
 	//Events
 	keyboard m_keys;

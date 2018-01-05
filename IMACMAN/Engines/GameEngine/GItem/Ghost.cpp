@@ -1,5 +1,14 @@
 #include "Ghost.hpp"
 
+//GETTERS
+bool Ghost::isAlive() const {
+	return m_isAlive;
+}
+
+bool Ghost::isAfraid() const {
+	return m_isAfraid;
+}
+
 //SETTERS
 void Ghost::setIsAlive(bool isAlive) {
 	m_isAlive = isAlive;
@@ -9,12 +18,7 @@ void Ghost::setIsAfraid(bool isAfraid) {
 	m_isAfraid = isAfraid;
 }
 
-//GETTERS
-bool Ghost::getIsAlive() const {
-	return m_isAlive;
+void Ghost::setAfraidCounter(const int time) {
+	this->setIsAfraid(true);
+	m_afraidCounter += time;
 }
-
-bool Ghost::getIsAfraid() const {
-	return m_isAfraid;
-}
-

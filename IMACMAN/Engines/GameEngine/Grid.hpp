@@ -53,7 +53,8 @@ public:
     //METHODS
     void moveItems();
     void moveItem(GItem * item);
-    void updateCase(GItem * pac, std::vector<GItem *> cell);    
+    void updateCase(DynamicItem * pac, std::vector<GItem *> cell);
+    uint pacmanGhostCollision(Pacman * pac, Ghost * ghost);
     void displayGrid();
 };
 

@@ -86,9 +86,11 @@ void Grid::moveItem(GItem * item)
 
         //Check next position
         if (nextCase[0]->getItemType() != ITEM_SYNTAX::WALL) {
-            dItem->updatePosition(dItem->getNextPosition(), m_width, m_height);
             if (dItem->getItemType() == ITEM_SYNTAX::PACMAN) {
                 this->updateCase(dItem, nextCase);
+            }
+            if (dItem->getItemType() > ITEM_SYNTAX::PACMAN) {
+                //TODO: MANAGE GHOSTS BEHAVIOR
             }
         }
     } catch(...) {
@@ -97,7 +99,7 @@ void Grid::moveItem(GItem * item)
     }
 }
 
-void Grid::updateCase(GItem * pac, std::vector<GItem *> cell) {
+void Grid::updateCase(DynamicItem * pac, std::vector<GItem *> cell) {
     std::vector<GItem *>::const_iterator it, it2;
     uint tmpScore = 0;
 
@@ -107,6 +109,7 @@ void Grid::updateCase(GItem * pac, std::vector<GItem *> cell) {
             case ITEM_SYNTAX::SUPER_PAC_GUM:
             case ITEM_SYNTAX::FRUIT:
                 tmpScore += (*it)->getScore();
+                pac->updatePosition(pac->getNextPosition(), m_width, m_height);
 
                 for (it2 = m_gridItems.begin(); it2 < m_gridItems.end(); ++it2) {
                     if (*it2 == *it) {
@@ -114,21 +117,44 @@ void Grid::updateCase(GItem * pac, std::vector<GItem *> cell) {
                     }
                 }
 
-                break;
-            case ITEM_SYNTAX::PACMAN:
+                if ((*it)->getItemType() == ITEM_SYNTAX::SUPER_PAC_GUM) {
+                    reinterpret_cast<Pacman *>(pac)->setIsSuper(true);
+                }
+
                 break;
             case ITEM_SYNTAX::BLINKY:
             case ITEM_SYNTAX::PINKY:
             case ITEM_SYNTAX::INKY:
             case ITEM_SYNTAX::CLYDE:
-                tmpScore += (*it)->getScore();
-                //TODO: conflict between dynamic items
+                tmpScore = pacmanGhostCollision(
+                    reinterpret_cast<Pacman *>(pac),
+                    reinterpret_cast<Ghost *>(*it)
+                );
                 break;
             default:
                 break;
         }
     }
     pac->updateScore(tmpScore);
+}
+
+uint Grid::pacmanGhostCollision(Pacman * pac, Ghost * ghost) {
+    uint tmpScore = 0;
+    
+    if (!ghost->isAlive()) {
+        pac->updatePosition(pac->getNextPosition(), m_width, m_height);
+    
+    } else if( pac->isSuper() ? true : false && ghost->isAlive()) {
+        tmpScore += ghost->getScore();
+        ghost->setIsAlive(false);
+        pac->updatePosition(pac->getNextPosition(), m_width, m_height);
+    
+    } else {
+        pac->updateLives(-1);
+        pac->setPosition(pac->getFirstPosition());
+    }
+
+    return tmpScore;
 }
 
 void Grid::displayGrid() {

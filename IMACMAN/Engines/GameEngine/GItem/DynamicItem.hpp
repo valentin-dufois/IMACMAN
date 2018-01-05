@@ -6,7 +6,7 @@
 class DynamicItem: public GItem {
 protected:
     std::string m_name;
-    glm::vec2 m_positionInitial;
+    glm::vec2 m_firstPosition;
     enum DIRECTION m_currentDirection;
 
 public:
@@ -14,7 +14,7 @@ public:
 	DynamicItem(glm::vec2 position, std::string name, uint score, enum ITEM_SYNTAX type):
         GItem(position, score, type),
         m_name(name),
-        m_positionInitial(position),
+        m_firstPosition(position),
         m_currentDirection(RIGHT)
     {}
     //DESTRUCTOR
@@ -23,6 +23,7 @@ public:
     //GETTERS
 	std::string getName() const { return m_name; }
     enum DIRECTION getDirection() const { return m_currentDirection; }
+    glm::vec2 getFirstPosition() const { return m_firstPosition; }
 
     //SETTERS
 	void setName(std::string name) { m_name = name; }
