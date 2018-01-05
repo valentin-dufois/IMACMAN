@@ -9,7 +9,7 @@ private:
 
 public:
 	//CONSTRUCTOR
-	PacGum(glm::vec2 position, uint score = 10, bool superGum = false) :
+	PacGum(glm::vec2 position, uint score = 1000, bool superGum = false) :
 		StaticItem(position, score, (superGum == false ? PAC_GUM : SUPER_PAC_GUM)),
 		m_superGum(superGum)
 	{};

@@ -41,16 +41,18 @@ GItem * Grid::getItem(enum ITEM_SYNTAX type) const {
     return *it;
 }
 
-int Grid::getNbOfItem(enum ITEM_SYNTAX type) const {
-    std::vector<GItem *>::const_iterator it;
-    int count = 0;
+bool Grid::checkItemsExist(std::vector<enum ITEM_SYNTAX> types) const {
+    std::vector<enum ITEM_SYNTAX>::const_iterator it;
+    bool res = false;
 
-    for (it = m_gridItems.begin(); it < m_gridItems.end(); ++it) {
-        if ((*it)->getItemType() == type) {
-            ++count;
-        }
+    for (it = types.begin(); it < types.end(); ++it) {
+        try {
+            this->getItem((*it));
+            res = true;
+            break;
+        } catch (...) {}
     }
-    return count;
+    return res;
 }
 
 //SETTERS
@@ -144,6 +146,13 @@ void Grid::updateCase(Pacman * pac, std::vector<GItem *> cell) {
                 pacmanFoodCollision(pac, *it);
                 this->deleteGridItem((*it));
                 break;
+            case ITEM_SYNTAX::FRUIT:
+                pac->updatePosition(pac->getNextPosition(), this->m_width, this->m_height);
+                if (!reinterpret_cast<Fruit *>(*it)->getEatenState()) {
+                    tmpScore += (*it)->getScore();
+                    reinterpret_cast<Fruit *>(*it)->updatePopCounter(50);
+                }
+                break;
             case ITEM_SYNTAX::BLINKY:
             case ITEM_SYNTAX::PINKY:
             case ITEM_SYNTAX::INKY:
@@ -154,14 +163,13 @@ void Grid::updateCase(Pacman * pac, std::vector<GItem *> cell) {
                 break;
         }
     }
-    pac->updateScore(tmpScore);
+    pac->updateScores(tmpScore);
 }
 
 void Grid::pacmanFoodCollision(Pacman * pac, GItem * food) {
     pac->updatePosition(pac->getNextPosition(), this->m_width, this->m_height);
-
+    
     if (food->getItemType() == ITEM_SYNTAX::SUPER_PAC_GUM) {
-        pac->updateIsSuper(true);
         pac->updateSuperCounter(30);
     }
 }
@@ -172,9 +180,9 @@ uint Grid::pacmanGhostCollision(Pacman * pac, Ghost * ghost) {
     if (!ghost->isAlive()) {
         pac->updatePosition(pac->getNextPosition(), this->m_width, this->m_height);
     
-    } else if( pac->isSuper() ? true : false && ghost->isAlive()) {
+    } else if(pac->isSuper() && ghost->isAlive()) {
         tmpScore += ghost->getScore();
-        ghost->setIsAlive(false);
+        ghost->updateDeathCounter(30);
         pac->updatePosition(pac->getNextPosition(), this->m_width, this->m_height);
     
     } else {
@@ -195,7 +203,13 @@ void Grid::displayGrid() {
                 currItem = this->getItem(glm::vec2((float)i, (float)j))[0];
                 currType = currItem->getItemType();
 
-                std::cout << m_displayMap[currType] << " ";
+                if (currType == ITEM_SYNTAX::FRUIT &&
+                    reinterpret_cast<Fruit *>(currItem)->getEatenState()
+                ) {
+                    std::cout << "  ";
+                } else {
+                    std::cout << m_displayMap[currType] << " ";
+                }
             } catch(...){
                 std::cout << m_displayMap[ITEM_SYNTAX::FLOOR] << " ";
             }

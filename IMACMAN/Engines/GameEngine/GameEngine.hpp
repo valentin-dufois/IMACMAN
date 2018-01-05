@@ -67,10 +67,13 @@ private:
 	Grid m_level;
 	
 	Pacman * m_pacman;
+	int m_realScore;
+
 	Ghost * m_Blinky;
 	Ghost * m_Pinky;
 	Ghost * m_Inky;
 	Ghost * m_Clyde;
+	Fruit * m_fruit;
 
 public:
 	//Instanciate the GameEngine in the GameObj as a Singleton

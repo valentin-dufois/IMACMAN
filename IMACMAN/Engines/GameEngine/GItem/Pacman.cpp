@@ -1,14 +1,15 @@
 #include "Pacman.hpp"
 
-//GETTERS
-int Pacman::getLives() const {
-	return m_lives;
+//SETTERS
+void Pacman::updateSuperCounter(const int time) {
+	m_superCounter = m_superCounter + time > 0 ? m_superCounter + time : 0 ;
+	this->updateIsSuper();
 }
 
-bool Pacman::isSuper() const {
-	return m_isSuper;
-}
-
-int Pacman::getSuperCounter() const {
-	return m_superCounter;
+void Pacman::updateScores(const int points) {
+	m_realScore += points;
+	if ((m_score += points) >= 10000) {
+		m_score -= 10000;
+		++m_lives;
+	}
 }

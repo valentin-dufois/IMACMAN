@@ -44,7 +44,13 @@ void GameEngine::executeScenes()
 		//TODO change Scene to GameOver
 	}
 
-	//Check and update Dynamic items currentState
+	//Check wether there is still one pack gum or not
+	if (!m_level.checkItemsExist({ITEM_SYNTAX::PAC_GUM, ITEM_SYNTAX::SUPER_PAC_GUM})) {
+		//TODO change Scene to Victory
+		GameObj->endGame();
+	}
+
+	//Update all counters
 	manageSpecialMode();
 
 	//get all scenes
@@ -145,10 +151,12 @@ void GameEngine::loadLevel(Level * level){
 	);
 
 	m_pacman = reinterpret_cast<Pacman *>(m_level.getItem(ITEM_SYNTAX::PACMAN));
+
 	m_Blinky = reinterpret_cast<Ghost *>(m_level.getItem(ITEM_SYNTAX::BLINKY));
 	m_Pinky = reinterpret_cast<Ghost *>(m_level.getItem(ITEM_SYNTAX::PINKY));
 	m_Inky = reinterpret_cast<Ghost *>(m_level.getItem(ITEM_SYNTAX::INKY));
 	m_Clyde = reinterpret_cast<Ghost *>(m_level.getItem(ITEM_SYNTAX::CLYDE));
+	m_fruit = reinterpret_cast<Fruit *>(m_level.getItem(ITEM_SYNTAX::FRUIT));
 }
 
 Grid * GameEngine::getGrid() {
@@ -162,8 +170,8 @@ void GameEngine::displayLevel() {
 void GameEngine::displayInfo() {
 	std::cout
 		<< "LIVES: " << m_pacman->getLives()
-		<< "\tSCORE: " << m_pacman->getScore()
-		<< "\tTIMER: " << m_pacman->getSuperCounter();
+		<< "\tSCORE: " << m_pacman->getRealScore()
+		<< "\tSUPER-TIME: " << m_pacman->getSuperCounter();
 	
 	if (m_pacman->isSuper()) std::cout << " SUPER";
 
@@ -171,10 +179,10 @@ void GameEngine::displayInfo() {
 }
 
 void GameEngine::manageSpecialMode() {
-	int counterState = m_pacman->getSuperCounter();
-
-	if (m_pacman->isSuper()) {
-		if (counterState > 0) m_pacman->updateSuperCounter(-1);
-		else m_pacman->updateIsSuper(false);
-	}
+	m_pacman->updateSuperCounter(-1);
+	m_Blinky->updateDeathCounter(-1);
+	m_Pinky->updateDeathCounter(-1);
+	m_Inky->updateDeathCounter(-1);
+	m_Clyde->updateDeathCounter(-1);
+	m_fruit->updatePopCounter(-1);
 }
