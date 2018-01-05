@@ -181,9 +181,9 @@ void Grid::moveGhost(Ghost * ghost){
 	enum DIRECTION nextDirection;
 	glm::vec2 nextPosition = ghost->getNextPosition();
 
-	//Parcourir le tableau d'item pour savoir si c'est un mur
+	//Parcourir le tableau d'item pour savoir si c'est un mur?
 	
-	//WHAT GHOST IT IS?
+	//Selon le ghost, prochaine direction sera différente
 	switch(ghost->getItemType()) {
 		case ITEM_SYNTAX::BLINKY:
 			if(nextPosition == glm::vec2(0,0)){
