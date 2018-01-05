@@ -33,7 +33,7 @@ private:
 
 	//UUID
 	boost::uuids::random_generator m_uuidGenerator;
-	
+
 public:
 	//Singleton
 	static void instanciate(std::string appPath);
@@ -48,7 +48,7 @@ public:
 
 	inline std::string getAppPath() const { return m_appPath; };
 
-	//Game Object State
+	//Game Object Methods
 	inline bool isRunning() const { return m_running; };
 	inline void endGame() { m_running = false; };
 

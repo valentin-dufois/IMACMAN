@@ -135,9 +135,14 @@ void Grid::updateCase(Pacman * pac, std::vector<GItem *> cell) {
         switch ((*it)->getItemType()) {
             case ITEM_SYNTAX::SUPER_PAC_GUM:
             case ITEM_SYNTAX::PAC_GUM:
-            case ITEM_SYNTAX::FRUIT:
-                pacmanFoodCollision(pac, *it);
                 tmpScore += (*it)->getScore();
+                pacmanFoodCollision(pac, *it);
+                this->deleteGridItem((*it));
+                --m_nbOfGums;
+            case ITEM_SYNTAX::FRUIT:
+                tmpScore += (*it)->getScore();
+                pacmanFoodCollision(pac, *it);
+                this->deleteGridItem((*it));
                 break;
             case ITEM_SYNTAX::BLINKY:
             case ITEM_SYNTAX::PINKY:
@@ -159,7 +164,6 @@ void Grid::pacmanFoodCollision(Pacman * pac, GItem * food) {
         pac->updateIsSuper(true);
         pac->updateSuperCounter(30);
     }
-    this->deleteGridItem(food);
 }
 
 uint Grid::pacmanGhostCollision(Pacman * pac, Ghost * ghost) {

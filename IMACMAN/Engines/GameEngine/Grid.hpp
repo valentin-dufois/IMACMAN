@@ -37,7 +37,8 @@ public:
         m_height(height),
         m_nbOfGums(0)
     {
-        m_nbOfGums = loadGrid(level);
+        int countGums = loadGrid(level);
+        std::cout << "GUMS: " << countGums << std::endl;
     }
     //DESTRUCTOR
     ~Grid() = default;
@@ -49,6 +50,7 @@ public:
     std::vector<GItem *> getItem(glm::vec2 position) const;
     GItem * getItem(enum ITEM_SYNTAX type) const;
     int getNbOfItem(enum ITEM_SYNTAX type) const;
+    inline bool isThereGums() { return m_nbOfGums; }
 
     //SETTERS
     int loadGrid(std::vector<int> level);

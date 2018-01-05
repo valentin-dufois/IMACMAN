@@ -32,10 +32,16 @@ void GameEngine::executeScenes()
 	//Update events
 	parseEvents();
 
-	//Check VICTORY / DEFEAT conditions
+	//Check DEFEAT condition
 	if (m_pacman->getLives() <= 0) {
-		//TODO change Scene to GameOver
 		GameObj->endGame();
+		//TODO change Scene to GameOver
+	}
+
+	//Check VICTORY condition
+	if (!m_level.isThereGums()) {
+		GameObj->endGame();
+		//TODO change Scene to GameOver
 	}
 
 	//Check and update Dynamic items currentState
@@ -157,9 +163,9 @@ void GameEngine::displayInfo() {
 	std::cout
 		<< "LIVES: " << m_pacman->getLives()
 		<< "\tSCORE: " << m_pacman->getScore()
-		<< "\tSUPER-TIME: " << m_pacman->getSuperCounter();
+		<< "\tTIMER: " << m_pacman->getSuperCounter();
 	
-	if (m_pacman->isSuper()) std::cout << "  S";
+	if (m_pacman->isSuper()) std::cout << " SUPER";
 
 	std::cout << std::endl;
 }
