@@ -51,5 +51,6 @@ void sceneConsole::render()
 {
 	system("clear");
 	std::cout << "----------[ PACMAN CONSOLE ]----------" << std::endl;
+	GameObj->gameEngine->displayInfo();
 	GameObj->gameEngine->displayLevel();
 }

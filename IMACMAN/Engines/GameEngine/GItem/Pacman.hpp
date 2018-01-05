@@ -26,13 +26,16 @@ public:
 	int getSuperCounter() const;
 
 	//SETTERS
-	void updateLives(const int live);
-	void setIsSuper(const bool isSuper);
-	void setSuperCounter(const int time);
+	inline void updateLives(const int addLife) {
+		m_lives += addLife;
+	}
 
-	//METHODS
-	inline void updateSuperCounter() {
-		m_superCounter > 0 ? --m_superCounter : m_isSuper = false;
+	inline void updateIsSuper(const bool isSuper) {
+		m_isSuper = isSuper;
+	}
+
+	inline void updateSuperCounter(const int time) {
+		m_superCounter += time;
 	}
 };
 

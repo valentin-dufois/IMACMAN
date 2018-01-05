@@ -41,21 +41,39 @@ GItem * Grid::getItem(enum ITEM_SYNTAX type) const {
     return *it;
 }
 
+int Grid::getNbOfItem(enum ITEM_SYNTAX type) const {
+    std::vector<GItem *>::const_iterator it;
+    int count = 0;
+
+    for (it = m_gridItems.begin(); it < m_gridItems.end(); ++it) {
+        if ((*it)->getItemType() == type) {
+            ++count;
+        }
+    }
+    return count;
+}
+
 //SETTERS
-void Grid::loadGrid(std::vector<int> level)
+int Grid::loadGrid(std::vector<int> level)
 {
+    enum ITEM_SYNTAX type;
+    int countGums = 0;
+
     for (uint i = 0; i < m_height; ++i) {
         for (uint j = 0; j < m_width; ++j) {
             try {
-                m_gridItems.push_back(GItemFactory::createItem(
-                    static_cast<ITEM_SYNTAX>(level[i * m_width + j]),
-                    glm::vec2((float)i, (float)j)
-                ));
+                type = static_cast<ITEM_SYNTAX>(level[i * m_width + j]);
+                m_gridItems.push_back(GItemFactory::createItem(type, glm::vec2((float)i, (float)j)));
+                if (type == ITEM_SYNTAX::PAC_GUM || type == ITEM_SYNTAX::SUPER_PAC_GUM) {
+                    ++countGums;
+                }
+
             } catch(...) {
                 continue;
             }
         }
     }
+    return countGums;
 }
 
 //METHODS
@@ -87,7 +105,7 @@ void Grid::moveItem(GItem * item)
         //Check next position
         if (nextCase[0]->getItemType() != ITEM_SYNTAX::WALL) {
             if (dItem->getItemType() == ITEM_SYNTAX::PACMAN) {
-                this->updateCase(dItem, nextCase);
+                this->updateCase(reinterpret_cast<Pacman *>(dItem), nextCase);
             }
             if (dItem->getItemType() > ITEM_SYNTAX::PACMAN) {
                 //TODO: MANAGE GHOSTS BEHAVIOR
@@ -99,37 +117,33 @@ void Grid::moveItem(GItem * item)
     }
 }
 
-void Grid::updateCase(DynamicItem * pac, std::vector<GItem *> cell) {
-    std::vector<GItem *>::const_iterator it, it2;
+void Grid::deleteGridItem(GItem * item) {
+    std::vector<GItem *>::const_iterator it;
+
+    for (it = m_gridItems.begin(); it < m_gridItems.end(); ++it) {
+        if (*it == item) {
+            m_gridItems.erase(it);
+        }
+    }
+}
+
+void Grid::updateCase(Pacman * pac, std::vector<GItem *> cell) {
+    std::vector<GItem *>::const_iterator it;
     uint tmpScore = 0;
 
     for (it = cell.begin(); it < cell.end(); ++it) {
         switch ((*it)->getItemType()) {
-            case ITEM_SYNTAX::PAC_GUM:
             case ITEM_SYNTAX::SUPER_PAC_GUM:
+            case ITEM_SYNTAX::PAC_GUM:
             case ITEM_SYNTAX::FRUIT:
+                pacmanFoodCollision(pac, *it);
                 tmpScore += (*it)->getScore();
-                pac->updatePosition(pac->getNextPosition(), m_width, m_height);
-
-                for (it2 = m_gridItems.begin(); it2 < m_gridItems.end(); ++it2) {
-                    if (*it2 == *it) {
-                        m_gridItems.erase(it2);
-                    }
-                }
-
-                if ((*it)->getItemType() == ITEM_SYNTAX::SUPER_PAC_GUM) {
-                    reinterpret_cast<Pacman *>(pac)->setIsSuper(true);
-                }
-
                 break;
             case ITEM_SYNTAX::BLINKY:
             case ITEM_SYNTAX::PINKY:
             case ITEM_SYNTAX::INKY:
             case ITEM_SYNTAX::CLYDE:
-                tmpScore = pacmanGhostCollision(
-                    reinterpret_cast<Pacman *>(pac),
-                    reinterpret_cast<Ghost *>(*it)
-                );
+                tmpScore += pacmanGhostCollision(pac, reinterpret_cast<Ghost *>(*it));
                 break;
             default:
                 break;
@@ -138,16 +152,26 @@ void Grid::updateCase(DynamicItem * pac, std::vector<GItem *> cell) {
     pac->updateScore(tmpScore);
 }
 
+void Grid::pacmanFoodCollision(Pacman * pac, GItem * food) {
+    pac->updatePosition(pac->getNextPosition(), this->m_width, this->m_height);
+
+    if (food->getItemType() == ITEM_SYNTAX::SUPER_PAC_GUM) {
+        pac->updateIsSuper(true);
+        pac->updateSuperCounter(30);
+    }
+    this->deleteGridItem(food);
+}
+
 uint Grid::pacmanGhostCollision(Pacman * pac, Ghost * ghost) {
     uint tmpScore = 0;
     
     if (!ghost->isAlive()) {
-        pac->updatePosition(pac->getNextPosition(), m_width, m_height);
+        pac->updatePosition(pac->getNextPosition(), this->m_width, this->m_height);
     
     } else if( pac->isSuper() ? true : false && ghost->isAlive()) {
         tmpScore += ghost->getScore();
         ghost->setIsAlive(false);
-        pac->updatePosition(pac->getNextPosition(), m_width, m_height);
+        pac->updatePosition(pac->getNextPosition(), this->m_width, this->m_height);
     
     } else {
         pac->updateLives(-1);

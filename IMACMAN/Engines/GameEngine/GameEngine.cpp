@@ -20,7 +20,11 @@ void GameEngine::instanciate()
 	m_instanciated = true;
 }
 
-GameEngine::GameEngine() {
+void GameEngine::reset() {
+	if (!m_instanciated) {
+		delete GameObj->gameEngine;
+		m_instanciated = false;
+	}
 }
 
 void GameEngine::executeScenes()
@@ -28,11 +32,14 @@ void GameEngine::executeScenes()
 	//Update events
 	parseEvents();
 
-	//Check Pacman State
-	if (m_pacman->getLives() == 0) {
-		std::cout << "GAME OVER" << std::endl;
+	//Check VICTORY / DEFEAT conditions
+	if (m_pacman->getLives() <= 0) {
+		//TODO change Scene to GameOver
+		GameObj->endGame();
 	}
-	updateSpecialCountDowns();
+
+	//Check and update Dynamic items currentState
+	manageSpecialMode();
 
 	//get all scenes
 	std::vector<Scene *> scenes = GameObj->getScenes();
@@ -138,28 +145,30 @@ void GameEngine::loadLevel(Level * level){
 	m_Clyde = reinterpret_cast<Ghost *>(m_level.getItem(ITEM_SYNTAX::CLYDE));
 }
 
-void GameEngine::displayLevel() {
-	m_level.displayGrid();
-}
-
 Grid * GameEngine::getGrid() {
 	return &m_level;
 }
 
-void GameEngine::updateSpecialCountDowns() {
-	if (m_pacman->getSuperCounter() == 0 && m_pacman->isSuper()) {
-		m_pacman->setIsSuper(100);
-		m_Blinky->setIsAfraid(100);
-		m_Pinky->setIsAfraid(100);
-		m_Inky->setIsAfraid(100);
-		m_Clyde->setIsAfraid(100);
-	}
+void GameEngine::displayLevel() {
+	m_level.displayGrid();
+}
 
-	if (m_pacman->getSuperCounter() > 0) {
-		m_pacman->updateSuperCounter();
-		m_Blinky->updateAfraidCounter();
-		m_Pinky->updateAfraidCounter();
-		m_Inky->updateAfraidCounter();
-		m_Clyde->updateAfraidCounter();
+void GameEngine::displayInfo() {
+	std::cout
+		<< "LIVES: " << m_pacman->getLives()
+		<< "\tSCORE: " << m_pacman->getScore()
+		<< "\tSUPER-TIME: " << m_pacman->getSuperCounter();
+	
+	if (m_pacman->isSuper()) std::cout << "  S";
+
+	std::cout << std::endl;
+}
+
+void GameEngine::manageSpecialMode() {
+	int counterState = m_pacman->getSuperCounter();
+
+	if (m_pacman->isSuper()) {
+		if (counterState > 0) m_pacman->updateSuperCounter(-1);
+		else m_pacman->updateIsSuper(false);
 	}
 }

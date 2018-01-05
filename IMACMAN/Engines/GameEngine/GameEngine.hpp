@@ -54,20 +54,33 @@ struct keyboard
 };
 
 class GameEngine{
+private:
+	//Singleton
+	static bool m_instanciated;
+	GameEngine() = default;
+
+	//Events
+	keyboard m_keys;
+	void parseEvents();
+
+	//Attributs
+	Grid m_level;
+	
+	Pacman * m_pacman;
+	Ghost * m_Blinky;
+	Ghost * m_Pinky;
+	Ghost * m_Inky;
+	Ghost * m_Clyde;
+
 public:
-	/**
-	 Instanciate the GameEngine in the GameObj as a Singleton
-	 */
+	//Instanciate the GameEngine in the GameObj as a Singleton
 	static void instanciate();
 
-	/**
-	 Catch new events then execute all scenes on the AppObj
-	 */
-	void executeScenes();
+	//Free memory and set m_instanciated to null
+	static void reset();
 
-	/**
-	 Render all scenes
-	 */
+	//Catch new events then execute all scenes on the AppObj
+	void executeScenes();
 	void renderScenes();
 
 	/**
@@ -75,42 +88,16 @@ public:
 	 @return The keyboard structure
 	 */
 	inline keyboard getKeys() const { return m_keys; };
-
-	/**
-	 Reset all keys to false.
-	 */
 	inline void flushKeys() { m_keys = {}; };
 
-	/**
-	 Init the level
-	 */
-	void loadLevel(Level * level);
-	void displayLevel();
+	//Grid-relative Methods
 	Grid * getGrid();
+	void loadLevel(Level * level);
 
-	void updateSpecialCountDowns();
-	
-private:
-	//Singleton
-	static bool m_instanciated;
-	GameEngine();
+	void displayLevel();
+	void displayInfo();
 
-	//Attributs
-	Grid m_level;
-	Pacman * m_pacman;
-	Ghost * m_Blinky;
-	Ghost * m_Pinky;
-	Ghost * m_Inky;
-	Ghost * m_Clyde;
-	
-	//Events
-	keyboard m_keys;
-	/**
-	 Parse, update and store all events
-	 */
-	void parseEvents();
-
-
+	void manageSpecialMode();
 };
 
 #endif /* GameEngine_hpp */

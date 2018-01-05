@@ -49,10 +49,11 @@ void Core::main()
 
 		//
 		/////////////////////////////////
-		SDL_Delay(600);
+		SDL_Delay(400);
 	}
 
 	//End of game, clear everything
+	GameObj->gameEngine->reset();
 }
 
 void Core::tempo(std::chrono::high_resolution_clock::time_point start, std::chrono::high_resolution_clock::time_point end)

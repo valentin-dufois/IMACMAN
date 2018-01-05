@@ -14,6 +14,7 @@ private:
     std::vector<GItem *> m_gridItems;
     uint m_width;
     uint m_height;
+    int m_nbOfGums;
 
     std::map<enum ITEM_SYNTAX, char> m_displayMap = {
 		{ITEM_SYNTAX::FLOOR, ' '},
@@ -33,9 +34,10 @@ public:
     Grid() = default;
     Grid(uint width, uint height, std::vector<int> level):
         m_width(width),
-        m_height(height)
+        m_height(height),
+        m_nbOfGums(0)
     {
-        loadGrid(level);
+        m_nbOfGums = loadGrid(level);
     }
     //DESTRUCTOR
     ~Grid() = default;
@@ -46,14 +48,17 @@ public:
     std::vector<GItem *> getGrid() const;
     std::vector<GItem *> getItem(glm::vec2 position) const;
     GItem * getItem(enum ITEM_SYNTAX type) const;
+    int getNbOfItem(enum ITEM_SYNTAX type) const;
 
     //SETTERS
-    void loadGrid(std::vector<int> level);
+    int loadGrid(std::vector<int> level);
     
     //METHODS
     void moveItems();
     void moveItem(GItem * item);
-    void updateCase(DynamicItem * pac, std::vector<GItem *> cell);
+    void deleteGridItem(GItem * item);
+    void updateCase(Pacman * pac, std::vector<GItem *> cell);
+    void pacmanFoodCollision(Pacman * pac, GItem * food);
     uint pacmanGhostCollision(Pacman * pac, Ghost * ghost);
     void displayGrid();
 };

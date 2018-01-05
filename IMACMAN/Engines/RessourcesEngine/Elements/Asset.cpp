@@ -11,7 +11,7 @@
 ressourceType Asset::getType()
 {
 	return m_type;
-};
+}
 
 Asset::operator Font*()
 {

@@ -15,9 +15,9 @@ bool GameObject::m_instanciated = false;
 
 void GameObject::instanciate(std::string appPath)
 {
-	if(m_instanciated)
+	if(m_instanciated) {
 		return;
-
+	}
 	GameObj = new GameObject(appPath + "/");
 
 	m_instanciated = true;
@@ -25,10 +25,8 @@ void GameObject::instanciate(std::string appPath)
 
 void GameObject::removeScene(Scene * scene)
 {
-	for(std::vector<Scene *>::iterator it = m_scenes.begin(); it != m_scenes.end(); ++it)
-	{
-		if((*it) == scene)
-		{
+	for(std::vector<Scene *>::iterator it = m_scenes.begin(); it != m_scenes.end(); ++it) {
+		if((*it) == scene) {
 			m_scenes.erase(it);
 			return;
 		}
