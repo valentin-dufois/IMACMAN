@@ -37,5 +37,6 @@ public:
 #include "GridManager.hpp"
 #include "PacmanManager.hpp"
 #include "GhostsManager.hpp"
+#include "UIElementManager.hpp"
 
 #endif /* Manager_hpp */
