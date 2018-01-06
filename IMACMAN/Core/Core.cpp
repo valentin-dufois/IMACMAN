@@ -49,7 +49,6 @@ void Core::main()
 
 		//
 		/////////////////////////////////
-		SDL_Delay(400);
 	}
 
 	//End of game, clear everything
