@@ -78,6 +78,7 @@ void Igniter::igniteSDL()
 
 void Igniter::igniteOpenGL()
 {
+	glewExperimental = GL_TRUE;
 	GLenum glewInitError = glewInit();
 	if(GLEW_OK != glewInitError) {
 		std::cerr << glewGetErrorString(glewInitError) << std::endl;

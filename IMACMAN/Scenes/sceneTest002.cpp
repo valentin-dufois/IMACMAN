@@ -24,6 +24,8 @@ void sceneTest002::init()
 
 	m_sphere = GameObj->ressourcesEngine->genSphere(1, 4, 4);
 	std::vector<Vertex> vertices = m_sphere->getVertexList();
+
+		
 	
 	GameObj->renderEngine->initVBO(
 		GameObj->renderEngine->getBufferPtr(MANAGER_TYPE::PACMAN_M),
@@ -47,5 +49,6 @@ void sceneTest002::execute()
 
 void sceneTest002::render()
 {
-	//std::cout << "rendered" << std::endl;
+	GameObj->renderEngine->render(m_sphere);
+	std::cout << "rendered" << std::endl;
 }

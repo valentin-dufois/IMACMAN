@@ -32,26 +32,35 @@ void GameEngine::executeScenes()
 	//Update events
 	parseEvents();
 
+<<<<<<< 26f259f8708c4aafbdfbe33b8c46267ec86f68ac
 	//Check DEFEAT condition
 	if (m_pacman->getLives() <= 0) {
 		GameObj->endGame();
+=======
+	//Check VICTORY / DEFEAT conditions
+	/*if (m_pacman->getLives() <= 0) {
+>>>>>>> Code compiled + attempt to render a sphere
 		//TODO change Scene to GameOver
 	}
 
 	//Check VICTORY condition
 	if (!m_level.isThereGums()) {
 		GameObj->endGame();
+<<<<<<< 26f259f8708c4aafbdfbe33b8c46267ec86f68ac
 		//TODO change Scene to GameOver
 	}
+=======
+	}*/
+>>>>>>> Code compiled + attempt to render a sphere
 
 	//Check wether there is still one pack gum or not
-	if (!m_level.checkItemsExist({ITEM_SYNTAX::PAC_GUM, ITEM_SYNTAX::SUPER_PAC_GUM})) {
+	/*if (!m_level.checkItemsExist({ITEM_SYNTAX::PAC_GUM, ITEM_SYNTAX::SUPER_PAC_GUM})) {
 		//TODO change Scene to Victory
 		GameObj->endGame();
-	}
+	}*/
 
 	//Update all counters
-	manageSpecialMode();
+	//manageSpecialMode();
 
 	//get all scenes
 	std::vector<Scene *> scenes = GameObj->getScenes();

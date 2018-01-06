@@ -13,6 +13,7 @@
 #include "libraries.hpp"
 #include "Utils/Vertex.hpp"
 #include "Utils/Enums.hpp"
+#include "Engines/RessourcesEngine/Elements/Mesh.hpp"
 
 #include "Manager/Manager.hpp"
 #include "Core/GameObject.hpp"
@@ -61,7 +62,7 @@ public:
 
 	void initVBO(GLuint * index, enum MANAGER_TYPE type, std::vector<Vertex> * vertices, uint nbOfVertex, GLuint nbOfVBO);
 	void initVAO(enum MANAGER_TYPE type);
-	void render();
+	void render(Mesh * mesh);
 };
 
 #endif /* RenderEngine_hpp */
