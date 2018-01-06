@@ -21,17 +21,17 @@ void GridManager::render()
   
 }
 
-void GridManager::fillVBO(uint nbOfVertex, std::vector<Vertex> * vertices)
+void GridManager::fillVBO(std::vector<Vertex> &vertices)
 {
   std::cout << "Fill the grid VBO\n" << std::endl;
   
-  GLsizeiptr size = nbOfVertex * sizeof(GLfloat);
+  GLsizeiptr size = vertices.size() * sizeof(GLfloat);
 
 	//Fill VBO with data
 	glBufferData(
     GL_ARRAY_BUFFER,
     size,
-    vertices->data(),
+    vertices.data(),
     GL_STATIC_DRAW
   );
 }

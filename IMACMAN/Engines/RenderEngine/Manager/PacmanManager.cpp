@@ -21,19 +21,19 @@ void PacmanManager::render()
   
 }
 
-void PacmanManager::fillVBO(uint nbOfVertex, std::vector<Vertex> * vertices)
+void PacmanManager::fillVBO(std::vector<Vertex> &vertices)
 {
-  GLsizeiptr size = nbOfVertex * sizeof(GLfloat);
+	GLsizeiptr size = vertices.size() * sizeof(Vertex);
 
 	//Fill VBO with data
 	glBufferData(
     GL_ARRAY_BUFFER,
     size,
-    vertices->data(),
+    vertices.data(),
     GL_STATIC_DRAW
-  );
+    );
 
-   std::cout << "Fill the Pacman VBO\n" << std::endl;
+	std::cout << "Fill the Pacman VBO\n" << std::endl;
 }
 
 void PacmanManager::fillVAO()

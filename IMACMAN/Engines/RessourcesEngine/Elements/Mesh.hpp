@@ -35,7 +35,7 @@ public:
 	Mesh(const std::vector<Vertex> &vertexList):
 		Asset(MESH),
 		m_vertexList(vertexList),
-		m_vertexCount(vertexList.size()),
+		m_vertexCount((uint)vertexList.size()),
 		m_positionOffset(3),
 		m_normalOffset(3),
 		m_textureOffset(2),
@@ -45,7 +45,11 @@ public:
 	{}
 
 	//Getters
-	std::vector<Vertex> getVertexList() { return m_vertexList; }
+	/**
+	 Return all vertex in the mesh
+	 @return An array of vertex
+	 */
+	inline std::vector<Vertex> getVertexList() const { return m_vertexList; };
 	GLsizeiptr getVertexCount() { return m_vertexCount; }
 	GLuint getTextureID() const { return m_textureID; }
 	GLuint getProgramID() const { return m_programID; }
@@ -62,12 +66,6 @@ public:
 
 	inline void setTexture(GLuint textureID) { m_textureID = textureID; };
 	inline void setProgram(GLuint programID) { m_programID = programID; };
-
-	/**
-	 Return all vertex in the mesh
-	 @return An array of vertex
-	 */
-	inline std::vector<Vertex> getVertexList() const { return m_vertexList; };
 };
 
 #endif /* Mesh_hpp */

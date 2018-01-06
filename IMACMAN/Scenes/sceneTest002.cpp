@@ -22,22 +22,22 @@ void sceneTest002::init()
 	rId levelID = GameObj->ressourcesEngine->loadAsset("level01.txt", LEVEL);
 	m_level = *GameObj->ressourcesEngine->getAsset(levelID);
 
-	m_sphere = GameObj->ressourcesEngine->genSphere(1, 4, 4);
+	m_sphere = GameObj->ressourcesEngine->genSphere(1, 32, 16);
 	std::vector<Vertex> vertices = m_sphere->getVertexList();
-
-		
 	
 	GameObj->renderEngine->initVBO(
 		GameObj->renderEngine->getBufferPtr(MANAGER_TYPE::PACMAN_M),
 		MANAGER_TYPE::PACMAN_M,
-		&vertices,
-		36,
+		vertices,
 		1
 	);
 
 	GameObj->renderEngine->initVAO(
 		MANAGER_TYPE::PACMAN_M
 	);
+
+	ShaderProgram prog("triangle.vs.glsl", "triangle.fs.glsl");
+	prog.use();
 
 	std::cout << "loaded" << std::endl;
 }
@@ -50,5 +50,7 @@ void sceneTest002::execute()
 void sceneTest002::render()
 {
 	GameObj->renderEngine->render(m_sphere);
+	check_gl_error();
+
 	std::cout << "rendered" << std::endl;
 }

@@ -27,7 +27,7 @@ public:
   virtual void init() {}
   virtual void render() {}
 
-  virtual void fillVBO(uint nbOfVertex, std::vector<Vertex> * vertices) {}
+  virtual void fillVBO(std::vector<Vertex> &vertices) {}
   virtual void fillVAO() {}
 
   virtual void updateVBO() {}

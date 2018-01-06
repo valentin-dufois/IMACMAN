@@ -1,11 +1,16 @@
-#version 330
+#version 330 core
 
-layout(location = 3) in vec2 aVertexPosition;
-layout(location = 8) in vec3 aVertexColor;
+layout(location = 1) in vec3 aVertexPosition;
+layout(location = 2) in vec3 aVertexNormal;
+layout(location = 3) in vec4 aVertexColor;
 
-out vec3 vColor;
+out vec4 vColor;
+//out vec2 vFragPosition;
 
 void main() {
-    vColor = aVertexColor;
-    gl_Position = vec4(aVertexPosition, 0, 1);
+	//Use position as color for now
+	vColor = vec4(aVertexPosition.xyz, 1);
+
+	gl_Position = vec4(aVertexPosition, 1);
 }
+

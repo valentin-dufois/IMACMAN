@@ -40,7 +40,7 @@ RenderEngine::RenderEngine()
 		&clydeVBO
 	};
 
-	m_VAO = &vao;
+	m_VAO = 0;
 
 	//initVBO(GL_ARRAY_BUFFER, &m_ghostsVBO[0] , GRID);
 }
@@ -66,30 +66,31 @@ void RenderEngine::renderGrid()
 
 }
 
-void RenderEngine::initVBO(GLuint * index, enum MANAGER_TYPE type, std::vector<Vertex> * vertices, uint nbOfVertex, GLuint nbOfVBO)
+void RenderEngine::initVBO(GLuint * index, enum MANAGER_TYPE type, std::vector<Vertex> &vertices, GLuint nbOfVBO)
 {
 	//Get Manager for VBO
 	Manager * manager = getManager(type);
 	
 	//Generate & bind VBO
 	glGenBuffers(nbOfVBO, index);
-	glBindBuffer(GL_VERTEX_ARRAY, *index);
+	glBindBuffer(GL_ARRAY_BUFFER, *index);
 
 	//Fill VBO with data
-	manager->fillVBO(nbOfVertex, vertices);
+	manager->fillVBO(vertices);
+
 
 	//Unbind VBO
-	glBindBuffer(GL_VERTEX_ARRAY, 0);
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
 
 void RenderEngine::initVAO(enum MANAGER_TYPE type)
 {
 	//Bind VAO
-	GLuint vao;
-	m_VAO = &vao;
+	//GLuint vao;
+	//m_VAO = &vao;
 	
-	glGenVertexArrays(1, m_VAO);
-	glBindVertexArray(*m_VAO);
+	glGenVertexArrays(1, &m_VAO);
+	glBindVertexArray(m_VAO);
 
 	glEnableVertexAttribArray(VERTEX_ATTR_POSITION);
 	glEnableVertexAttribArray(VERTEX_ATTR_NORMAL);
@@ -104,9 +105,9 @@ void RenderEngine::initVAO(enum MANAGER_TYPE type)
 	);
 
 	//Specify vertice properties positions
-	glVertexAttribPointer(VERTEX_ATTR_POSITION, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), 0);
-	glVertexAttribPointer(VERTEX_ATTR_NORMAL, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), (const GLvoid *) offsetof(Vertex, normal));
-	glVertexAttribPointer(VERTEX_ATTR_COLOR, 4, GL_FLOAT, GL_FALSE, 4 * sizeof(GLfloat), (const GLvoid *) offsetof(Vertex, color));
+	glVertexAttribPointer(VERTEX_ATTR_POSITION, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), 0);
+	glVertexAttribPointer(VERTEX_ATTR_NORMAL, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const GLvoid *)offsetof(Vertex, normal));
+	glVertexAttribPointer(VERTEX_ATTR_COLOR, 4, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const GLvoid *)offsetof(Vertex, color));
 
 	//Unbind everything
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
@@ -174,17 +175,40 @@ void RenderEngine::render(Mesh * mesh)
 		return; //No VAO, no render!
 
 	//Bind program
-	glUseProgram(mesh->getProgramID());
+	//glUseProgram(mesh->getProgramID());
 
 	//Bind VAO
-	glBindVertexArray(*m_VAO);
+	glBindVertexArray(m_VAO);
 
 	if(mesh->isTextured())
 		glBindTexture(GL_TEXTURE_2D, mesh->getTextureID());
 
 	glDrawArrays(GL_TRIANGLES, 0, mesh->getVertexCount());
+	check_gl_error();
 
 	//Débindind du vao de la cible pour éviter de le remodifier
 	glBindTexture(GL_TEXTURE_2D, 0);
 	glBindVertexArray(0);
+}
+
+void _check_gl_error(const char *file, int line)
+{
+	GLenum err (glGetError());
+
+	while(err != GL_NO_ERROR)
+	{
+		std::string error;
+
+		switch(err)
+		{
+			case GL_INVALID_OPERATION:      error="INVALID_OPERATION";      break;
+			case GL_INVALID_ENUM:           error="INVALID_ENUM";           break;
+			case GL_INVALID_VALUE:          error="INVALID_VALUE";          break;
+			case GL_OUT_OF_MEMORY:          error="OUT_OF_MEMORY";          break;
+			case GL_INVALID_FRAMEBUFFER_OPERATION:  error="INVALID_FRAMEBUFFER_OPERATION";  break;
+		}
+
+		std::cerr << "GL_" << error.c_str() << " - " << file << ":" << line << std::endl;
+		err= glGetError();
+	}
 }

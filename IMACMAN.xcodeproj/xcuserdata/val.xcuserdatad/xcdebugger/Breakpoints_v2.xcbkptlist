@@ -6,22 +6,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "IMACMAN/Core/Igniter.cpp"
-            timestampString = "536515255.673758"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "75"
-            endingLineNumber = "75"
-            landmarkName = "Igniter::igniteSDL()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -42,7 +26,7 @@
                   moduleName = "IMACMAN"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/val/Cours/Synthe%CC%80se%20d&apos;images/IMACMAN/IMACMAN/./Utils/FilePath.hpp"
-                  timestampString = "536515256.002666"
+                  timestampString = "536955967.737354"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "14"
@@ -57,7 +41,7 @@
                   moduleName = "IMACMAN"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1/memory"
-                  timestampString = "536515256.005854"
+                  timestampString = "536955967.739715"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "2208"

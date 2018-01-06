@@ -34,7 +34,7 @@ public:
   void init(Ghost &ghost);
   void render();
 
-  void fillVBO(uint nbOfVertex, std::vector<Vertex> * vertices);
+  void fillVBO(std::vector<Vertex> &vertices);
   void fillVAO();
 
   void updateVBO();

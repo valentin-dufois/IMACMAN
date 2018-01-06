@@ -87,7 +87,7 @@ public:
 	 @param precisionLong Smoothness of the sphere
 	 @return The sphere in a mesh object
 	 */
-	Mesh genSphere(const float &radius, const uint &precisionLat, const uint &precisionLong);
+	Mesh * genSphere(const float &radius, const uint &precisionLat, const uint &precisionLong);
 
 private:
 	//Singleton

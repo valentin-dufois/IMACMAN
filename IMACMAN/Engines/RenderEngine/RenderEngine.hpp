@@ -33,7 +33,7 @@ private:
 	//Attributs
 	GLuint * m_gridVBO;
 	GLuint * m_pacmanVBO;
-	GLuint * m_VAO;
+	GLuint m_VAO = 0;
 	std::vector<GLuint *> m_ghostsVBO;
 	uint m_VBOCountIndex;
 	//Cameras
@@ -60,9 +60,16 @@ public:
 	void updateGrid();
 	void renderGrid();
 
-	void initVBO(GLuint * index, enum MANAGER_TYPE type, std::vector<Vertex> * vertices, uint nbOfVertex, GLuint nbOfVBO);
+	void initVBO(GLuint * index, enum MANAGER_TYPE type, std::vector<Vertex> &vertices, GLuint nbOfVBO);
 	void initVAO(enum MANAGER_TYPE type);
 	void render(Mesh * mesh);
 };
+
+//////////////////
+//OpenGL Debugging
+#include <iostream>
+void _check_gl_error(const char *file, int line);
+#define check_gl_error() _check_gl_error(__FILE__,__LINE__)
+//////////////////
 
 #endif /* RenderEngine_hpp */
