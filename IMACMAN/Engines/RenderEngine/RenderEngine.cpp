@@ -85,6 +85,9 @@ void RenderEngine::initVBO(GLuint * index, enum MANAGER_TYPE type, std::vector<V
 void RenderEngine::initVAO(enum MANAGER_TYPE type)
 {
 	//Bind VAO
+	GLuint vao;
+	m_VAO = &vao;
+	
 	glGenVertexArrays(1, m_VAO);
 	glBindVertexArray(*m_VAO);
 
@@ -165,23 +168,23 @@ Manager * RenderEngine::getManager(enum MANAGER_TYPE type)
 	return manager;
 }
 
-void RenderEngine::render()
+void RenderEngine::render(Mesh * mesh)
 {
-	/*if(m_vao == 0)
+	if(m_VAO == 0)
 		return; //No VAO, no render!
 
 	//Bind program
-	glUseProgram(m_programID);
+	glUseProgram(mesh->getProgramID());
 
 	//Bind VAO
-	glBindVertexArray(m_vao);
+	glBindVertexArray(*m_VAO);
 
-	if(m_type == TEXTURED)
-		glBindTexture(GL_TEXTURE_2D, m_textureID);
+	if(mesh->isTextured())
+		glBindTexture(GL_TEXTURE_2D, mesh->getTextureID());
 
-	glDrawArrays(GL_TRIANGLES, 0, m_vertexCount);
+	glDrawArrays(GL_TRIANGLES, 0, mesh->getVertexCount());
 
 	//Débindind du vao de la cible pour éviter de le remodifier
 	glBindTexture(GL_TEXTURE_2D, 0);
-	glBindVertexArray(0);*/
+	glBindVertexArray(0);
 }

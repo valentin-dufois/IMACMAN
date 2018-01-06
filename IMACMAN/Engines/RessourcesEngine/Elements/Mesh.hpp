@@ -47,6 +47,9 @@ public:
 	//Getters
 	std::vector<Vertex> getVertexList() { return m_vertexList; }
 	GLsizeiptr getVertexCount() { return m_vertexCount; }
+	GLuint getTextureID() const { return m_textureID; }
+	GLuint getProgramID() const { return m_programID; }
+	bool isTextured() { return m_textured; }
 	 
 
 	//Utils
@@ -62,7 +65,6 @@ public:
 
 	/**
 	 Return all vertex in the mesh
-
 	 @return An array of vertex
 	 */
 	inline std::vector<Vertex> getVertexList() const { return m_vertexList; };
