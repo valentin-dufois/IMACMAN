@@ -23,6 +23,34 @@
 //The engine
 class RenderEngine
 {
+public:
+	//Singleton
+	static void instanciate();
+
+	/**
+	 Return the object manager for the given type
+
+	 @param type Type of the manager
+	 @return The Manager
+	 */
+	Manager * getManager(enum MANAGER_TYPE type);
+
+	//getters
+	GLuint * getBufferPtr(enum MANAGER_TYPE type);
+
+	///////
+	//Utils
+	void loadPlateBoard();
+	void updatePlateBoard();
+
+	void loadGrid();
+	void updateGrid();
+	void renderGrid();
+
+	void initVBO(GLuint * index, enum MANAGER_TYPE type, std::vector<Vertex> &vertices, GLuint nbOfVBO);
+	void initVAO(enum MANAGER_TYPE type);
+	void render(Mesh * mesh);
+
 private:
 	//Singleton
 	static bool m_instanciated;
@@ -42,27 +70,6 @@ private:
 	//Constructor
 	RenderEngine();
 	~RenderEngine();
-
-public:
-	//Singleton
-	static void instanciate();
-
-	Manager * getManager(enum MANAGER_TYPE type);
-
-	//getters
-	GLuint * getBufferPtr(enum MANAGER_TYPE type);
-
-	//Utils
-	void loadPlateBoard();
-	void updatePlateBoard();
-
-	void loadGrid();
-	void updateGrid();
-	void renderGrid();
-
-	void initVBO(GLuint * index, enum MANAGER_TYPE type, std::vector<Vertex> &vertices, GLuint nbOfVBO);
-	void initVAO(enum MANAGER_TYPE type);
-	void render(Mesh * mesh);
 };
 
 //////////////////

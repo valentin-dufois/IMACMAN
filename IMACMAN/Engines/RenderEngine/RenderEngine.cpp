@@ -137,7 +137,8 @@ GLuint * RenderEngine::getBufferPtr(enum MANAGER_TYPE type)
 		case MANAGER_TYPE::CLYDE_M :
 			bufferPtr = m_ghostsVBO[3];
 			break;
-		default: 
+		case MANAGER_TYPE::UI_ELEMENT_M :
+			bufferPtr = m_ghostsVBO[3];
 			break;
 	}
 
@@ -162,7 +163,8 @@ Manager * RenderEngine::getManager(enum MANAGER_TYPE type)
 		case MANAGER_TYPE::CLYDE_M :
 			manager = new GhostsManager();
 			break;
-		default:
+		case MANAGER_TYPE::UI_ELEMENT_M :
+			manager = new UIElementManager();
 			break;
 	}
 

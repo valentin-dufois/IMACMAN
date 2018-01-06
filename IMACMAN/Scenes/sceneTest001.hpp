@@ -11,16 +11,9 @@
 
 #include "Scene.hpp"
 #include "Engines/RessourcesEngine/Elements/Asset.hpp"
+#include "Engines/RenderEngine/RenderEngine.hpp"
 #include "Utils/ShaderProgram.hpp"
-
-struct Vertex2DUV
-{
-	glm::vec2 position;
-	glm::vec2 uv;
-
-	Vertex2DUV(){}
-	Vertex2DUV(glm::vec2 position, glm::vec2 uv):position(position), uv(uv){}
-};
+#include "Utils/Vertex.hpp"
 
 class sceneTest001: public Scene
 {
@@ -56,6 +49,7 @@ private:
 	FontFace m_fontFace;
 
 	GLuint m_vao;
+	Mesh * m_tile;
 };
 
 #endif /* sceneTest001_hpp */

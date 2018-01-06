@@ -7,6 +7,7 @@
 //
 
 #include "Font.hpp"
+#include "Engines/RenderEngine/RenderEngine.hpp"
 
 Font::Font(FT_Face &face): Asset(FONT), m_face(face) {}
 
@@ -56,11 +57,11 @@ FontCharacter Font::genFontCharacter(char charID)
 
 	glTexImage2D(GL_TEXTURE_2D,
 				 0,
-				 GL_INTENSITY,
+				 GL_RED,
 				 m_face->glyph->bitmap.width,
 				 m_face->glyph->bitmap.rows,
 				 0,
-				 GL_LUMINANCE,
+				 GL_RED,
 				 GL_UNSIGNED_BYTE,
 				 m_face->glyph->bitmap.buffer);
 
