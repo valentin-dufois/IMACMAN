@@ -27,7 +27,7 @@ void Core::main()
 	std::chrono::high_resolution_clock::time_point start, end;
 
 	//Load the first scene
-	sceneTest001::load();
+	sceneTest002::load();
 
 	while(GameObj->isRunning())
 	{
@@ -52,6 +52,7 @@ void Core::main()
 	}
 
 	//End of game, clear everything
+	GameObj->gameEngine->reset();
 }
 
 void Core::tempo(std::chrono::high_resolution_clock::time_point start, std::chrono::high_resolution_clock::time_point end)

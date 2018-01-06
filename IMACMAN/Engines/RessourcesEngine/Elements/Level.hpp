@@ -10,17 +10,33 @@
 #define Level_hpp
 
 #include "Asset.hpp"
+#include <glm/glm.hpp>
 
 class Level : public Asset
 {
-	private:
+private:
 	//Structural infos
 	
 	//level infos
-	unsigned int m_width;
-	unsigned int m_height;
+	uint m_width;
+	uint m_height;
+	std::vector<int> m_levelGrid;
 	
-	//Level grid
+public:
+	//Constructors
+	Level(uint width, uint height, std::vector<int> grid):
+		Asset(LEVEL),
+		m_width(width),
+		m_height(height),
+		m_levelGrid(grid)
+	{}
+
+	//Getters
+	uint getWidth() const;
+	uint getHeight() const;
+	std::vector<int> getLevelGrid() const;
+	
+	//Utils
 };
 
 #endif /* Level_hpp */

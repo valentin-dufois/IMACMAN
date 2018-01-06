@@ -69,8 +69,6 @@ rId RessourcesEngine::loadAsset(std::string path, ressourceType type)
 	return newAssetId;
 }
 
-
-
 Asset * RessourcesEngine::getAsset(rId assetID)
 {
 	//Is this asset already loaded ?
@@ -80,10 +78,10 @@ Asset * RessourcesEngine::getAsset(rId assetID)
 	return m_assets[assetID];
 }
 
-Mesh * RessourcesEngine::genCube(const uint &size)
+Mesh RessourcesEngine::genCube(const uint &size)
 {
 	std::vector<Vertex> vertexList;
-	uint demisize = size >> 2;
+	uint demisize = size >> 1;
 
 	glm::vec3
 		A(-demisize, -demisize, -demisize),
@@ -169,11 +167,13 @@ Mesh * RessourcesEngine::genSphere(const float &radius, const uint &precisionLat
 	std::vector<Vertex> vertices;
 
 	// Construit l'ensemble des vertex
-	for(GLsizei j = 0; j <= precisionLong; ++j) {
+	for(GLsizei j = 0; j <= precisionLong; ++j)
+	{
 		GLfloat cosTheta = cos(-glm::pi<float>() / 2 + j * dTheta);
 		GLfloat sinTheta = sin(-glm::pi<float>() / 2 + j * dTheta);
 
-		for(GLsizei i = 0; i <= precisionLat; ++i) {
+		for(GLsizei i = 0; i <= precisionLat; ++i)
+		{
 			Vertex vertex;
 
 			vertex.UV.x = i * rcpLat;
@@ -189,14 +189,16 @@ Mesh * RessourcesEngine::genSphere(const float &radius, const uint &precisionLat
 		}
 	}
 
-	GLuint idx = 0;
 	// Construit les vertex finaux en regroupant les données en triangles:
 	// Pour une longitude donnée, les deux triangles formant une face sont de la forme:
 	// (i, i + 1, i + precisionLat + 1), (i, i + precisionLat + 1, i + precisionLat)
 	// avec i sur la bande correspondant à la longitude
-	for(GLsizei j = 0; j < precisionLong; ++j) {
+	for(GLsizei j = 0; j < precisionLong; ++j)
+	{
 		GLsizei offset = j * (precisionLat + 1);
-		for(GLsizei i = 0; i < precisionLat; ++i) {
+
+		for(GLsizei i = 0; i < precisionLat; ++i)
+		{
 			vertices.push_back(data[offset + i]);
 			vertices.push_back(data[offset + (i + 1)]);
 			vertices.push_back(data[offset + precisionLat + 1 + (i + 1)]);
@@ -206,7 +208,7 @@ Mesh * RessourcesEngine::genSphere(const float &radius, const uint &precisionLat
 		}
 	}
 
-	return Mesh(vertices);
+	return new Mesh(vertices);
 }
 
 
@@ -233,11 +235,15 @@ Importer * RessourcesEngine::getImporter(ressourceType &type)
 			return new ImageImporter();
 			break;
 		case LEVEL:
-			return new ImageImporter();
+			return new LevelImporter();
 			break;
 		case FONT:
 			return new FontImporter();
-		break;
+			break;
+		default:
+			throw std::runtime_error("No Importer Found !");
+			break;
+
 	}
 }
 

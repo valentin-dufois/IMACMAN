@@ -44,6 +44,12 @@
 		39C2BB751FF7D7FB00589342 /* glm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39C2BABE1FF7D7FB00589342 /* glm.cpp */; };
 		564CCCBB1FC569A60061D5E1 /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 564CCCB91FC569A60061D5E1 /* Player.cpp */; };
 		564CCCBE1FC58E280061D5E1 /* GameEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 564CCCBC1FC58E280061D5E1 /* GameEngine.cpp */; };
+		565E05771FFD13A1007AF7BA /* sceneTest002.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 565E05731FFD13A1007AF7BA /* sceneTest002.cpp */; };
+		56A96A511FFCD45F00B50DD2 /* Grid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56A96A491FFCD45E00B50DD2 /* Grid.cpp */; };
+		56A96A521FFCD45F00B50DD2 /* Pacman.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56A96A4A1FFCD45E00B50DD2 /* Pacman.cpp */; };
+		56A96A531FFCD45F00B50DD2 /* Wall.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56A96A4B1FFCD45E00B50DD2 /* Wall.cpp */; };
+		56A96A541FFCD45F00B50DD2 /* PacGum.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56A96A4E1FFCD45F00B50DD2 /* PacGum.cpp */; };
+		56A96A551FFCD45F00B50DD2 /* Ghost.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56A96A501FFCD45F00B50DD2 /* Ghost.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -395,6 +401,19 @@
 		564CCCBA1FC569A60061D5E1 /* Player.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = Player.hpp; path = IMACMAN/Engines/GameEngine/Player.hpp; sourceTree = SOURCE_ROOT; };
 		564CCCBC1FC58E280061D5E1 /* GameEngine.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = GameEngine.cpp; path = IMACMAN/Engines/GameEngine/GameEngine.cpp; sourceTree = SOURCE_ROOT; };
 		564CCCBD1FC58E280061D5E1 /* GameEngine.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = GameEngine.hpp; path = IMACMAN/Engines/GameEngine/GameEngine.hpp; sourceTree = SOURCE_ROOT; };
+		565E05731FFD13A1007AF7BA /* sceneTest002.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sceneTest002.cpp; sourceTree = "<group>"; };
+		565E05761FFD13A1007AF7BA /* sceneTest002.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = sceneTest002.hpp; sourceTree = "<group>"; };
+		5677AC3D1FFF7192001ECAC9 /* GameEngine */ = {isa = PBXFileReference; lastKnownFileType = folder; path = GameEngine; sourceTree = "<group>"; };
+		56A96A471FFCD45E00B50DD2 /* PacGum.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = PacGum.hpp; path = IMACMAN/Engines/GameEngine/PacGum.hpp; sourceTree = SOURCE_ROOT; };
+		56A96A481FFCD45E00B50DD2 /* Grid.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Grid.hpp; path = IMACMAN/Engines/GameEngine/Grid.hpp; sourceTree = SOURCE_ROOT; };
+		56A96A491FFCD45E00B50DD2 /* Grid.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Grid.cpp; path = IMACMAN/Engines/GameEngine/Grid.cpp; sourceTree = SOURCE_ROOT; };
+		56A96A4A1FFCD45E00B50DD2 /* Pacman.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Pacman.cpp; path = IMACMAN/Engines/GameEngine/Pacman.cpp; sourceTree = SOURCE_ROOT; };
+		56A96A4B1FFCD45E00B50DD2 /* Wall.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Wall.cpp; path = IMACMAN/Engines/GameEngine/Wall.cpp; sourceTree = SOURCE_ROOT; };
+		56A96A4C1FFCD45F00B50DD2 /* Ghost.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Ghost.hpp; path = IMACMAN/Engines/GameEngine/Ghost.hpp; sourceTree = SOURCE_ROOT; };
+		56A96A4D1FFCD45F00B50DD2 /* Wall.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Wall.hpp; path = IMACMAN/Engines/GameEngine/Wall.hpp; sourceTree = SOURCE_ROOT; };
+		56A96A4E1FFCD45F00B50DD2 /* PacGum.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PacGum.cpp; path = IMACMAN/Engines/GameEngine/PacGum.cpp; sourceTree = SOURCE_ROOT; };
+		56A96A4F1FFCD45F00B50DD2 /* Pacman.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Pacman.hpp; path = IMACMAN/Engines/GameEngine/Pacman.hpp; sourceTree = SOURCE_ROOT; };
+		56A96A501FFCD45F00B50DD2 /* Ghost.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Ghost.cpp; path = IMACMAN/Engines/GameEngine/Ghost.cpp; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -509,6 +528,7 @@
 		3997F0CB1FC22C35009CECC9 /* Engines */ = {
 			isa = PBXGroup;
 			children = (
+				5677AC3D1FFF7192001ECAC9 /* GameEngine */,
 				395799FA1FF579C000FC09D3 /* RenderEngine */,
 				564CCCB81FC569830061D5E1 /* GameEngine */,
 				39B5E6DB1FC3649F00B99CC2 /* RessourcesEngine */,
@@ -969,6 +989,8 @@
 		39DC5FAA1FC2E5F8001515C0 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				565E05731FFD13A1007AF7BA /* sceneTest002.cpp */,
+				565E05761FFD13A1007AF7BA /* sceneTest002.hpp */,
 				3984E4B31FE9791900808799 /* Scene.hpp */,
 				393375DE1FF5404700024EB1 /* sceneTest001.cpp */,
 				393375DF1FF5404700024EB1 /* sceneTest001.hpp */,
@@ -979,6 +1001,16 @@
 		564CCCB81FC569830061D5E1 /* GameEngine */ = {
 			isa = PBXGroup;
 			children = (
+				56A96A501FFCD45F00B50DD2 /* Ghost.cpp */,
+				56A96A4C1FFCD45F00B50DD2 /* Ghost.hpp */,
+				56A96A491FFCD45E00B50DD2 /* Grid.cpp */,
+				56A96A481FFCD45E00B50DD2 /* Grid.hpp */,
+				56A96A4E1FFCD45F00B50DD2 /* PacGum.cpp */,
+				56A96A471FFCD45E00B50DD2 /* PacGum.hpp */,
+				56A96A4A1FFCD45E00B50DD2 /* Pacman.cpp */,
+				56A96A4F1FFCD45F00B50DD2 /* Pacman.hpp */,
+				56A96A4B1FFCD45E00B50DD2 /* Wall.cpp */,
+				56A96A4D1FFCD45F00B50DD2 /* Wall.hpp */,
 				564CCCB91FC569A60061D5E1 /* Player.cpp */,
 				564CCCBA1FC569A60061D5E1 /* Player.hpp */,
 				564CCCBC1FC58E280061D5E1 /* GameEngine.cpp */,
@@ -1068,16 +1100,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				3912B4171FC47BC600982C49 /* GameObject.cpp in Sources */,
+				565E05771FFD13A1007AF7BA /* sceneTest002.cpp in Sources */,
 				393375E91FF563DC00024EB1 /* Font.cpp in Sources */,
 				39C2BA6C1FF59BC400589342 /* Asset.cpp in Sources */,
 				39B5E6EF1FC387C000B99CC2 /* Mesh.cpp in Sources */,
 				39B5E6FD1FC38F0800B99CC2 /* Shader.cpp in Sources */,
+				56A96A551FFCD45F00B50DD2 /* Ghost.cpp in Sources */,
 				3912B4141FC47BA700982C49 /* main.cpp in Sources */,
 				39B5E7001FC3902800B99CC2 /* SoundImporter.cpp in Sources */,
 				39B5E6E51FC371E900B99CC2 /* Image.cpp in Sources */,
+				56A96A541FFCD45F00B50DD2 /* PacGum.cpp in Sources */,
 				393375E01FF5404700024EB1 /* sceneTest001.cpp in Sources */,
 				39B5E7031FC3905300B99CC2 /* MeshImporter.cpp in Sources */,
 				39B5E6F21FC3898E00B99CC2 /* Level.cpp in Sources */,
+				56A96A521FFCD45F00B50DD2 /* Pacman.cpp in Sources */,
 				39B5E6DE1FC364C200B99CC2 /* RessourcesEngine.cpp in Sources */,
 				39B5E7061FC3907C00B99CC2 /* LevelImporter.cpp in Sources */,
 				393375DD1FF5337200024EB1 /* Selector.cpp in Sources */,
@@ -1088,6 +1124,7 @@
 				393375E61FF5580000024EB1 /* FontImporter.cpp in Sources */,
 				39B5E6EB1FC3875D00B99CC2 /* Sound.cpp in Sources */,
 				39579A0D1FF579C000FC09D3 /* GhostsManager.cpp in Sources */,
+				56A96A511FFCD45F00B50DD2 /* Grid.cpp in Sources */,
 				39B5E7091FC3908B00B99CC2 /* ShaderImporter.cpp in Sources */,
 				3976C3BA1FC42A84008CC4F1 /* Core.cpp in Sources */,
 				39579A111FF579C000FC09D3 /* PacmanManager.cpp in Sources */,
@@ -1099,6 +1136,7 @@
 				39579A0A1FF579C000FC09D3 /* RenderEngine.cpp in Sources */,
 				39C2BB741FF7D7FB00589342 /* dummy.cpp in Sources */,
 				39579A101FF579C000FC09D3 /* GridManager.cpp in Sources */,
+				56A96A531FFCD45F00B50DD2 /* Wall.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,52 +9,67 @@
 #ifndef RenderEngine_hpp
 #define RenderEngine_hpp
 
-//Link to main
-#include "../../main.hpp"
-
 //Get engine dependancies
-#include "Manager/Manager.hpp"
+#include "libraries.hpp"
+#include "Utils/Vertex.hpp"
+#include "Utils/Enums.hpp"
+#include "Engines/RessourcesEngine/Elements/Mesh.hpp"
 
-//Managers types
-enum managerType
-{
-	GRID_MANAGER,
-	PACMAN_MANAGER,
-	GHOST_MANAGER
-};
+#include "Manager/Manager.hpp"
+#include "Core/GameObject.hpp"
+
+#include <map>
 
 //The engine
 class RenderEngine
 {
-public:
-				// Renderer configuration accessible by all
-				bool thirdPersCamera = false;
-
-				//Singleton
-				static void instanciate();
-
 private:
-				//Singleton
-				static bool m_instanciated;
+	//Singleton
+	static bool m_instanciated;
+	//Vertice Properties
+	const GLuint VERTEX_ATTR_POSITION = 1;
+	const GLuint VERTEX_ATTR_NORMAL = 2;
+	const GLuint VERTEX_ATTR_COLOR = 3;
+	//Attributs
+	GLuint * m_gridVBO;
+	GLuint * m_pacmanVBO;
+	GLuint m_VAO = 0;
+	std::vector<GLuint *> m_ghostsVBO;
+	uint m_VBOCountIndex;
+	//Cameras
+	bool thirdPersCamera = false;
 
-				//Factory
-				Manager * getManager(managerType type);
+	//Constructor
+	RenderEngine();
+	~RenderEngine();
 
-				//Attributs
-				GLuint m_gridVBO;
-				GLuint m_pacmanVBO;
-				std::vector<GLuint> m_ghostsVBO;
+public:
+	//Singleton
+	static void instanciate();
 
-				//OpenGL Error
-				GLenum error;
+	Manager * getManager(enum MANAGER_TYPE type);
 
-				//Constructor
-				RenderEngine(GLuint gridVBO = 1, GLuint pacmanVBO = 2, std::vector<GLuint> ghostsVBO = {3, 4, 5, 6});
-				~RenderEngine();
+	//getters
+	GLuint * getBufferPtr(enum MANAGER_TYPE type);
 
-				//Utils
-				void initVBO(GLenum bufferType, GLuint * index, managerType type, GLuint nbOfVBO = 1);
+	//Utils
+	void loadPlateBoard();
+	void updatePlateBoard();
 
+	void loadGrid();
+	void updateGrid();
+	void renderGrid();
+
+	void initVBO(GLuint * index, enum MANAGER_TYPE type, std::vector<Vertex> &vertices, GLuint nbOfVBO);
+	void initVAO(enum MANAGER_TYPE type);
+	void render(Mesh * mesh);
 };
+
+//////////////////
+//OpenGL Debugging
+#include <iostream>
+void _check_gl_error(const char *file, int line);
+#define check_gl_error() _check_gl_error(__FILE__,__LINE__)
+//////////////////
 
 #endif /* RenderEngine_hpp */

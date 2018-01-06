@@ -9,6 +9,9 @@
 #ifndef GhostsManager_hpp
 #define GhostsManager_hpp
 
+#include "libraries.hpp"
+#include "Engines/GameEngine/GItem/Ghost.hpp"
+
 //Forward declaration
 class Manager;
 
@@ -16,9 +19,11 @@ class Manager;
 class GhostsManager: public Manager
 {
 protected:
+  std::vector<uint> m_firstIndiceGhosts;
 
 public:
   //Constructor
+  GhostsManager(): Manager(), m_firstIndiceGhosts({0}) {}
 	~GhostsManager() {}
 
   //Getters
@@ -26,7 +31,14 @@ public:
   //Setters
 
   //Utils
-  void fillVBO();
+  void init(Ghost &ghost);
+  void render();
+
+  void fillVBO(std::vector<Vertex> &vertices);
+  void fillVAO();
+
+  void updateVBO();
+  void updateVAO();
 };
 
 #endif /* GhostsManager_hpp */

@@ -39,7 +39,7 @@ public:
 	/**
 	 Destructor, used to properly free all the memory used by the scene
 	 */
-	virtual ~Scene() {};
+	virtual ~Scene() {}
 
 	/**
 	 Enable the scene
@@ -68,7 +68,7 @@ public:
 	/**
 	 Scene constructor, generate the scene UUID
 	 */
-	Scene():m_sceneID(GameObj->getUUID()) {};
+	Scene():m_sceneID(GameObj->getUUID()) {}
 
 	/**
 	 Comparison operator for the scenes
@@ -89,6 +89,8 @@ private:
 };
 
 #include "sceneTest001.hpp"
+#include "sceneTest002.hpp"
+#include "sceneConsole.hpp"
 
 
 #endif /* Scene_h */

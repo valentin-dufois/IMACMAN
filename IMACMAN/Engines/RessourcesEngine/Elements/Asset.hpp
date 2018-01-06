@@ -12,6 +12,7 @@
 //////////////////////
 //Forward declarations
 class Font;
+class Level;
 class Mesh;
 class Shader;
 
@@ -36,10 +37,7 @@ public:
 
 	 @return assetsType
 	 */
-	inline ressourceType getType()
-	{
-		return m_type;
-	};
+	ressourceType getType();
 
 	/**
 	 Casting operator for Font assets
@@ -47,6 +45,13 @@ public:
 	 @return Return the asset as a Font, nullptr if the asset is not a Font
 	 */
 	 operator Font*();
+
+	 /**
+	 Casting operator for Level assets
+
+	 @return Return the asset as a Level, nullptr if the asset is not a Level
+	 */
+	 operator Level*();
 
 	/**
 	 Casting operator for Mesh assets
@@ -67,6 +72,7 @@ protected:
 };
 
 #include "Font.hpp"
+#include "Level.hpp"
 #include "Mesh.hpp"
 #include "Shader.hpp"
 

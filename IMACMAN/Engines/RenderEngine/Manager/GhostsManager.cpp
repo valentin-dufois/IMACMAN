@@ -6,11 +6,47 @@
 //  Copyright © 2017 Gaëlle Calmels. All rights reserved.
 //
 
-#include "../../../main.hpp"
+#include <iostream>
 
+#include "Manager.hpp"
 #include "GhostsManager.hpp"
 
-void GhostsManager::fillVBO()
+void GhostsManager::init(Ghost &ghost)
 {
-  std::cout << "Fill the Ghosts VBOS\n" << std::endl;
+
+}
+
+void GhostsManager::render()
+{
+  
+}
+
+void GhostsManager::fillVBO(std::vector<Vertex> &vertices)
+{
+  std::cout << "Fill the Ghosts VBO\n" << std::endl;
+  
+  GLsizeiptr size = vertices.size() * sizeof(GLfloat);
+
+	//Fill VBO with data
+	glBufferData(
+    GL_ARRAY_BUFFER,
+    size,
+    vertices.data(),
+    GL_STATIC_DRAW
+  );
+}
+
+void GhostsManager::fillVAO()
+{
+  std::cout << "Fill the Ghosts VAO\n" << std::endl;
+}
+
+void GhostsManager::updateVBO()
+{
+
+}
+
+void GhostsManager::updateVAO()
+{
+
 }

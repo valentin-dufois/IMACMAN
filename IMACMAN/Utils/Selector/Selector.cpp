@@ -9,7 +9,8 @@
 #include "Selector.hpp"
 
 Selector::Selector():
-m_currentItem(nullptr) {};
+	m_currentItem(nullptr)
+{}
 
 void Selector::addItem(Item * newItem)
 {
@@ -31,19 +32,19 @@ void Selector::execute()
 	if(m_currentItem == nullptr)
 		return;
 
-	if(GameObj->gameEngine->getkeys().DOWN)
+	if(GameObj->gameEngine->getKeys().DOWN)
 		return moveCursor(m_currentItem->getBottomNeighboor());
 
-	if(GameObj->gameEngine->getkeys().UP)
+	if(GameObj->gameEngine->getKeys().UP)
 		return moveCursor(m_currentItem->getTopNeighboor());
 
-	if(GameObj->gameEngine->getkeys().RIGHT)
+	if(GameObj->gameEngine->getKeys().RIGHT)
 		return moveCursor(m_currentItem->getRightNeighboor());
 
-	if(GameObj->gameEngine->getkeys().LEFT)
+	if(GameObj->gameEngine->getKeys().LEFT)
 		return moveCursor(m_currentItem->getLeftNeighboor());
 
-	if(GameObj->gameEngine->getkeys().ENTER)
+	if(GameObj->gameEngine->getKeys().ENTER)
 		return m_currentItem->action();
 }
 

@@ -1,0 +1,7 @@
+GERER CONDITION DE VICTOIRE ou de DEFAITE
+    gerer collisions fantomes (manger ou être mangé)
+        gerer super pac gum (decrementer decompte (!!!! EN TEMPS REEL PAS EN TICS)
+    gerer manger toutes les pac gums
+
+BONUS IA FANTOMES
+    preparer les signatures et les emplacements

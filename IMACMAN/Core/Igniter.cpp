@@ -22,7 +22,7 @@ void Igniter::igniteGameObject(std::string appPath)
 	//Instanciate Engines
 	GameEngine::instanciate();
 	RessourcesEngine::instanciate();
-	//RenderEngine::instanciate();
+	RenderEngine::instanciate();
 
 	
 }
@@ -42,8 +42,8 @@ void Igniter::igniteSDL()
 	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
 	SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
 	SDL_GL_SetAttribute(SDL_GL_STENCIL_SIZE, 8);
-	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 4);
-	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 1);
+	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
+	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 3);
 
 	//Create window
 	//TODO: Dynamic definition of title and dimensions
@@ -78,6 +78,7 @@ void Igniter::igniteSDL()
 
 void Igniter::igniteOpenGL()
 {
+	glewExperimental = GL_TRUE;
 	GLenum glewInitError = glewInit();
 	if(GLEW_OK != glewInitError) {
 		std::cerr << glewGetErrorString(glewInitError) << std::endl;

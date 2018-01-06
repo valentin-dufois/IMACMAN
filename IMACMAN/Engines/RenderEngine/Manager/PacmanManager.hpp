@@ -9,6 +9,8 @@
 #ifndef PacmanManager_hpp
 #define PacmanManager_hpp
 
+#include "libraries.hpp"
+
 //Forward declaration
 class Manager;
 
@@ -26,7 +28,14 @@ public:
   //Setters
 
   //Utils
-  void fillVBO();
+  void init();
+  void render();
+
+  void fillVBO(std::vector<Vertex> &vertices);
+  void fillVAO();
+
+  void updateVBO();
+  void updateVAO();
 };
 
 #endif /* PacmanManager_hpp */

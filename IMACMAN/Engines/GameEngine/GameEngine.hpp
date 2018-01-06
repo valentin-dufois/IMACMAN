@@ -9,7 +9,9 @@
 #ifndef GameEngine_hpp
 #define GameEngine_hpp
 
+#include "Grid.hpp"
 #include "Core/GameObject.hpp"
+#include "Engines/RessourcesEngine/RessourcesEngine.hpp"
 #include "Scenes/Scene.hpp"
 
 #include <vector>
@@ -52,47 +54,53 @@ struct keyboard
 };
 
 class GameEngine{
+private:
+	//Singleton
+	static bool m_instanciated;
+	GameEngine() = default;
+
+	//Events
+	keyboard m_keys;
+	void parseEvents();
+
+	//Attributs
+	Grid m_level;
+	
+	Pacman * m_pacman;
+	int m_realScore;
+
+	Ghost * m_Blinky;
+	Ghost * m_Pinky;
+	Ghost * m_Inky;
+	Ghost * m_Clyde;
+	Fruit * m_fruit;
+
 public:
-	/**
-	 Instanciate the GameEngine in the GameObj as a Singleton
-	 */
+	//Instanciate the GameEngine in the GameObj as a Singleton
 	static void instanciate();
 
-	/**
-	 Catch new events then execute all scenes on the AppObj
-	 */
-	void executeScenes();
+	//Free memory and set m_instanciated to null
+	static void reset();
 
-	/**
-	 Render all scenes
-	 */
+	//Catch new events then execute all scenes on the AppObj
+	void executeScenes();
 	void renderScenes();
 
 	/**
 	 Return the key struct
-
 	 @return The keyboard structure
 	 */
-	inline keyboard getkeys() const { return m_keys; };
-
-	/**
-	 Reset all keys to false.
-	 */
+	inline keyboard getKeys() const { return m_keys; };
 	inline void flushKeys() { m_keys = {}; };
 
-private:
-	//Singleton
-	static bool m_instanciated;
-	GameEngine();
+	//Grid-relative Methods
+	Grid * getGrid();
+	void loadLevel(Level * level);
 
-	//Events
-	keyboard m_keys;
-	/**
-	 Parse, update and store all events
-	 */
-	void parseEvents();
+	void displayLevel();
+	void displayInfo();
 
-
+	void manageSpecialMode();
 };
 
 #endif /* GameEngine_hpp */

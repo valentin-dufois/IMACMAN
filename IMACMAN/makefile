@@ -70,7 +70,7 @@ linker: $(OBJECTS)
 
 # COMPILE THE SOURCES
 $(BUILDDIR)/%.o: $(SRCDIR)/%.$(SRCEXT)
-	@echo "  $(CXX) $(CXXFLAGS) $(LDFLAGS) -c -o $@ $<"; $(CXX) $(CXXFLAGS) $(LDFLAGS) -c -o $@ $<
+	@echo "  $(CXX) $(CXXFLAGS) $(LDFLAGS) -c -o -MMD $@ $<"; $(CXX) $(CXXFLAGS) $(LDFLAGS) -c -o -MMD $@ $<
 	@mkdir -p $(BUILDDIR)
 
 # REMOVE ALL OBJECTS

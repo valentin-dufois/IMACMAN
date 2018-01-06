@@ -20,13 +20,32 @@ void GameEngine::instanciate()
 	m_instanciated = true;
 }
 
-GameEngine::GameEngine() { }
+void GameEngine::reset() {
+	if (!m_instanciated) {
+		delete GameObj->gameEngine;
+		m_instanciated = false;
+	}
+}
 
 void GameEngine::executeScenes()
 {
 	//Update events
 	parseEvents();
 
+	//Check VICTORY / DEFEAT conditions
+	/*if (m_pacman->getLives() <= 0) {
+		//TODO change Scene to GameOver
+		GameObj->endGame();
+	}*/
+
+	//Check wether there is still one pack gum or not
+	/*if (!m_level.checkItemsExist({ITEM_SYNTAX::PAC_GUM, ITEM_SYNTAX::SUPER_PAC_GUM})) {
+		//TODO change Scene to Victory
+		GameObj->endGame();
+	}*/
+
+	//Update all counters
+	//manageSpecialMode();
 
 	//get all scenes
 	std::vector<Scene *> scenes = GameObj->getScenes();
@@ -34,8 +53,9 @@ void GameEngine::executeScenes()
 	//Execute all scenes
 	for(std::vector<Scene *>::iterator it = scenes.begin(); it != scenes.end(); ++it)
 	{
-		if((*it)->isEnabled())
+		if((*it)->isEnabled()) {
 			(*it)->execute();
+		}
 	}
 }
 
@@ -50,8 +70,9 @@ void GameEngine::renderScenes()
 	//Render all scenes
 	for(std::vector<Scene *>::iterator it = scenes.begin(); it != scenes.end(); ++it)
 	{
-		if((*it)->isEnabled())
-		(*it)->render();
+		if((*it)->isEnabled()) {
+			(*it)->render();
+		}
 	}
 
 	//Swap buffers
@@ -81,7 +102,7 @@ void GameEngine::parseEvents()
 			case     SDLK_a:     m_keys.A = newVal; break;
 			case     SDLK_b:     m_keys.B = newVal; break;
 			case     SDLK_c:     m_keys.C = newVal; break;
-			case     SDLK_d:     m_keys.D = newVal; break;
+			case     SDLK_d:     m_keys.RIGHT = newVal; break;
 			case     SDLK_e:     m_keys.E = newVal; break;
 			case     SDLK_f:     m_keys.F = newVal; break;
 			case     SDLK_g:     m_keys.G = newVal; break;
@@ -94,16 +115,16 @@ void GameEngine::parseEvents()
 			case     SDLK_n:     m_keys.N = newVal; break;
 			case     SDLK_o:     m_keys.O = newVal; break;
 			case     SDLK_p:     m_keys.P = newVal; break;
-			case     SDLK_q:     m_keys.Q = newVal; break;
+			case     SDLK_q:     m_keys.LEFT = newVal; break;
 			case     SDLK_r:     m_keys.R = newVal; break;
-			case     SDLK_s:     m_keys.S = newVal; break;
+			case     SDLK_s:     m_keys.DOWN = newVal; break;
 			case     SDLK_t:     m_keys.T = newVal; break;
 			case     SDLK_u:     m_keys.U = newVal; break;
 			case     SDLK_v:     m_keys.V = newVal; break;
 			case     SDLK_w:     m_keys.W = newVal; break;
 			case     SDLK_x:     m_keys.X = newVal; break;
 			case     SDLK_y:     m_keys.Y = newVal; break;
-			case     SDLK_z:     m_keys.Z = newVal; break;
+			case     SDLK_z:     m_keys.UP = newVal; break;
 			case    SDLK_UP:    m_keys.UP = newVal; break;
 			case  SDLK_DOWN:  m_keys.DOWN = newVal; break;
 			case  SDLK_LEFT:  m_keys.LEFT = newVal; break;
@@ -114,4 +135,46 @@ void GameEngine::parseEvents()
 
 		}
 	}
+}
+
+void GameEngine::loadLevel(Level * level){
+	m_level = Grid(
+		level->getWidth(),
+		level->getHeight(),
+		level->getLevelGrid()
+	);
+
+	m_pacman = reinterpret_cast<Pacman *>(m_level.getItem(ITEM_SYNTAX::PACMAN));
+
+	m_Blinky = reinterpret_cast<Ghost *>(m_level.getItem(ITEM_SYNTAX::BLINKY));
+	m_Pinky = reinterpret_cast<Ghost *>(m_level.getItem(ITEM_SYNTAX::PINKY));
+	m_Inky = reinterpret_cast<Ghost *>(m_level.getItem(ITEM_SYNTAX::INKY));
+	m_Clyde = reinterpret_cast<Ghost *>(m_level.getItem(ITEM_SYNTAX::CLYDE));
+	m_fruit = reinterpret_cast<Fruit *>(m_level.getItem(ITEM_SYNTAX::FRUIT));
+}
+
+Grid * GameEngine::getGrid() {
+	return &m_level;
+}
+
+void GameEngine::displayLevel() {
+	m_level.displayGrid();
+}
+
+void GameEngine::displayInfo() {
+	std::cout
+		<< "LIVES: " << m_pacman->getLives()
+		<< "\tSCORE: " << m_pacman->getRealScore()
+		<< "\tSUPER-TIME: " << m_pacman->getSuperCounter();
+
+	std::cout << std::endl;
+}
+
+void GameEngine::manageSpecialMode() {
+	m_pacman->updateSuperCounter(-1);
+	m_Blinky->updateDeathCounter(-1);
+	m_Pinky->updateDeathCounter(-1);
+	m_Inky->updateDeathCounter(-1);
+	m_Clyde->updateDeathCounter(-1);
+	m_fruit->updatePopCounter(-1);
 }

@@ -10,7 +10,9 @@
 #define Manager_hpp
 
 //Link to main
-#include "../../../main.hpp"
+#include "libraries.hpp"
+#include "Utils/Vertex.hpp"
+#include "Utils/Enums.hpp"
 
 //The engine
 class Manager
@@ -21,12 +23,15 @@ public:
   //Constructor
 	virtual ~Manager() {}
 
-  //Getters
-
-  //Setters
-
   //Utils
-  virtual void fillVBO() {}
+  virtual void init() {}
+  virtual void render() {}
+
+  virtual void fillVBO(std::vector<Vertex> &vertices) {}
+  virtual void fillVAO() {}
+
+  virtual void updateVBO() {}
+  virtual void updateVAO() {}
 };
 
 #include "GridManager.hpp"

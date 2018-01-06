@@ -18,7 +18,7 @@ class LevelImporter: public Importer
 {
 public:
 	Asset * getAsset(std::string path);
-
+	~LevelImporter();
 private:
 
 };
