@@ -40,3 +40,5 @@ IMACMAN/Game/build/
 
 #Project libraries
 IMACMAN/libs/
+
+build/
