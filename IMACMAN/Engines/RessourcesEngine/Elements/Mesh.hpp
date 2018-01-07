@@ -10,12 +10,13 @@
 #define Mesh_hpp
 
 #include "Asset.hpp"
-#include "Renderable.hpp"
 #include "Utils/ShaderProgram.hpp"
 #include "Utils/Vertex.hpp"
+#include "Engines/RenderEngine/RenderEngine.hpp"
+
 #include <glm/glm.hpp>
 
-class Mesh : public Asset, public Renderable
+class Mesh : public Asset
 {
 public:
 	//Constructor
@@ -43,7 +44,7 @@ public:
 
 	 @return Number of vertex
 	 */
-	GLsizeiptr getVertexCount() { return m_vertexCount; }
+	GLsizei getVertexCount() { return m_vertexCount; }
 
 	/**
 	 Return the texture ID used by the mesh
@@ -110,6 +111,16 @@ public:
 	 @param programID The program ID
 	 */
 	inline void setProgram(GLuint programID) { m_programID = programID; };
+
+	/**
+	 Generate OpenGL buffers for the mesh
+
+	 @param type Type of object
+	 */
+	void generate(MANAGER_TYPE type);
+
+	GLuint vbo;
+	GLuint vao;
 
 private:
 	//Vertex

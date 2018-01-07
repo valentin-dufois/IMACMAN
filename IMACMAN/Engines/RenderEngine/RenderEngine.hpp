@@ -47,8 +47,8 @@ public:
 	void updateGrid();
 	void renderGrid();
 
-	void initVBO(GLuint * index, enum MANAGER_TYPE type, std::vector<Vertex> &vertices, GLuint nbOfVBO);
-	void initVAO(enum MANAGER_TYPE type);
+	void initVBO(Mesh * mesh, enum MANAGER_TYPE type);
+	void initVAO(Mesh * mesh, enum MANAGER_TYPE type);
 	void render(Mesh * mesh);
 
 private:
@@ -58,10 +58,10 @@ private:
 	const GLuint VERTEX_ATTR_POSITION = 1;
 	const GLuint VERTEX_ATTR_NORMAL = 2;
 	const GLuint VERTEX_ATTR_COLOR = 3;
+	const GLuint VERTEX_ATTR_UV = 4;
 	//Attributs
 	GLuint * m_gridVBO;
 	GLuint * m_pacmanVBO;
-	GLuint m_VAO = 0;
 	std::vector<GLuint *> m_ghostsVBO;
 	uint m_VBOCountIndex;
 	//Cameras

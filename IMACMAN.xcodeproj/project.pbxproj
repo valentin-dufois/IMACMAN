@@ -139,7 +139,6 @@
 		39AE371E200161AB0080B365 /* Vertex.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Vertex.hpp; sourceTree = "<group>"; };
 		39AE371F2001620E0080B365 /* UIElementManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = UIElementManager.cpp; sourceTree = "<group>"; };
 		39AE37202001620E0080B365 /* UIElementManager.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = UIElementManager.hpp; sourceTree = "<group>"; };
-		39AE372320017DEB0080B365 /* Renderable.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Renderable.hpp; sourceTree = "<group>"; };
 		39AE372520018A7C0080B365 /* textRenderer.fs.glsl */ = {isa = PBXFileReference; lastKnownFileType = text; path = textRenderer.fs.glsl; sourceTree = "<group>"; };
 		39AE372620018A8F0080B365 /* textRenderer.vs.glsl */ = {isa = PBXFileReference; lastKnownFileType = text; path = textRenderer.vs.glsl; sourceTree = "<group>"; };
 		39B5E6DA1FC3642000B99CC2 /* main.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = main.hpp; sourceTree = "<group>"; tabWidth = 4; usesTabs = 1; };
@@ -691,7 +690,6 @@
 			children = (
 				39B5E6E01FC3654E00B99CC2 /* Asset.hpp */,
 				39C2BA6B1FF59BC400589342 /* Asset.cpp */,
-				39AE372320017DEB0080B365 /* Renderable.hpp */,
 				39B5E6E31FC371E900B99CC2 /* Image.cpp */,
 				39B5E6E41FC371E900B99CC2 /* Image.hpp */,
 				39B5E6E91FC3875D00B99CC2 /* Sound.cpp */,

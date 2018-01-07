@@ -17,3 +17,10 @@ void Mesh::appendVertex(const Vertex &vertex)
 {
 	m_vertexList.push_back(vertex);
 }
+
+void Mesh::generate(MANAGER_TYPE type)
+{
+	GameObj->renderEngine->initVBO(this, type);
+
+	GameObj->renderEngine->initVAO(this, type);
+}

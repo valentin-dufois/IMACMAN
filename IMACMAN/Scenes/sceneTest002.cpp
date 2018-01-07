@@ -24,17 +24,8 @@ void sceneTest002::init()
 
 	m_sphere = GameObj->ressourcesEngine->genSphere(1, 32, 16);
 	std::vector<Vertex> vertices = m_sphere->getVertexList();
-	
-	GameObj->renderEngine->initVBO(
-		GameObj->renderEngine->getBufferPtr(MANAGER_TYPE::PACMAN_M),
-		MANAGER_TYPE::PACMAN_M,
-		vertices,
-		1
-	);
 
-	GameObj->renderEngine->initVAO(
-		MANAGER_TYPE::PACMAN_M
-	);
+	m_sphere->generate(PACMAN_M);
 
 	ShaderProgram prog("triangle.vs.glsl", "triangle.fs.glsl");
 	prog.use();

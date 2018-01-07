@@ -17,7 +17,6 @@ bool Asset::isRenderable()
 {
 	switch(getType())
 	{
-		case FONT:
 		case MESH:
 			return true;
 			break;
