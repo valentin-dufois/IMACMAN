@@ -28,6 +28,7 @@ class Importer;
 #include "libraries.hpp"
 #include "Core/GameObject.hpp"
 #include "Importers/Importer.hpp"
+#include "Elements/Renderable.hpp"
 #include "Elements/Asset.hpp"
 
 #include <glm/gtc/constants.hpp>

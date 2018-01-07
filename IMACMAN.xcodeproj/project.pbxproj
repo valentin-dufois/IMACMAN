@@ -139,6 +139,9 @@
 		39AE371E200161AB0080B365 /* Vertex.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Vertex.hpp; sourceTree = "<group>"; };
 		39AE371F2001620E0080B365 /* UIElementManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = UIElementManager.cpp; sourceTree = "<group>"; };
 		39AE37202001620E0080B365 /* UIElementManager.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = UIElementManager.hpp; sourceTree = "<group>"; };
+		39AE372320017DEB0080B365 /* Renderable.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Renderable.hpp; sourceTree = "<group>"; };
+		39AE372520018A7C0080B365 /* textRenderer.fs.glsl */ = {isa = PBXFileReference; lastKnownFileType = text; path = textRenderer.fs.glsl; sourceTree = "<group>"; };
+		39AE372620018A8F0080B365 /* textRenderer.vs.glsl */ = {isa = PBXFileReference; lastKnownFileType = text; path = textRenderer.vs.glsl; sourceTree = "<group>"; };
 		39B5E6DA1FC3642000B99CC2 /* main.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = main.hpp; sourceTree = "<group>"; tabWidth = 4; usesTabs = 1; };
 		39B5E6DC1FC364C200B99CC2 /* RessourcesEngine.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = RessourcesEngine.cpp; sourceTree = "<group>"; };
 		39B5E6DD1FC364C200B99CC2 /* RessourcesEngine.hpp */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.cpp.h; path = RessourcesEngine.hpp; sourceTree = "<group>"; tabWidth = 4; usesTabs = 1; };
@@ -621,6 +624,8 @@
 				39A216781FF84BA100CA9ADD /* tex2D.fs.glsl */,
 				39A2167A1FF84BA100CA9ADD /* tex2D.vs.glsl */,
 				39A216791FF84BA100CA9ADD /* triangle.fs.glsl */,
+				39AE372520018A7C0080B365 /* textRenderer.fs.glsl */,
+				39AE372620018A8F0080B365 /* textRenderer.vs.glsl */,
 			);
 			path = shaders;
 			sourceTree = "<group>";
@@ -651,21 +656,21 @@
 		39AE36EB2001611B0080B365 /* GItem */ = {
 			isa = PBXGroup;
 			children = (
-				39AE36EC2001611B0080B365 /* PacGum.hpp */,
-				39AE36ED2001611B0080B365 /* Fruit.cpp */,
-				39AE36EE2001611B0080B365 /* StaticItem.hpp */,
-				39AE36F22001611B0080B365 /* Pacman.cpp */,
-				39AE36F42001611B0080B365 /* Floor.cpp */,
-				39AE36F52001611B0080B365 /* Ghost.hpp */,
-				39AE36F62001611B0080B365 /* Wall.cpp */,
-				39AE36F72001611B0080B365 /* Ghost.cpp */,
-				39AE36F82001611B0080B365 /* Floor.hpp */,
-				39AE36FA2001611B0080B365 /* Wall.hpp */,
 				39AE36FB2001611B0080B365 /* DynamicItem.hpp */,
-				39AE36FC2001611B0080B365 /* PacGum.cpp */,
+				39AE36EE2001611B0080B365 /* StaticItem.hpp */,
+				39AE36F42001611B0080B365 /* Floor.cpp */,
+				39AE36F82001611B0080B365 /* Floor.hpp */,
+				39AE36ED2001611B0080B365 /* Fruit.cpp */,
 				39AE36FD2001611B0080B365 /* Fruit.hpp */,
+				39AE36F72001611B0080B365 /* Ghost.cpp */,
+				39AE36F52001611B0080B365 /* Ghost.hpp */,
 				39AE36FF2001611B0080B365 /* GItem.hpp */,
+				39AE36FC2001611B0080B365 /* PacGum.cpp */,
+				39AE36EC2001611B0080B365 /* PacGum.hpp */,
+				39AE36F22001611B0080B365 /* Pacman.cpp */,
 				39AE37002001611B0080B365 /* Pacman.hpp */,
+				39AE36F62001611B0080B365 /* Wall.cpp */,
+				39AE36FA2001611B0080B365 /* Wall.hpp */,
 			);
 			path = GItem;
 			sourceTree = "<group>";
@@ -686,6 +691,7 @@
 			children = (
 				39B5E6E01FC3654E00B99CC2 /* Asset.hpp */,
 				39C2BA6B1FF59BC400589342 /* Asset.cpp */,
+				39AE372320017DEB0080B365 /* Renderable.hpp */,
 				39B5E6E31FC371E900B99CC2 /* Image.cpp */,
 				39B5E6E41FC371E900B99CC2 /* Image.hpp */,
 				39B5E6E91FC3875D00B99CC2 /* Sound.cpp */,

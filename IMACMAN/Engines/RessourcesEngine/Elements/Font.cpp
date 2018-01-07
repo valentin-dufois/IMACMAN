@@ -7,7 +7,6 @@
 //
 
 #include "Font.hpp"
-#include "Engines/RenderEngine/RenderEngine.hpp"
 
 Font::Font(FT_Face &face): Asset(FONT), m_face(face) {}
 
@@ -20,8 +19,7 @@ void Font::setHeight(const float &newSize)
 
 FontFace Font::genFontFace()
 {
-	FontFace fontFace;
-	fontFace.size = m_size;
+	m_fontFace.size = m_size;
 
 	//Disable GL Alignement
 	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
@@ -29,13 +27,89 @@ FontFace Font::genFontFace()
 	//Store all ASCII chars
 	for(uint c = 0; c < 128; ++c)
 	{
-		fontFace.chars.push_back(genFontCharacter(c));
+		m_fontFace.chars.push_back(genFontCharacter(c));
 	}
 
 	//Re-Enable GL Alignement
 	glPixelStorei(GL_UNPACK_ALIGNMENT, 4);
 
-	return fontFace;
+	return m_fontFace;
+}
+
+Mesh * Font::genCaption(const std::string &caption)
+{
+	//Gather informations for rendering
+	uint textureWidth = 0;
+	uint textureHeight = m_fontFace.size;
+
+	for(char c : caption)
+	{
+		textureWidth += m_fontFace.chars[c].advance;
+	}
+
+	//generate the frameBuffer & texture
+	GLuint frameBuffer;
+	GLuint texture;
+	prepareTexture(textureWidth, textureHeight, frameBuffer, texture);
+
+	//Set program
+	m_program = new ShaderProgram("textRenderer.fs.glsl", "textRenderer.vs.glsl");
+	m_program->use();
+
+	GLuint tile = genTile(0);
+
+	std::cout << "texture size : " << textureWidth << "x" << textureHeight << std::endl;
+
+	glViewport(0, 0, textureWidth, textureHeight);
+
+	uint pointerX = 0;
+	FontCharacter fChar;
+
+	glm::mat4 baseMatrix(1.0f);
+	glm::mat4 transformedPos;
+	baseMatrix = glm::translate(baseMatrix, glm::vec3(-textureWidth/2, 0, 0));
+
+	//glBindFramebuffer(GL_FRAMEBUFFER, frameBuffer);
+	//glBindTexture(GL_TEXTURE_2D, texture);
+	glBindVertexArray(tile);
+
+	for(char c : caption)
+	{
+		std::cout << c << std::endl;
+		
+		fChar = m_fontFace.chars[c];
+
+		transformedPos = glm::scale(glm::translate(baseMatrix, glm::vec3(pointerX + fChar.bearing.x, 0, 0)), glm::vec3(fChar.size.x, fChar.size.y, 1));
+
+		/////////////////
+		check_gl_error();
+		/////////////////
+
+		//Set position and texture
+		glUniform1i(glGetUniformLocation(m_program->getProgramID(), "uTexture"), fChar.texture);
+		glUniformMatrix4fv(glGetUniformLocation(m_program->getProgramID(), "uMVPMatrix"), 1, GL_FALSE, glm::value_ptr(transformedPos));
+
+		/////////////////
+		check_gl_error();
+		/////////////////
+
+		//Render char
+		glDrawArrays(GL_TRIANGLES, 0, 6);
+
+		/////////////////
+		check_gl_error();
+		/////////////////
+
+		//advance
+		pointerX += fChar.advance;
+	}
+
+	glBindVertexArray(0);
+	//glBindTexture(GL_TEXTURE_2D, 0);
+	//glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+	///////////////
+	return nullptr;
 }
 
 FontCharacter Font::genFontCharacter(char charID)
@@ -70,15 +144,101 @@ FontCharacter Font::genFontCharacter(char charID)
 
 	character.texture = texture;
 
-	character.size.x = m_face->glyph->bitmap.width;
-	character.size.y = m_face->glyph->bitmap.rows;
+	character.size.x = m_face->glyph->bitmap.width / 64;
+	character.size.y = m_face->glyph->bitmap.rows / 64;
 
-	character.bearing.x = m_face->glyph->bitmap_left;
-	character.bearing.y = m_face->glyph->bitmap_top;
+	character.bearing.x = m_face->glyph->bitmap_left / 64;
+	character.bearing.y = m_face->glyph->bitmap_top / 64;
 
-	character.advance = (GLuint)m_face->glyph->advance.x;
+	character.advance = (GLuint)m_face->glyph->advance.x / 64;
 
 	return character;
+}
+
+bool Font::prepareTexture(const uint &width, const uint &height, GLuint &frameBuffer, GLuint &texture)
+{
+	//generate the frameBuffer
+	glGenFramebuffers(1, &frameBuffer);
+	glBindFramebuffer(GL_FRAMEBUFFER, frameBuffer);
+
+	//Generate the texture
+	glGenTextures(1, &texture);
+
+	//Bind the newly created texture
+	glBindTexture(GL_TEXTURE_2D, texture);
+
+
+	// Give an empty image to OpenGL ( the last "0" )
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RED, width, height, 0, GL_RED, GL_UNSIGNED_BYTE, 0);
+
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+
+	glFramebufferTexture(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, texture, 0);
+
+	GLenum DrawBuffers[1] = {GL_COLOR_ATTACHMENT0};
+	glDrawBuffers(1, DrawBuffers);
+
+	if(glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
+		return false;
+
+	glBindTexture(GL_TEXTURE_2D, 0);
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+	return true;
+}
+
+GLuint Font::genTile(const GLuint &textureID)
+{
+	///////////
+	//CHAR TILE
+
+	std::vector<Vertex> vertices;
+	vertices.push_back(Vertex(glm::vec3(0, 0, 0), glm::vec2(0, 0)));
+	vertices.push_back(Vertex(glm::vec3(1, 0, 0), glm::vec2(1, 0)));
+	vertices.push_back(Vertex(glm::vec3(1, 1, 0), glm::vec2(1, 1)));
+
+	vertices.push_back(Vertex(glm::vec3(0, 0, 0), glm::vec2(0, 0)));
+	vertices.push_back(Vertex(glm::vec3(1, 1, 0), glm::vec2(1, 1)));
+	vertices.push_back(Vertex(glm::vec3(0, 1, 0), glm::vec2(0, 1)));
+
+	/////
+	//VBO
+	GLuint vbo;
+	glGenBuffers(1, &vbo);
+	glBindBuffer(GL_ARRAY_BUFFER, vbo);
+
+	glBufferData(GL_ARRAY_BUFFER, 6 * sizeof(Vertex), vertices.data(), GL_STATIC_DRAW);
+
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+	/////////////////
+	check_gl_error();
+	/////////////////
+
+	/////
+	//VAO
+	GLuint vao;
+	glGenVertexArrays(1, &vao);
+	glBindVertexArray(vao);
+
+	const GLuint VERTEX_ATTR_POSITION = 1;
+	const GLuint VERTEX_ATTR_UV = 4;
+	glEnableVertexAttribArray(VERTEX_ATTR_POSITION);
+	glEnableVertexAttribArray(VERTEX_ATTR_UV);
+
+	glBindBuffer(GL_ARRAY_BUFFER, vbo);
+	glVertexAttribPointer(VERTEX_ATTR_POSITION, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), 0);
+	glVertexAttribPointer(VERTEX_ATTR_UV, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const GLvoid*)offsetof(Vertex, UV));
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+	glBindVertexArray(0);
+
+	/////////////////
+	check_gl_error();
+	/////////////////
+
+	return vao;
 }
 
 Font::~Font()
