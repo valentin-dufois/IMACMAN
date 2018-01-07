@@ -169,8 +169,8 @@ void RenderEngine::render(Mesh * mesh)
 	if(mesh->vao == 0)
 		return; //No VAO, no render!
 
-	//Bind program
-	//glUseProgram(mesh->getProgramID());
+	//Set program
+	mesh->getProgram()->use();
 
 	//Bind VAO
 	glBindVertexArray(mesh->vao);

@@ -28,8 +28,7 @@ public:
 		m_normalOffset(3),
 		m_textureOffset(2),
 		m_textured(false),
-		m_textureID(0),
-		m_programID(0)
+		m_textureID(0)
 	{}
 
 	//Getters
@@ -58,7 +57,7 @@ public:
 
 	 @return Program ID
 	 */
-	GLuint getProgramID() const { return m_programID; }
+	ShaderProgram * getProgram() const { return m_program; }
 
 	/**
 	 Tell if the mesh is textured
@@ -108,9 +107,9 @@ public:
 	/**
 	 Set the Program ID for the mesh
 
-	 @param programID The program ID
+	 @param program The program ID
 	 */
-	inline void setProgram(GLuint programID) { m_programID = programID; };
+	inline void setProgram(ShaderProgram * program) { m_program = program; };
 
 	/**
 	 Generate OpenGL buffers for the mesh
@@ -134,7 +133,7 @@ private:
 	//Style
 	bool m_textured;
 	GLuint m_textureID;
-	GLuint m_programID;
+	ShaderProgram * m_program;
 };
 
 #endif /* Mesh_hpp */

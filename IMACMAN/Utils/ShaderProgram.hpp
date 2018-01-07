@@ -17,6 +17,8 @@ class ShaderProgram;
 #include "Core/GameObject.hpp"
 #include "Engines/RessourcesEngine/RessourcesEngine.hpp"
 
+#include <glm/glm.hpp>
+
 class ShaderProgram
 {
 public:
@@ -34,6 +36,14 @@ public:
 	 @return The program ID
 	 */
 	inline GLuint getProgramID() const { return m_programID; };
+
+	/**
+	 Pass the given value to the program as uniform
+
+	 @param uniformName Name of the uniform var
+	 @param value A 4x4 Matrix
+	 */
+	void setUniformMat4(std::string uniformName, glm::mat4 value);
 
 private:
 	GLuint m_programID;

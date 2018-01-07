@@ -18,17 +18,19 @@ void sceneTest002::load()
 
 void sceneTest002::init()
 {
-	m_sceneID = 1;
+	//Load and compile shader
+	ShaderProgram * prog = new ShaderProgram("triangle.vs.glsl", "triangle.fs.glsl");
+
+	m_sceneID = 1; // ??????
+
+	//Load level
 	rId levelID = GameObj->ressourcesEngine->loadAsset("level01.txt", LEVEL);
 	m_level = *GameObj->ressourcesEngine->getAsset(levelID);
 
+	//Generate Sphere
 	m_sphere = GameObj->ressourcesEngine->genSphere(1, 32, 16);
-	std::vector<Vertex> vertices = m_sphere->getVertexList();
-
 	m_sphere->generate(PACMAN_M);
-
-	ShaderProgram prog("triangle.vs.glsl", "triangle.fs.glsl");
-	prog.use();
+	m_sphere->setProgram(prog);
 
 	std::cout << "loaded" << std::endl;
 }

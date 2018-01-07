@@ -27,11 +27,18 @@ ShaderProgram::ShaderProgram(std::string vsPath, std::string fsPath): m_programI
 	GLint status;
 	glGetProgramiv(m_programID, GL_LINK_STATUS, &status);
 
-	if(status == GL_TRUE)
-		return; //Compile OK
+	if(status != GL_TRUE)
+	{
+		//Compile error, display message
+		throw std::runtime_error("Unable to compile program : " + getCompileLog());
+		return;
+	}
+}
 
-	//Compile error, display message
-	throw std::runtime_error("Unable to compile program : " + getCompileLog());
+//UNIFORMS
+void ShaderProgram::setUniformMat4(std::string uniformName, glm::mat4 value)
+{
+	glUniformMatrix4fv(glGetUniformLocation(m_programID, uniformName.c_str()), 1, GL_FALSE, glm::value_ptr(value));
 }
 
 const std::string ShaderProgram::getCompileLog() const
