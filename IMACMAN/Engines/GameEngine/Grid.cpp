@@ -141,10 +141,6 @@ void Grid::updateCase(Pacman * pac, std::vector<GItem *> cell) {
                 pacmanFoodCollision(pac, *it);
                 this->deleteGridItem((*it));
                 --m_nbOfGums;
-            case ITEM_SYNTAX::FRUIT:
-                tmpScore += (*it)->getScore();
-                pacmanFoodCollision(pac, *it);
-                this->deleteGridItem((*it));
                 break;
             case ITEM_SYNTAX::FRUIT:
                 pac->updatePosition(pac->getNextPosition(), this->m_width, this->m_height);
