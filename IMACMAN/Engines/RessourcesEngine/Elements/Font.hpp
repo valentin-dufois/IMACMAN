@@ -13,10 +13,14 @@
 class Asset;
 
 #include "Asset.hpp"
+#include "Renderable.hpp"
 #include "Utils/SDL.hpp"
+#include "Utils/ShaderProgram.hpp"
+#include "Engines/RenderEngine/RenderEngine.hpp"
 
 #include <iostream>
-
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
 //////////////////
 //Font structures
@@ -36,7 +40,7 @@ struct FontFace
 
 /////////////
 //Font class
-class Font : public Asset
+class Font : public Asset, public Renderable
 {
 public:
 	Font(FT_Face &face);
@@ -57,6 +61,8 @@ public:
 	 */
 	FontFace genFontFace();
 
+	Mesh * genCaption(const std::string &caption);
+
 	~Font();
 
 private:
@@ -65,7 +71,21 @@ private:
 	FT_Face m_face;
 	float m_size;
 
+	FontFace m_fontFace;
+
+	ShaderProgram * m_program;
+
+	/**
+	 Generate and store in OpenGL the specified character
+
+	 @param charID The character to render
+	 @return The character infos
+	 */
 	FontCharacter genFontCharacter(char charID);
+
+	bool prepareTexture(const uint &width, const uint &height, GLuint &frameBuffer, GLuint &texture);
+
+	GLuint genTile(const GLuint &textureID);
 };
 
 #endif /* Font_hpp */

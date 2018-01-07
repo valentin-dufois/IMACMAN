@@ -10,26 +10,13 @@
 #define Mesh_hpp
 
 #include "Asset.hpp"
+#include "Renderable.hpp"
 #include "Utils/ShaderProgram.hpp"
 #include "Utils/Vertex.hpp"
 #include <glm/glm.hpp>
 
-class Mesh : public Asset
+class Mesh : public Asset, public Renderable
 {
-private:
-	//Vertex
-	std::vector<Vertex> m_vertexList;
-	uint m_vertexCount;
-	
-	uint m_positionOffset;
-	uint m_normalOffset;
-	uint m_textureOffset;
-
-	//Style
-	bool m_textured;
-	GLuint m_textureID;
-	GLuint m_programID;
-
 public:
 	//Constructor
 	Mesh(const std::vector<Vertex> &vertexList):
@@ -50,22 +37,93 @@ public:
 	 @return An array of vertex
 	 */
 	inline std::vector<Vertex> getVertexList() const { return m_vertexList; };
+
+	/**
+	 Return the number of vertex in the mesh
+
+	 @return Number of vertex
+	 */
 	GLsizeiptr getVertexCount() { return m_vertexCount; }
+
+	/**
+	 Return the texture ID used by the mesh
+
+	 @return Texture ID
+	 */
 	GLuint getTextureID() const { return m_textureID; }
+
+	/**
+	 Return the program ID (Shaders) used by the mesh
+
+	 @return Program ID
+	 */
 	GLuint getProgramID() const { return m_programID; }
+
+	/**
+	 Tell if the mesh is textured
+
+	 @return True if textured, false otherwise
+	 */
 	bool isTextured() { return m_textured; }
 	 
 
 	//Utils
+	/**
+	 Fill the mesh vertex with the given ones
+	 Replace existing vertex
+
+	 @param vertexList A vector of Vertex
+	 */
 	inline void fillVertex(const std::vector<Vertex> &vertexList) { m_vertexList = vertexList; };
 	
+	/**
+	 Append new vertex to the existing ones
+
+	 @param vertexList A vector of vertex
+	 */
 	void appendVertex(const std::vector<Vertex> &vertexList);
+
+	/**
+	 Append a new vertex to the existing one
+
+	 @param vertex A vertex
+	 */
 	void appendVertex(const Vertex &vertex);
 
+	/**
+	 Set the type of the mesh
+
+	 @param type True if textures, false otherwise
+	 */
 	inline void setType(const bool &type) { m_textured = type; };
 
+	/**
+	 Set the texture ID for the mesh
+
+	 @param textureID The texture ID
+	 */
 	inline void setTexture(GLuint textureID) { m_textureID = textureID; };
+
+	/**
+	 Set the Program ID for the mesh
+
+	 @param programID The program ID
+	 */
 	inline void setProgram(GLuint programID) { m_programID = programID; };
+
+private:
+	//Vertex
+	std::vector<Vertex> m_vertexList;
+	uint m_vertexCount;
+
+	uint m_positionOffset;
+	uint m_normalOffset;
+	uint m_textureOffset;
+
+	//Style
+	bool m_textured;
+	GLuint m_textureID;
+	GLuint m_programID;
 };
 
 #endif /* Mesh_hpp */

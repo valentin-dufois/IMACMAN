@@ -33,6 +33,13 @@ public:
 	Asset(ressourceType type): m_type(type) {};
 
 	/**
+	 Tell if the object is renderable
+
+	 @return True if renderable, false otherwise
+	 */
+	bool isRenderable();
+
+	/**
 	 Return the type of the asset
 
 	 @return assetsType

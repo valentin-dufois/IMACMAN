@@ -13,6 +13,19 @@ ressourceType Asset::getType()
 	return m_type;
 }
 
+bool Asset::isRenderable()
+{
+	switch(getType())
+	{
+		case FONT:
+		case MESH:
+			return true;
+			break;
+		default:
+			return false;
+	}
+};
+
 Asset::operator Font*()
 {
 	if(getType() != FONT)
