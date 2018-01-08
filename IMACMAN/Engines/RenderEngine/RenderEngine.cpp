@@ -164,8 +164,6 @@ void RenderEngine::render(Mesh * mesh, DrawCursor * cursor)
 	//Set program
 	mesh->getProgram()->use();
 
-	//m_MVMatrix = glm::rotate(m_MVMatrix, glm::radians(1.0f), glm::vec3(0, 1, 0));
-
 	//Bind VAO
 	glBindVertexArray(mesh->vao);
 
@@ -174,7 +172,7 @@ void RenderEngine::render(Mesh * mesh, DrawCursor * cursor)
 	
 	//Send uniform locations to GPU
 	mesh->getProgram()->setUniformMat4("uMVMatrix", m_MVMatrix);
-	mesh->getProgram()->setUniformMat4("uMVPMatrix", (m_ProjectionMatrix * m_MVMatrix));
+	//mesh->getProgram()->setUniformMat4("uMVPMatrix", (m_ProjectionMatrix * m_MVMatrix));
 	mesh->getProgram()->setUniformMat4("uNormalMatrix", m_NormalMatrix);
 
 	mesh->getProgram()->setUniformMat4("uMVPMatrix", cursor->getMatrix());

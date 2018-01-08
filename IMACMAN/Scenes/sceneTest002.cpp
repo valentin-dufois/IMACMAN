@@ -41,12 +41,11 @@ void sceneTest002::init()
 
 void sceneTest002::execute()
 {
-
+	m_sphere->getCursor()->rotate(.01, 0, 1, 0);
 }
 
 void sceneTest002::render()
 {
-	m_sphere->getCursor()->rotate(.01, 0, 0, 1);
 	GameObj->renderEngine->render(m_sphere, m_sphere->getCursor());
 	check_gl_error();
 

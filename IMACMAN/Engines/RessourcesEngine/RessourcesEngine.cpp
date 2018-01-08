@@ -83,6 +83,9 @@ Mesh * RessourcesEngine::genCube(const uint &size)
 	std::vector<Vertex> vertexList;
 	float demisize = (float)size / 2.0;
 
+	glm::vec2
+		UV(0.f, 0.f);
+
 	glm::vec3
 		A(-demisize, -demisize, -demisize),
 		B(-demisize, -demisize,  demisize),
@@ -108,52 +111,52 @@ Mesh * RessourcesEngine::genCube(const uint &size)
 		colorTop(255, 0, 255, 1);
 
 	//Front
-	vertexList.push_back(Vertex(B, normalFront, colorFront));
-	vertexList.push_back(Vertex(F, normalFront, colorFront));
-	vertexList.push_back(Vertex(G, normalFront, colorFront));
-	vertexList.push_back(Vertex(B, normalFront, colorFront));
-	vertexList.push_back(Vertex(C, normalFront, colorFront));
-	vertexList.push_back(Vertex(G, normalFront, colorFront));
+	vertexList.push_back(Vertex(A, normalFront, colorFront, UV));
+	vertexList.push_back(Vertex(B, normalFront, colorFront, UV));
+	vertexList.push_back(Vertex(C, normalFront, colorFront, UV));
+	vertexList.push_back(Vertex(A, normalFront, colorFront, UV));
+	vertexList.push_back(Vertex(C, normalFront, colorFront, UV));
+	vertexList.push_back(Vertex(D, normalFront, colorFront, UV));
 
 	//Back
-	vertexList.push_back(Vertex(A, normalBack, colorBack));
-	vertexList.push_back(Vertex(E, normalBack, colorBack));
-	vertexList.push_back(Vertex(H, normalBack, colorBack));
-	vertexList.push_back(Vertex(A, normalBack, colorBack));
-	vertexList.push_back(Vertex(D, normalBack, colorBack));
-	vertexList.push_back(Vertex(H, normalBack, colorBack));
+	vertexList.push_back(Vertex(A, normalBack, colorBack, UV));
+	vertexList.push_back(Vertex(E, normalBack, colorBack, UV));
+	vertexList.push_back(Vertex(H, normalBack, colorBack, UV));
+	vertexList.push_back(Vertex(A, normalBack, colorBack, UV));
+	vertexList.push_back(Vertex(D, normalBack, colorBack, UV));
+	vertexList.push_back(Vertex(H, normalBack, colorBack, UV));
 
 	//Left
-	vertexList.push_back(Vertex(B, normalLeft, colorLeft));
-	vertexList.push_back(Vertex(F, normalLeft, colorLeft));
-	vertexList.push_back(Vertex(E, normalLeft, colorLeft));
-	vertexList.push_back(Vertex(B, normalLeft, colorLeft));
-	vertexList.push_back(Vertex(G, normalLeft, colorLeft));
-	vertexList.push_back(Vertex(E, normalLeft, colorLeft));
+	vertexList.push_back(Vertex(B, normalLeft, colorLeft, UV));
+	vertexList.push_back(Vertex(F, normalLeft, colorLeft, UV));
+	vertexList.push_back(Vertex(E, normalLeft, colorLeft, UV));
+	vertexList.push_back(Vertex(B, normalLeft, colorLeft, UV));
+	vertexList.push_back(Vertex(G, normalLeft, colorLeft, UV));
+	vertexList.push_back(Vertex(E, normalLeft, colorLeft, UV));
 
 	//Right
-	vertexList.push_back(Vertex(C, normalRight, colorRight));
-	vertexList.push_back(Vertex(G, normalRight, colorRight));
-	vertexList.push_back(Vertex(H, normalRight, colorRight));
-	vertexList.push_back(Vertex(C, normalRight, colorRight));
-	vertexList.push_back(Vertex(D, normalRight, colorRight));
-	vertexList.push_back(Vertex(H, normalRight, colorRight));
+	vertexList.push_back(Vertex(C, normalRight, colorRight, UV));
+	vertexList.push_back(Vertex(G, normalRight, colorRight, UV));
+	vertexList.push_back(Vertex(H, normalRight, colorRight, UV));
+	vertexList.push_back(Vertex(C, normalRight, colorRight, UV));
+	vertexList.push_back(Vertex(D, normalRight, colorRight, UV));
+	vertexList.push_back(Vertex(H, normalRight, colorRight, UV));
 
 	//Bottom
-	vertexList.push_back(Vertex(B, normalBottom, colorBottom));
-	vertexList.push_back(Vertex(A, normalBottom, colorBottom));
-	vertexList.push_back(Vertex(D, normalBottom, colorBottom));
-	vertexList.push_back(Vertex(B, normalBottom, colorBottom));
-	vertexList.push_back(Vertex(C, normalBottom, colorBottom));
-	vertexList.push_back(Vertex(D, normalBottom, colorBottom));
+	vertexList.push_back(Vertex(B, normalBottom, colorBottom, UV));
+	vertexList.push_back(Vertex(A, normalBottom, colorBottom, UV));
+	vertexList.push_back(Vertex(D, normalBottom, colorBottom, UV));
+	vertexList.push_back(Vertex(B, normalBottom, colorBottom, UV));
+	vertexList.push_back(Vertex(C, normalBottom, colorBottom, UV));
+	vertexList.push_back(Vertex(D, normalBottom, colorBottom, UV));
 
 	//Top
-	vertexList.push_back(Vertex(F, normalTop, colorTop));
-	vertexList.push_back(Vertex(E, normalTop, colorTop));
-	vertexList.push_back(Vertex(H, normalTop, colorTop));
-	vertexList.push_back(Vertex(F, normalTop, colorTop));
-	vertexList.push_back(Vertex(G, normalTop, colorTop));
-	vertexList.push_back(Vertex(H, normalTop, colorTop));
+	vertexList.push_back(Vertex(F, normalTop, colorTop, UV));
+	vertexList.push_back(Vertex(E, normalTop, colorTop, UV));
+	vertexList.push_back(Vertex(H, normalTop, colorTop, UV));
+	vertexList.push_back(Vertex(F, normalTop, colorTop, UV));
+	vertexList.push_back(Vertex(G, normalTop, colorTop, UV));
+	vertexList.push_back(Vertex(H, normalTop, colorTop, UV));
 
 	return new Mesh(vertexList);
 }
