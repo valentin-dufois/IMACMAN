@@ -21,14 +21,14 @@ class Mesh : public Asset
 {
 public:
 	//Constructor
-	Mesh(const std::vector<Vertex> &vertexList):
+	Mesh(const std::vector<Vertex> &vertexList, bool textured = false):
 		Asset(MESH),
 		m_vertexList(vertexList),
 		m_vertexCount((uint)vertexList.size()),
 		m_positionOffset(3),
 		m_normalOffset(3),
 		m_textureOffset(2),
-		m_textured(false),
+		m_textured(textured),
 		m_textureID(0)
 	{}
 

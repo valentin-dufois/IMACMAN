@@ -6,8 +6,8 @@ layout(location = 1) in vec3 aVertexNormal; // Position de la normale
 layout(location = 2) in vec2 aVertexTexCoords; // Position de la texture
 
 // Matrices uniformes de transformation
-uniform mat4 uMVPMatrix;
 uniform mat4 uMVMatrix;
+uniform mat4 uMVPMatrix;
 uniform mat4 uNormalMatrix;
 
 // Sorties du shader

@@ -15,6 +15,7 @@ struct Vertex
 	Vertex() {};
 	Vertex(glm::vec3 pos): position(pos) {};
 	Vertex(glm::vec3 pos, glm::vec2 aUV): position(pos), UV(aUV) {};
+	Vertex(glm::vec3 pos, glm::vec3 aNormal, glm::vec4 aColor): position(pos), normal(aNormal), color(aColor) {};
 };
 
 #endif /* VERTEX_HPP */

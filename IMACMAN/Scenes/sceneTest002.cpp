@@ -21,8 +21,6 @@ void sceneTest002::init()
 	//Load and compile shader
 	ShaderProgram * prog = new ShaderProgram("triangle.vs.glsl", "triangle.fs.glsl");
 
-	m_sceneID = 1; // ??????
-
 	//Load level
 	rId levelID = GameObj->ressourcesEngine->loadAsset("level01.txt", LEVEL);
 	m_level = *GameObj->ressourcesEngine->getAsset(levelID);
@@ -33,12 +31,17 @@ void sceneTest002::init()
 	m_sphere->setProgram(prog);
 	m_sphere->getCursor()->scale(.5f, .5f, .5f)->rotate(25, 1, 1, 1);
 
+	////Generate Cube
+	m_cube = GameObj->ressourcesEngine->genCube(1);
+	m_cube->generate(GRID_M);
+	m_cube->setProgram(prog);
+
 	std::cout << "loaded" << std::endl;
 }
 
 void sceneTest002::execute()
 {
-	//std::cout << "executed" << std::endl;
+
 }
 
 void sceneTest002::render()

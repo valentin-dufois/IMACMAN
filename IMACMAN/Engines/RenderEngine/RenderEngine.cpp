@@ -151,8 +151,8 @@ Manager * RenderEngine::getManager(enum MANAGER_TYPE type)
 void RenderEngine::initRender()
 {
 	float screenRatio = (float) GameObj->screenWidth / GameObj->screenHeight;
-	setPerspective(80.f, screenRatio, 0.1f, 100.f);
-	m_MVMatrix = glm::translate(glm::mat4(1.f), glm::vec3(0.f, 0.f, 5.f));
+	setPerspective(70.f, screenRatio, 0.1f, 100.f);
+	m_MVMatrix = glm::translate(glm::mat4(1.f), glm::vec3(0.f, 0.f, -20.f));
 	m_NormalMatrix = glm::transpose(glm::inverse(m_MVMatrix));
 }
 
@@ -163,6 +163,8 @@ void RenderEngine::render(Mesh * mesh, DrawCursor * cursor)
 
 	//Set program
 	mesh->getProgram()->use();
+
+	//m_MVMatrix = glm::rotate(m_MVMatrix, glm::radians(1.0f), glm::vec3(0, 1, 0));
 
 	//Bind VAO
 	glBindVertexArray(mesh->vao);

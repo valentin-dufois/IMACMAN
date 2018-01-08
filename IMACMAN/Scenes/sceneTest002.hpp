@@ -49,10 +49,10 @@ public:
 	~sceneTest002() {}
 
 private:
-
 	rId m_sceneID;
 	Level * m_level;
 	Mesh * m_sphere;
+	Mesh * m_cube;
 	
 };
 

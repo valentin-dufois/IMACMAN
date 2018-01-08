@@ -17,6 +17,8 @@ void Core::ignite(std::string appPath)
 	igniter.igniteSDL(800, 600);
 	igniter.igniteOpenGL();
 
+	//GameObj->renderEngine->initRender();
+
 	//Init random generator
 	srand((uint)time(NULL));
 }
