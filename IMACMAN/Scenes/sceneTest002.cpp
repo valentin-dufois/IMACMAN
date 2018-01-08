@@ -31,23 +31,25 @@ void sceneTest002::init()
 	m_sphere->setProgram(prog);
 	m_sphere->getCursor()->scale(.5f, .5f, .5f)->rotate(25, 1, 1, 1);
 
-	////Generate Cube
+	//Generate Cube
 	m_cube = GameObj->ressourcesEngine->genCube(1);
 	m_cube->generate(GRID_M);
 	m_cube->setProgram(prog);
+	m_cube->getCursor()->rotate(-15, 1, 0, 0);
 
-	std::cout << "loaded" << std::endl;
+	std::cout << "sceneTest002 loaded" << std::endl;
 }
 
 void sceneTest002::execute()
 {
 	m_sphere->getCursor()->rotate(.01, 0, 1, 0);
+	m_cube->getCursor()->rotate(.01, .5, 1, 0);
 }
 
 void sceneTest002::render()
 {
-	GameObj->renderEngine->render(m_sphere, m_sphere->getCursor());
-	check_gl_error();
+	GameObj->renderEngine->render(m_cube, m_cube->getCursor());
+	//GameObj->renderEngine->render(m_sphere, m_sphere->getCursor());
 
 	//std::cout << "rendered" << std::endl;
 }
