@@ -11,6 +11,7 @@
 
 #include "Asset.hpp"
 #include "Utils/ShaderProgram.hpp"
+#include "Utils/DrawCursor.hpp"
 #include "Utils/Vertex.hpp"
 #include "Engines/RenderEngine/RenderEngine.hpp"
 
@@ -121,6 +122,8 @@ public:
 	GLuint vbo;
 	GLuint vao;
 
+	inline DrawCursor * getCursor() { return &m_cursor; };
+
 private:
 	//Vertex
 	std::vector<Vertex> m_vertexList;
@@ -129,6 +132,9 @@ private:
 	uint m_positionOffset;
 	uint m_normalOffset;
 	uint m_textureOffset;
+
+	//Position
+	DrawCursor m_cursor;
 
 	//Style
 	bool m_textured;

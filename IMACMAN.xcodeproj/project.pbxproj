@@ -25,6 +25,7 @@
 		3976C3BD1FC42ACC008CC4F1 /* Igniter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3976C3BB1FC42ACC008CC4F1 /* Igniter.cpp */; };
 		3976C3BF1FC42D5D008CC4F1 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3976C3BE1FC42D5D008CC4F1 /* SDL2.framework */; };
 		3984E4B61FE9A2DD00808799 /* libGLEW.2.1.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3984E4B51FE9A2DD00808799 /* libGLEW.2.1.0.dylib */; };
+		39A761E82003F92000CF851E /* DrawCursor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39A761E62003F92000CF851E /* DrawCursor.cpp */; };
 		39A929F91FF7F1BD00A71CFA /* ShaderProgram.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39A929F71FF7F1BD00A71CFA /* ShaderProgram.cpp */; };
 		39AE370B2001611B0080B365 /* Fruit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39AE36ED2001611B0080B365 /* Fruit.cpp */; };
 		39AE370F2001611B0080B365 /* Pacman.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39AE36F22001611B0080B365 /* Pacman.cpp */; };
@@ -110,6 +111,8 @@
 		39A216791FF84BA100CA9ADD /* triangle.fs.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = triangle.fs.glsl; sourceTree = "<group>"; };
 		39A2167A1FF84BA100CA9ADD /* tex2D.vs.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tex2D.vs.glsl; sourceTree = "<group>"; };
 		39A2167C1FF84BA200CA9ADD /* Neoneon.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Neoneon.otf; sourceTree = "<group>"; };
+		39A761E62003F92000CF851E /* DrawCursor.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DrawCursor.cpp; sourceTree = "<group>"; };
+		39A761E72003F92000CF851E /* DrawCursor.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = DrawCursor.hpp; sourceTree = "<group>"; };
 		39A929F71FF7F1BD00A71CFA /* ShaderProgram.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ShaderProgram.cpp; sourceTree = "<group>"; };
 		39A929F81FF7F1BD00A71CFA /* ShaderProgram.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ShaderProgram.hpp; sourceTree = "<group>"; };
 		39A929FA1FF83DE500A71CFA /* libraries.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = libraries.hpp; sourceTree = "<group>"; };
@@ -564,6 +567,8 @@
 				39579A141FF57A6600FC09D3 /* SDL.hpp */,
 				39A929F71FF7F1BD00A71CFA /* ShaderProgram.cpp */,
 				39A929F81FF7F1BD00A71CFA /* ShaderProgram.hpp */,
+				39A761E62003F92000CF851E /* DrawCursor.cpp */,
+				39A761E72003F92000CF851E /* DrawCursor.hpp */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1150,6 +1155,7 @@
 				393375E01FF5404700024EB1 /* sceneTest001.cpp in Sources */,
 				39AE370F2001611B0080B365 /* Pacman.cpp in Sources */,
 				39B5E7031FC3905300B99CC2 /* MeshImporter.cpp in Sources */,
+				39A761E82003F92000CF851E /* DrawCursor.cpp in Sources */,
 				39B5E6F21FC3898E00B99CC2 /* Level.cpp in Sources */,
 				39B5E6DE1FC364C200B99CC2 /* RessourcesEngine.cpp in Sources */,
 				39AE37172001611B0080B365 /* Player.cpp in Sources */,

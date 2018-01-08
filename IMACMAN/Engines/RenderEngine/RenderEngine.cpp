@@ -156,7 +156,7 @@ void RenderEngine::initRender()
 	m_NormalMatrix = glm::transpose(glm::inverse(m_MVMatrix));
 }
 
-void RenderEngine::render(Mesh * mesh)
+void RenderEngine::render(Mesh * mesh, DrawCursor * cursor)
 {
 	if(mesh->vao == 0)
 		return; //No VAO, no render!
@@ -174,6 +174,8 @@ void RenderEngine::render(Mesh * mesh)
 	mesh->getProgram()->setUniformMat4("uMVMatrix", m_MVMatrix);
 	mesh->getProgram()->setUniformMat4("uMVPMatrix", (m_ProjectionMatrix * m_MVMatrix));
 	mesh->getProgram()->setUniformMat4("uNormalMatrix", m_NormalMatrix);
+
+	mesh->getProgram()->setUniformMat4("uMVPMatrix", cursor->getMatrix());
 
 	glDrawArrays(GL_TRIANGLES, 0, mesh->getVertexCount());
 	check_gl_error();

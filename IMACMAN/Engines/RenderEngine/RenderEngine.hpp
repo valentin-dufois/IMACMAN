@@ -13,12 +13,15 @@
 #include "libraries.hpp"
 #include "Utils/Vertex.hpp"
 #include "Utils/Enums.hpp"
+#include "Utils/DrawCursor.hpp"
 #include "Engines/RessourcesEngine/Elements/Mesh.hpp"
 
 #include "Manager/Manager.hpp"
 #include "Core/GameObject.hpp"
 
 #include <map>
+#include <glm/gtx/string_cast.hpp>
+#include <glm/ext.hpp>
 
 //The engine
 class RenderEngine
@@ -46,7 +49,7 @@ public:
 	void initVAO(Mesh * mesh, enum MANAGER_TYPE type);
 
 	void initRender();
-	void render(Mesh * mesh);
+	void render(Mesh * mesh, DrawCursor * cursor);
 
 private:
 	//Singleton

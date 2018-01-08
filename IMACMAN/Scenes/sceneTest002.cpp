@@ -19,7 +19,7 @@ void sceneTest002::load()
 void sceneTest002::init()
 {
 	//Load and compile shader
-	ShaderProgram * prog = new ShaderProgram("3D.vs.glsl", "directionallight.fs.glsl");
+	ShaderProgram * prog = new ShaderProgram("triangle.vs.glsl", "triangle.fs.glsl");
 
 	m_sceneID = 1; // ??????
 
@@ -31,11 +31,7 @@ void sceneTest002::init()
 	m_sphere = GameObj->ressourcesEngine->genSphere(1, 32, 32);
 	m_sphere->generate(PACMAN_M);
 	m_sphere->setProgram(prog);
-
-	glm::mat4 matID(1.0f);
-	glm::mat4 scaleMatrix = glm::scale(matID, glm::vec3(.5f, .5f, 0));
-
-	prog->setUniformMat4("uMVPMatrix", scaleMatrix);
+	m_sphere->getCursor()->scale(.5f, .5f, .5f)->rotate(25, 1, 1, 1);
 
 	std::cout << "loaded" << std::endl;
 }
@@ -47,7 +43,8 @@ void sceneTest002::execute()
 
 void sceneTest002::render()
 {
-	GameObj->renderEngine->render(m_sphere);
+	m_sphere->getCursor()->rotate(.01, 0, 0, 1);
+	GameObj->renderEngine->render(m_sphere, m_sphere->getCursor());
 	check_gl_error();
 
 	//std::cout << "rendered" << std::endl;
