@@ -35,10 +35,25 @@ ShaderProgram::ShaderProgram(std::string vsPath, std::string fsPath): m_programI
 	}
 }
 
+void ShaderProgram::use() const
+{
+	if(ShaderProgram::currentProgram == m_programID)
+		return;
+
+	glUseProgram(m_programID);
+	ShaderProgram::currentProgram = m_programID;
+}
+
 //UNIFORMS
 void ShaderProgram::setUniformMat4(std::string uniformName, glm::mat4 value)
 {
+	//THe program needs to be binded in order to pass uniforms
+	use();
+
 	glUniformMatrix4fv(glGetUniformLocation(m_programID, uniformName.c_str()), 1, GL_FALSE, glm::value_ptr(value));
+
+	GLint id;
+	glGetIntegerv(GL_CURRENT_PROGRAM,&id);
 }
 
 const std::string ShaderProgram::getCompileLog() const
@@ -54,3 +69,5 @@ const std::string ShaderProgram::getCompileLog() const
 
 	return logString;
 }
+
+GLuint ShaderProgram::currentProgram = 0;

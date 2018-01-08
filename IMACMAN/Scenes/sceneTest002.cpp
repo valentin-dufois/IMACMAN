@@ -32,6 +32,11 @@ void sceneTest002::init()
 	m_sphere->generate(PACMAN_M);
 	m_sphere->setProgram(prog);
 
+	glm::mat4 matID(1.0f);
+	glm::mat4 scaleMatrix = glm::scale(matID, glm::vec3(.5f, .5f, 0));
+
+	prog->setUniformMat4("uMVPMatrix", scaleMatrix);
+
 	std::cout << "loaded" << std::endl;
 }
 

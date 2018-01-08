@@ -27,8 +27,10 @@ public:
 
 	/**
 	 Use this program for futur renderings
+
+	 If program is already binded, it will not be binded again
 	 */
-	inline void use() const { glUseProgram(m_programID); };
+	void use() const;
 
 	/**
 	 Get the GL program ID
@@ -55,6 +57,8 @@ private:
 	Shader * m_fsShader;
 
 	const std::string getCompileLog() const;
+
+	static GLuint currentProgram;
 };
 
 #endif /* ShaderProgram_hpp */

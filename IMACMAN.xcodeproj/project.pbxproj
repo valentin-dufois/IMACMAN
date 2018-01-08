@@ -620,11 +620,11 @@
 			isa = PBXGroup;
 			children = (
 				39A216771FF84BA100CA9ADD /* triangle.vs.glsl */,
-				39A216781FF84BA100CA9ADD /* tex2D.fs.glsl */,
-				39A2167A1FF84BA100CA9ADD /* tex2D.vs.glsl */,
 				39A216791FF84BA100CA9ADD /* triangle.fs.glsl */,
-				39AE372520018A7C0080B365 /* textRenderer.fs.glsl */,
+				39A2167A1FF84BA100CA9ADD /* tex2D.vs.glsl */,
+				39A216781FF84BA100CA9ADD /* tex2D.fs.glsl */,
 				39AE372620018A8F0080B365 /* textRenderer.vs.glsl */,
+				39AE372520018A7C0080B365 /* textRenderer.fs.glsl */,
 			);
 			path = shaders;
 			sourceTree = "<group>";

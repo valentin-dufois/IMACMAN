@@ -23,8 +23,6 @@ void Igniter::igniteGameObject(std::string appPath)
 	GameEngine::instanciate();
 	RessourcesEngine::instanciate();
 	RenderEngine::instanciate();
-
-	
 }
 
 void Igniter::igniteSDL()
