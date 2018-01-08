@@ -27,7 +27,7 @@ void Igniter::igniteGameObject(std::string appPath)
 	
 }
 
-void Igniter::igniteSDL()
+void Igniter::igniteSDL(float width, float height)
 {
 	//////////////
 	//INIT SDL
@@ -46,13 +46,16 @@ void Igniter::igniteSDL()
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 3);
 
 	//Create window
+	GameObj->screenWidth = width;
+	GameObj->screenHeight = height;
+
 	//TODO: Dynamic definition of title and dimensions
 	GameObj->mainWindow = SDL_CreateWindow(
 							  "IMACMAN",                  		// window title
 							  SDL_WINDOWPOS_UNDEFINED,        // initial x position
 							  SDL_WINDOWPOS_UNDEFINED,        // initial y position
-							  800,                              // width, in pixels
-							  600,                              // height, in pixels
+							  width,                              // width, in pixels
+							  height,                              // height, in pixels
 							  SDL_WINDOW_OPENGL                // require OpenGL
 							  );
 

@@ -40,15 +40,12 @@ public:
 
 	///////
 	//Utils
-	void loadPlateBoard();
-	void updatePlateBoard();
-
-	void loadGrid();
-	void updateGrid();
-	void renderGrid();
+	void setPerspective(float verticalAngle, float screenRatio, float nearPlane, float farPlane);
 
 	void initVBO(Mesh * mesh, enum MANAGER_TYPE type);
 	void initVAO(Mesh * mesh, enum MANAGER_TYPE type);
+
+	void initRender();
 	void render(Mesh * mesh);
 
 private:
@@ -66,6 +63,11 @@ private:
 	uint m_VBOCountIndex;
 	//Cameras
 	bool thirdPersCamera = false;
+
+	//Matrix
+	glm::mat4 m_ProjectionMatrix;
+	glm::mat4 m_MVMatrix;
+	glm::mat4 m_NormalMatrix;
 
 	//Constructor
 	RenderEngine();

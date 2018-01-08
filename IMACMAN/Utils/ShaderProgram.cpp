@@ -38,7 +38,9 @@ ShaderProgram::ShaderProgram(std::string vsPath, std::string fsPath): m_programI
 //UNIFORMS
 void ShaderProgram::setUniformMat4(std::string uniformName, glm::mat4 value)
 {
-	glUniformMatrix4fv(glGetUniformLocation(m_programID, uniformName.c_str()), 1, GL_FALSE, glm::value_ptr(value));
+	GLuint uMatrixLocation = glGetUniformLocation(m_programID, uniformName.c_str());
+	//std::cout << "location of " << uniformName << ": " << uMatrixLocation << std::endl;
+	glUniformMatrix4fv(uMatrixLocation, 1, GL_FALSE, glm::value_ptr(value));
 }
 
 const std::string ShaderProgram::getCompileLog() const

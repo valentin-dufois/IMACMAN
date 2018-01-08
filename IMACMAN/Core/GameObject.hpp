@@ -45,6 +45,8 @@ public:
 
 	//The window, managed by SDL
 	SDL_Window * mainWindow;
+	float screenWidth;
+	float screenHeight;
 
 	inline std::string getAppPath() const { return m_appPath; };
 

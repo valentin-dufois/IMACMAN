@@ -42,25 +42,9 @@ RenderEngine::RenderEngine()
 	//initVBO(GL_ARRAY_BUFFER, &m_ghostsVBO[0] , GRID);
 }
 
-void RenderEngine::loadPlateBoard()
-{
-
-}
-
-// GRID FUNCTIONS HERE
-void RenderEngine::loadGrid()
-{
-
-}
-
-void RenderEngine::updateGrid()
-{
-
-}
-
-void RenderEngine::renderGrid()
-{
-
+void RenderEngine::setPerspective(float verticalAngle, float screenRatio, float nearPlane, float farPlane) {
+	m_ProjectionMatrix = glm::mat4(1.0);
+	m_ProjectionMatrix = glm::perspective(glm::radians(verticalAngle), screenRatio, nearPlane, farPlane);
 }
 
 void RenderEngine::initVBO(Mesh * mesh, enum MANAGER_TYPE type)
@@ -164,6 +148,14 @@ Manager * RenderEngine::getManager(enum MANAGER_TYPE type)
 	return manager;
 }
 
+void RenderEngine::initRender()
+{
+	float screenRatio = (float) GameObj->screenWidth / GameObj->screenHeight;
+	setPerspective(80.f, screenRatio, 0.1f, 100.f);
+	m_MVMatrix = glm::translate(glm::mat4(1.f), glm::vec3(0.f, 0.f, 5.f));
+	m_NormalMatrix = glm::transpose(glm::inverse(m_MVMatrix));
+}
+
 void RenderEngine::render(Mesh * mesh)
 {
 	if(mesh->vao == 0)
@@ -177,6 +169,11 @@ void RenderEngine::render(Mesh * mesh)
 
 	if(mesh->isTextured())
 		glBindTexture(GL_TEXTURE_2D, mesh->getTextureID());
+	
+	//Send uniform locations to GPU
+	mesh->getProgram()->setUniformMat4("uMVMatrix", m_MVMatrix);
+	mesh->getProgram()->setUniformMat4("uMVPMatrix", (m_ProjectionMatrix * m_MVMatrix));
+	mesh->getProgram()->setUniformMat4("uNormalMatrix", m_NormalMatrix);
 
 	glDrawArrays(GL_TRIANGLES, 0, mesh->getVertexCount());
 	check_gl_error();

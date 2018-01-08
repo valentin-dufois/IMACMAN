@@ -26,7 +26,7 @@ public:
 	ShaderProgram(std::string vsPath, std::string fsPath);
 
 	/**
-	 Use this program for futur renderings
+	 Use this prqogram for futur renderings
 	 */
 	inline void use() const { glUseProgram(m_programID); };
 
