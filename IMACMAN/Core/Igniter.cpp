@@ -8,6 +8,9 @@
 
 #include "Igniter.hpp"
 
+/**
+ Ignite the Game object and instanciate the engines
+ */
 void Igniter::igniteGameObject(std::string appPath)
 {
 	//Get app path
@@ -18,15 +21,15 @@ void Igniter::igniteGameObject(std::string appPath)
 	//Instanciate GameObj
 	GameObject::instanciate(applicationPath.dirPath());
 
-
 	//Instanciate Engines
 	GameEngine::instanciate();
 	RessourcesEngine::instanciate();
 	RenderEngine::instanciate();
-
-	
 }
 
+/**
+ Ignite the SDL library
+ */
 void Igniter::igniteSDL()
 {
 	//////////////
@@ -76,6 +79,9 @@ void Igniter::igniteSDL()
 		throw std::runtime_error("SDL_image could not be loaded.");
 }
 
+/**
+ Ignite the OpenGL library
+ */
 void Igniter::igniteOpenGL()
 {
 	glewExperimental = GL_TRUE;

@@ -13,6 +13,12 @@
 GameObject * GameObj = nullptr;
 bool GameObject::m_instanciated = false;
 
+
+/**
+ Instanciate the singleton GameObject
+
+ @param appPath appPath
+ */
 void GameObject::instanciate(std::string appPath)
 {
 	if(m_instanciated) {
@@ -23,6 +29,12 @@ void GameObject::instanciate(std::string appPath)
 	m_instanciated = true;
 }
 
+
+/**
+ Remove a scene from the GameObject
+
+ @param scene scene The scene to remove
+ */
 void GameObject::removeScene(Scene * scene)
 {
 	for(std::vector<Scene *>::iterator it = m_scenes.begin(); it != m_scenes.end(); ++it) {

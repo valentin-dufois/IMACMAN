@@ -33,8 +33,14 @@ RessourcesEngine::RessourcesEngine(): m_ressourcesLoadedCount(0)
 	}
 }
 
-
-
+/**
+ Return an ID to an asset.
+ Import the asset if needed. Prevent multiple importation
+ 
+ @param path Path to the asset in its type folder
+ @param type Type of the asset
+ @return The asset ressourceID
+ */
 rId RessourcesEngine::loadAsset(std::string path, ressourceType type)
 {
 	std::string assetPath = buildPath(path, type);
@@ -69,6 +75,13 @@ rId RessourcesEngine::loadAsset(std::string path, ressourceType type)
 	return newAssetId;
 }
 
+/**
+ Return an asset
+ This function return nullptr if the asset ID is not found
+ 
+ @param assetID ID of the asset
+ @return Pointer to the asset
+ */
 Asset * RessourcesEngine::getAsset(rId assetID)
 {
 	//Is this asset already loaded ?
@@ -78,6 +91,12 @@ Asset * RessourcesEngine::getAsset(rId assetID)
 	return m_assets[assetID];
 }
 
+/**
+ Generate a 3D cube as a mesh
+ 
+ @param size Width of each edge
+ @return The cube in a Mesh object
+ */
 Mesh RessourcesEngine::genCube(const uint &size)
 {
 	std::vector<Vertex> vertexList;
@@ -144,6 +163,14 @@ Mesh RessourcesEngine::genCube(const uint &size)
 	return Mesh(vertexList);
 }
 
+/**
+ Generate a Sphere as a mesh
+ 
+ @param radius Diameter of the sphere
+ @param precisionLat Smoothness of the sphere
+ @param precisionLong Smoothness of the sphere
+ @return The sphere in a mesh object
+ */
 Mesh RessourcesEngine::genSphere(const float &radius, const uint &precisionLat, const uint &precisionLong)
 {
 	// Equation paramétrique en (r, phi, theta) de la sphère
@@ -207,12 +234,15 @@ Mesh RessourcesEngine::genSphere(const float &radius, const uint &precisionLat, 
 }
 
 
-
-
-
 /////////
 //PRIVATE
 
+/**
+ Return the appropriate importer for the given assets type
+ 
+ @param type Type of the asset
+ @return The importer for the given type
+ */
 Importer * RessourcesEngine::getImporter(ressourceType &type)
 {
 	switch (type)
@@ -242,7 +272,13 @@ Importer * RessourcesEngine::getImporter(ressourceType &type)
 	}
 }
 
-
+/**
+ Build the asset path in its appropriate folder
+ 
+ @param file relative path to the asset
+ @param type Asset type
+ @return The full path to the asset
+ */
 std::string RessourcesEngine::buildPath(std::string &file, ressourceType &type)
 {
 	std::string prefix;
@@ -272,6 +308,12 @@ std::string RessourcesEngine::buildPath(std::string &file, ressourceType &type)
 	return GameObj->getAppPath() + prefix + file;
 }
 
+/**
+ Tell if the given file exist
+ 
+ @param filePath Path to the file
+ @return True if it exists, false otherwise
+ */
 bool RessourcesEngine::fileExist(std::string filePath)
 {
 	std::ifstream file(filePath);

@@ -8,6 +8,12 @@
 
 #include "FontImporter.hpp"
 
+/**
+ Return an asset
+ 
+ @param path Path of the font asset
+ @return Pointor on new font asset
+ */
 Asset * FontImporter::getAsset(std::string path)
 {
 	FT_Face face;

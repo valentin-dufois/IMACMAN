@@ -8,7 +8,12 @@
 
 #include "Core.hpp"
 
-//Ignite the different aspects of the game
+
+/**
+ Ignite all the library and the game Object
+
+ @param appPath appPath
+ */
 void Core::ignite(std::string appPath)
 {
 	Igniter igniter = Igniter();
@@ -21,7 +26,9 @@ void Core::ignite(std::string appPath)
 	srand((uint)time(NULL));
 }
 
-//The main loop
+/**
+ Main loop of the program
+ */
 void Core::main()
 {
 	std::chrono::high_resolution_clock::time_point start, end;
@@ -56,6 +63,9 @@ void Core::main()
 	GameObj->gameEngine->reset();
 }
 
+/**
+ Tempo for the event
+ */
 void Core::tempo(std::chrono::high_resolution_clock::time_point start, std::chrono::high_resolution_clock::time_point end)
 {
 	std::chrono::milliseconds elapsed, toWait;

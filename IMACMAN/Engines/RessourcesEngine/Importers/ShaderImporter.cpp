@@ -8,6 +8,12 @@
 
 #include "ShaderImporter.hpp"
 
+/**
+ Return an asset
+ 
+ @param path Path of the shader
+ @return Shader
+ */
 Asset * ShaderImporter::getAsset(std::string path)
 {
 	std::ifstream input(path.c_str());
@@ -27,6 +33,12 @@ Asset * ShaderImporter::getAsset(std::string path)
 	return shader;
 }
 
+/**
+ Return an GLenum, shader type
+ 
+ @param path Path of the shader asset
+ @return OpenGL Shader type
+ */
 GLenum ShaderImporter::getShaderType(std::string path)
 {
 	std::vector<size_t> positions;

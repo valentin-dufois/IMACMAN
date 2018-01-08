@@ -15,6 +15,13 @@
 #include <vector>
 #include <numeric>
 
+/**
+ Return an asset
+ This function return nullptr if the asset ID is not found
+ 
+ @param path Path of the asset
+ @return Pointer to the new asset level
+ */
 Asset * LevelImporter::getAsset(std::string path)
 {
     if (path.substr(path.find_last_of('.') + 1) != "txt") {

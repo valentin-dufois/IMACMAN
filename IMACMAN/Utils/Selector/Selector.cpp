@@ -12,6 +12,12 @@ Selector::Selector():
 	m_currentItem(nullptr)
 {}
 
+
+/**
+ Add an item
+
+ @param newItem newItem Item to add
+ */
 void Selector::addItem(Item * newItem)
 {
 	m_items.push_back(newItem);
@@ -27,6 +33,9 @@ void Selector::addItem(Item * newItem)
 	}
 }
 
+/**
+ Execut an action for the Item
+ */
 void Selector::execute()
 {
 	if(m_currentItem == nullptr)
@@ -48,12 +57,20 @@ void Selector::execute()
 		return m_currentItem->action();
 }
 
+/**
+ Render the item
+ */
 void Selector::render()
 {
 	for(std::vector<Item *>::iterator it = m_items.begin(); it != m_items.end(); ++it)
         (*it)->print();
 }
 
+/**
+ Move the cursor
+ 
+ @param item item to select
+ */
 void Selector::moveCursor(Item * item)
 {
 	if(item == nullptr)
@@ -68,6 +85,9 @@ void Selector::moveCursor(Item * item)
 	m_currentItem = item;
 }
 
+/**
+ Desctructor
+*/
 Selector::~Selector()
 {
 	for(std::vector<Item *>::iterator it = m_items.begin(); it != m_items.end(); ++it)
