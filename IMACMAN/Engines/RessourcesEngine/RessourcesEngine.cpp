@@ -200,6 +200,9 @@ Mesh * RessourcesEngine::genSphere(const float &radius, const uint &precisionLat
 			vertex.normal.y = sinTheta;
 			vertex.normal.z = cos(i * dPhi) * cosTheta;
 
+
+			vertex.color = glm::vec4(vertex.normal, 1);
+
 			vertex.position = radius * vertex.normal;
 
 			data.push_back(vertex);
