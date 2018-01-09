@@ -151,8 +151,8 @@ Manager * RenderEngine::getManager(enum MANAGER_TYPE type)
 void RenderEngine::initRender()
 {
 	float screenRatio = (float) GameObj->screenWidth / GameObj->screenHeight;
-	setPerspective(80.f, screenRatio, 0.1f, 100.f);
-	m_MVMatrix = glm::translate(glm::mat4(1.f), glm::vec3(0.f, 0.f, 5.f));
+	setPerspective(70.f, screenRatio, 0.1f, 100.f);
+	m_MVMatrix = glm::translate(glm::mat4(1.f), glm::vec3(0.f, 0.f, -20.f));
 	m_NormalMatrix = glm::transpose(glm::inverse(m_MVMatrix));
 }
 
@@ -167,10 +167,11 @@ void RenderEngine::render(Mesh * mesh, DrawCursor * cursor)
 	//Bind VAO
 	glBindVertexArray(mesh->vao);
 
+	//Bind texture if needed -- NOT TESTED --
 	if(mesh->isTextured())
 		glBindTexture(GL_TEXTURE_2D, mesh->getTextureID());
-	
-	//Send uniform locations to GPU
+
+	//Send uniforms to GPU
 	mesh->getProgram()->setUniformMat4("uMVMatrix", m_MVMatrix);
 	mesh->getProgram()->setUniformMat4("uMVPMatrix", (m_ProjectionMatrix * m_MVMatrix));
 	mesh->getProgram()->setUniformMat4("uNormalMatrix", m_NormalMatrix);
@@ -180,7 +181,7 @@ void RenderEngine::render(Mesh * mesh, DrawCursor * cursor)
 	glDrawArrays(GL_TRIANGLES, 0, mesh->getVertexCount());
 	check_gl_error();
 
-	//Débindind du vao de la cible pour éviter de le remodifier
+	//Débinding du vao de la cible pour éviter de le remodifier
 	glBindTexture(GL_TEXTURE_2D, 0);
 	glBindVertexArray(0);
 }

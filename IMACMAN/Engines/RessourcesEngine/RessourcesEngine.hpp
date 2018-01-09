@@ -77,7 +77,7 @@ public:
  	 @param size Width of each edge
  	 @return The cube in a Mesh object
  	 */
- 	Mesh genCube(const uint &size);
+ 	Mesh * genCube(const uint &size);
 
 	/**
 	 Generate a Sphere as a mesh

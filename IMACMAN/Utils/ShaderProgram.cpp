@@ -50,10 +50,10 @@ void ShaderProgram::setUniformMat4(std::string uniformName, glm::mat4 value)
 	//THe program needs to be binded in order to pass uniforms
 	use();
 
-	glUniformMatrix4fv(glGetUniformLocation(m_programID, uniformName.c_str()), 1, GL_FALSE, glm::value_ptr(value));
+	GLuint uniformLocation = glGetUniformLocation(m_programID, uniformName.c_str());
+	glUniformMatrix4fv(uniformLocation, 1, GL_FALSE, glm::value_ptr(value));
 
-	GLint id;
-	glGetIntegerv(GL_CURRENT_PROGRAM,&id);
+	//std::cout << uniformName << ": " << uniformLocation << std::endl;
 }
 
 const std::string ShaderProgram::getCompileLog() const
