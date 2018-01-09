@@ -43,8 +43,7 @@ RenderEngine::RenderEngine()
 }
 
 void RenderEngine::setPerspective(float verticalAngle, float screenRatio, float nearPlane, float farPlane) {
-	m_ProjectionMatrix = glm::mat4(1.0);
-	m_ProjectionMatrix = glm::perspective(glm::radians(verticalAngle), screenRatio, nearPlane, farPlane);
+	m_ProjectionMatrix.perspective(verticalAngle, screenRatio, nearPlane, farPlane);
 }
 
 void RenderEngine::initVBO(Mesh * mesh, enum MANAGER_TYPE type)
@@ -152,8 +151,9 @@ void RenderEngine::initRender()
 {
 	float screenRatio = (float) GameObj->screenWidth / GameObj->screenHeight;
 	setPerspective(70.f, screenRatio, 0.1f, 100.f);
-	m_MVMatrix = glm::translate(glm::mat4(1.f), glm::vec3(0.f, 0.f, -20.f));
-	m_NormalMatrix = glm::transpose(glm::inverse(m_MVMatrix));
+	m_MVMatrix.translate(0.f, 0.f, -20.f);
+	m_NormalMatrix = m_MVMatrix;
+	m_NormalMatrix.inverse()->transpose();
 }
 
 void RenderEngine::render(Mesh * mesh, DrawCursor * cursor)

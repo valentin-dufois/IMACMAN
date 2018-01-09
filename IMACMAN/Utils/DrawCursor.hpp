@@ -26,6 +26,7 @@ public:
 	 @param X X offset
 	 @param Y Y offset
 	 @param Z Z offset
+	 @return Cursor for chaining
 	 */
 	inline DrawCursor * translate(const float &X, const float &Y, const float &Z) {
 		return translate(glm::vec3(X, Y, Z));
@@ -35,6 +36,7 @@ public:
 	 Translate the cursor along the given vector
 
 	 @param vector Vector offset
+	 @return Cursor for chaining
 	 */
 	DrawCursor * translate(const glm::vec3 &vector);
 
@@ -44,6 +46,7 @@ public:
 	 @param X X factor
 	 @param Y Y factor
 	 @param Z Z factor
+	 @return Cursor for chaining
 	 */
 	inline DrawCursor * scale(const float &X, const float &Y, const float &Z) {
 		return scale(glm::vec3(X, Y, Z));
@@ -53,6 +56,7 @@ public:
 	 Scale the cursor for the given factors
 
 	 @param vector Vector factor
+	 @return Cursor for chaining
 	 */
 	DrawCursor * scale(const glm::vec3 &vector);
 
@@ -63,6 +67,7 @@ public:
 	 @param X Rotate factor on the X axis
 	 @param Y Rotate factor on the Y axis
 	 @param Z Rotate factor on the Z axis
+	 @return Cursor for chaining
 	 */
 	inline DrawCursor * rotate(const float &angle, const float &X, const float &Y, const float &Z) {
 		return rotate(angle, glm::vec3(X, Y, Z));
@@ -73,8 +78,35 @@ public:
 
 	 @param angle Angle to rotate in degrees
 	 @param vector Rotate factors
+	 @return Cursor for chaining
 	 */
 	DrawCursor * rotate(const float &angle, const glm::vec3 &vector);
+
+	/**
+	 Inverse the cursor's matrix
+
+	 @return Cursor for chaining
+	 */
+	DrawCursor * inverse();
+
+	/**
+	 Transpose the cursor's matrix
+
+	 @return Cursor for chaining
+	 */
+	DrawCursor * transpose();
+
+	/**
+	 Build a perspective matrix with the given attributes
+
+	 @param fov Field of view in degrees
+	 @param aspect Aspect of the FOV
+	 @param nearest Distance to the nearest point
+	 @param farthest Distance to the farthest point
+	 @return Cursor for chaining
+	 */
+	DrawCursor * perspective(float fov, float aspect, float nearest, float farthest);
+
 
 	/**
 	 Return the matrix depicting the cursor state
@@ -118,6 +150,40 @@ public:
 
 		return false;
 	}
+
+	/**
+	 Cast the cursor as a mat4
+
+	 @return The cursor's matrix
+	 */
+	operator glm::mat4 ()
+	{
+		return m_cursor;
+	}
+
+	/**
+	 Multiplication operator
+
+	 @param term Another mat4/DrawCursor
+	 @return A new cursor with the resulting value
+	 */
+	DrawCursor operator * (glm::mat4 term)
+	{
+		return DrawCursor(m_cursor * term);
+	}
+
+	/**
+	 Assignement operator
+
+	 @param term The new value
+	 @return The updated cursor with the new value
+	 */
+	DrawCursor * operator = (glm::mat4 term)
+	{
+		m_cursor = term;
+		return this;
+	}
+
 
 private:
 	glm::mat4 m_cursor;
