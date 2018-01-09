@@ -43,8 +43,10 @@ public:
 	 */
 	void render();
 
-	std::vector<Mesh *> getItemMesh(std::vector<GItem *> items);
 	void renderMeshList(std::vector<Mesh *> meshList);
+
+	std::vector<Mesh *> getItemMesh(std::vector<GItem *> items);
+	Mesh * genMeshWithAttributs(glm::vec2 position, enum ITEM_SYNTAX itemType);
 	glm::vec4 getGhostColor(std::string ghostName);
 
 	/**

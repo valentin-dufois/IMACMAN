@@ -173,10 +173,10 @@ void RenderEngine::render(Mesh * mesh, DrawCursor * cursor)
 
 	//Send uniforms to GPU
 	mesh->getProgram()->setUniformMat4("uMVMatrix", m_MVMatrix);
-	//mesh->getProgram()->setUniformMat4("uMVPMatrix", (m_ProjectionMatrix * m_MVMatrix));
+	mesh->getProgram()->setUniformMat4("uMVPMatrix", (m_ProjectionMatrix * m_MVMatrix));
 	mesh->getProgram()->setUniformMat4("uNormalMatrix", m_NormalMatrix);
 
-	mesh->getProgram()->setUniformMat4("uMVPMatrix", cursor->getMatrix());
+	//mesh->getProgram()->setUniformMat4("uMVPMatrix", cursor->getMatrix());
 
 	glDrawArrays(GL_TRIANGLES, 0, mesh->getVertexCount());
 	check_gl_error();

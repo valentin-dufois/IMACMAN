@@ -64,33 +64,32 @@ void sceneGame01::execute()
 void sceneGame01::render()
 {
 	this->renderMeshList(m_levelWalls);
+	this->renderMeshList(m_levelGums);
+	this->renderMeshList(m_levelSuperGums);
 }
 
+//SPECIFIC METHODS OF THIS SCENE
 std::vector<Mesh *> sceneGame01::getItemMesh(std::vector<GItem *> items) {
 	std::vector<GItem *>::const_iterator it;
-	std::vector<Mesh *> tmpMesh;
+	std::vector<Mesh *> meshList;
 	
 	for (it = items.begin(); it < items.end(); ++it) {
-		tmpMesh.push_back(GameObj->ressourcesEngine->genCube(1));
-		tmpMesh.back()->generate(GRID_M);
-		tmpMesh.back()->setProgram(scene_prog);
-		tmpMesh.back()->getCursor()->translate(
-			glm::vec3(
-				(*it)->getPosition(),
-				0.f
-			)
-		);
+		meshList.push_back(genMeshWithAttributs(
+			(*it)->getPosition(),
+			(*it)->getItemType()
+		));
 	}
 
-	return tmpMesh;
+	return meshList;
 }
 
-void setMeshAttributs(Mesh * mesh) {
+Mesh * sceneGame01::genMeshWithAttributs(glm::vec2 position, enum ITEM_SYNTAX itemType) {
+	Mesh * tmpMesh;
 	glm::vec4 meshColor;
 	float scale = 1.f;
 	bool isSphere = true;
 
-	switch(mesh->getType()) {
+	switch(itemType) {
 		case ITEM_SYNTAX::WALL:
 			isSphere = false;
 			meshColor = glm::vec4(0, 185, 161, 1);
@@ -130,6 +129,18 @@ void setMeshAttributs(Mesh * mesh) {
 		default:
 			break;
 	}
+	
+	if (isSphere) {
+		tmpMesh = GameObj->ressourcesEngine->genSphere(scale, 16, 16, meshColor);
+	} else {
+		tmpMesh = GameObj->ressourcesEngine->genCube(scale, meshColor);
+	}
+
+	tmpMesh->generate(GRID_M);
+	tmpMesh->setProgram(scene_prog);
+	tmpMesh->getCursor()->translate(glm::vec3(position, 0));
+
+	return tmpMesh;
 }
 
 void sceneGame01::renderMeshList(std::vector<Mesh *> meshList) {
