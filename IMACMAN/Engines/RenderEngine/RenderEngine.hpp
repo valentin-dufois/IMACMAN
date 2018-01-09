@@ -34,7 +34,7 @@ public:
 	/**
 	 Init render properties such as matrix
 	 */
-	void initRender();
+	void initRender(float screenRatio, float halfLevelWidth, float halfLevelHeight);
 
 	/**
 	 Return the object manager for the given type

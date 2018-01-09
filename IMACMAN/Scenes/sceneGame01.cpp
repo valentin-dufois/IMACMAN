@@ -22,50 +22,45 @@ void sceneGame01::init()
 	scene_prog = new ShaderProgram("triangle.vs.glsl", "triangle.fs.glsl");
 
 	//Load level
-	rId levelID = GameObj->ressourcesEngine->loadAsset("level00.txt", LEVEL);
-	m_level = *GameObj->ressourcesEngine->getAsset(levelID);
+	rId levelID = GameObj->ressourcesEngine->loadAsset("level01.txt", LEVEL);
+	Level * level = *GameObj->ressourcesEngine->getAsset(levelID);
 
-	//Load the level inside the Game Engine
-	GameObj->gameEngine->loadLevel(m_level);
-	
-	m_levelWalls = this->getItemMesh(GameObj->gameEngine->getGrid()->getItemList(ITEM_SYNTAX::WALL));
-	m_levelGums = this->getItemMesh(GameObj->gameEngine->getGrid()->getItemList(ITEM_SYNTAX::PAC_GUM));
-	m_levelSuperGums = this->getItemMesh(GameObj->gameEngine->getGrid()->getItemList(ITEM_SYNTAX::SUPER_PAC_GUM));
+	//Load the level inside the Game Engine and get the Grid
+	GameObj->gameEngine->loadLevel(level);
+	m_gridLevel = GameObj->gameEngine->getGrid();
 
-	//Generate Sphere
-	/*m_sphere = GameObj->ressourcesEngine->genSphere(1, 32, 32);
-	m_sphere->generate(PACMAN_M);
-	m_sphere->setProgram(scene_prog);
-	m_sphere->getCursor()->scale(.5f, .5f, .5f)->rotate(25, 1, 1, 1);*/
+	//Init renderer values
+	float screenRatio = (float) GameObj->screenWidth / GameObj->screenHeight;
+	float levelHalfWidth = (float) GameObj->gameEngine->getGrid()->getWidth() / 2;
+	float levelHalfHeight = (float) GameObj->gameEngine->getGrid()->getHeight() / 2;
 
-	std::cout << "sceneGame01 loaded" << std::endl;
-
-	GameObj->renderEngine->initRender();
+	GameObj->renderEngine->initRender(screenRatio, levelHalfWidth, levelHalfHeight);
 }
 
 void sceneGame01::execute()
 {
-	Grid * grid = GameObj->gameEngine->getGrid();
-	DynamicItem * pacman = reinterpret_cast<DynamicItem *>(grid->getItem(ITEM_SYNTAX::PACMAN));
+	//Get Pacman to handle moves and render
+	DynamicItem * pacman = reinterpret_cast<DynamicItem *>(m_gridLevel->getItem(ITEM_SYNTAX::PACMAN));
 
 	if (GameObj->gameEngine->getKeys().UP) {
 		pacman->updateDirection(DIRECTION::UP);
+		m_pacman->getCursor()->translate(0.f, -1.f, 0.f);
 	} else if (GameObj->gameEngine->getKeys().DOWN) {
 		pacman->updateDirection(DIRECTION::DOWN);
+		m_pacman->getCursor()->translate(0.f, 1.f, 0.f);
 	} else if (GameObj->gameEngine->getKeys().LEFT) {
 		pacman->updateDirection(DIRECTION::LEFT);
+		m_pacman->getCursor()->translate(-1.f, 0.f, 0.f);
 	} else if (GameObj->gameEngine->getKeys().RIGHT) {
 		pacman->updateDirection(DIRECTION::RIGHT);
+		m_pacman->getCursor()->translate(1.f, 0.f, 0.f);
 	}
-
-	grid->moveItems();
+	m_gridLevel->moveItems();
 }
 
 void sceneGame01::render()
 {
-	this->renderMeshList(m_levelWalls);
-	this->renderMeshList(m_levelGums);
-	this->renderMeshList(m_levelSuperGums);
+	this->renderMeshList(m_gridLevel);
 }
 
 void sceneGame01::renderMeshList(std::vector<GItem *> meshList) {

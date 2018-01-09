@@ -33,7 +33,6 @@ std::vector<GItem *> Grid::getItemList(enum ITEM_SYNTAX type) const
     for (it = m_gridItems.begin(); it < m_gridItems.end(); ++it) {
         if ((*it)->getItemType() == type) {
             result.push_back(*it);
-            std::cout << "COUCOU" << std::endl;
         }
     }
     

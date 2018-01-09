@@ -11,6 +11,7 @@
 
 #include "Scene.hpp"
 #include "libraries.hpp"
+#include "Engines/GameEngine/GameEngine.hpp"
 #include "Engines/RessourcesEngine/RessourcesEngine.hpp"
 #include "Engines/RenderEngine/RenderEngine.hpp"
 #include "Utils/ShaderProgram.hpp"
@@ -53,11 +54,8 @@ public:
 private:
 	rId m_sceneID;
 	ShaderProgram * scene_prog;
-	Level * m_level;
+	Grid * m_gridLevel;
 	Mesh * m_sphere;
-	std::vector<Mesh *> m_levelWalls;
-	std::vector<Mesh *> m_levelGums;
-	std::vector<Mesh *> m_levelSuperGums;
 	
 };
 
