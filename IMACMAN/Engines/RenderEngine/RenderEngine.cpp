@@ -23,6 +23,20 @@ void RenderEngine::instanciate()
 	m_instanciated = true;
 }
 
+void RenderEngine::initRender()
+{
+	//Projection Matrix
+	float screenRatio = (float) GameObj->screenWidth / GameObj->screenHeight;
+	m_ProjectionMatrix.perspective(70.f, screenRatio, 0.1f, 100.f);
+
+	//MV Matrix <- The camera in a sort
+	m_MVMatrix.translate(0, 0, -10);
+
+	//Normal
+	m_NormalMatrix = m_MVMatrix;
+	m_NormalMatrix.inverse()->transpose();
+}
+
 /**
  * Private constructor
  */
@@ -41,11 +55,6 @@ RenderEngine::RenderEngine()
 
 	//initVBO(GL_ARRAY_BUFFER, &m_ghostsVBO[0] , GRID);
 }
-
-void RenderEngine::setPerspective(float verticalAngle, float screenRatio, float nearPlane, float farPlane) {
-	m_ProjectionMatrix.perspective(verticalAngle, screenRatio, nearPlane, farPlane);
-}
-
 void RenderEngine::initVBO(Mesh * mesh, enum MANAGER_TYPE type)
 {
 	//Get Manager for VBO
@@ -147,15 +156,6 @@ Manager * RenderEngine::getManager(enum MANAGER_TYPE type)
 	return manager;
 }
 
-void RenderEngine::initRender()
-{
-	float screenRatio = (float) GameObj->screenWidth / GameObj->screenHeight;
-	setPerspective(70.f, screenRatio, 0.1f, 100.f);
-	m_MVMatrix.translate(0.f, 0.f, -20.f);
-	m_NormalMatrix = m_MVMatrix;
-	m_NormalMatrix.inverse()->transpose();
-}
-
 void RenderEngine::render(Mesh * mesh, DrawCursor * cursor)
 {
 	if(mesh->vao == 0)
@@ -172,11 +172,12 @@ void RenderEngine::render(Mesh * mesh, DrawCursor * cursor)
 		glBindTexture(GL_TEXTURE_2D, mesh->getTextureID());
 
 	//Send uniforms to GPU
-	mesh->getProgram()->setUniformMat4("uMVMatrix", m_MVMatrix);
-	mesh->getProgram()->setUniformMat4("uMVPMatrix", (m_ProjectionMatrix * m_MVMatrix));
-	mesh->getProgram()->setUniformMat4("uNormalMatrix", m_NormalMatrix);
 
-	//mesh->getProgram()->setUniformMat4("uMVPMatrix", cursor->getMatrix());
+	glm::mat4 PosInCameraView = m_MVMatrix * cursor->getMatrix();
+
+	mesh->getProgram()->setUniformMat4("uMVMatrix", m_MVMatrix);
+	mesh->getProgram()->setUniformMat4("uNormalMatrix", m_NormalMatrix);
+	mesh->getProgram()->setUniformMat4("uMVPMatrix", m_ProjectionMatrix * PosInCameraView);
 
 	glDrawArrays(GL_TRIANGLES, 0, mesh->getVertexCount());
 	check_gl_error();
