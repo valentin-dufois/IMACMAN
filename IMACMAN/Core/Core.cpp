@@ -17,8 +17,6 @@ void Core::ignite(std::string appPath)
 	igniter.igniteSDL(800, 600);
 	igniter.igniteOpenGL();
 
-	GameObj->renderEngine->initRender();
-
 	//Init random generator
 	srand((uint)time(NULL));
 }
@@ -29,7 +27,7 @@ void Core::main()
 	std::chrono::high_resolution_clock::time_point start, end;
 
 	//Load the first scene
-	sceneTest002::load();
+	sceneGame01::load();
 
 	while(GameObj->isRunning())
 	{

@@ -48,6 +48,7 @@ public:
     std::vector<GItem *> getGrid() const;
     std::vector<GItem *> getItem(glm::vec2 position) const;
     GItem * getItem(enum ITEM_SYNTAX type) const;
+    std::vector<GItem *> getItemList(enum ITEM_SYNTAX type) const;
     bool checkItemsExist(std::vector<enum ITEM_SYNTAX> types) const;
 
     //SETTERS

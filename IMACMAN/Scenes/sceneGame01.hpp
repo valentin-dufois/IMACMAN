@@ -6,8 +6,8 @@
 //  Copyright © 2017 Valentin Dufois. All rights reserved.
 //
 
-#ifndef sceneTest002_hpp
-#define sceneTest002_hpp
+#ifndef sceneGame01_hpp
+#define sceneGame01_hpp
 
 #include "Scene.hpp"
 #include "libraries.hpp"
@@ -20,7 +20,7 @@
 #include <glm/gtx/string_cast.hpp>
 #include <glm/ext.hpp>
 
-class sceneTest002: public Scene
+class sceneGame01: public Scene
 {
 public:
 	/**
@@ -43,17 +43,24 @@ public:
 	 */
 	void render();
 
+	std::vector<Mesh *> getItemMesh(std::vector<GItem *> items);
+	void renderMeshList(std::vector<Mesh *> meshList);
+	glm::vec4 getGhostColor(std::string ghostName);
+
 	/**
 	 Destructor, used to properly free all the memory used by the scene
 	 */
-	~sceneTest002() {}
+	~sceneGame01() {}
 
 private:
 	rId m_sceneID;
+	ShaderProgram * scene_prog;
 	Level * m_level;
 	Mesh * m_sphere;
-	Mesh * m_cube;
+	std::vector<Mesh *> m_levelWalls;
+	std::vector<Mesh *> m_levelGums;
+	std::vector<Mesh *> m_levelSuperGums;
 	
 };
 
-#endif /* sceneTest002_hpp */
+#endif /* sceneGame01_hpp */

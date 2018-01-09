@@ -78,7 +78,7 @@ Asset * RessourcesEngine::getAsset(rId assetID)
 	return m_assets[assetID];
 }
 
-Mesh * RessourcesEngine::genCube(const uint &size)
+Mesh * RessourcesEngine::genCube(const uint &size, glm::vec4 baseColor)
 {
 	std::vector<Vertex> vertexList;
 	float demisize = (float)size / 2.0;
@@ -158,10 +158,10 @@ Mesh * RessourcesEngine::genCube(const uint &size)
 	vertexList.push_back(Vertex(C, normalTop, colorTop, UV));
 	vertexList.push_back(Vertex(G, normalTop, colorTop, UV));
 
-	return new Mesh(vertexList);
+	return new Mesh(vertexList, baseColor);
 }
 
-Mesh * RessourcesEngine::genSphere(const float &radius, const uint &precisionLat, const uint &precisionLong)
+Mesh * RessourcesEngine::genSphere(const float &radius, const uint &precisionLat, const uint &precisionLong, glm::vec4 baseColor)
 {
 	// Equation paramétrique en (r, phi, theta) de la sphère
 	// avec r >= 0, -PI / 2 <= theta <= PI / 2, 0 <= phi <= 2PI
@@ -225,7 +225,7 @@ Mesh * RessourcesEngine::genSphere(const float &radius, const uint &precisionLat
 		}
 	}
 
-	return new Mesh(vertices, true);
+	return new Mesh(vertices, baseColor, true);
 }
 
 

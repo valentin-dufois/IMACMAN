@@ -25,6 +25,25 @@ std::vector<GItem *> Grid::getItem(glm::vec2 position) const
     return result;
 }
 
+std::vector<GItem *> Grid::getItemList(enum ITEM_SYNTAX type) const
+{
+    std::vector<GItem *> result;
+    std::vector<GItem *>::const_iterator it;
+
+    for (it = m_gridItems.begin(); it < m_gridItems.end(); ++it) {
+        if ((*it)->getItemType() == type) {
+            result.push_back(*it);
+            std::cout << "COUCOU" << std::endl;
+        }
+    }
+    
+    if(result.size() == 0) {
+        throw std::runtime_error("Error: There is no item of this type !\n");
+    }
+
+    return result;
+}
+
 GItem * Grid::getItem(enum ITEM_SYNTAX type) const {
     std::vector<GItem *>::const_iterator it = std::find_if(
         m_gridItems.begin(),
