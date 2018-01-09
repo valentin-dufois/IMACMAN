@@ -64,6 +64,8 @@ void sceneGame01::execute()
 void sceneGame01::render()
 {
 	this->renderMeshList(m_levelWalls);
+	this->renderMeshList(m_levelGums);
+	this->renderMeshList(m_levelSuperGums);
 }
 
 void sceneGame01::renderMeshList(std::vector<GItem *> meshList) {

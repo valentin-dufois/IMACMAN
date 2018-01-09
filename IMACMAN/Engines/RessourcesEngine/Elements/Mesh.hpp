@@ -137,9 +137,6 @@ private:
 	//Position
 	DrawCursor m_cursor;
 
-	//color
-	glm::vec4 m_color;
-
 	//Style
 	bool m_textured;
 	GLuint m_textureID;
