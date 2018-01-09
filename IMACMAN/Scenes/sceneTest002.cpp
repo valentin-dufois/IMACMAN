@@ -29,7 +29,7 @@ void sceneTest002::init()
 	m_sphere = GameObj->ressourcesEngine->genSphere(1, 32, 32);
 	m_sphere->generate(PACMAN_M);
 	m_sphere->setProgram(prog);
-	m_sphere->getCursor()->scale(.5f, .5f, .5f)->rotate(25, 1, 1, 1);
+	m_sphere->getCursor()->translate(1, 0, 0)->rotate(25, 1, 1, 1);
 
 	//Generate Cube
 	m_cube = GameObj->ressourcesEngine->genCube(1);
@@ -48,8 +48,8 @@ void sceneTest002::execute()
 
 void sceneTest002::render()
 {
+	GameObj->renderEngine->render(m_sphere, m_sphere->getCursor());
 	GameObj->renderEngine->render(m_cube, m_cube->getCursor());
-	//GameObj->renderEngine->render(m_sphere, m_sphere->getCursor());
 
 	//std::cout << "rendered" << std::endl;
 }
