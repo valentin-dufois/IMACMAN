@@ -68,9 +68,9 @@ private:
 	bool thirdPersCamera = false;
 
 	//Matrix
-	glm::mat4 m_ProjectionMatrix;
-	glm::mat4 m_MVMatrix;
-	glm::mat4 m_NormalMatrix;
+	DrawCursor m_ProjectionMatrix;
+	DrawCursor m_MVMatrix;
+	DrawCursor m_NormalMatrix;
 
 	//Constructor
 	RenderEngine();
