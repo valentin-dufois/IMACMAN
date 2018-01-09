@@ -21,6 +21,10 @@
 		39579A101FF579C000FC09D3 /* GridManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39579A061FF579C000FC09D3 /* GridManager.cpp */; };
 		39579A111FF579C000FC09D3 /* PacmanManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39579A071FF579C000FC09D3 /* PacmanManager.cpp */; };
 		39579A151FF57A6600FC09D3 /* SDL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39579A131FF57A6600FC09D3 /* SDL.cpp */; };
+		3966C13B200564D100C527EA /* sceneTest003.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3966C139200564D100C527EA /* sceneTest003.cpp */; };
+		3966C13D200566E000C527EA /* primitives.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3966C13C200566E000C527EA /* primitives.cpp */; };
+		3966C13F2005687200C527EA /* libassimp.4.0.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3966C13E2005687200C527EA /* libassimp.4.0.1.dylib */; };
+		3966C14420056E4400C527EA /* sceneConsole.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3966C14220056E4400C527EA /* sceneConsole.cpp */; };
 		3976C3BA1FC42A84008CC4F1 /* Core.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3976C3B81FC42A84008CC4F1 /* Core.cpp */; };
 		3976C3BD1FC42ACC008CC4F1 /* Igniter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3976C3BB1FC42ACC008CC4F1 /* Igniter.cpp */; };
 		3976C3BF1FC42D5D008CC4F1 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3976C3BE1FC42D5D008CC4F1 /* SDL2.framework */; };
@@ -94,6 +98,12 @@
 		39579A091FF579C000FC09D3 /* RenderEngine.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = RenderEngine.hpp; sourceTree = "<group>"; };
 		39579A131FF57A6600FC09D3 /* SDL.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SDL.cpp; sourceTree = "<group>"; };
 		39579A141FF57A6600FC09D3 /* SDL.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SDL.hpp; sourceTree = "<group>"; };
+		3966C139200564D100C527EA /* sceneTest003.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = sceneTest003.cpp; sourceTree = "<group>"; };
+		3966C13A200564D100C527EA /* sceneTest003.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = sceneTest003.hpp; sourceTree = "<group>"; };
+		3966C13C200566E000C527EA /* primitives.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = primitives.cpp; sourceTree = "<group>"; };
+		3966C13E2005687200C527EA /* libassimp.4.0.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libassimp.4.0.1.dylib; path = ../../../../../usr/local/Cellar/assimp/4.0.1/lib/libassimp.4.0.1.dylib; sourceTree = "<group>"; };
+		3966C14120056E4400C527EA /* sceneConsole.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = sceneConsole.hpp; sourceTree = "<group>"; };
+		3966C14220056E4400C527EA /* sceneConsole.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sceneConsole.cpp; sourceTree = "<group>"; };
 		3970E5171FC2E7140007F948 /* boost */ = {isa = PBXFileReference; lastKnownFileType = folder; path = boost; sourceTree = "<group>"; };
 		3970E5181FC2EBB30007F948 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		3976C3B81FC42A84008CC4F1 /* Core.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Core.cpp; sourceTree = "<group>"; };
@@ -440,6 +450,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3966C13F2005687200C527EA /* libassimp.4.0.1.dylib in Frameworks */,
 				393375E31FF54C5200024EB1 /* libfreetype.6.dylib in Frameworks */,
 				3984E4B61FE9A2DD00808799 /* libGLEW.2.1.0.dylib in Frameworks */,
 				3912B41D1FC4B93800982C49 /* SDL2_image.framework in Frameworks */,
@@ -686,6 +697,7 @@
 				39B5E6E21FC367F100B99CC2 /* Elements */,
 				39B5E6DC1FC364C200B99CC2 /* RessourcesEngine.cpp */,
 				39B5E6DD1FC364C200B99CC2 /* RessourcesEngine.hpp */,
+				3966C13C200566E000C527EA /* primitives.cpp */,
 			);
 			path = RessourcesEngine;
 			sourceTree = "<group>";
@@ -714,6 +726,7 @@
 		39B5E6E61FC3727600B99CC2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3966C13E2005687200C527EA /* libassimp.4.0.1.dylib */,
 				393375E11FF54C0A00024EB1 /* libfreetype.6.dylib */,
 				3984E4B51FE9A2DD00808799 /* libGLEW.2.1.0.dylib */,
 				3912B41C1FC4B93800982C49 /* SDL2_image.framework */,
@@ -1052,11 +1065,15 @@
 		39DC5FAA1FC2E5F8001515C0 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				3966C14220056E4400C527EA /* sceneConsole.cpp */,
+				3966C14120056E4400C527EA /* sceneConsole.hpp */,
 				565E05731FFD13A1007AF7BA /* sceneTest002.cpp */,
 				565E05761FFD13A1007AF7BA /* sceneTest002.hpp */,
 				3984E4B31FE9791900808799 /* Scene.hpp */,
 				393375DE1FF5404700024EB1 /* sceneTest001.cpp */,
 				393375DF1FF5404700024EB1 /* sceneTest001.hpp */,
+				3966C139200564D100C527EA /* sceneTest003.cpp */,
+				3966C13A200564D100C527EA /* sceneTest003.hpp */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -1147,6 +1164,7 @@
 				39C2BA6C1FF59BC400589342 /* Asset.cpp in Sources */,
 				39AE370B2001611B0080B365 /* Fruit.cpp in Sources */,
 				39AE37212001620E0080B365 /* UIElementManager.cpp in Sources */,
+				3966C13D200566E000C527EA /* primitives.cpp in Sources */,
 				39B5E6EF1FC387C000B99CC2 /* Mesh.cpp in Sources */,
 				39B5E6FD1FC38F0800B99CC2 /* Shader.cpp in Sources */,
 				3912B4141FC47BA700982C49 /* main.cpp in Sources */,
@@ -1155,6 +1173,7 @@
 				393375E01FF5404700024EB1 /* sceneTest001.cpp in Sources */,
 				39AE370F2001611B0080B365 /* Pacman.cpp in Sources */,
 				39B5E7031FC3905300B99CC2 /* MeshImporter.cpp in Sources */,
+				3966C14420056E4400C527EA /* sceneConsole.cpp in Sources */,
 				39A761E82003F92000CF851E /* DrawCursor.cpp in Sources */,
 				39B5E6F21FC3898E00B99CC2 /* Level.cpp in Sources */,
 				39B5E6DE1FC364C200B99CC2 /* RessourcesEngine.cpp in Sources */,
@@ -1162,6 +1181,7 @@
 				39B5E7061FC3907C00B99CC2 /* LevelImporter.cpp in Sources */,
 				393375DD1FF5337200024EB1 /* Selector.cpp in Sources */,
 				39B5E6FA1FC38D1100B99CC2 /* ImageImporter.cpp in Sources */,
+				3966C13B200564D100C527EA /* sceneTest003.cpp in Sources */,
 				393375DC1FF5337200024EB1 /* Item.cpp in Sources */,
 				39AE371B2001611C0080B365 /* Grid.cpp in Sources */,
 				39579A151FF57A6600FC09D3 /* SDL.cpp in Sources */,
@@ -1336,6 +1356,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					/usr/local/lib,
 					/usr/local/Cellar/freetype/2.8/lib,
+					/usr/local/Cellar/assimp/4.0.1/lib,
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1364,6 +1385,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					/usr/local/lib,
 					/usr/local/Cellar/freetype/2.8/lib,
+					/usr/local/Cellar/assimp/4.0.1/lib,
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_NAME = "$(TARGET_NAME)";

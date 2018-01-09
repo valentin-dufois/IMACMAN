@@ -25,7 +25,6 @@ public:
 
 private:
 	GLenum getShaderType(std::string path);
-
 };
 
 #endif /* ShaderImporter_hpp */

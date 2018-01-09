@@ -19,7 +19,12 @@ struct Vertex
 
 	Vertex(glm::vec3 pos):
 		position(pos),
-		color(glm::vec4(1, 0, 0, 1)) {};
+		color(glm::vec4(1, 1, 1, 1)) {};
+
+	Vertex(glm::vec3 pos, glm::vec3 aNormal):
+		position(pos),
+		color(glm::vec4(1, 1, 1, 1)),
+		normal(aNormal) {};
 
 	Vertex(glm::vec3 pos, glm::vec2 aUV):
 		position(pos),

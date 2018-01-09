@@ -32,6 +32,16 @@ public:
 		m_textureID(0)
 	{}
 
+	Mesh():
+		Asset(MESH),
+		m_vertexList(),
+		m_vertexCount(0),
+		m_positionOffset(3),
+		m_normalOffset(3),
+		m_textureOffset(2),
+		m_textured(false),
+		m_textureID(0) {};
+
 	//Getters
 	/**
 	 Return all vertex in the mesh
