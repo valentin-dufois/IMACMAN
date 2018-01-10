@@ -19,7 +19,7 @@ void sceneGame01::load()
 void sceneGame01::init()
 {
 	//Load level
-	rId levelID = GameObj->ressourcesEngine->loadAsset("level00.txt", LEVEL);
+	rId levelID = GameObj->ressourcesEngine->loadAsset("level01.txt", LEVEL);
 	Level * level = *GameObj->ressourcesEngine->getAsset(levelID);
 
 	//Load the level inside the Game Engine and get the Grid
@@ -40,24 +40,16 @@ void sceneGame01::execute()
 {
 	//Get Pacman to handle moves and render
 	DynamicItem * pacman = reinterpret_cast<DynamicItem *>(m_gridLevel->getItem(ITEM_SYNTAX::PACMAN));
-	glm::vec3 translation = glm::vec3(0.f, 0.f, 0.f);
-	glm::vec3 rotation = glm::vec3(0.f, 0.f, 0.f);
 
 	if (GameObj->gameEngine->getKeys().UP) {
 		pacman->updateDirection(DIRECTION::UP);
-		translation = glm::vec3(0.f, -1.f, 0.f);
 	} else if (GameObj->gameEngine->getKeys().DOWN) {
 		pacman->updateDirection(DIRECTION::DOWN);
-		translation = glm::vec3(0.f, 1.f, 0.f);
 	} else if (GameObj->gameEngine->getKeys().LEFT) {
 		pacman->updateDirection(DIRECTION::LEFT);
-		translation = glm::vec3(-1.f, 0.f, 0.f);
 	} else if (GameObj->gameEngine->getKeys().RIGHT) {
 		pacman->updateDirection(DIRECTION::RIGHT);
-		translation = glm::vec3(1.f, 0.f, 0.f);
 	}
-	
-	GameObj->gameEngine->getGrid()->getItem(ITEM_SYNTAX::PACMAN)->getMesh()->getCursor();
 
 	m_gridLevel->moveItems();
 	std::cout << "EXECUTED" << std::endl;

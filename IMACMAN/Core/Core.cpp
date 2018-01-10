@@ -28,6 +28,7 @@ void Core::main()
 
 	//Load the first scene
 	sceneGame01::load();
+	//sceneConsole::load();
 
 	while(GameObj->isRunning())
 	{

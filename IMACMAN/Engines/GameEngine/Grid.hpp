@@ -59,8 +59,8 @@ public:
     void moveItem(GItem * item);
     void deleteGridItem(GItem * item);
     void updateCase(Pacman * pac, std::vector<GItem *> cell);
-    void pacmanFoodCollision(Pacman * pac, GItem * food);
-    uint pacmanGhostCollision(Pacman * pac, Ghost * ghost);
+    void pacmanFoodCollision(Pacman * pac, GItem * food, glm::vec2 nextPosition);
+    uint pacmanGhostCollision(Pacman * pac, Ghost * ghost, glm::vec2 nextPosition);
     void displayGrid();
 };
 

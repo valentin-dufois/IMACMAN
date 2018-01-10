@@ -35,8 +35,8 @@ public:
             case PINKY :            newItem = new Ghost(mesh, position, "Pinky", itemType);   break;
             case INKY :             newItem = new Ghost(mesh, position, "Inky", itemType);    break;
             case CLYDE :            newItem = new Ghost(mesh, position, "Clyde", itemType);   break;
-            case FLOOR:             throw std::runtime_error("floor!");                 break;
-            default:                throw std::runtime_error("not an item!");           break;
+            case FLOOR:             throw std::runtime_error("floor!");                       break;
+            default:                throw std::runtime_error("not an item!");                 break;
         }
         return newItem;
     }
