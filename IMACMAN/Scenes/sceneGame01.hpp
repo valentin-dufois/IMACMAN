@@ -6,21 +6,21 @@
 //  Copyright © 2017 Valentin Dufois. All rights reserved.
 //
 
-#ifndef sceneTest002_hpp
-#define sceneTest002_hpp
+#ifndef sceneGame01_hpp
+#define sceneGame01_hpp
 
 #include "Scene.hpp"
 #include "libraries.hpp"
+#include "Engines/GameEngine/GameEngine.hpp"
 #include "Engines/RessourcesEngine/RessourcesEngine.hpp"
 #include "Engines/RenderEngine/RenderEngine.hpp"
-#include "Utils/ShaderProgram.hpp"
 #include "Utils/Enums.hpp"
 
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtx/string_cast.hpp>
 #include <glm/ext.hpp>
 
-class sceneTest002: public Scene
+class sceneGame01: public Scene
 {
 public:
 	/**
@@ -43,17 +43,18 @@ public:
 	 */
 	void render();
 
+	void renderMesh(Mesh * mesh);
+	void renderMeshList(std::vector<GItem *> * meshList);
+
 	/**
 	 Destructor, used to properly free all the memory used by the scene
 	 */
-	~sceneTest002() {}
+	~sceneGame01() {}
 
 private:
 	rId m_sceneID;
-	Level * m_level;
-	Mesh * m_sphere;
-	Mesh * m_cube;
+	Grid * m_gridLevel;
 	
 };
 
-#endif /* sceneTest002_hpp */
+#endif /* sceneGame01_hpp */

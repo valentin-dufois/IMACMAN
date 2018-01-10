@@ -21,7 +21,7 @@ class Mesh : public Asset
 {
 public:
 	//Constructor
-	Mesh(const std::vector<Vertex> &vertexList, bool textured = false):
+	Mesh(const std::vector<Vertex> &vertexList, glm::vec4 color = glm::vec4(255, 255, 255, 0), bool textured = false):
 		Asset(MESH),
 		m_vertexList(vertexList),
 		m_vertexCount((uint)vertexList.size()),
@@ -29,7 +29,8 @@ public:
 		m_normalOffset(3),
 		m_textureOffset(2),
 		m_textured(textured),
-		m_textureID(0)
+		m_textureID(0),
+		m_color(color)
 	{}
 
 	Mesh():
@@ -149,6 +150,11 @@ private:
 	//Style
 	bool m_textured;
 	GLuint m_textureID;
+	
+	//color
+	glm::vec4 m_color;
+	
+	//Shader program
 	ShaderProgram * m_program;
 };
 

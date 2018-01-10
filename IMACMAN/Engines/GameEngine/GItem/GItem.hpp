@@ -7,15 +7,19 @@
 
 #include "Utils/Enums.hpp"
 
+class Mesh;
+
 class GItem {
 protected:
+    Mesh * m_mesh;
 	glm::vec2 m_position;
     uint m_score;
     enum ITEM_SYNTAX m_type;
 
 public:
     //CONSTRUCTOR
-	GItem(glm::vec2 position, uint score, enum ITEM_SYNTAX type):
+	GItem(Mesh * mesh, glm::vec2 position, uint score, enum ITEM_SYNTAX type):
+        m_mesh(mesh),
         m_position(position),
         m_score(score),
         m_type(type)
@@ -24,11 +28,13 @@ public:
 	~GItem() = default;
 	
     //GETTERS
+    Mesh * getMesh() const { return m_mesh; }
     glm::vec2 getPosition() const { return m_position; }
     uint getScore() const { return m_score; }
     enum ITEM_SYNTAX getItemType() const { return m_type; }
 
     //SETTERS
+    void setMesh(Mesh * mesh) { m_mesh = mesh; }
     void setPosition(const glm::vec2 position) { m_position = position; }
     void updatePosition(glm::vec2 newPosition, uint gridWidth, uint gridHeight) {
         m_position.x = newPosition.x >= 0 ? ((int)newPosition.x % gridWidth) : ((int)newPosition.x + gridWidth);

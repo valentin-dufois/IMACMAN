@@ -143,7 +143,6 @@ void GameEngine::loadLevel(Level * level){
 		level->getHeight(),
 		level->getLevelGrid()
 	);
-
 	m_pacman = reinterpret_cast<Pacman *>(m_level.getItem(ITEM_SYNTAX::PACMAN));
 
 	m_Blinky = reinterpret_cast<Ghost *>(m_level.getItem(ITEM_SYNTAX::BLINKY));

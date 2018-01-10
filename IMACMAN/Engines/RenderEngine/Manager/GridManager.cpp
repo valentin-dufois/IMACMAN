@@ -22,9 +22,7 @@ void GridManager::render()
 }
 
 void GridManager::fillVBO(std::vector<Vertex> &vertices)
-{
-  std::cout << "Fill the grid VBO\n" << std::endl;
-  
+{  
   GLsizeiptr size = vertices.size() * sizeof(Vertex);
 
 	//Fill VBO with data

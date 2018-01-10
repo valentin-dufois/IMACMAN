@@ -77,7 +77,7 @@ public:
  	 @param size Width of each edge
  	 @return The cube in a Mesh object
  	 */
- 	Mesh * genCube(const uint &size);
+ 	Mesh * genCube(const uint &size, glm::vec4 baseColor = glm::vec4(255, 255, 255, 1));
 
 	/**
 	 Generate a Sphere as a mesh
@@ -87,7 +87,7 @@ public:
 	 @param precisionLong Smoothness of the sphere
 	 @return The sphere in a mesh object
 	 */
-	Mesh * genSphere(const float &radius, const uint &precisionLat, const uint &precisionLong);
+	Mesh * genSphere(const float &radius, const uint &precisionLat, const uint &precisionLong, glm::vec4 baseColor = glm::vec4(255, 255, 255, 1));
 
 private:
 	//Singleton

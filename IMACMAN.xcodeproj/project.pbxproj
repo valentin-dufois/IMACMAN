@@ -57,7 +57,6 @@
 		39C2BA6C1FF59BC400589342 /* Asset.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39C2BA6B1FF59BC400589342 /* Asset.cpp */; };
 		39C2BB741FF7D7FB00589342 /* dummy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39C2BAB31FF7D7FB00589342 /* dummy.cpp */; };
 		39C2BB751FF7D7FB00589342 /* glm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39C2BABE1FF7D7FB00589342 /* glm.cpp */; };
-		565E05771FFD13A1007AF7BA /* sceneTest002.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 565E05731FFD13A1007AF7BA /* sceneTest002.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -441,8 +440,6 @@
 		39C2BB731FF7D7FB00589342 /* type_aligned.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = type_aligned.hpp; sourceTree = "<group>"; };
 		39C68A581FFA8AE900FC5C9D /* FilePath.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FilePath.hpp; sourceTree = "<group>"; };
 		39CC1AC41FC2440A00C7A7C8 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
-		565E05731FFD13A1007AF7BA /* sceneTest002.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sceneTest002.cpp; sourceTree = "<group>"; };
-		565E05761FFD13A1007AF7BA /* sceneTest002.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = sceneTest002.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1158,7 +1155,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3912B4171FC47BC600982C49 /* GameObject.cpp in Sources */,
-				565E05771FFD13A1007AF7BA /* sceneTest002.cpp in Sources */,
 				393375E91FF563DC00024EB1 /* Font.cpp in Sources */,
 				39AE37152001611B0080B365 /* PacGum.cpp in Sources */,
 				39C2BA6C1FF59BC400589342 /* Asset.cpp in Sources */,
@@ -1169,6 +1165,7 @@
 				39B5E6FD1FC38F0800B99CC2 /* Shader.cpp in Sources */,
 				3912B4141FC47BA700982C49 /* main.cpp in Sources */,
 				39B5E7001FC3902800B99CC2 /* SoundImporter.cpp in Sources */,
+				3966C149200632B500C527EA /* sceneConsole.cpp in Sources */,
 				39B5E6E51FC371E900B99CC2 /* Image.cpp in Sources */,
 				393375E01FF5404700024EB1 /* sceneTest001.cpp in Sources */,
 				39AE370F2001611B0080B365 /* Pacman.cpp in Sources */,
@@ -1183,6 +1180,7 @@
 				39B5E6FA1FC38D1100B99CC2 /* ImageImporter.cpp in Sources */,
 				3966C13B200564D100C527EA /* sceneTest003.cpp in Sources */,
 				393375DC1FF5337200024EB1 /* Item.cpp in Sources */,
+				3966C14A200632B500C527EA /* sceneGame01.cpp in Sources */,
 				39AE371B2001611C0080B365 /* Grid.cpp in Sources */,
 				39579A151FF57A6600FC09D3 /* SDL.cpp in Sources */,
 				39A929F91FF7F1BD00A71CFA /* ShaderProgram.cpp in Sources */,

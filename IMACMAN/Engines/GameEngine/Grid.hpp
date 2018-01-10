@@ -43,11 +43,12 @@ public:
     ~Grid() = default;
 
     //GETTERS
-    uint getWidth() const;
-    uint getHeight() const;
-    std::vector<GItem *> getGrid() const;
+    inline uint getWidth() const { return m_width; }
+    inline uint getHeight() const { return m_height; }
+    std::vector<GItem *> * getGrid();
     std::vector<GItem *> getItem(glm::vec2 position) const;
     GItem * getItem(enum ITEM_SYNTAX type) const;
+    std::vector<GItem *> getItemList(enum ITEM_SYNTAX type) const;
     bool checkItemsExist(std::vector<enum ITEM_SYNTAX> types) const;
 
     //SETTERS
@@ -58,8 +59,8 @@ public:
     void moveItem(GItem * item);
     void deleteGridItem(GItem * item);
     void updateCase(Pacman * pac, std::vector<GItem *> cell);
-    void pacmanFoodCollision(Pacman * pac, GItem * food);
-    uint pacmanGhostCollision(Pacman * pac, Ghost * ghost);
+    void pacmanFoodCollision(Pacman * pac, GItem * food, glm::vec2 nextPosition);
+    uint pacmanGhostCollision(Pacman * pac, Ghost * ghost, glm::vec2 nextPosition);
     void displayGrid();
 };
 

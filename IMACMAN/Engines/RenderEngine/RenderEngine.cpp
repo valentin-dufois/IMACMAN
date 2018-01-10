@@ -23,14 +23,15 @@ void RenderEngine::instanciate()
 	m_instanciated = true;
 }
 
-void RenderEngine::initRender()
+void RenderEngine::initRender(float screenRatio, float halfLevelWidth, float halfLevelHeight)
 {
 	//Projection Matrix
-	float screenRatio = (float) GameObj->screenWidth / GameObj->screenHeight;
 	m_ProjectionMatrix.perspective(70.f, screenRatio, 0.1f, 100.f);
 
+	//Rotate world camera to fit console view
+	m_MVMatrix.rotate(glm::radians(-90.f), glm::vec3(0, 0, 1));
 	//MV Matrix <- The camera in a sort
-	m_MVMatrix.translate(0, 0, -10);
+	m_MVMatrix.translate(-halfLevelWidth, -halfLevelHeight, -22);
 
 	//Normal
 	m_NormalMatrix = m_MVMatrix;

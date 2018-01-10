@@ -7,8 +7,8 @@ class Floor: public StaticItem {
 private:
 public:
 	//CONSTRUCTOR
-	Floor(glm::vec2 position, uint score = 0, enum ITEM_SYNTAX type = FLOOR):
-        StaticItem(position, score, type)
+	Floor(Mesh * mesh, glm::vec2 position, uint score = 0, enum ITEM_SYNTAX type = FLOOR):
+        StaticItem(mesh, position, score, type)
     {}
     //DESTRUCTOR
 	~Floor() = default;
