@@ -65,6 +65,7 @@ public:
     void pacmanFoodCollision(Pacman * pac, GItem * food);
     uint pacmanGhostCollision(Pacman * pac, Ghost * ghost);
     void displayGrid();
+	void moveGhost(Ghost * ghost);
 };
 
 #endif /* GRID_HPP */

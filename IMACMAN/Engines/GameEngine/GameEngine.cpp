@@ -10,6 +10,10 @@
 
 bool GameEngine::m_instanciated = false;
 
+
+/**
+ Instanciate the singleton GameEngine
+ */
 void GameEngine::instanciate()
 {
 	if(m_instanciated)
@@ -20,6 +24,10 @@ void GameEngine::instanciate()
 	m_instanciated = true;
 }
 
+
+/**
+ Reset the singleton GameEngine
+ */
 void GameEngine::reset() {
 	if (!m_instanciated) {
 		delete GameObj->gameEngine;
@@ -27,6 +35,10 @@ void GameEngine::reset() {
 	}
 }
 
+
+/**
+ Execute the scenes from the GameEngines
+ */
 void GameEngine::executeScenes()
 {
 	//Update events
@@ -57,6 +69,9 @@ void GameEngine::executeScenes()
 	}
 }
 
+/**
+ Render the scenes from the GameEngine
+ */
 void GameEngine::renderScenes()
 {
 	/*Clear the screen*/
@@ -77,6 +92,9 @@ void GameEngine::renderScenes()
 	SDL_GL_SwapWindow(GameObj->mainWindow);
 }
 
+/**
+ Parse the event of the keyboard
+ */
 void GameEngine::parseEvents()
 {
 	SDL_Event event;
@@ -135,6 +153,10 @@ void GameEngine::parseEvents()
 	}
 }
 
+/**
+ Load the level with the ressources level
+ Cast the items
+ */
 void GameEngine::loadLevel(Level * level){
 	m_level = Grid(
 		level->getWidth(),
@@ -150,14 +172,24 @@ void GameEngine::loadLevel(Level * level){
 	m_fruit = reinterpret_cast<Fruit *>(m_level.getItem(ITEM_SYNTAX::FRUIT));
 }
 
+/**
+ Get the grid
+ @return level
+ */
 Grid * GameEngine::getGrid() {
 	return &m_level;
 }
 
+/**
+ Display the level/grid
+ */
 void GameEngine::displayLevel() {
 	m_level.displayGrid();
 }
 
+/**
+ Display the game info
+ */
 void GameEngine::displayInfo() {
 	std::cout
 		<< "LIVES: " << m_pacman->getLives()
@@ -169,6 +201,10 @@ void GameEngine::displayInfo() {
 	std::cout << std::endl;
 }
 
+/**
+ Manage special mode
+ Update the counter of items
+ */
 void GameEngine::manageSpecialMode() {
 	m_pacman->updateSuperCounter(-1);
 	m_Blinky->updateDeathCounter(-1);

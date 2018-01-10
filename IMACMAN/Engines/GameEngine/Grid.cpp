@@ -6,6 +6,12 @@ std::vector<GItem *> Grid::getGrid() const
     return m_gridItems;
 }
 
+/**
+ Get items of the grid
+
+ @param position Position of the item
+ @return The pointeur to the item
+ */
 std::vector<GItem *> Grid::getItem(glm::vec2 position) const
 {
     std::vector<GItem *> result;
@@ -25,6 +31,12 @@ std::vector<GItem *> Grid::getItem(glm::vec2 position) const
     return result;
 }
 
+/**
+ Get item of the grid
+ 
+ @param enum ITEM_SYNTAX all the types of items
+ @return the Item
+ */
 GItem * Grid::getItem(enum ITEM_SYNTAX type) const {
     std::vector<GItem *>::const_iterator it = std::find_if(
         m_gridItems.begin(),
@@ -41,6 +53,12 @@ GItem * Grid::getItem(enum ITEM_SYNTAX type) const {
     return *it;
 }
 
+/**
+ Check if items exist
+ 
+ @param enum ITEM_SYNTAX all the types of items
+ @return bool
+ */
 bool Grid::checkItemsExist(std::vector<enum ITEM_SYNTAX> types) const {
     std::vector<enum ITEM_SYNTAX>::const_iterator it;
     bool res = false;
@@ -56,6 +74,12 @@ bool Grid::checkItemsExist(std::vector<enum ITEM_SYNTAX> types) const {
 }
 
 //SETTERS
+
+/**
+ Load the grid
+ 
+ @param level Level added
+ */
 int Grid::loadGrid(std::vector<int> level)
 {
     enum ITEM_SYNTAX type;
@@ -79,6 +103,10 @@ int Grid::loadGrid(std::vector<int> level)
 }
 
 //METHODS
+
+/**
+ Moves all the items of the grid
+ */
 void Grid::moveItems()
 {
     std::vector<GItem *>::iterator it;
@@ -92,12 +120,20 @@ void Grid::moveItems()
     }
 }
 
+
+
+/**
+ Move an item in the grid
+ 
+ @param item
+ */
 void Grid::moveItem(GItem * item)
 {
     //Check wether it's a dynamic or static item.
     if (item->getItemType() < (int)ITEM_SYNTAX::PACMAN) {
         throw std::runtime_error("Error: cannot move static item!\n");
     }
+	
     // It's dynamic so we reinterpret the cast
     DynamicItem * dItem = reinterpret_cast<DynamicItem *>(item);
     
@@ -129,6 +165,13 @@ void Grid::deleteGridItem(GItem * item) {
     }
 }
 
+
+/**
+ Movement of Pacman
+ Update the score
+ @param pac pac
+ @param cell Cell is in currently
+ */
 void Grid::updateCase(Pacman * pac, std::vector<GItem *> cell) {
     std::vector<GItem *>::const_iterator it;
     uint tmpScore = 0;
@@ -162,6 +205,13 @@ void Grid::updateCase(Pacman * pac, std::vector<GItem *> cell) {
     pac->updateScores(tmpScore);
 }
 
+
+/**
+ Collision between Pacman and Food
+Update the super counter
+ @param pac
+ @param food
+ */
 void Grid::pacmanFoodCollision(Pacman * pac, GItem * food) {
     pac->updatePosition(pac->getNextPosition(), this->m_width, this->m_height);
     
@@ -170,6 +220,14 @@ void Grid::pacmanFoodCollision(Pacman * pac, GItem * food) {
     }
 }
 
+
+/**
+ Collision between Pacman and a Ghost
+ Update the counter, the position and the lives
+ @param pac
+ @param ghost
+ @return score to update
+ */
 uint Grid::pacmanGhostCollision(Pacman * pac, Ghost * ghost) {
     uint tmpScore = 0;
     
@@ -189,6 +247,9 @@ uint Grid::pacmanGhostCollision(Pacman * pac, Ghost * ghost) {
     return tmpScore;
 }
 
+/**
+ Display the grid
+ */
 void Grid::displayGrid() {
     GItem * currItem;
     enum ITEM_SYNTAX currType;
@@ -213,4 +274,14 @@ void Grid::displayGrid() {
         }
         std::cout << std::endl;
     }
+}
+
+
+/**
+ Move a ghost
+
+ @param ghost Ghost to move
+ */
+void moveGhost(Ghost * ghost){
+	
 }
