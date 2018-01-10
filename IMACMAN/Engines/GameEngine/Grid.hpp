@@ -6,7 +6,8 @@
 #include <vector>
 #include <map>
 #include <iterator>
-#include <time.h> 
+#include <random>
+#include <chrono>
 
 #include "GItemFactory.hpp"
 
@@ -74,7 +75,7 @@ public:
     glm::vec3 translationToOrigin(glm::vec2 initialPosition, glm::vec2 currentPosition);
 
     void handleIA(DynamicItem * dItem);
-    enum DIRECTION randomMoveIA();
+    enum DIRECTION randomMoveIA(DynamicItem * dItem);
     enum DIRECTION turnRightIA();
     enum DIRECTION stalkerIA();
     enum DIRECTION terminatorIA();

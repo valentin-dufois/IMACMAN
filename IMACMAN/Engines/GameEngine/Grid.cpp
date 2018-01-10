@@ -328,7 +328,10 @@ glm::vec3 Grid::translationToOrigin(glm::vec2 initialPosition, glm::vec2 current
 
 
 void Grid::handleIA(DynamicItem * dItem) {
-    srand(time(NULL));
+    std::chrono::milliseconds ms = std::chrono::duration_cast<std::chrono::milliseconds>(
+        std::chrono::system_clock::now().time_since_epoch()
+    );
+    srand(ms.count());
 
     if (dItem->getItemType() != ITEM_SYNTAX::PACMAN &&
         reinterpret_cast<Ghost *>(dItem)->isAfraid() == true
@@ -337,7 +340,7 @@ void Grid::handleIA(DynamicItem * dItem) {
     } else {
         switch(dItem->getItemType()) {
             case ITEM_SYNTAX::BLINKY :
-                dItem->updateDirection(randomMoveIA());
+                dItem->updateDirection(randomMoveIA(dItem));
                 break;
             case ITEM_SYNTAX::PINKY :
                 dItem->updateDirection(turnRightIA());
@@ -349,16 +352,44 @@ void Grid::handleIA(DynamicItem * dItem) {
                 dItem->updateDirection(terminatorIA());
                 break;
             default:
-                dItem->updateDirection(randomMoveIA());
+                dItem->updateDirection(randomMoveIA(dItem));
                 break;
         }
     }
 }
 
-enum DIRECTION Grid::randomMoveIA() {
-    int direction = rand() % 3;
+enum DIRECTION Grid::randomMoveIA(DynamicItem * dItem) {
+    std::vector<DIRECTION> directions;
 
-    return (DIRECTION)direction;
+    if (this->getItem(dItem->getNextPosition(DIRECTION::UP)).front()->getItemType() != ITEM_SYNTAX::WALL) {
+        directions.push_back(DIRECTION::UP);
+    } 
+    if (this->getItem(dItem->getNextPosition(DIRECTION::DOWN)).front()->getItemType() != ITEM_SYNTAX::WALL) {
+        directions.push_back(DIRECTION::DOWN);
+    } 
+    if (this->getItem(dItem->getNextPosition(DIRECTION::LEFT)).front()->getItemType() != ITEM_SYNTAX::WALL) {
+        directions.push_back(DIRECTION::LEFT);
+    } 
+    if (this->getItem(dItem->getNextPosition(DIRECTION::RIGHT)).front()->getItemType() != ITEM_SYNTAX::WALL) {
+        directions.push_back(DIRECTION::RIGHT);
+    }
+
+    enum DIRECTION currentDirection = dItem->getDirection();
+    enum DIRECTION result = currentDirection;
+
+    if (directions.size() > 2 || (directions.size() == 2 && std::find_if(
+            directions.begin(),
+            directions.end(),
+            [currentDirection](const enum DIRECTION direction) -> bool {
+                return direction == currentDirection;
+            }
+        ) == directions.end())) {
+        result = directions[rand() % directions.size()];
+    } else {
+        result = directions.front();
+    }
+
+    return result;
 }
 
 enum DIRECTION Grid::turnRightIA() {

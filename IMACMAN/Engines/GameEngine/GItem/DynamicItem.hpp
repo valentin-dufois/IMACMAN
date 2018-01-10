@@ -60,6 +60,32 @@ public:
         }
         return nextPos;
     }
+
+    glm::vec2 getNextPosition(const enum DIRECTION & nextDirection) {
+        glm::vec2 nextPos = this->getPosition();
+
+        switch (nextDirection) {
+            case DIRECTION::UP:
+                nextPos.x += -1.f;
+                nextPos.y += 0.f;
+                break;
+            case DIRECTION::DOWN:
+                nextPos.x += 1.f;
+                nextPos.y += 0.f;
+                break;
+            case DIRECTION::LEFT:
+                nextPos.x += 0.f;
+                nextPos.y += -1.f;
+                break;
+            case DIRECTION::RIGHT:
+                nextPos.x += 0.f;
+                nextPos.y += 1.f;
+                break;
+            default:
+                break;
+        }
+        return nextPos;
+    }
 };
 
 #endif /* DYNAMIC_ITEM_HPP */
