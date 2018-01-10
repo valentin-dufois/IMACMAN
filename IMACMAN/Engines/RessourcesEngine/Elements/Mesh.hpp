@@ -21,14 +21,13 @@ class Mesh : public Asset
 {
 public:
 	//Constructor
-	Mesh(const std::vector<Vertex> &vertexList, bool textured = false):
+	Mesh(const std::vector<Vertex> &vertexList):
 		Asset(MESH),
 		m_vertexList(vertexList),
 		m_vertexCount((uint)vertexList.size()),
 		m_positionOffset(3),
 		m_normalOffset(3),
 		m_textureOffset(2),
-		m_textured(textured),
 		m_textureID(0)
 	{}
 
@@ -39,7 +38,6 @@ public:
 		m_positionOffset(3),
 		m_normalOffset(3),
 		m_textureOffset(2),
-		m_textured(false),
 		m_textureID(0) {};
 
 	//Getters
@@ -75,7 +73,7 @@ public:
 
 	 @return True if textured, false otherwise
 	 */
-	bool isTextured() { return m_textured; }
+	inline bool isTextured() { return m_textureID != 0; };
 	 
 
 	//Utils
@@ -100,13 +98,6 @@ public:
 	 @param vertex A vertex
 	 */
 	void appendVertex(const Vertex &vertex);
-
-	/**
-	 Set the type of the mesh
-
-	 @param type True if textures, false otherwise
-	 */
-	inline void setType(const bool &type) { m_textured = type; };
 
 	/**
 	 Set the texture ID for the mesh
@@ -146,8 +137,7 @@ private:
 	//Position
 	DrawCursor m_cursor;
 
-	//Style
-	bool m_textured;
+	//Texture
 	GLuint m_textureID;
 	
 	//Shader program

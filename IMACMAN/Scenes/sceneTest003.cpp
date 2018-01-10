@@ -32,7 +32,6 @@ void sceneTest003::init()
 	m_mesh->setProgram(prog);
 
 	m_mesh->setTexture(m_tex->getTextureID());
-	m_mesh->setType(true);
 
 	GameObj->renderEngine->getCameraCursor()
 		->translate(0, 0, -10);

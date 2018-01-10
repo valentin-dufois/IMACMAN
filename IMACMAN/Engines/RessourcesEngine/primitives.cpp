@@ -150,5 +150,5 @@ Mesh * RessourcesEngine::genSphere(const float &radius, const uint &precisionLat
 		}
 	}
 
-	return new Mesh(vertices, true);
+	return new Mesh(vertices);
 }
