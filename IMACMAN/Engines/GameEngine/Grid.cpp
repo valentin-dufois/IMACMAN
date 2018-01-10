@@ -120,8 +120,6 @@ void Grid::moveItems()
     }
 }
 
-
-
 /**
  Move an item in the grid
  
@@ -142,11 +140,16 @@ void Grid::moveItem(GItem * item)
 
         //Check next position
         if (nextCase[0]->getItemType() != ITEM_SYNTAX::WALL) {
-            if (dItem->getItemType() == ITEM_SYNTAX::PACMAN) {
+			
+			//it's a pacman
+			if (dItem->getItemType() == ITEM_SYNTAX::PACMAN) {
                 this->updateCase(reinterpret_cast<Pacman *>(dItem), nextCase);
             }
+			
+			//It's a ghost
             if (dItem->getItemType() > ITEM_SYNTAX::PACMAN) {
-                //TODO: MANAGE GHOSTS BEHAVIOR
+				this->updateCase(reinterpret_cast<Ghost *>(dItem), nextCase);
+				//TODO: MANAGE GHOSTS BEHAVIOR
             }
         }
     } catch(...) {
@@ -180,18 +183,22 @@ void Grid::updateCase(Pacman * pac, std::vector<GItem *> cell) {
         switch ((*it)->getItemType()) {
             case ITEM_SYNTAX::SUPER_PAC_GUM:
             case ITEM_SYNTAX::PAC_GUM:
+			{
                 tmpScore += (*it)->getScore();
                 pacmanFoodCollision(pac, *it);
                 this->deleteGridItem((*it));
                 --m_nbOfGums;
                 break;
+			}
             case ITEM_SYNTAX::FRUIT:
+			{
                 pac->updatePosition(pac->getNextPosition(), this->m_width, this->m_height);
                 if (!reinterpret_cast<Fruit *>(*it)->getEatenState()) {
                     tmpScore += (*it)->getScore();
                     reinterpret_cast<Fruit *>(*it)->updatePopCounter(50);
                 }
                 break;
+			}
             case ITEM_SYNTAX::BLINKY:
             case ITEM_SYNTAX::PINKY:
             case ITEM_SYNTAX::INKY:
@@ -205,6 +212,71 @@ void Grid::updateCase(Pacman * pac, std::vector<GItem *> cell) {
     pac->updateScores(tmpScore);
 }
 
+void Grid::updateCase(Ghost * ghost, std::vector<GItem *> cell) {
+	std::vector<GItem *>::const_iterator it;
+	uint tmpScore = 0;
+	
+	for (it = cell.begin(); it < cell.end(); ++it) {
+		switch ((*it)->getItemType()) {
+			case ITEM_SYNTAX::PACMAN:
+				//On vérifie qu'on peut manger pacman.
+				//On le mange et le reset à la position intiale
+				//vie--
+				break;
+			case ITEM_SYNTAX::SUPER_PAC_GUM:
+			case ITEM_SYNTAX::PAC_GUM:
+			case ITEM_SYNTAX::FRUIT:
+			case ITEM_SYNTAX::BLINKY:
+			case ITEM_SYNTAX::PINKY:
+			case ITEM_SYNTAX::INKY:
+			case ITEM_SYNTAX::CLYDE:
+			default:
+				break;
+		}
+	}
+}
+
+/**
+ Move a ghost
+ 
+ @param ghost Ghost to move
+ */
+void moveGhost(Ghost * ghost){
+	enum DIRECTION nextDirection;
+	glm::vec2 nextPosition = ghost->getNextPosition();
+	
+	switch(ghost->getItemType()) {
+		case ITEM_SYNTAX::BLINKY:
+		{
+			if(nextPosition == glm::vec2(0,0)){
+				std::cout << "Blinky if going right" << std::endl;
+			}
+			//FOLLOWS PACMAN ALL THE TIME//
+			break;
+		}
+		case ITEM_SYNTAX::PINKY:
+		{
+			//vise l'endroit ou se dirige Pac-Man (seulement une fois sur 4 apparemment). Recherche de la position de Pacman, on calcule si en allant à une case à droite ou une case à gauche on s'en approche. Si on s'en approche, on prend cette direction.//
+			break;
+		}
+		case ITEM_SYNTAX::INKY:
+		{
+			//de temps en temps, part dans la direction opposees de Pac-Man: recherche de la position de Pac-Man, puis selon la position du fantome, on calcule si en allant à une case à droite ou une case à gauche on s'en éloigne. Si on s'en éloigne, on prend cette direction.
+			break;
+		}
+		case ITEM_SYNTAX::CLYDE:
+		{
+			//de temps en temps, change de direction: donc au hasard
+			break;
+		}
+		default:
+		{
+			break;
+		}
+	}
+	
+	ghost->updateDirection(nextDirection);
+}
 
 /**
  Collision between Pacman and Food
@@ -274,14 +346,4 @@ void Grid::displayGrid() {
         }
         std::cout << std::endl;
     }
-}
-
-
-/**
- Move a ghost
-
- @param ghost Ghost to move
- */
-void moveGhost(Ghost * ghost){
-	
 }

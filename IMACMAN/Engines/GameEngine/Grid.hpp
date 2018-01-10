@@ -62,10 +62,11 @@ public:
     void moveItem(GItem * item);
     void deleteGridItem(GItem * item);
     void updateCase(Pacman * pac, std::vector<GItem *> cell);
+	void updateCase(Ghost * ghost, std::vector<GItem *> cell);
+	void moveGhost(Ghost * ghost);
     void pacmanFoodCollision(Pacman * pac, GItem * food);
     uint pacmanGhostCollision(Pacman * pac, Ghost * ghost);
     void displayGrid();
-	void moveGhost(Ghost * ghost);
 };
 
 #endif /* GRID_HPP */
