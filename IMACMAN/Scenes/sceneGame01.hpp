@@ -14,7 +14,6 @@
 #include "Engines/GameEngine/GameEngine.hpp"
 #include "Engines/RessourcesEngine/RessourcesEngine.hpp"
 #include "Engines/RenderEngine/RenderEngine.hpp"
-#include "Utils/ShaderProgram.hpp"
 #include "Utils/Enums.hpp"
 
 #include <glm/gtc/matrix_transform.hpp>
@@ -44,6 +43,7 @@ public:
 	 */
 	void render();
 
+	void renderMesh(Mesh * mesh);
 	void renderMeshList(std::vector<GItem *> meshList);
 
 	/**
@@ -53,9 +53,7 @@ public:
 
 private:
 	rId m_sceneID;
-	ShaderProgram * scene_prog;
 	Grid * m_gridLevel;
-	Mesh * m_sphere;
 	
 };
 

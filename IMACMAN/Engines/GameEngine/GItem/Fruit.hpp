@@ -10,8 +10,8 @@ private:
 
 public:
 	//CONSTRUCTOR
-	Fruit(glm::vec2 position, uint score = 500, enum ITEM_SYNTAX type = FRUIT) :
-		StaticItem(position, score, type),
+	Fruit(Mesh * mesh, glm::vec2 position, uint score = 500, enum ITEM_SYNTAX type = FRUIT) :
+		StaticItem(mesh, position, score, type),
 		m_eaten(true),
 		m_popCounter(50)
 	{};

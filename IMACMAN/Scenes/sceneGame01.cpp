@@ -18,11 +18,8 @@ void sceneGame01::load()
 
 void sceneGame01::init()
 {
-	//Load and compile shader
-	scene_prog = new ShaderProgram("triangle.vs.glsl", "triangle.fs.glsl");
-
 	//Load level
-	rId levelID = GameObj->ressourcesEngine->loadAsset("level01.txt", LEVEL);
+	rId levelID = GameObj->ressourcesEngine->loadAsset("level00.txt", LEVEL);
 	Level * level = *GameObj->ressourcesEngine->getAsset(levelID);
 
 	//Load the level inside the Game Engine and get the Grid
@@ -35,27 +32,35 @@ void sceneGame01::init()
 	float levelHalfHeight = (float) GameObj->gameEngine->getGrid()->getHeight() / 2;
 
 	GameObj->renderEngine->initRender(screenRatio, levelHalfWidth, levelHalfHeight);
+
+	std::cout << "LOADED" << std::endl;
 }
 
 void sceneGame01::execute()
 {
 	//Get Pacman to handle moves and render
 	DynamicItem * pacman = reinterpret_cast<DynamicItem *>(m_gridLevel->getItem(ITEM_SYNTAX::PACMAN));
+	glm::vec3 translation = glm::vec3(0.f, 0.f, 0.f);
+	glm::vec3 rotation = glm::vec3(0.f, 0.f, 0.f);
 
 	if (GameObj->gameEngine->getKeys().UP) {
 		pacman->updateDirection(DIRECTION::UP);
-		m_pacman->getCursor()->translate(0.f, -1.f, 0.f);
+		translation = glm::vec3(0.f, -1.f, 0.f);
 	} else if (GameObj->gameEngine->getKeys().DOWN) {
 		pacman->updateDirection(DIRECTION::DOWN);
-		m_pacman->getCursor()->translate(0.f, 1.f, 0.f);
+		translation = glm::vec3(0.f, 1.f, 0.f);
 	} else if (GameObj->gameEngine->getKeys().LEFT) {
 		pacman->updateDirection(DIRECTION::LEFT);
-		m_pacman->getCursor()->translate(-1.f, 0.f, 0.f);
+		translation = glm::vec3(-1.f, 0.f, 0.f);
 	} else if (GameObj->gameEngine->getKeys().RIGHT) {
 		pacman->updateDirection(DIRECTION::RIGHT);
-		m_pacman->getCursor()->translate(1.f, 0.f, 0.f);
+		translation = glm::vec3(1.f, 0.f, 0.f);
 	}
+	
+	GameObj->gameEngine->getGrid()->getItem(ITEM_SYNTAX::PACMAN)->getMesh()->getCursor();
+
 	m_gridLevel->moveItems();
+	std::cout << "EXECUTED" << std::endl;
 }
 
 void sceneGame01::render()
@@ -63,10 +68,17 @@ void sceneGame01::render()
 	this->renderMeshList(m_gridLevel);
 }
 
+void sceneGame01::renderMesh(Mesh * mesh) {
+	GameObj->renderEngine->render(
+		mesh,
+		mesh->getCursor()
+	);
+}
+
 void sceneGame01::renderMeshList(std::vector<GItem *> meshList) {
 	std::vector<GItem *>::const_iterator it;
 	
-	for (it = meshList.begin(); it < meshList.end(); ++it) {
+	for (it = m_gridLevel->getGrid().begin(); it < m_gridLevel->getGrid().end(); ++it) {
 		GameObj->renderEngine->render(
 			(*it)->getMesh(),
 			(*it)->getMesh()->getCursor()
