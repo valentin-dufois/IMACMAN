@@ -10,12 +10,14 @@
 #define Mesh_hpp
 
 #include "Asset.hpp"
-#include "Renderable.hpp"
 #include "Utils/ShaderProgram.hpp"
+#include "Utils/DrawCursor.hpp"
 #include "Utils/Vertex.hpp"
+#include "Engines/RenderEngine/RenderEngine.hpp"
+
 #include <glm/glm.hpp>
 
-class Mesh : public Asset, public Renderable
+class Mesh : public Asset
 {
 public:
 	//Constructor
@@ -26,10 +28,17 @@ public:
 		m_positionOffset(3),
 		m_normalOffset(3),
 		m_textureOffset(2),
-		m_textured(false),
-		m_textureID(0),
-		m_programID(0)
+		m_textureID(0)
 	{}
+
+	Mesh():
+		Asset(MESH),
+		m_vertexList(),
+		m_vertexCount(0),
+		m_positionOffset(3),
+		m_normalOffset(3),
+		m_textureOffset(2),
+		m_textureID(0) {};
 
 	//Getters
 	/**
@@ -43,7 +52,7 @@ public:
 
 	 @return Number of vertex
 	 */
-	GLsizeiptr getVertexCount() { return m_vertexCount; }
+	GLsizei getVertexCount() { return m_vertexCount; }
 
 	/**
 	 Return the texture ID used by the mesh
@@ -57,14 +66,14 @@ public:
 
 	 @return Program ID
 	 */
-	GLuint getProgramID() const { return m_programID; }
+	ShaderProgram * getProgram() const { return m_program; }
 
 	/**
 	 Tell if the mesh is textured
 
 	 @return True if textured, false otherwise
 	 */
-	bool isTextured() { return m_textured; }
+	inline bool isTextured() { return m_textureID != 0; };
 	 
 
 	//Utils
@@ -91,13 +100,6 @@ public:
 	void appendVertex(const Vertex &vertex);
 
 	/**
-	 Set the type of the mesh
-
-	 @param type True if textures, false otherwise
-	 */
-	inline void setType(const bool &type) { m_textured = type; };
-
-	/**
 	 Set the texture ID for the mesh
 
 	 @param textureID The texture ID
@@ -107,9 +109,21 @@ public:
 	/**
 	 Set the Program ID for the mesh
 
-	 @param programID The program ID
+	 @param program The program ID
 	 */
-	inline void setProgram(GLuint programID) { m_programID = programID; };
+	inline void setProgram(ShaderProgram * program) { m_program = program; };
+
+	/**
+	 Generate OpenGL buffers for the mesh
+
+	 @param type Type of object
+	 */
+	void generate(MANAGER_TYPE type);
+
+	GLuint vbo;
+	GLuint vao;
+
+	inline DrawCursor * getCursor() { return &m_cursor; };
 
 private:
 	//Vertex
@@ -120,10 +134,14 @@ private:
 	uint m_normalOffset;
 	uint m_textureOffset;
 
-	//Style
-	bool m_textured;
+	//Position
+	DrawCursor m_cursor;
+
+	//Texture
 	GLuint m_textureID;
-	GLuint m_programID;
+	
+	//Shader program
+	ShaderProgram * m_program;
 };
 
 #endif /* Mesh_hpp */

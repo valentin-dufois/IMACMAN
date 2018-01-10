@@ -1,13 +1,13 @@
 //
-//  sceneTest001.hpp
+//  sceneTest003.hpp
 //  IMACMAN
 //
-//  Created by Valentin Dufois on 28/12/2017.
-//  Copyright © 2017 Valentin Dufois. All rights reserved.
+//  Created by Valentin Dufois on 09/01/2018.
+//  Copyright © 2018 Valentin Dufois. All rights reserved.
 //
 
-#ifndef sceneTest002_hpp
-#define sceneTest002_hpp
+#ifndef sceneTest003_hpp
+#define sceneTest003_hpp
 
 #include "Scene.hpp"
 #include "libraries.hpp"
@@ -16,7 +16,11 @@
 #include "Utils/ShaderProgram.hpp"
 #include "Utils/Enums.hpp"
 
-class sceneTest002: public Scene
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtx/string_cast.hpp>
+#include <glm/ext.hpp>
+
+class sceneTest003: public Scene
 {
 public:
 	/**
@@ -42,14 +46,13 @@ public:
 	/**
 	 Destructor, used to properly free all the memory used by the scene
 	 */
-	~sceneTest002() {}
+	~sceneTest003() {}
 
 private:
-
 	rId m_sceneID;
-	Level * m_level;
-	Mesh * m_sphere;
-	
+
+	Mesh * m_mesh;
+	Image * m_tex;
 };
 
-#endif /* sceneTest002_hpp */
+#endif /* sceneTest003_hpp */

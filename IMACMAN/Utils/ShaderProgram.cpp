@@ -27,12 +27,61 @@ ShaderProgram::ShaderProgram(std::string vsPath, std::string fsPath): m_programI
 	GLint status;
 	glGetProgramiv(m_programID, GL_LINK_STATUS, &status);
 
-	if(status == GL_TRUE)
-		return; //Compile OK
-
-	//Compile error, display message
-	throw std::runtime_error("Unable to compile program : " + getCompileLog());
+	if(status != GL_TRUE)
+	{
+		//Compile error, display message
+		throw std::runtime_error("Unable to compile program : " + getCompileLog());
+		return;
+	}
 }
+
+void ShaderProgram::use() const
+{
+	if(ShaderProgram::currentProgram == m_programID)
+		return;
+
+	glUseProgram(m_programID);
+	ShaderProgram::currentProgram = m_programID;
+}
+
+//UNIFORMS
+void ShaderProgram::setUniformMat4(const std::string &uniformName, const glm::mat4 &value)
+{
+	//The program needs to be binded in order to pass uniforms
+	use();
+
+	//Get location
+	GLuint uniLoc = getUniformLocation(uniformName);
+
+	//Pass uniform
+	glUniformMatrix4fv(uniLoc, 1, GL_FALSE, glm::value_ptr(value));
+}
+
+void ShaderProgram::setUniformUint(const std::string &uniformName, const uint &value)
+{
+	//The program needs to be binded in order to pass uniforms
+	use();
+
+	//Get location
+	GLuint uniLoc = getUniformLocation(uniformName);
+
+	//Pass uniform
+	glUniform1i(uniLoc, value);
+}
+
+
+GLuint ShaderProgram::getUniformLocation(const std::string &uniformName)
+{
+	//Is this uniform already located ?
+	if(m_uniformLocations.find(uniformName) != m_uniformLocations.end())
+		return m_uniformLocations[uniformName];
+
+	GLuint uniLoc = glGetUniformLocation(m_programID, uniformName.c_str());
+	m_uniformLocations.insert(std::pair<std::string, GLuint>(uniformName, uniLoc));
+
+	return uniLoc;
+}
+
 
 const std::string ShaderProgram::getCompileLog() const
 {
@@ -47,3 +96,5 @@ const std::string ShaderProgram::getCompileLog() const
 
 	return logString;
 }
+
+GLuint ShaderProgram::currentProgram = 0;

@@ -29,7 +29,6 @@ void RenderEngine::instanciate()
 RenderEngine::RenderEngine()
 {
 	GLuint gridVBO, pacmanVBO, blinkyVBO, pinkyVBO, inkyVBO, clydeVBO;
-	GLuint vao;
 	
 	m_gridVBO = &gridVBO;
 	m_pacmanVBO = &pacmanVBO;
@@ -39,75 +38,62 @@ RenderEngine::RenderEngine()
 		&inkyVBO,
 		&clydeVBO
 	};
-
-	m_VAO = 0;
-
-	//initVBO(GL_ARRAY_BUFFER, &m_ghostsVBO[0] , GRID);
 }
 
-void RenderEngine::loadPlateBoard()
+void RenderEngine::initRender()
 {
+	float screenRatio = (float) GameObj->screenWidth / GameObj->screenHeight;
 
+	//Projection Matrix
+	m_ProjectionMatrix.perspective(70.f, screenRatio, 0.1f, 100.f);
+
+	//MV Matrix <- The camera in a sort
+	//m_MVMatrix;
+
+	//Normal
+	m_NormalMatrix = m_MVMatrix;
+	m_NormalMatrix.inverse()->transpose();
 }
 
-// GRID FUNCTIONS HERE
-void RenderEngine::loadGrid()
-{
 
-}
-
-void RenderEngine::updateGrid()
-{
-
-}
-
-void RenderEngine::renderGrid()
-{
-
-}
-
-void RenderEngine::initVBO(GLuint * index, enum MANAGER_TYPE type, std::vector<Vertex> &vertices, GLuint nbOfVBO)
+void RenderEngine::initVBO(Mesh * mesh, enum MANAGER_TYPE type)
 {
 	//Get Manager for VBO
 	Manager * manager = getManager(type);
 	
 	//Generate & bind VBO
-	glGenBuffers(nbOfVBO, index);
-	glBindBuffer(GL_ARRAY_BUFFER, *index);
+	glGenBuffers(1, &mesh->vbo);
+	glBindBuffer(GL_ARRAY_BUFFER, mesh->vbo);
 
 	//Fill VBO with data
-	manager->fillVBO(vertices);
-
+	std::vector<Vertex> vertexList = mesh->getVertexList();
+	manager->fillVBO(vertexList);
 
 	//Unbind VBO
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
 
-void RenderEngine::initVAO(enum MANAGER_TYPE type)
+void RenderEngine::initVAO(Mesh * mesh, enum MANAGER_TYPE type)
 {
-	//Bind VAO
-	//GLuint vao;
-	//m_VAO = &vao;
-	
-	glGenVertexArrays(1, &m_VAO);
-	glBindVertexArray(m_VAO);
+	if(mesh->vbo == 0)
+		return; //No VBO, No VAO!
+
+	glGenVertexArrays(1, &mesh->vao);
+	glBindVertexArray(mesh->vao);
 
 	glEnableVertexAttribArray(VERTEX_ATTR_POSITION);
 	glEnableVertexAttribArray(VERTEX_ATTR_NORMAL);
 	glEnableVertexAttribArray(VERTEX_ATTR_COLOR);
-
-	GLuint * VBOptr = getBufferPtr(type);
+	glEnableVertexAttribArray(VERTEX_ATTR_UV);
 
 	//Bind mesh VBO
-	glBindBuffer(
-		GL_ARRAY_BUFFER,
-		*VBOptr
-	);
+	glBindBuffer(GL_ARRAY_BUFFER, mesh->vbo);
 
 	//Specify vertice properties positions
 	glVertexAttribPointer(VERTEX_ATTR_POSITION, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), 0);
 	glVertexAttribPointer(VERTEX_ATTR_NORMAL, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const GLvoid *)offsetof(Vertex, normal));
 	glVertexAttribPointer(VERTEX_ATTR_COLOR, 4, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const GLvoid *)offsetof(Vertex, color));
+	glVertexAttribPointer(VERTEX_ATTR_UV, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const GLvoid *)offsetof(Vertex, UV));
 
 	//Unbind everything
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
@@ -171,24 +157,39 @@ Manager * RenderEngine::getManager(enum MANAGER_TYPE type)
 	return manager;
 }
 
-void RenderEngine::render(Mesh * mesh)
+void RenderEngine::render(Mesh * mesh, DrawCursor * cursor)
 {
-	if(m_VAO == 0)
+	if(mesh->vao == 0)
 		return; //No VAO, no render!
 
-	//Bind program
-	//glUseProgram(mesh->getProgramID());
+	//Set program
+	mesh->getProgram()->use();
+
+	//Bind texture if needed
+	if(mesh->isTextured())
+	{
+		glBindTexture(GL_TEXTURE_2D, mesh->getTextureID());
+		mesh->getProgram()->setUniformUint("uTexturedMesh", 1);
+		mesh->getProgram()->setUniformUint("uTexture", 0);
+	}
+	else
+	{
+		mesh->getProgram()->setUniformUint("uTexturedMesh", 0);
+	}
+
+	//Send uniforms to GPU
+	mesh->getProgram()->setUniformMat4("uMVMatrix", m_MVMatrix);
+	mesh->getProgram()->setUniformMat4("uNormalMatrix", m_NormalMatrix);
+	mesh->getProgram()->setUniformMat4("uMVPMatrix", m_ProjectionMatrix * m_MVMatrix * cursor->getMatrix());
 
 	//Bind VAO
-	glBindVertexArray(m_VAO);
+	glBindVertexArray(mesh->vao);
 
-	if(mesh->isTextured())
-		glBindTexture(GL_TEXTURE_2D, mesh->getTextureID());
-
+	//Draw cube
 	glDrawArrays(GL_TRIANGLES, 0, mesh->getVertexCount());
 	check_gl_error();
 
-	//Débindind du vao de la cible pour éviter de le remodifier
+	//Debind and clean
 	glBindTexture(GL_TEXTURE_2D, 0);
 	glBindVertexArray(0);
 }

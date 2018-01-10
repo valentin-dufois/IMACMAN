@@ -62,7 +62,7 @@ void GameEngine::executeScenes()
 void GameEngine::renderScenes()
 {
 	/*Clear the screen*/
-	glClear(GL_COLOR_BUFFER_BIT);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	//get all scenes
 	std::vector<Scene *> scenes = GameObj->getScenes();
@@ -143,7 +143,6 @@ void GameEngine::loadLevel(Level * level){
 		level->getHeight(),
 		level->getLevelGrid()
 	);
-
 	m_pacman = reinterpret_cast<Pacman *>(m_level.getItem(ITEM_SYNTAX::PACMAN));
 
 	m_Blinky = reinterpret_cast<Ghost *>(m_level.getItem(ITEM_SYNTAX::BLINKY));

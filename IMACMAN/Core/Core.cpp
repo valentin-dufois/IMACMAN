@@ -14,11 +14,14 @@ void Core::ignite(std::string appPath)
 	Igniter igniter = Igniter();
 
 	igniter.igniteGameObject(appPath);
-	igniter.igniteSDL();
+	igniter.igniteSDL(800, 600);
 	igniter.igniteOpenGL();
 
 	//Init random generator
 	srand((uint)time(NULL));
+
+	//Init render engine
+	GameObj->renderEngine->initRender();
 }
 
 //The main loop
@@ -27,7 +30,7 @@ void Core::main()
 	std::chrono::high_resolution_clock::time_point start, end;
 
 	//Load the first scene
-	sceneTest001::load();
+	sceneTest003::load();
 
 	while(GameObj->isRunning())
 	{

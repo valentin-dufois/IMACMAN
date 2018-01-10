@@ -24,6 +24,10 @@
 #include <ft2build.h>
 #include FT_FREETYPE_H
 
+#include <assimp/Importer.hpp>
+#include <assimp/scene.h>
+#include <assimp/postprocess.h>
+
 #include <glm/glm.hpp>
 
 /////////////////

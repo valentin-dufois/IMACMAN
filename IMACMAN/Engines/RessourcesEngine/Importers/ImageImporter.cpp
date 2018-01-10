@@ -17,14 +17,8 @@ Asset * ImageImporter::getAsset(std::string path)
 	if(!imageSurface)
 		throw std::runtime_error("Could not load " + path + " : " + std::string(IMG_GetError()));
 
-
-	//Image is ok, let's extract informations
-	//unsigned int i_height = imageSurface->w;
-	//unsigned int i_width = imageSurface->h;
-
-	//GLenum imageMode;
-
-	return nullptr;
+	//Image ok , let the Image class handle the loading
+	return new Image(imageSurface);
 }
 
 ImageImporter::~ImageImporter()

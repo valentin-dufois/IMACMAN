@@ -17,7 +17,6 @@ bool Asset::isRenderable()
 {
 	switch(getType())
 	{
-		case FONT:
 		case MESH:
 			return true;
 			break;
@@ -56,5 +55,13 @@ Asset::operator Shader*()
 		throw std::runtime_error("Invalid conversion.\nInvalid conversion from Asset * to Shader * : Given Asset * is not a Shader.");
 
 	return reinterpret_cast<Shader *>(this);
+}
+
+Asset::operator Image*()
+{
+	if(getType() != IMAGE)
+		throw std::runtime_error("Invalid conversion.\nInvalid conversion from Image * to Shader * : Given Asset * is not an Image.");
+
+	return reinterpret_cast<Image *>(this);
 }
 

@@ -11,8 +11,8 @@ protected:
 
 public:
     //CONSTRUCTOR
-	DynamicItem(glm::vec2 position, std::string name, uint score, enum ITEM_SYNTAX type, enum DIRECTION dir):
-        GItem(position, score, type),
+	DynamicItem(Mesh * mesh, glm::vec2 position, std::string name, uint score, enum ITEM_SYNTAX type, enum DIRECTION dir):
+        GItem(mesh, position, score, type),
         m_name(name),
         m_firstPosition(position),
         m_currentDirection(dir)

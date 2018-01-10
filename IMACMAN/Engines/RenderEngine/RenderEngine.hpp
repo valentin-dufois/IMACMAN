@@ -13,12 +13,15 @@
 #include "libraries.hpp"
 #include "Utils/Vertex.hpp"
 #include "Utils/Enums.hpp"
+#include "Utils/DrawCursor.hpp"
 #include "Engines/RessourcesEngine/Elements/Mesh.hpp"
 
 #include "Manager/Manager.hpp"
 #include "Core/GameObject.hpp"
 
 #include <map>
+#include <glm/gtx/string_cast.hpp>
+#include <glm/ext.hpp>
 
 //The engine
 class RenderEngine
@@ -26,6 +29,14 @@ class RenderEngine
 public:
 	//Singleton
 	static void instanciate();
+
+
+	/**
+	 Init render properties such as matrix
+	 */
+	void initRender();
+
+	inline DrawCursor * getCameraCursor() { return &m_MVMatrix; };
 
 	/**
 	 Return the object manager for the given type
@@ -40,32 +51,55 @@ public:
 
 	///////
 	//Utils
-	void loadPlateBoard();
-	void updatePlateBoard();
 
-	void loadGrid();
-	void updateGrid();
-	void renderGrid();
+	/**
+	 Generate the VBO for the given mesh
 
-	void initVBO(GLuint * index, enum MANAGER_TYPE type, std::vector<Vertex> &vertices, GLuint nbOfVBO);
-	void initVAO(enum MANAGER_TYPE type);
-	void render(Mesh * mesh);
+	 @param mesh Mesh to generate
+	 @param type Generator to use
+	 */
+	void initVBO(Mesh * mesh, enum MANAGER_TYPE type);
+
+	/**
+	 Generate the VAO for the given mesh
+
+	 @param mesh Mesh to generate
+	 @param type Generator to use
+	 */
+	void initVAO(Mesh * mesh, enum MANAGER_TYPE type);
+
+	/**
+	 Render the given mesh at the given location
+
+	 @param mesh The mesh to render
+	 @param cursor Cursor to the mesh position
+	 */
+	void render(Mesh * mesh, DrawCursor * cursor);
 
 private:
+
 	//Singleton
 	static bool m_instanciated;
+
 	//Vertice Properties
 	const GLuint VERTEX_ATTR_POSITION = 1;
 	const GLuint VERTEX_ATTR_NORMAL = 2;
 	const GLuint VERTEX_ATTR_COLOR = 3;
+	const GLuint VERTEX_ATTR_UV = 4;
+
 	//Attributs
 	GLuint * m_gridVBO;
 	GLuint * m_pacmanVBO;
-	GLuint m_VAO = 0;
 	std::vector<GLuint *> m_ghostsVBO;
 	uint m_VBOCountIndex;
+
 	//Cameras
 	bool thirdPersCamera = false;
+
+	//Matrix
+	DrawCursor m_ProjectionMatrix;
+	DrawCursor m_MVMatrix;
+	DrawCursor m_NormalMatrix;
 
 	//Constructor
 	RenderEngine();

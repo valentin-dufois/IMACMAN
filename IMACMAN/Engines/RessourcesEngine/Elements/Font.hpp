@@ -13,7 +13,6 @@
 class Asset;
 
 #include "Asset.hpp"
-#include "Renderable.hpp"
 #include "Utils/SDL.hpp"
 #include "Utils/ShaderProgram.hpp"
 #include "Engines/RenderEngine/RenderEngine.hpp"
@@ -40,7 +39,7 @@ struct FontFace
 
 /////////////
 //Font class
-class Font : public Asset, public Renderable
+class Font : public Asset
 {
 public:
 	Font(FT_Face &face);

@@ -32,8 +32,6 @@ void PacmanManager::fillVBO(std::vector<Vertex> &vertices)
     vertices.data(),
     GL_STATIC_DRAW
     );
-
-	std::cout << "Fill the Pacman VBO\n" << std::endl;
 }
 
 void PacmanManager::fillVAO()

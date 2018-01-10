@@ -8,3 +8,33 @@
 
 #include "Image.hpp"
 
+Image::Image(SDL_Surface * imageSurface):
+	Asset(IMAGE),
+	m_surface(imageSurface),
+	m_width(imageSurface->w),
+	m_height(imageSurface->h)
+{
+	GLuint colorMode = GL_RGB;
+	if(m_surface->format->BytesPerPixel == 4)
+		colorMode = GL_RGBA;
+
+	glGenTextures(1, &m_textureID);
+	glBindTexture(GL_TEXTURE_2D, m_textureID);
+
+	glTexImage2D(GL_TEXTURE_2D,
+				 0,
+				 colorMode,
+				 m_width,
+				 m_height,
+				 0,
+				 colorMode,
+				 GL_UNSIGNED_BYTE,
+				 m_surface->pixels);
+
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+	glBindTexture(GL_TEXTURE_2D, 0); /*Leave the texture*/
+}

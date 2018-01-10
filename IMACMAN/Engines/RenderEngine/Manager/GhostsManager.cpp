@@ -22,9 +22,7 @@ void GhostsManager::render()
 }
 
 void GhostsManager::fillVBO(std::vector<Vertex> &vertices)
-{
-  std::cout << "Fill the Ghosts VBO\n" << std::endl;
-  
+{  
   GLsizeiptr size = vertices.size() * sizeof(GLfloat);
 
 	//Fill VBO with data

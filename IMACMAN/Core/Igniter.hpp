@@ -23,7 +23,7 @@ class Igniter
 {
 public:
 	void igniteGameObject(std::string appPath);
-	void igniteSDL();
+	void igniteSDL(float width, float height);
 	void igniteOpenGL();
 	void igniteEngines();
 };
