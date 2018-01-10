@@ -44,7 +44,7 @@ public:
 	void render();
 
 	void renderMesh(Mesh * mesh);
-	void renderMeshList(std::vector<GItem *> meshList);
+	void renderMeshList(std::vector<GItem *> * meshList);
 
 	/**
 	 Destructor, used to properly free all the memory used by the scene

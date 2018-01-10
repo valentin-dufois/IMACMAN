@@ -45,7 +45,7 @@ public:
     //GETTERS
     inline uint getWidth() const { return m_width; }
     inline uint getHeight() const { return m_height; }
-    std::vector<GItem *> getGrid() const;
+    std::vector<GItem *> * getGrid();
     std::vector<GItem *> getItem(glm::vec2 position) const;
     GItem * getItem(enum ITEM_SYNTAX type) const;
     std::vector<GItem *> getItemList(enum ITEM_SYNTAX type) const;

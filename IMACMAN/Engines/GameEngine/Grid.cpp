@@ -1,9 +1,9 @@
 #include "Grid.hpp"
 
 //GETTERS
-std::vector<GItem *> Grid::getGrid() const
+std::vector<GItem *> * Grid::getGrid()
 {
-    return m_gridItems;
+    return &m_gridItems;
 }
 
 std::vector<GItem *> Grid::getItem(glm::vec2 position) const

@@ -67,10 +67,10 @@ void sceneGame01::renderMesh(Mesh * mesh) {
 	);
 }
 
-void sceneGame01::renderMeshList(std::vector<GItem *> meshList) {
+void sceneGame01::renderMeshList(std::vector<GItem *> * meshList) {
 	std::vector<GItem *>::const_iterator it;
-	
-	for (it = m_gridLevel->getGrid().begin(); it < m_gridLevel->getGrid().end(); ++it) {
+
+	for (it = m_gridLevel->getGrid()->begin(); it != m_gridLevel->getGrid()->end(); ++it) {
 		GameObj->renderEngine->render(
 			(*it)->getMesh(),
 			(*it)->getMesh()->getCursor()
