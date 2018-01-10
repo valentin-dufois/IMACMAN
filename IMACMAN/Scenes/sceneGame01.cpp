@@ -57,7 +57,7 @@ void sceneGame01::execute()
 
 void sceneGame01::render()
 {
-	this->renderMeshList(m_gridLevel);
+	this->renderMeshList(m_gridLevel->getGrid());
 }
 
 void sceneGame01::renderMesh(Mesh * mesh) {
