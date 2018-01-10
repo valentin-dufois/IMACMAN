@@ -30,27 +30,32 @@ public:
     void updateDirection(enum DIRECTION direction) { m_currentDirection = direction; }
 
     //METHODS
-    glm::vec2 getNextPosition() {
+    glm::vec2 getNextPosition(glm::vec3 & translation) {
         glm::vec2 nextPos = this->getPosition();
 
         switch (m_currentDirection) {
             case DIRECTION::UP:
                 nextPos.x += -1.f;
                 nextPos.y += 0.f;
+                translation = glm::vec3(-1.f, 0.f, 0.f);
                 break;
             case DIRECTION::DOWN:
                 nextPos.x += 1.f;
                 nextPos.y += 0.f;
+                translation = glm::vec3(1.f, 0.f, 0.f);
                 break;
             case DIRECTION::LEFT:
                 nextPos.x += 0.f;
                 nextPos.y += -1.f;
+                translation = glm::vec3(0.f, -1.f, 0.f);
                 break;
             case DIRECTION::RIGHT:
                 nextPos.x += 0.f;
                 nextPos.y += 1.f;
+                translation = glm::vec3(0.f, 1.f, 0.f);
                 break;
             default:
+                translation = glm::vec3(0.f, 0.f, 0.f);
                 break;
         }
         return nextPos;

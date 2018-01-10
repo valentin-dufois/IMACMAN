@@ -112,28 +112,37 @@ void Grid::moveItems()
 
 void Grid::moveItem(GItem * item)
 {
+    glm::vec3 translation = glm::vec3(0.f);
+
     //Check wether it's a dynamic or static item.
     if (item->getItemType() < (int)ITEM_SYNTAX::PACMAN) {
         throw std::runtime_error("Error: cannot move static item!\n");
     }
     // It's dynamic so we reinterpret the cast
     DynamicItem * dItem = reinterpret_cast<DynamicItem *>(item);
-    
+    glm::vec2 nextPosition = dItem->getNextPosition(translation);
+
     try {
-        std::vector<GItem *> nextCase = getItem(dItem->getNextPosition());
+        std::vector<GItem *> nextCase = getItem(nextPosition);
 
         //Check next position
         if (nextCase[0]->getItemType() != ITEM_SYNTAX::WALL) {
+            //If we are handling the pacman then special case !
             if (dItem->getItemType() == ITEM_SYNTAX::PACMAN) {
                 this->updateCase(reinterpret_cast<Pacman *>(dItem), nextCase);
-            }
-            if (dItem->getItemType() > ITEM_SYNTAX::PACMAN) {
-                //TODO: MANAGE GHOSTS BEHAVIOR
+            } else {
+                this->updateCase(reinterpret_cast<Ghost *>(dItem), nextCase);
             }
         }
+        // Hangling Ghosts IA => direction
+        if (dItem->getItemType() != ITEM_SYNTAX::PACMAN) {
+            handleIA(dItem);
+        }
     } catch(...) {
-        //If we enconter nothing then move
-        dItem->updatePosition(dItem->getNextPosition(), m_width, m_height);
+        //If we enconter nothing then move and update mesh transformations
+        glm::vec2 previousPosition = dItem->getPosition();
+        dItem->updatePosition(nextPosition, this->m_width, this->m_height);
+        dItem->getMesh()->getCursor()->translate(translateMesh(dItem->getPosition(), previousPosition));
     }
 }
 
@@ -148,13 +157,15 @@ void Grid::deleteGridItem(GItem * item) {
 }
 
 void Grid::updateCase(Pacman * pac, std::vector<GItem *> cell) {
-    glm::vec2 nextPosition = pac->getNextPosition();
+    glm::vec3 translation = glm::vec3(0.f);
+    glm::vec2 nextPosition = pac->getNextPosition(translation);
+    glm::vec2 previousPosition = pac->getPosition();
     std::vector<GItem *>::const_iterator it;
     uint tmpScore = 0;
 
-    //BEGIN BY UPDATING POSITION AND MESH TRANSLATION
+    //UPDATE POSITION AND MESH TRANSLATION / TODO ROTATION
     pac->updatePosition(nextPosition, this->m_width, this->m_height);
-    pac->getMesh()->getCursor()->translate(glm::vec3(nextPosition, 0.f));
+    pac->getMesh()->getCursor()->translate(translateMesh(pac->getPosition(), previousPosition));
 
     for (it = cell.begin(); it < cell.end(); ++it) {
         switch ((*it)->getItemType()) {
@@ -173,7 +184,7 @@ void Grid::updateCase(Pacman * pac, std::vector<GItem *> cell) {
             case ITEM_SYNTAX::PINKY:
             case ITEM_SYNTAX::INKY:
             case ITEM_SYNTAX::CLYDE:
-                tmpScore += pacmanGhostCollision(pac, reinterpret_cast<Ghost *>(*it), nextPosition);
+                tmpScore += pacmanGhostCollision(pac, reinterpret_cast<Ghost *>(*it));
                 break;
             default:
                 break;
@@ -182,16 +193,44 @@ void Grid::updateCase(Pacman * pac, std::vector<GItem *> cell) {
     pac->updateScores(tmpScore);
 }
 
-void Grid::pacmanFoodCollision(Pacman * pac, GItem * food, glm::vec2 nextPosition) {
-    pac->updatePosition(nextPosition, this->m_width, this->m_height);
-    
+void Grid::updateCase(Ghost * ghost, std::vector<GItem *> cell) {
+    glm::vec3 translation = glm::vec3(0.f);
+    glm::vec2 nextPosition = ghost->getNextPosition(translation);
+    glm::vec2 previousPosition = ghost->getPosition();
+    std::vector<GItem *>::const_iterator it;
+    uint tmpScore = 0;
+
+    //UPDATE POSITION AND MESH TRANSLATION / TODO ROTATION
+    ghost->updatePosition(nextPosition, this->m_width, this->m_height);
+    ghost->getMesh()->getCursor()->translate(translateMesh(ghost->getPosition(), previousPosition));
+
+    for (it = cell.begin(); it < cell.end(); ++it) {
+        switch ((*it)->getItemType()) {
+            case ITEM_SYNTAX::SUPER_PAC_GUM:
+            case ITEM_SYNTAX::PAC_GUM:
+            case ITEM_SYNTAX::FRUIT:
+            case ITEM_SYNTAX::BLINKY:
+            case ITEM_SYNTAX::PINKY:
+            case ITEM_SYNTAX::INKY:
+            case ITEM_SYNTAX::CLYDE:
+                break;
+            case ITEM_SYNTAX::PACMAN:
+                ghostPacmanCollision(reinterpret_cast<Pacman *>(*it), ghost);
+                break;
+            default:
+                break;
+        }
+    }
+}
+
+void Grid::pacmanFoodCollision(Pacman * pac, GItem * food, glm::vec2 nextPosition) {    
     if (food->getItemType() == ITEM_SYNTAX::SUPER_PAC_GUM) {
         pac->updateSuperCounter(30);
     }
     this->deleteGridItem(food);
 }
 
-uint Grid::pacmanGhostCollision(Pacman * pac, Ghost * ghost, glm::vec2 nextPosition) {
+uint Grid::pacmanGhostCollision(Pacman * pac, Ghost * ghost) {
     uint tmpScore = 0;
     
     if (!ghost->isAlive()) {
@@ -199,9 +238,43 @@ uint Grid::pacmanGhostCollision(Pacman * pac, Ghost * ghost, glm::vec2 nextPosit
     } else if(pac->isSuper() && ghost->isAlive()) {
         tmpScore += ghost->getScore();
         ghost->updateDeathCounter(30);
+        //Position handling
+        ghost->getMesh()->getCursor()->translate(
+            translateMesh(ghost->getFirstPosition(), ghost->getPosition())
+        );
+        ghost->setPosition(ghost->getFirstPosition());
+
     
     } else {
         pac->updateLives(-1);
+        //Position handling
+        pac->getMesh()->getCursor()->translate(
+            translateMesh(pac->getFirstPosition(), pac->getPosition())
+        );
+        pac->setPosition(pac->getFirstPosition());
+    }
+
+    return tmpScore;
+}
+
+uint Grid::ghostPacmanCollision(Pacman * pac, Ghost * ghost) {
+    uint tmpScore = 0;
+
+    if(ghost->isAfraid() && ghost->isAlive()) {
+        tmpScore += ghost->getScore();
+        ghost->updateDeathCounter(30);
+        //Position handling
+        pac->getMesh()->getCursor()->translate(
+            translateMesh(ghost->getFirstPosition(), ghost->getPosition())
+        );
+        ghost->setPosition(ghost->getFirstPosition());
+    
+    } else {
+        pac->updateLives(-1);
+        //Position handling
+        pac->getMesh()->getCursor()->translate(
+            translateMesh(pac->getFirstPosition(), pac->getPosition())
+        );
         pac->setPosition(pac->getFirstPosition());
     }
 
@@ -232,4 +305,78 @@ void Grid::displayGrid() {
         }
         std::cout << std::endl;
     }
+}
+
+glm::vec3 Grid::translateMesh(glm::vec2 nextPosition, glm::vec2 currentPosition) {
+    glm::vec2 translation = glm::vec3(0.f);
+    translation.x = (nextPosition.x - currentPosition.x);
+    translation.y = (nextPosition.y - currentPosition.y);
+
+    return glm::vec3(translation, 0.f);
+}
+
+glm::vec3 Grid::translationToOrigin(glm::vec2 initialPosition, glm::vec2 currentPosition) {
+    glm::vec2 translation = glm::vec3(0.f);
+    float xDifference = abs((currentPosition.x - initialPosition.x));
+    float yDifference = abs((currentPosition.y - initialPosition.y));
+
+    translation.x = currentPosition.x >= initialPosition.x ? -xDifference : xDifference;
+    translation.y = currentPosition.y >= initialPosition.y ? -yDifference : yDifference;
+
+    return glm::vec3(translation, 0.f);
+}
+
+
+void Grid::handleIA(DynamicItem * dItem) {
+    srand(time(NULL));
+
+    if (dItem->getItemType() != ITEM_SYNTAX::PACMAN &&
+        reinterpret_cast<Ghost *>(dItem)->isAfraid() == true
+    ) {
+        dItem->updateDirection(afraidIA());
+    } else {
+        switch(dItem->getItemType()) {
+            case ITEM_SYNTAX::BLINKY :
+                dItem->updateDirection(randomMoveIA());
+                break;
+            case ITEM_SYNTAX::PINKY :
+                dItem->updateDirection(turnRightIA());
+                break;
+            case ITEM_SYNTAX::INKY :
+                dItem->updateDirection(stalkerIA());
+                break;
+            case ITEM_SYNTAX::CLYDE :
+                dItem->updateDirection(terminatorIA());
+                break;
+            default:
+                dItem->updateDirection(randomMoveIA());
+                break;
+        }
+    }
+}
+
+enum DIRECTION Grid::randomMoveIA() {
+    int direction = rand() % 3;
+
+    return (DIRECTION)direction;
+}
+
+enum DIRECTION Grid::turnRightIA() {
+    int direction = rand() % 3;
+    return (DIRECTION)direction;
+}
+
+enum DIRECTION Grid::stalkerIA() {
+    int direction = rand() % 3;
+    return (DIRECTION)direction;
+}
+
+enum DIRECTION Grid::terminatorIA() {
+    int direction = rand() % 3;
+    return (DIRECTION)direction;
+}
+
+enum DIRECTION Grid::afraidIA() {
+    int direction = rand() % 3;
+    return (DIRECTION)direction;
 }

@@ -6,6 +6,7 @@
 #include <vector>
 #include <map>
 #include <iterator>
+#include <time.h> 
 
 #include "GItemFactory.hpp"
 
@@ -57,11 +58,27 @@ public:
     //METHODS
     void moveItems();
     void moveItem(GItem * item);
+    
     void deleteGridItem(GItem * item);
+    
     void updateCase(Pacman * pac, std::vector<GItem *> cell);
+    void updateCase(Ghost * ghost, std::vector<GItem *> cell);
+    
     void pacmanFoodCollision(Pacman * pac, GItem * food, glm::vec2 nextPosition);
-    uint pacmanGhostCollision(Pacman * pac, Ghost * ghost, glm::vec2 nextPosition);
+    uint pacmanGhostCollision(Pacman * pac, Ghost * ghost);
+    uint ghostPacmanCollision(Pacman * pac, Ghost * ghost);
+    
     void displayGrid();
+    
+    glm::vec3 translateMesh(glm::vec2 currentPosition, glm::vec2 nextPosition);
+    glm::vec3 translationToOrigin(glm::vec2 initialPosition, glm::vec2 currentPosition);
+
+    void handleIA(DynamicItem * dItem);
+    enum DIRECTION randomMoveIA();
+    enum DIRECTION turnRightIA();
+    enum DIRECTION stalkerIA();
+    enum DIRECTION terminatorIA();
+    enum DIRECTION afraidIA();
 };
 
 #endif /* GRID_HPP */

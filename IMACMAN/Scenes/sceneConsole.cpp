@@ -21,7 +21,7 @@ void sceneConsole::init()
 	m_sceneID = 1;
 
 	//Fetch a level
-	rId levelID = GameObj->ressourcesEngine->loadAsset("level00.txt", LEVEL);
+	rId levelID = GameObj->ressourcesEngine->loadAsset("level01.txt", LEVEL);
 	Level * level = *GameObj->ressourcesEngine->getAsset(levelID);
 	
 	//Load the level inside the Game Engine
