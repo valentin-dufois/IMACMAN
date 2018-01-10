@@ -22,7 +22,7 @@ void sceneGame01::init()
 	rId levelID = GameObj->ressourcesEngine->loadAsset("level01.txt", LEVEL);
 	Level * level = *GameObj->ressourcesEngine->getAsset(levelID);
 
-	//Load the level inside the Game Engine and get the Grid
+	//Load the level inside the Game Engine and get the Grid as reference
 	GameObj->gameEngine->loadLevel(level);
 	m_gridLevel = GameObj->gameEngine->getGrid();
 
