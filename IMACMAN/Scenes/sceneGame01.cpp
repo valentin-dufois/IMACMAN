@@ -31,7 +31,9 @@ void sceneGame01::init()
 	float levelHalfWidth = (float) GameObj->gameEngine->getGrid()->getWidth() / 2;
 	float levelHalfHeight = (float) GameObj->gameEngine->getGrid()->getHeight() / 2;
 
-	GameObj->renderEngine->initRender(screenRatio, levelHalfWidth, levelHalfHeight);
+	GameObj->renderEngine->getCameraCursor()
+		->rotate(-90.f, glm::vec3(0, 0, 1))
+		->translate(-levelHalfWidth, -levelHalfHeight, -22);
 
 	std::cout << "LOADED" << std::endl;
 }

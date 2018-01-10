@@ -23,10 +23,19 @@ void sceneTest003::init()
 	//////
 	//MESH
 	rId meshID = GameObj->ressourcesEngine->loadAsset("pacman.blend", MESH);
+	rId texID = GameObj->ressourcesEngine->loadAsset("eye.jpg", IMAGE);
+
 	m_mesh = *GameObj->ressourcesEngine->getAsset(meshID);
+	m_tex = *GameObj->ressourcesEngine->getAsset(texID);
 
 	m_mesh->generate(PACMAN_M);
 	m_mesh->setProgram(prog);
+
+	m_mesh->setTexture(m_tex->getTextureID());
+	m_mesh->setType(true);
+
+	GameObj->renderEngine->getCameraCursor()
+		->translate(0, 0, -10);
 
 	std::cout << "loaded" << std::endl;
 }

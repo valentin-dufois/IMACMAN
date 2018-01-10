@@ -91,6 +91,7 @@ private:
 #include "sceneTest001.hpp"
 #include "sceneGame01.hpp"
 #include "sceneConsole.hpp"
+#include "sceneTest003.hpp"
 
 
 #endif /* Scene_h */

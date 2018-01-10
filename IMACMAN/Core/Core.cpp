@@ -19,6 +19,9 @@ void Core::ignite(std::string appPath)
 
 	//Init random generator
 	srand((uint)time(NULL));
+
+	//Init render engine
+	GameObj->renderEngine->initRender();
 }
 
 //The main loop

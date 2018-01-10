@@ -45,16 +45,43 @@ void ShaderProgram::use() const
 }
 
 //UNIFORMS
-void ShaderProgram::setUniformMat4(std::string uniformName, glm::mat4 value)
+void ShaderProgram::setUniformMat4(const std::string &uniformName, const glm::mat4 &value)
 {
-	//THe program needs to be binded in order to pass uniforms
+	//The program needs to be binded in order to pass uniforms
 	use();
 
-	GLuint uniformLocation = glGetUniformLocation(m_programID, uniformName.c_str());
-	glUniformMatrix4fv(uniformLocation, 1, GL_FALSE, glm::value_ptr(value));
+	//Get location
+	GLuint uniLoc = getUniformLocation(uniformName);
 
-	//std::cout << uniformName << ": " << uniformLocation << std::endl;
+	//Pass uniform
+	glUniformMatrix4fv(uniLoc, 1, GL_FALSE, glm::value_ptr(value));
 }
+
+void ShaderProgram::setUniformUint(const std::string &uniformName, const uint &value)
+{
+	//The program needs to be binded in order to pass uniforms
+	use();
+
+	//Get location
+	GLuint uniLoc = getUniformLocation(uniformName);
+
+	//Pass uniform
+	glUniform1i(uniLoc, value);
+}
+
+
+GLuint ShaderProgram::getUniformLocation(const std::string &uniformName)
+{
+	//Is this uniform already located ?
+	if(m_uniformLocations.find(uniformName) != m_uniformLocations.end())
+		return m_uniformLocations[uniformName];
+
+	GLuint uniLoc = glGetUniformLocation(m_programID, uniformName.c_str());
+	m_uniformLocations.insert(std::pair<std::string, GLuint>(uniformName, uniLoc));
+
+	return uniLoc;
+}
+
 
 const std::string ShaderProgram::getCompileLog() const
 {

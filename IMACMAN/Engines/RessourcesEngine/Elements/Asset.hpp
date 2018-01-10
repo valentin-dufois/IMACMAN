@@ -15,6 +15,7 @@ class Font;
 class Level;
 class Mesh;
 class Shader;
+class Image;
 
 #include "libraries.hpp"
 #include "../RessourcesEngine.hpp"
@@ -74,6 +75,13 @@ public:
 	 */
 	operator Shader*();
 
+	/**
+	 Casting operator for Image assets
+
+	 @return Return the asset as a Image, nullptr if the asset is not a Image
+	 */
+	operator Image*();
+
 protected:
 	ressourceType m_type;
 };
@@ -82,5 +90,6 @@ protected:
 #include "Level.hpp"
 #include "Mesh.hpp"
 #include "Shader.hpp"
+#include "Image.hpp"
 
 #endif /* Asset_hpp */

@@ -19,6 +19,8 @@ class ShaderProgram;
 
 #include <glm/glm.hpp>
 
+#include <map>
+
 class ShaderProgram
 {
 public:
@@ -40,12 +42,20 @@ public:
 	inline GLuint getProgramID() const { return m_programID; };
 
 	/**
-	 Pass the given value to the program as uniform
+	 Pass the given matrix to the program as uniform
 
 	 @param uniformName Name of the uniform var
 	 @param value A 4x4 Matrix
 	 */
-	void setUniformMat4(std::string uniformName, glm::mat4 value);
+	void setUniformMat4(const std::string &uniformName, const glm::mat4 &value);
+
+	/**
+	 Pass the given uint to the uniform var
+
+	 @param uniformName Name of the uniform var
+	 @param value A uint
+	 */
+	void setUniformUint(const std::string &uniformName, const uint &value);
 
 private:
 	GLuint m_programID;
@@ -55,6 +65,15 @@ private:
 
 	Shader * m_vsShader;
 	Shader * m_fsShader;
+
+	/**
+	 Locate and store uniform locations as needed
+
+	 @param uniformName Uniform name
+	 @return The uniform location
+	 */
+	GLuint getUniformLocation(const std::string &uniformName);
+	std::map<std::string, GLuint> m_uniformLocations;
 
 	const std::string getCompileLog() const;
 

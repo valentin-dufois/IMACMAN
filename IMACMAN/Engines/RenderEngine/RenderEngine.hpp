@@ -36,6 +36,8 @@ public:
 	 */
 	void initRender();
 
+	inline DrawCursor * getCameraCursor() { return &m_MVMatrix; };
+
 	/**
 	 Return the object manager for the given type
 

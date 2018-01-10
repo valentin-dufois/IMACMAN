@@ -52,6 +52,7 @@ private:
 	rId m_sceneID;
 
 	Mesh * m_mesh;
+	Image * m_tex;
 };
 
 #endif /* sceneTest003_hpp */

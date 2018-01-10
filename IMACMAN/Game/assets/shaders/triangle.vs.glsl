@@ -14,6 +14,7 @@ uniform mat4 uNormalMatrix;
 out vec3 vPosition_vs;
 out vec3 vNormal_vs;
 out vec4 vColor_vs;
+out vec2 vUV_vs;
 
 void main() {
 	// Calcul des coordonnées homogènes
@@ -24,6 +25,7 @@ void main() {
 	vPosition_vs = vec3(uMVMatrix * vertexPosition);
 	vNormal_vs = vec3(uNormalMatrix * vertexNormal);
 	vColor_vs = aVertexColor;
+	vUV_vs = aVertexUV;
 
 	gl_Position = uMVPMatrix * vertexPosition;
 }

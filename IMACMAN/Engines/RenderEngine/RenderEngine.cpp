@@ -23,21 +23,6 @@ void RenderEngine::instanciate()
 	m_instanciated = true;
 }
 
-void RenderEngine::initRender(float screenRatio, float halfLevelWidth, float halfLevelHeight)
-{
-	//Projection Matrix
-	m_ProjectionMatrix.perspective(70.f, screenRatio, 0.1f, 100.f);
-
-	//Rotate world camera to fit console view
-	m_MVMatrix.rotate(glm::radians(-90.f), glm::vec3(0, 0, 1));
-	//MV Matrix <- The camera in a sort
-	m_MVMatrix.translate(-halfLevelWidth, -halfLevelHeight, -22);
-
-	//Normal
-	m_NormalMatrix = m_MVMatrix;
-	m_NormalMatrix.inverse()->transpose();
-}
-
 /**
  * Private constructor
  */
@@ -53,9 +38,24 @@ RenderEngine::RenderEngine()
 		&inkyVBO,
 		&clydeVBO
 	};
-
-	//initVBO(GL_ARRAY_BUFFER, &m_ghostsVBO[0] , GRID);
 }
+
+void RenderEngine::initRender()
+{
+	float screenRatio = (float) GameObj->screenWidth / GameObj->screenHeight;
+
+	//Projection Matrix
+	m_ProjectionMatrix.perspective(70.f, screenRatio, 0.1f, 100.f);
+
+	//MV Matrix <- The camera in a sort
+	//m_MVMatrix;
+
+	//Normal
+	m_NormalMatrix = m_MVMatrix;
+	m_NormalMatrix.inverse()->transpose();
+}
+
+
 void RenderEngine::initVBO(Mesh * mesh, enum MANAGER_TYPE type)
 {
 	//Get Manager for VBO
@@ -165,25 +165,31 @@ void RenderEngine::render(Mesh * mesh, DrawCursor * cursor)
 	//Set program
 	mesh->getProgram()->use();
 
+	//Bind texture if needed
+	if(mesh->isTextured())
+	{
+		glBindTexture(GL_TEXTURE_2D, mesh->getTextureID());
+		mesh->getProgram()->setUniformUint("uTexturedMesh", 1);
+		mesh->getProgram()->setUniformUint("uTexture", 0);
+	}
+	else
+	{
+		mesh->getProgram()->setUniformUint("uTexturedMesh", 0);
+	}
+
+	//Send uniforms to GPU
+	mesh->getProgram()->setUniformMat4("uMVMatrix", m_MVMatrix);
+	mesh->getProgram()->setUniformMat4("uNormalMatrix", m_NormalMatrix);
+	mesh->getProgram()->setUniformMat4("uMVPMatrix", m_ProjectionMatrix * m_MVMatrix * cursor->getMatrix());
+
 	//Bind VAO
 	glBindVertexArray(mesh->vao);
 
-	//Bind texture if needed -- NOT TESTED --
-	if(mesh->isTextured())
-		glBindTexture(GL_TEXTURE_2D, mesh->getTextureID());
-
-	//Send uniforms to GPU
-
-	glm::mat4 PosInCameraView = m_MVMatrix * cursor->getMatrix();
-
-	mesh->getProgram()->setUniformMat4("uMVMatrix", m_MVMatrix);
-	mesh->getProgram()->setUniformMat4("uNormalMatrix", m_NormalMatrix);
-	mesh->getProgram()->setUniformMat4("uMVPMatrix", m_ProjectionMatrix * PosInCameraView);
-
+	//Draw cube
 	glDrawArrays(GL_TRIANGLES, 0, mesh->getVertexCount());
 	check_gl_error();
 
-	//Débinding du vao de la cible pour éviter de le remodifier
+	//Debind and clean
 	glBindTexture(GL_TEXTURE_2D, 0);
 	glBindVertexArray(0);
 }

@@ -57,3 +57,11 @@ Asset::operator Shader*()
 	return reinterpret_cast<Shader *>(this);
 }
 
+Asset::operator Image*()
+{
+	if(getType() != IMAGE)
+		throw std::runtime_error("Invalid conversion.\nInvalid conversion from Image * to Shader * : Given Asset * is not an Image.");
+
+	return reinterpret_cast<Image *>(this);
+}
+

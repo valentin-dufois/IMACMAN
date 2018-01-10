@@ -13,11 +13,9 @@ Asset * MeshImporter::getAsset(std::string path)
 	Assimp::Importer importer;
 
 	const aiScene* scene = importer.ReadFile(path,
-											 aiProcess_CalcTangentSpace  |
-											 aiProcess_GenUVCoords       |
-											 aiProcess_OptimizeMeshes    |
-											 aiProcess_OptimizeGraph     |
-											 aiProcess_Triangulate);
+											 aiProcess_Triangulate |
+											 aiProcess_SortByPType |
+											 aiProcess_TransformUVCoords);
 
 	if(!scene->HasMeshes())
 		return new Mesh();
@@ -64,9 +62,10 @@ Asset * MeshImporter::getAsset(std::string path)
 				vertice = &aMesh->mVertices[indice];
 				normal = &aMesh->mNormals[indice];
 
-				UV = aiVector3D(0, 0, 0);
 				if(aMesh->HasTextureCoords(indice))
 					UV = aMesh->mTextureCoords[0][indice];
+				else
+					UV = aiVector3D(vertice->x, vertice->y, 0);
 
 				//Add vertice as a vertex
 				vertex.push_back(Vertex(
