@@ -5,12 +5,12 @@
 
 //GAME ENGINE ENUMS START
 enum PLAYER_TYPE {
-	AI,
+	AI = 0,
 	HUMAN
 };
 
 enum ITEM_SYNTAX {
-	FLOOR,
+	FLOOR = 0,
 	WALL,
 	PAC_GUM,
 	SUPER_PAC_GUM,
@@ -23,7 +23,7 @@ enum ITEM_SYNTAX {
 };
 
 enum DIRECTION {
-    UP,
+    UP = 0,
     DOWN,
     LEFT,
     RIGHT

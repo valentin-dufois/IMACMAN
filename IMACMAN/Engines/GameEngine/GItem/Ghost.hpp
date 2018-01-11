@@ -13,7 +13,7 @@ private:
 public:
 
 	Ghost(Mesh * mesh, glm::vec2 position, std::string name, enum ITEM_SYNTAX type, uint score = 100, bool isAlive = true, bool isAfraid = false) :
-		DynamicItem(mesh, position, name, score, type, DIRECTION::DOWN),
+		DynamicItem(mesh, position, name, score, type, DIRECTION::UP),
 		m_isAlive(isAlive),
 		m_isAfraid(isAfraid),
 		m_afraidCounter(0)

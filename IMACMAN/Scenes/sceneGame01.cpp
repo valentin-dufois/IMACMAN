@@ -53,7 +53,7 @@ void sceneGame01::execute()
 	}
 
 	m_gridLevel->moveItems();
-	std::cout << "EXECUTED" << std::endl;
+	//std::cout << "EXECUTED" << std::endl;
 }
 
 void sceneGame01::render()
