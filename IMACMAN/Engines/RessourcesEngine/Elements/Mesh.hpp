@@ -9,6 +9,9 @@
 #ifndef Mesh_hpp
 #define Mesh_hpp
 
+//Forward declaration
+class ShaderProgram;
+
 #include "Asset.hpp"
 #include "Utils/ShaderProgram.hpp"
 #include "Utils/DrawCursor.hpp"

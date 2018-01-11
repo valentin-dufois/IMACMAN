@@ -15,7 +15,8 @@ Asset * MeshImporter::getAsset(std::string path)
 	const aiScene* scene = importer.ReadFile(path,
 											 aiProcess_Triangulate |
 											 aiProcess_SortByPType |
-											 aiProcess_TransformUVCoords);
+											 aiProcess_TransformUVCoords |
+											 aiProcess_PreTransformVertices);
 
 	if(!scene->HasMeshes())
 		return new Mesh();
@@ -62,10 +63,10 @@ Asset * MeshImporter::getAsset(std::string path)
 				vertice = &aMesh->mVertices[indice];
 				normal = &aMesh->mNormals[indice];
 
-				if(aMesh->HasTextureCoords(indice))
+				if(aMesh->HasTextureCoords(0))
 					UV = aMesh->mTextureCoords[0][indice];
 				else
-					UV = aiVector3D(vertice->x, vertice->y, 0);
+					UV = aiVector3D(vertice->y, vertice->x, 0);
 
 				//Add vertice as a vertex
 				vertex.push_back(Vertex(

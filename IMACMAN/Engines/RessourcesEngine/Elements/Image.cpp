@@ -14,22 +14,25 @@ Image::Image(SDL_Surface * imageSurface):
 	m_width(imageSurface->w),
 	m_height(imageSurface->h)
 {
-	GLuint colorMode = GL_RGB;
+	GLuint colorMode = GL_BGR;
 	if(m_surface->format->BytesPerPixel == 4)
-		colorMode = GL_RGBA;
+		colorMode = GL_BGRA;
+
+	std::cout << "format : " << m_surface->format->BytesPerPixel << std::endl;
 
 	glGenTextures(1, &m_textureID);
 	glBindTexture(GL_TEXTURE_2D, m_textureID);
 
 	glTexImage2D(GL_TEXTURE_2D,
 				 0,
-				 colorMode,
+				 GL_RGB,
 				 m_width,
 				 m_height,
 				 0,
 				 colorMode,
 				 GL_UNSIGNED_BYTE,
 				 m_surface->pixels);
+	check_gl_error();
 
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
