@@ -13,11 +13,8 @@ void Igniter::igniteGameObject(std::string appPath)
 	//Get app path
 	FilePath applicationPath(appPath.c_str());
 
-	std::cout << applicationPath.dirPath() << std::endl;
-
 	//Instanciate GameObj
 	GameObject::instanciate(applicationPath.dirPath());
-
 
 	//Instanciate Engines
 	GameEngine::instanciate();
@@ -42,6 +39,10 @@ void Igniter::igniteSDL(float width, float height)
 	SDL_GL_SetAttribute(SDL_GL_STENCIL_SIZE, 8);
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 3);
+	SDL_GL_SetAttribute(SDL_GL_RED_SIZE, 8 );
+	SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE, 8 );
+	SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE, 8 );
+	SDL_GL_SetAttribute(SDL_GL_ALPHA_SIZE, 8 );
 
 	//Create window
 	GameObj->screenWidth = width;
@@ -86,8 +87,10 @@ void Igniter::igniteOpenGL()
 	  return;
 	}
 
-	std::cout << "OpenGL Version : " << glGetString(GL_VERSION) << std::endl;
-	std::cout << "GLEW Version : " << glewGetString(GLEW_VERSION) << std::endl;
+	//std::cout << "OpenGL Version : " << glGetString(GL_VERSION) << std::endl;
+	//std::cout << "GLEW Version : " << glewGetString(GLEW_VERSION) << std::endl;
+
+	glClearColor(0.0,0.0,0.0,0.0);
 
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LESS);

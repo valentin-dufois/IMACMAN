@@ -66,7 +66,7 @@ public:
 
 	 @return The FontFace
 	 */
-	FontFace genFontFace();
+	FontFace generate();
 
 	/**
 	 Generate a 2D tile with the caption as its texture

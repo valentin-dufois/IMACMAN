@@ -12,7 +12,8 @@
 #include "Engines/GameEngine/GameEngine.hpp"
 
 Selector::Selector():
-	m_currentItem(nullptr)
+	m_currentItem(nullptr),
+	m_lastAction(0)
 {}
 
 void Selector::addItem(Item * newItem)
@@ -49,6 +50,8 @@ void Selector::execute()
 
 	if(GameObj->gameEngine->getKeys().ENTER)
 		return m_currentItem->action();
+
+	GameObj->gameEngine->flushKeys();
 }
 
 void Selector::render()
@@ -57,15 +60,23 @@ void Selector::render()
 
 	for(std::vector<Item *>::iterator it = m_items.begin(); it != m_items.end(); ++it)
         (*it)->print();
+
+	GameObj->renderEngine->setProjection3D();
 }
 
 void Selector::moveCursor(Item * item)
 {
 	if(item == nullptr)
 		return;
+
+	//Tempo between action (.08s)
+	if(SDL_GetTicks() - m_lastAction < 80)
+		return;
     
     if(!item->isShown())
         return;
+
+	m_lastAction = SDL_GetTicks();
         
 	m_currentItem->deSelect();
 	item->select();

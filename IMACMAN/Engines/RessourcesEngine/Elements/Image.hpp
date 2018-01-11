@@ -29,6 +29,14 @@ private:
     //Image infos
     uint m_width;
     uint m_height;
+
+	/**
+	 Return the image format to use with openGL
+
+	 @param image The image to analyse
+	 @return The color format in the image
+	 */
+	GLenum getImageFormat(SDL_Surface * image);
 };
 
 #endif /* Image_hpp */

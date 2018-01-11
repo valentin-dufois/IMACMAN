@@ -31,14 +31,19 @@ void sceneGame01::init()
 	float levelHalfHeight = (float) GameObj->gameEngine->getGrid()->getHeight() / 2;
 
 	GameObj->renderEngine->getCameraCursor()
-		->rotate(-90.f, glm::vec3(0, 0, 1))
-		->translate(-levelHalfWidth, -levelHalfHeight, -22);
+	->rotate(-90.f, glm::vec3(0, 0, 1))
+	->translate(-levelHalfWidth, -levelHalfHeight, -22);
 
-	std::cout << "LOADED" << std::endl;
+	std::cout << "sceneGame loaded" << std::endl;
+
+	//Load interface
+	gameOverlay::load();
 }
 
 void sceneGame01::execute()
 {
+	GameObj->gameEngine->inGameChecks();
+
 	//Get Pacman to handle moves and render
 	DynamicItem * pacman = reinterpret_cast<DynamicItem *>(m_gridLevel->getItem(ITEM_SYNTAX::PACMAN));
 
@@ -53,12 +58,15 @@ void sceneGame01::execute()
 	}
 
 	m_gridLevel->moveItems();
-	//std::cout << "EXECUTED" << std::endl;
+
+	std::cout << "sceneGame executed" << std::endl;
 }
 
 void sceneGame01::render()
 {
 	this->renderMeshList(m_gridLevel->getGrid());
+
+	std::cout << "sceneGame rendered" << std::endl;
 }
 
 void sceneGame01::renderMesh(Mesh * mesh) {

@@ -35,7 +35,7 @@ Asset * LevelImporter::getAsset(std::string path)
     file >> param;
     uint height = atoi(param.c_str());
 
-	std::cout << "width: " << width << "\nheight: " << height << std::endl;
+	//std::cout << "width: " << width << "\nheight: " << height << std::endl;
     
 	std::vector<int> grid;
 	char c;
@@ -46,7 +46,7 @@ Asset * LevelImporter::getAsset(std::string path)
 		}
 	}
 
-	std::cout << "grid_size: " << grid.size() << std::endl;
+	//std::cout << "grid_size: " << grid.size() << std::endl;
 
 	if (file.bad()) {
 		throw std::runtime_error("Error while reading file: " + path);

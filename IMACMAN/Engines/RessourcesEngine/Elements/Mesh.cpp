@@ -33,12 +33,8 @@ void Mesh::applyCursor()
 	{
 		temp = *it;
 
-		std::cout << glm::to_string(temp.position) << std::endl;
-
 		temp.position = glm::vec4((*it).position, 1) * m_cursor.getMatrix();
 		temp.normal = glm::vec4((*it).normal, 0) * m_cursor.getMatrix();
-
-		std::cout << glm::to_string(temp.position) << std::endl;
 
 		*it = temp;
 	}

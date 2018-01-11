@@ -16,7 +16,7 @@
 
 ////////////////
 //Game Framerate
-#define FRAMERATE 1000/5
+#define FRAMERATE 1000/30
 
 #include <chrono>
 #include <thread>

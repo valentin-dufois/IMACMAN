@@ -15,7 +15,12 @@ void main()
 	if(uTexturedMesh)
 	{
 		//texture
-		fFragColor = texture(uTexture, vUV_vs);
+		fFragColor = vec4(texture(uTexture, vUV_vs).rgb, .5);
+
+		if (fFragColor.r <= 0.05 && fFragColor.g <= 0.05 && fFragColor.b <= 0.05) {
+			discard;
+		}
+
 		return;
 	}
 

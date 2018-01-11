@@ -27,7 +27,7 @@ void sceneTest001::init()
 
 	//Set font size and generate
 	m_font->setHeight(50.f);
-	m_font->genFontFace();
+	m_font->generate();
 
 	//Simple tile
 	Item * test01 = new Item(ITEM_TEXT, 10, 10, 0, 0, nullptr);

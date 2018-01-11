@@ -3,89 +3,83 @@
 
 #include "GItem.hpp"
 
-class DynamicItem: public GItem {
-protected:
-    std::string m_name;
-    glm::vec2 m_firstPosition;
-    enum DIRECTION m_currentDirection;
-
+class DynamicItem: public GItem
+{
 public:
+	/////////////
     //CONSTRUCTOR
 	DynamicItem(Mesh * mesh, glm::vec2 position, std::string name, uint score, enum ITEM_SYNTAX type, enum DIRECTION dir):
         GItem(mesh, position, score, type),
         m_name(name),
         m_firstPosition(position),
         m_currentDirection(dir)
-    {}
+	{};
+
+	////////////
     //DESTRUCTOR
 	~DynamicItem() = default;
 
+	/////////
     //GETTERS
-	std::string getName() const { return m_name; }
-    enum DIRECTION getDirection() const { return m_currentDirection; }
-    glm::vec2 getFirstPosition() const { return m_firstPosition; }
+	/**
+	 Return the name of the item
 
+	 @return The item's name
+	 */
+	std::string getName() const { return m_name; };
+
+	/**
+	 Return the current direction of the item
+
+	 @return The item's direction
+	 */
+	inline DIRECTION getDirection() const { return m_currentDirection; };
+
+	/**
+	 Return the first position of the item
+
+	 @return A vec2 position
+	 */
+	glm::vec2 getFirstPosition() const { return m_firstPosition; };
+
+	/////////
     //SETTERS
-	void setName(std::string name) { m_name = name; }
-    void updateDirection(enum DIRECTION direction) { m_currentDirection = direction; }
+	/**
+	 Set the name of the object
 
+	 @param name The name
+	 */
+	void setName(std::string name) { m_name = name; };
+
+	/**
+	 Change the item direction
+
+	 @param direction The new direction
+	 */
+	void updateDirection(enum DIRECTION direction) { m_currentDirection = direction; };
+
+	/////////
     //METHODS
-    glm::vec2 getNextPosition(glm::vec3 & translation) {
-        glm::vec2 nextPos = this->getPosition();
+	/**
+	 Return the next position of the object
 
-        switch (m_currentDirection) {
-            case DIRECTION::UP:
-                nextPos.x += -1.f;
-                nextPos.y += 0.f;
-                translation = glm::vec3(-1.f, 0.f, 0.f);
-                break;
-            case DIRECTION::DOWN:
-                nextPos.x += 1.f;
-                nextPos.y += 0.f;
-                translation = glm::vec3(1.f, 0.f, 0.f);
-                break;
-            case DIRECTION::LEFT:
-                nextPos.x += 0.f;
-                nextPos.y += -1.f;
-                translation = glm::vec3(0.f, -1.f, 0.f);
-                break;
-            case DIRECTION::RIGHT:
-                nextPos.x += 0.f;
-                nextPos.y += 1.f;
-                translation = glm::vec3(0.f, 1.f, 0.f);
-                break;
-            default:
-                translation = glm::vec3(0.f, 0.f, 0.f);
-                break;
-        }
-        return nextPos;
-    }
+	 @param translation The direction to follow as a vector
+	 @return The next position
+	 */
+	glm::vec2 getNextPosition(glm::vec3 &translation) const;
 
-    glm::vec2 getNextPosition(const enum DIRECTION & nextDirection) {
-        glm::vec2 nextPos = this->getPosition();
+	/**
+	 Return the next position of the object if it was following the given direction
 
-        switch (nextDirection) {
-            case DIRECTION::UP:
-                nextPos.x += -1.f;
-                nextPos.y += 0.f;
-                break;
-            case DIRECTION::DOWN:
-                nextPos.x += 1.f;
-                nextPos.y += 0.f;
-                break;
-            case DIRECTION::LEFT:
-                nextPos.x += 0.f;
-                nextPos.y += -1.f;
-                break;
-            case DIRECTION::RIGHT:
-                nextPos.x += 0.f;
-                nextPos.y += 1.f;
-                break;
-            default:
-                break;
-        }
-        return nextPos;
-    }
+	 @param nextDirection The direction to follow as an enum
+	 @return The next position
+	 */
+	glm::vec2 getNextPosition(const DIRECTION &nextDirection) const;
+
+protected:
+	std::string m_name;
+	glm::vec2 m_firstPosition;
+	enum DIRECTION m_currentDirection;
 };
 
 #endif /* DYNAMIC_ITEM_HPP */

@@ -17,7 +17,7 @@ void Font::setHeight(const float &newSize)
 	FT_Set_Pixel_Sizes(m_face, 0, m_size);
 }
 
-FontFace Font::genFontFace()
+FontFace Font::generate()
 {
 	m_fontFace.size = m_size;
 
@@ -63,7 +63,7 @@ Mesh * Font::genCaption(const std::string &caption)
 	glBindFramebuffer(GL_FRAMEBUFFER, frameBuffer);
 	glClear(GL_COLOR_BUFFER_BIT);
 
-	//Fit to buffer
+	//Set projection to 2D
 	GameObj->renderEngine->setProjection2D(textureWidth, textureHeight);
 
 	Mesh * charMesh;
@@ -79,8 +79,6 @@ Mesh * Font::genCaption(const std::string &caption)
 			fChar.size.y,
 			fChar.size.x,
 			fChar.size.y);
-
-		std::cout << textureHeight << " : " << fChar.size.y << std::endl;
 
 		charMesh->setProgram(&program);
 		charMesh->setTexture(fChar.texture);
@@ -103,10 +101,11 @@ Mesh * Font::genCaption(const std::string &caption)
 
 		delete charMesh;
 	}
-	//GameObj->renderEngine->getCameraCursor()->reset();
 
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
-	glViewport(0, 0, 800, 600);
+
+	//reset projection
+	GameObj->renderEngine->setProjection3D();
 
 	///////////////
 	

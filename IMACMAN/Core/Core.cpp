@@ -33,7 +33,7 @@ void Core::main()
 	std::chrono::high_resolution_clock::time_point start, end;
 
 	//Load the first scene
-	sceneTest003::load();
+	mainMenu::load();
 
 	while(GameObj->isRunning())
 	{

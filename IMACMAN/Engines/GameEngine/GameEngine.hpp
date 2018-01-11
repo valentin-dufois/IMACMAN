@@ -100,7 +100,11 @@ public:
 	void displayLevel();
 	void displayInfo();
 
+	void inGameChecks();
+
 	void manageSpecialMode();
+
+	inline Pacman * getPacman() { return m_pacman; };
 };
 
 #endif /* GameEngine_hpp */

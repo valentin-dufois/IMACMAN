@@ -88,6 +88,10 @@ private:
 	bool m_enable = true;
 };
 
+#include "mainMenu.hpp"
+#include "gameOverlay.hpp"
+
+//TestScenes
 #include "sceneTest001.hpp"
 #include "sceneGame01.hpp"
 #include "sceneConsole.hpp"

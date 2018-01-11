@@ -57,6 +57,14 @@ public:
 	void setTextures(const GLuint &idleTexture, const GLuint &activeTexture);
 
 	/**
+	 Set the textures used by the item using their rId
+
+	 @param idleTexture RessourceEngine Image ID
+	 @param activeTexture RessourceEngine Image ID
+	 */
+	void setTextures(const rId &idleTexture, const rId &activeTexture);
+
+	/**
 	 Set the font to use
 	 The item height is redifined to match the font height.
 	 Item width is ignored at rendering
@@ -72,6 +80,14 @@ public:
 	 @param caption New caption
 	 */
 	void setCaption(const std::string &caption);
+
+	/**
+	 Set the Zindex of the item
+	 A higher z-index means the item is farther
+
+	 @param zIndex the new z-index
+	 */
+	inline void setZIndex(const uint &zIndex) { m_zIndex = zIndex; };
 
 	/**
 	 Return the top neighboor
@@ -153,6 +169,7 @@ private:
 	//Positionning
 	uint m_posX;
 	uint m_posY;
+	uint m_zIndex = 0;
 
 	//Dimensions
 	uint m_width;

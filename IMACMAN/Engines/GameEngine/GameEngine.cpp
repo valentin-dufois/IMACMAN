@@ -32,21 +32,6 @@ void GameEngine::executeScenes()
 	//Update events
 	parseEvents();
 
-	//Check VICTORY / DEFEAT conditions
-	if (m_pacman->getLives() <= 0) {
-		//TODO change Scene to GameOver
-		GameObj->endGame();
-	}
-
-	//Check wether there is still one pack gum or not
-	if (!m_level.checkItemsExist({ITEM_SYNTAX::PAC_GUM, ITEM_SYNTAX::SUPER_PAC_GUM})) {
-		//TODO change Scene to Victory
-		GameObj->endGame();
-	}
-
-	//Update all counters
-	manageSpecialMode();
-
 	//get all scenes
 	std::vector<Scene *> scenes = GameObj->getScenes();
 
@@ -143,6 +128,7 @@ void GameEngine::loadLevel(Level * level){
 		level->getHeight(),
 		level->getLevelGrid()
 	);
+	
 	m_pacman = reinterpret_cast<Pacman *>(m_level.getItem(ITEM_SYNTAX::PACMAN));
 
 	m_Blinky = reinterpret_cast<Ghost *>(m_level.getItem(ITEM_SYNTAX::BLINKY));
@@ -176,4 +162,22 @@ void GameEngine::manageSpecialMode() {
 	m_Inky->updateDeathCounter(-1);
 	m_Clyde->updateDeathCounter(-1);
 	m_fruit->updatePopCounter(-1);
+}
+
+void GameEngine::inGameChecks()
+{
+	//Check VICTORY / DEFEAT conditions
+	if (m_pacman->getLives() <= 0) {
+	 //TODO change Scene to GameOver
+	 GameObj->endGame();
+	 }
+
+	 //Check wether there is still one pack gum or not
+	 if (!m_level.checkItemsExist({ITEM_SYNTAX::PAC_GUM, ITEM_SYNTAX::SUPER_PAC_GUM})) {
+	 //TODO change Scene to Victory
+	 GameObj->endGame();
+	 }
+
+	 //Update all counters
+	 manageSpecialMode();
 }

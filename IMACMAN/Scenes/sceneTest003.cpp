@@ -37,7 +37,7 @@ void sceneTest003::init()
 	m_mesh->setTexture(m_tex->getTextureID());
 
 	m_font->setHeight(100.f);
-	m_font->genFontFace();
+	m_font->generate();
 
 	Item * test01 = new Item(ITEM_IMAGE, 10, 10, 100, 100, nullptr);
 	test01->setTextures(m_tex->getTextureID(), tex2->getTextureID());
