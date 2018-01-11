@@ -6,20 +6,31 @@
 //  Copyright © 2017 Valentin Dufois. All rights reserved.
 //
 
-#include "../main.hpp"
+#include "GameObject.hpp"
+
+#include <iostream>
 
 GameObject * GameObj = nullptr;
 bool GameObject::m_instanciated = false;
 
-void GameObject::instanciate()
+void GameObject::instanciate(std::string appPath)
 {
-	if(m_instanciated)
+	if(m_instanciated) {
 		return;
+	}
 
-	GameObj = new GameObject();
+	GameObj = new GameObject(appPath + "/");
+
+	m_instanciated = true;
 }
 
-bool GameObject::isRunning()
+void GameObject::removeScene(Scene * scene)
 {
-	return m_running;
+	for(std::vector<Scene *>::iterator it = m_scenes.begin(); it != m_scenes.end(); ++it) {
+		if((*it) == scene) {
+			m_scenes.erase(it);
+			return;
+		}
+	}
 }
+

@@ -9,7 +9,7 @@ int main(int argc, const char * argv[])
 {
 	//Init game
 	Core core = Core();
-	core.ignite();
+	core.ignite(argv[0]);
 
 	core.main();
 

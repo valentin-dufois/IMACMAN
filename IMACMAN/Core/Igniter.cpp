@@ -6,19 +6,29 @@
 //  Copyright © 2017 Valentin Dufois. All rights reserved.
 //
 
-#include "../main.hpp"
+#include "Igniter.hpp"
 
-
-void Igniter::igniteGameObject()
+void Igniter::igniteGameObject(std::string appPath)
 {
-	GameObject::instanciate();
+	//Get app path
+	FilePath applicationPath(appPath.c_str());
+
+	std::cout << applicationPath.dirPath() << std::endl;
+
+	//Instanciate GameObj
+	GameObject::instanciate(applicationPath.dirPath());
+
+
+	//Instanciate Engines
+	GameEngine::instanciate();
+	RessourcesEngine::instanciate();
+	RenderEngine::instanciate();
 }
 
-
-
-void Igniter::igniteSDL()
+void Igniter::igniteSDL(float width, float height)
 {
-	//Init sdl
+	//////////////
+	//INIT SDL
 	if(0 != SDL_Init(SDL_INIT_VIDEO)) {
 		std::cerr << SDL_GetError() << std::endl;
 		return;
@@ -30,17 +40,20 @@ void Igniter::igniteSDL()
 	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
 	SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
 	SDL_GL_SetAttribute(SDL_GL_STENCIL_SIZE, 8);
-	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 4);
-	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 1);
+	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
+	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 3);
 
 	//Create window
+	GameObj->screenWidth = width;
+	GameObj->screenHeight = height;
+
 	//TODO: Dynamic definition of title and dimensions
 	GameObj->mainWindow = SDL_CreateWindow(
 							  "IMACMAN",                  		// window title
 							  SDL_WINDOWPOS_UNDEFINED,        // initial x position
 							  SDL_WINDOWPOS_UNDEFINED,        // initial y position
-							  800,                              // width, in pixels
-							  600,                              // height, in pixels
+							  width,                              // width, in pixels
+							  height,                              // height, in pixels
 							  SDL_WINDOW_OPENGL                // require OpenGL
 							  );
 
@@ -55,4 +68,27 @@ void Igniter::igniteSDL()
 	SDL_GL_MakeCurrent(GameObj->mainWindow, glContext);
 
 	//glewExperimental = GL_TRUE;
+
+	//Init SDL Image
+	int SDL_IMAGE_FLAGS = IMG_INIT_JPG|IMG_INIT_PNG;
+	int SDL_IMAGE_LOADED_FLAGS = IMG_Init(SDL_IMAGE_FLAGS);
+
+	if((SDL_IMAGE_LOADED_FLAGS&SDL_IMAGE_FLAGS) != SDL_IMAGE_FLAGS)
+		throw std::runtime_error("SDL_image could not be loaded.");
+}
+
+void Igniter::igniteOpenGL()
+{
+	glewExperimental = GL_TRUE;
+	GLenum glewInitError = glewInit();
+	if(GLEW_OK != glewInitError) {
+		std::cerr << glewGetErrorString(glewInitError) << std::endl;
+	  return;
+	}
+
+	std::cout << "OpenGL Version : " << glGetString(GL_VERSION) << std::endl;
+	std::cout << "GLEW Version : " << glewGetString(GLEW_VERSION) << std::endl;
+
+	glEnable(GL_DEPTH_TEST);
+	glDepthFunc(GL_LESS);
 }

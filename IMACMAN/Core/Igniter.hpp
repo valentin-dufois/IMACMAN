@@ -9,11 +9,22 @@
 #ifndef Igniter_hpp
 #define Igniter_hpp
 
+#include "libraries.hpp"
+#include "Core/GameObject.hpp"
+
+#include "Engines/GameEngine/GameEngine.hpp"
+#include "Engines/RessourcesEngine/RessourcesEngine.hpp"
+#include "Engines/RenderEngine/RenderEngine.hpp"
+
+#include "Utils/FilePath.hpp"
+
+
 class Igniter
 {
 public:
-	void igniteGameObject();
-	void igniteSDL();
+	void igniteGameObject(std::string appPath);
+	void igniteSDL(float width, float height);
+	void igniteOpenGL();
 	void igniteEngines();
 };
 
