@@ -45,7 +45,8 @@ public:
 
 	 @return assetsType
 	 */
-	ressourceType getType();
+	virtual inline ressourceType getType() { return m_type; };
+
 
 	/**
 	 Casting operator for Font assets

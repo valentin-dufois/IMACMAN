@@ -8,11 +8,6 @@
 
 #include "Asset.hpp"
 
-ressourceType Asset::getType()
-{
-	return m_type;
-}
-
 bool Asset::isRenderable()
 {
 	switch(getType())
@@ -30,7 +25,7 @@ Asset::operator Font*()
 	if(getType() != FONT)
 		throw std::runtime_error("Invalid conversion.\nInvalid conversion from Asset * to Font * : Given Asset * is not a Font.");
 
-	return reinterpret_cast<Font *>(this);
+	return dynamic_cast<Font *>(this);
 }
 
 Asset::operator Level*()
@@ -38,7 +33,7 @@ Asset::operator Level*()
 	if(getType() != LEVEL)
 		throw std::runtime_error("Invalid conversion.\nInvalid conversion from Asset * to Level * : Given Asset * is not a Level.");
 
-	return reinterpret_cast<Level *>(this);
+	return dynamic_cast<Level *>(this);
 }
 
 Asset::operator Mesh*()
@@ -46,7 +41,7 @@ Asset::operator Mesh*()
 	if(getType() != MESH)
 		throw std::runtime_error("Invalid conversion.\nInvalid conversion from Asset * to Mesh * : Given Asset * is not a Mesh.");
 
-	return reinterpret_cast<Mesh *>(this);
+	return dynamic_cast<Mesh *>(this);
 }
 
 Asset::operator Shader*()
@@ -54,7 +49,7 @@ Asset::operator Shader*()
 	if(getType() != SHADER)
 		throw std::runtime_error("Invalid conversion.\nInvalid conversion from Asset * to Shader * : Given Asset * is not a Shader.");
 
-	return reinterpret_cast<Shader *>(this);
+	return dynamic_cast<Shader *>(this);
 }
 
 Asset::operator Image*()
@@ -62,6 +57,6 @@ Asset::operator Image*()
 	if(getType() != IMAGE)
 		throw std::runtime_error("Invalid conversion.\nInvalid conversion from Image * to Shader * : Given Asset * is not an Image.");
 
-	return reinterpret_cast<Image *>(this);
+	return dynamic_cast<Image *>(this);
 }
 
