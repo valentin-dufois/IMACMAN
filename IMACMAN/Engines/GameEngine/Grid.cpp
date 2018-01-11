@@ -127,22 +127,24 @@ void Grid::moveItem(GItem * item)
 
         //Check next position
         if (nextCase[0]->getItemType() != ITEM_SYNTAX::WALL) {
-            //If we are handling the pacman then special case !
+            //Handle pacman played by player
             if (dItem->getItemType() == ITEM_SYNTAX::PACMAN) {
                 this->updateCase(reinterpret_cast<Pacman *>(dItem), nextCase);
             } else {
                 this->updateCase(reinterpret_cast<Ghost *>(dItem), nextCase);
             }
         }
-        // Hangling Ghosts IA => direction
-        if (dItem->getItemType() != ITEM_SYNTAX::PACMAN) {
-            handleIA(dItem);
-        }
+
     } catch(...) {
         //If we enconter nothing then move and update mesh transformations
         glm::vec2 previousPosition = dItem->getPosition();
         dItem->updatePosition(nextPosition, this->m_width, this->m_height);
         dItem->getMesh()->getCursor()->translate(translateMesh(dItem->getPosition(), previousPosition));
+    }
+    // Handle Ghosts IA => direction
+    if (dItem->getItemType() != ITEM_SYNTAX::PACMAN) {
+        handleIA(dItem);
+            
     }
 }
 
@@ -198,7 +200,6 @@ void Grid::updateCase(Ghost * ghost, std::vector<GItem *> cell) {
     glm::vec2 nextPosition = ghost->getNextPosition(translation);
     glm::vec2 previousPosition = ghost->getPosition();
     std::vector<GItem *>::const_iterator it;
-    uint tmpScore = 0;
 
     //UPDATE POSITION AND MESH TRANSLATION / TODO ROTATION
     ghost->updatePosition(nextPosition, this->m_width, this->m_height);
@@ -309,19 +310,9 @@ void Grid::displayGrid() {
 
 glm::vec3 Grid::translateMesh(glm::vec2 nextPosition, glm::vec2 currentPosition) {
     glm::vec2 translation = glm::vec3(0.f);
+
     translation.x = (nextPosition.x - currentPosition.x);
     translation.y = (nextPosition.y - currentPosition.y);
-
-    return glm::vec3(translation, 0.f);
-}
-
-glm::vec3 Grid::translationToOrigin(glm::vec2 initialPosition, glm::vec2 currentPosition) {
-    glm::vec2 translation = glm::vec3(0.f);
-    float xDifference = abs((currentPosition.x - initialPosition.x));
-    float yDifference = abs((currentPosition.y - initialPosition.y));
-
-    translation.x = currentPosition.x >= initialPosition.x ? -xDifference : xDifference;
-    translation.y = currentPosition.y >= initialPosition.y ? -yDifference : yDifference;
 
     return glm::vec3(translation, 0.f);
 }
@@ -336,20 +327,20 @@ void Grid::handleIA(DynamicItem * dItem) {
     if (dItem->getItemType() != ITEM_SYNTAX::PACMAN &&
         reinterpret_cast<Ghost *>(dItem)->isAfraid() == true
     ) {
-        dItem->updateDirection(afraidIA());
+        dItem->updateDirection(randomMoveIA(dItem));
     } else {
         switch(dItem->getItemType()) {
             case ITEM_SYNTAX::BLINKY :
                 dItem->updateDirection(randomMoveIA(dItem));
                 break;
             case ITEM_SYNTAX::PINKY :
-                dItem->updateDirection(turnRightIA());
+                dItem->updateDirection(randomMoveIA(dItem));
                 break;
             case ITEM_SYNTAX::INKY :
-                dItem->updateDirection(stalkerIA());
+                dItem->updateDirection(randomMoveIA(dItem));
                 break;
             case ITEM_SYNTAX::CLYDE :
-                dItem->updateDirection(terminatorIA());
+                dItem->updateDirection(randomMoveIA(dItem));
                 break;
             default:
                 dItem->updateDirection(randomMoveIA(dItem));
@@ -358,19 +349,35 @@ void Grid::handleIA(DynamicItem * dItem) {
     }
 }
 
+bool Grid::isNextReachable(DynamicItem * dItem, enum DIRECTION direction) {
+    bool result = true;
+
+    try {
+        result = this->getItem(
+            dItem->getNextPosition(direction)
+        ).front()->getItemType() != ITEM_SYNTAX::WALL;
+    } catch(...) {
+        result = true;
+    }
+    return result;
+}
+
 enum DIRECTION Grid::randomMoveIA(DynamicItem * dItem) {
     std::vector<DIRECTION> directions;
 
-    if (this->getItem(dItem->getNextPosition(DIRECTION::UP)).front()->getItemType() != ITEM_SYNTAX::WALL) {
+    if (this->isNextReachable(dItem, DIRECTION::UP)) {
         directions.push_back(DIRECTION::UP);
-    } 
-    if (this->getItem(dItem->getNextPosition(DIRECTION::DOWN)).front()->getItemType() != ITEM_SYNTAX::WALL) {
+    }
+
+    if (this->isNextReachable(dItem, DIRECTION::DOWN)) {
         directions.push_back(DIRECTION::DOWN);
-    } 
-    if (this->getItem(dItem->getNextPosition(DIRECTION::LEFT)).front()->getItemType() != ITEM_SYNTAX::WALL) {
+    }
+
+    if (this->isNextReachable(dItem, DIRECTION::LEFT)) {
         directions.push_back(DIRECTION::LEFT);
-    } 
-    if (this->getItem(dItem->getNextPosition(DIRECTION::RIGHT)).front()->getItemType() != ITEM_SYNTAX::WALL) {
+    }
+
+    if (this->isNextReachable(dItem, DIRECTION::RIGHT)) {
         directions.push_back(DIRECTION::RIGHT);
     }
 
@@ -385,8 +392,10 @@ enum DIRECTION Grid::randomMoveIA(DynamicItem * dItem) {
             }
         ) == directions.end())) {
         result = directions[rand() % directions.size()];
-    } else {
+    } else if (directions.size() == 1) {
         result = directions.front();
+    } else {
+        result = currentDirection;
     }
 
     return result;

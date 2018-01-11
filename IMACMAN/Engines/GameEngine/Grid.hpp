@@ -72,9 +72,9 @@ public:
     void displayGrid();
     
     glm::vec3 translateMesh(glm::vec2 currentPosition, glm::vec2 nextPosition);
-    glm::vec3 translationToOrigin(glm::vec2 initialPosition, glm::vec2 currentPosition);
 
     void handleIA(DynamicItem * dItem);
+    bool isNextReachable(DynamicItem * dItem, enum DIRECTION direction);
     enum DIRECTION randomMoveIA(DynamicItem * dItem);
     enum DIRECTION turnRightIA();
     enum DIRECTION stalkerIA();

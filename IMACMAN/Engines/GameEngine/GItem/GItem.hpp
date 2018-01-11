@@ -37,8 +37,8 @@ public:
     void setMesh(Mesh * mesh) { m_mesh = mesh; }
     void setPosition(const glm::vec2 position) { m_position = position; }
     void updatePosition(glm::vec2 newPosition, uint gridWidth, uint gridHeight) {
-        m_position.x = newPosition.x >= 0 ? ((int)newPosition.x % gridWidth) : ((int)newPosition.x + gridWidth);
-        m_position.y = newPosition.y >= 0 ? ((int)newPosition.y % gridHeight) : ((int)newPosition.y + gridHeight);
+        m_position.x = newPosition.x >= 0 ? ((int)newPosition.x % gridHeight) : ((int)newPosition.x + gridHeight);
+        m_position.y = newPosition.y >= 0 ? ((int)newPosition.y % gridWidth) : ((int)newPosition.y + gridWidth);
     }
     void updateScore(const uint points) { m_score += points; }
 

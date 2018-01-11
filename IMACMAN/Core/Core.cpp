@@ -27,8 +27,8 @@ void Core::main()
 	std::chrono::high_resolution_clock::time_point start, end;
 
 	//Load the first scene
-	//sceneGame01::load();
-	sceneConsole::load();
+	sceneGame01::load();
+	//sceneConsole::load();
 
 	while(GameObj->isRunning())
 	{
