@@ -22,6 +22,9 @@ void Core::ignite(std::string appPath)
 
 	//Init render engine
 	GameObj->renderEngine->initRender();
+
+	//Preload default shaderProgram
+	GameObj->setDefaultProgram(new ShaderProgram("triangle.vs.glsl", "triangle.fs.glsl"));
 }
 
 //The main loop

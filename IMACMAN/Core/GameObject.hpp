@@ -14,26 +14,13 @@ class GameEngine;
 class RessourcesEngine;
 class RenderEngine;
 class Scene;
+class ShaderProgram;
 
 #include "libraries.hpp"
+#include "Utils/ShaderProgram.hpp"
 
 class GameObject
 {
-private:
-	//Singleton
-	GameObject(std::string appPath): m_appPath(appPath) {};
-	bool static m_instanciated;
-
-	//Game states
-	std::string m_appPath;
-	bool m_running = true;
-
-	//Scenes
-	std::vector<Scene *> m_scenes;
-
-	//UUID
-	boost::uuids::random_generator m_uuidGenerator;
-	
 public:
 	//Singleton
 	static void instanciate(std::string appPath);
@@ -61,6 +48,39 @@ public:
 
 	//Return a newly generated UUID
 	inline boost::uuids::uuid getUUID() { return m_uuidGenerator(); };
+
+	/**
+	 Return the default shader program
+
+	 @return A ShaderProgram Object
+	 */
+	inline ShaderProgram * getDefaultProgram() { return m_defaultProgram; };
+
+	/**
+	 Set default shader program
+
+	 @param prog A ShaderProgram
+	 */
+	inline void setDefaultProgram(ShaderProgram * prog) { m_defaultProgram = prog; };
+
+private:
+	//Singleton
+	GameObject(std::string appPath):
+		m_appPath(appPath) {};
+	bool static m_instanciated;
+
+	//Game states
+	std::string m_appPath;
+	bool m_running = true;
+
+	//Scenes
+	std::vector<Scene *> m_scenes;
+
+	//UUID
+	boost::uuids::random_generator m_uuidGenerator;
+
+	//default shader
+	ShaderProgram * m_defaultProgram;
 };
 
 extern GameObject * GameObj;

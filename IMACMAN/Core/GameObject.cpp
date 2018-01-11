@@ -18,6 +18,7 @@ void GameObject::instanciate(std::string appPath)
 	if(m_instanciated) {
 		return;
 	}
+
 	GameObj = new GameObject(appPath + "/");
 
 	m_instanciated = true;
