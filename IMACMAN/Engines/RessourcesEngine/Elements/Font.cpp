@@ -41,7 +41,6 @@ Mesh * Font::genCaption(const std::string &caption)
 	//Gather informations for rendering
 	uint textureWidth = 0;
 	uint textureHeight = m_fontFace.size;
-	//float baseline =
 
 	for(char c : caption)
 	{
@@ -52,22 +51,24 @@ Mesh * Font::genCaption(const std::string &caption)
 	textureWidth -= lastChar->advance;
 	textureWidth += lastChar->bearing.x + lastChar->size.x;
 
+	//Load shader program
+	ShaderProgram program("triangle.vs.glsl", "textRenderer.fs.glsl");
+
 	//generate the frameBuffer & texture
 	GLuint frameBuffer;
 	GLuint texture;
 	prepareTexture(textureWidth, textureHeight, frameBuffer, texture);
 
-	std::cout << "texture size : " << textureWidth << "x" << textureHeight << std::endl;
-
-	GameObj->renderEngine->setProjection2D(textureWidth, textureHeight);
-
-	uint advanceX = 0;
-	FontCharacter fChar;
-
+	//Bind framebuffer
 	glBindFramebuffer(GL_FRAMEBUFFER, frameBuffer);
 	glClear(GL_COLOR_BUFFER_BIT);
 
+	//Fit to buffer
+	GameObj->renderEngine->setProjection2D(textureWidth, textureHeight);
+
 	Mesh * charMesh;
+	uint advanceX = 0;
+	FontCharacter fChar;
 
 	for(char c : caption)
 	{
@@ -81,8 +82,9 @@ Mesh * Font::genCaption(const std::string &caption)
 
 		std::cout << textureHeight << " : " << fChar.size.y << std::endl;
 
+		charMesh->setProgram(&program);
 		charMesh->setTexture(fChar.texture);
-		charMesh->generate(PACMAN_M);
+		charMesh->generate();
 		charMesh->getCursor()->scale(1, -1, 1);
 
 		/////////////////
@@ -107,9 +109,11 @@ Mesh * Font::genCaption(const std::string &caption)
 	glViewport(0, 0, 800, 600);
 
 	///////////////
+	
 	Mesh * mesh = GameObj->ressourcesEngine->gen2DTile(0, 0, textureWidth, textureHeight);
 	mesh->setTexture(texture);
-	mesh->generate(PACMAN_M);
+	mesh->applyCursor();
+
 	return mesh;
 }
 

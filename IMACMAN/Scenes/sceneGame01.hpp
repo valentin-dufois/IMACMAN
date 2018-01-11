@@ -52,7 +52,7 @@ public:
 	~sceneGame01() {}
 
 private:
-	rId m_sceneID;
+	
 	Grid * m_gridLevel;
 	
 };

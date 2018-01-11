@@ -39,7 +39,6 @@ Asset * LevelImporter::getAsset(std::string path)
     
 	std::vector<int> grid;
 	char c;
-	int tmp = 0;
 
 	while (file.get(c)) {
 		if (c != '\n') {

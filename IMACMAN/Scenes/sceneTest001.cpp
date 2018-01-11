@@ -25,34 +25,30 @@ void sceneTest001::init()
 	rId fontID = GameObj->ressourcesEngine->loadAsset("8-BITWONDER.TTF", FONT);
 	m_font = *GameObj->ressourcesEngine->getAsset(fontID);
 
-	//Set font size
+	//Set font size and generate
 	m_font->setHeight(50.f);
-
-	//Generate
-	m_fontFace = m_font->genFontFace();
+	m_font->genFontFace();
 
 	//Simple tile
-	Item * test01 = new Item(10, 10, m_fontFace.chars['h'].size.x, m_fontFace.chars['h'].size.y, "", nullptr);
-	test01->setTextures(m_fontFace.chars['h'].texture, m_fontFace.chars['h'].texture);
+	Item * test01 = new Item(ITEM_TEXT, 10, 10, 0, 0, nullptr);
+	test01->setFont(m_font, "Hello world");
 
 	m_menu.addItem(test01);
-	m_caption = m_font->genCaption("Hello World");
 
+	//sceneTest003::load();
 
 	std::cout << "loaded" << std::endl;
 }
 
 void sceneTest001::execute()
 {
-	m_caption->getCursor()->translate(0, .01f, 0);
+	//m_caption->getCursor()->translate(0, .01f, 0);
 	std::cout << "executed" << std::endl;
 }
 
 void sceneTest001::render()
 {
-	//m_menu.render();
-	GameObj->renderEngine->setProjection2D();
-	GameObj->renderEngine->render(m_caption, m_caption->getCursor());
+	m_menu.render();
 	
 	std::cout << "rendered" << std::endl;
 }

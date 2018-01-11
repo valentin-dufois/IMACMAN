@@ -26,20 +26,7 @@ void RenderEngine::instanciate()
 /**
  * Private constructor
  */
-RenderEngine::RenderEngine():
-	m_stored(false)
-{
-	GLuint gridVBO, pacmanVBO, blinkyVBO, pinkyVBO, inkyVBO, clydeVBO;
-	
-	m_gridVBO = &gridVBO;
-	m_pacmanVBO = &pacmanVBO;
-	m_ghostsVBO = {
-		&blinkyVBO,
-		&pinkyVBO,
-		&inkyVBO,
-		&clydeVBO
-	};
-}
+RenderEngine::RenderEngine(): m_stored(false) {}
 
 void RenderEngine::initRender()
 {
@@ -84,10 +71,9 @@ void RenderEngine::setProjection2D(const float &width, const float &height)
 	m_stored = true;
 }
 
-void RenderEngine::initVBO(Mesh * mesh, enum MANAGER_TYPE type)
+void RenderEngine::initVBO(Mesh * mesh)
 {
 	//Get Manager for VBO
-	Manager * manager = getManager(type);
 	
 	//Generate & bind VBO
 	glGenBuffers(1, &mesh->vbo);
@@ -95,13 +81,22 @@ void RenderEngine::initVBO(Mesh * mesh, enum MANAGER_TYPE type)
 
 	//Fill VBO with data
 	std::vector<Vertex> vertexList = mesh->getVertexList();
-	manager->fillVBO(vertexList);
+
+	GLsizeiptr size = vertexList.size() * sizeof(Vertex);
+
+	//Fill VBO with data
+	glBufferData(
+				 GL_ARRAY_BUFFER,
+				 size,
+				 vertexList.data(),
+				 GL_STATIC_DRAW
+				 );
 
 	//Unbind VBO
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
 
-void RenderEngine::initVAO(Mesh * mesh, enum MANAGER_TYPE type)
+void RenderEngine::initVAO(Mesh * mesh)
 {
 	if(mesh->vbo == 0)
 		return; //No VBO, No VAO!
@@ -126,63 +121,6 @@ void RenderEngine::initVAO(Mesh * mesh, enum MANAGER_TYPE type)
 	//Unbind everything
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindVertexArray(0);
-}
-
-GLuint * RenderEngine::getBufferPtr(enum MANAGER_TYPE type)
-{
-	GLuint * bufferPtr;
-
-	switch (type) {
-		case MANAGER_TYPE::GRID_M :
-			bufferPtr = m_gridVBO;
-			break;
-		case MANAGER_TYPE::PACMAN_M :
-			bufferPtr = m_pacmanVBO;
-			break;
-		case MANAGER_TYPE::BLINKY_M :
-			bufferPtr = m_ghostsVBO[0];
-			break;
-		case MANAGER_TYPE::PINKY_M :
-			bufferPtr = m_ghostsVBO[1];
-			break;
-		case MANAGER_TYPE::INKY_M :
-			bufferPtr = m_ghostsVBO[2];
-			break;
-		case MANAGER_TYPE::CLYDE_M :
-			bufferPtr = m_ghostsVBO[3];
-			break;
-		case MANAGER_TYPE::UI_ELEMENT_M :
-			bufferPtr = m_ghostsVBO[3];
-			break;
-	}
-
-	return bufferPtr;
-}
-
-Manager * RenderEngine::getManager(enum MANAGER_TYPE type)
-{
-	Manager * manager = nullptr;
-
-	switch (type)
-	{
-		case MANAGER_TYPE::GRID_M :
-			manager = new GridManager();
-			break;
-		case MANAGER_TYPE::PACMAN_M :
-			manager = new PacmanManager();
-			break;
-		case MANAGER_TYPE::BLINKY_M :
-		case MANAGER_TYPE::PINKY_M :
-		case MANAGER_TYPE::INKY_M :
-		case MANAGER_TYPE::CLYDE_M :
-			manager = new GhostsManager();
-			break;
-		case MANAGER_TYPE::UI_ELEMENT_M :
-			manager = new UIElementManager();
-			break;
-	}
-
-	return manager;
 }
 
 void RenderEngine::render(Mesh * mesh, DrawCursor * cursor)

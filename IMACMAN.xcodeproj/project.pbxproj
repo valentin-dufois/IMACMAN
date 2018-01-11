@@ -17,9 +17,6 @@
 		393375E61FF5580000024EB1 /* FontImporter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 393375E41FF5580000024EB1 /* FontImporter.cpp */; };
 		393375E91FF563DC00024EB1 /* Font.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 393375E71FF563DC00024EB1 /* Font.cpp */; };
 		39579A0A1FF579C000FC09D3 /* RenderEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 395799FB1FF579C000FC09D3 /* RenderEngine.cpp */; };
-		39579A0D1FF579C000FC09D3 /* GhostsManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 395799FF1FF579C000FC09D3 /* GhostsManager.cpp */; };
-		39579A101FF579C000FC09D3 /* GridManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39579A061FF579C000FC09D3 /* GridManager.cpp */; };
-		39579A111FF579C000FC09D3 /* PacmanManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39579A071FF579C000FC09D3 /* PacmanManager.cpp */; };
 		39579A151FF57A6600FC09D3 /* SDL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39579A131FF57A6600FC09D3 /* SDL.cpp */; };
 		3966C13B200564D100C527EA /* sceneTest003.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3966C139200564D100C527EA /* sceneTest003.cpp */; };
 		3966C13D200566E000C527EA /* primitives.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3966C13C200566E000C527EA /* primitives.cpp */; };
@@ -40,7 +37,6 @@
 		39AE37172001611B0080B365 /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39AE37032001611B0080B365 /* Player.cpp */; };
 		39AE371B2001611C0080B365 /* Grid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39AE37082001611B0080B365 /* Grid.cpp */; };
 		39AE371C2001611C0080B365 /* GameEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39AE37092001611B0080B365 /* GameEngine.cpp */; };
-		39AE37212001620E0080B365 /* UIElementManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39AE371F2001620E0080B365 /* UIElementManager.cpp */; };
 		39B4672B2006404100F2BA94 /* sceneGame01.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39B4672A2006404100F2BA94 /* sceneGame01.cpp */; };
 		39B5E6DE1FC364C200B99CC2 /* RessourcesEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39B5E6DC1FC364C200B99CC2 /* RessourcesEngine.cpp */; };
 		39B5E6E51FC371E900B99CC2 /* Image.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39B5E6E31FC371E900B99CC2 /* Image.cpp */; };
@@ -88,13 +84,6 @@
 		393375E71FF563DC00024EB1 /* Font.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Font.cpp; sourceTree = "<group>"; };
 		393375E81FF563DC00024EB1 /* Font.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Font.hpp; sourceTree = "<group>"; };
 		395799FB1FF579C000FC09D3 /* RenderEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RenderEngine.cpp; sourceTree = "<group>"; };
-		395799FF1FF579C000FC09D3 /* GhostsManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GhostsManager.cpp; sourceTree = "<group>"; };
-		39579A001FF579C000FC09D3 /* GridManager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GridManager.hpp; sourceTree = "<group>"; };
-		39579A011FF579C000FC09D3 /* PacmanManager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PacmanManager.hpp; sourceTree = "<group>"; };
-		39579A041FF579C000FC09D3 /* Manager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Manager.hpp; sourceTree = "<group>"; };
-		39579A051FF579C000FC09D3 /* GhostsManager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GhostsManager.hpp; sourceTree = "<group>"; };
-		39579A061FF579C000FC09D3 /* GridManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GridManager.cpp; sourceTree = "<group>"; };
-		39579A071FF579C000FC09D3 /* PacmanManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PacmanManager.cpp; sourceTree = "<group>"; };
 		39579A091FF579C000FC09D3 /* RenderEngine.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = RenderEngine.hpp; sourceTree = "<group>"; };
 		39579A131FF57A6600FC09D3 /* SDL.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SDL.cpp; sourceTree = "<group>"; };
 		39579A141FF57A6600FC09D3 /* SDL.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SDL.hpp; sourceTree = "<group>"; };
@@ -150,8 +139,6 @@
 		39AE370A2001611B0080B365 /* Player.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Player.hpp; sourceTree = "<group>"; };
 		39AE371D200161AB0080B365 /* Enums.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Enums.hpp; sourceTree = "<group>"; };
 		39AE371E200161AB0080B365 /* Vertex.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Vertex.hpp; sourceTree = "<group>"; };
-		39AE371F2001620E0080B365 /* UIElementManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = UIElementManager.cpp; sourceTree = "<group>"; };
-		39AE37202001620E0080B365 /* UIElementManager.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = UIElementManager.hpp; sourceTree = "<group>"; };
 		39AE372520018A7C0080B365 /* textRenderer.fs.glsl */ = {isa = PBXFileReference; lastKnownFileType = text; path = textRenderer.fs.glsl; sourceTree = "<group>"; };
 		39AE372620018A8F0080B365 /* textRenderer.vs.glsl */ = {isa = PBXFileReference; lastKnownFileType = text; path = textRenderer.vs.glsl; sourceTree = "<group>"; };
 		39B467292006404100F2BA94 /* sceneGame01.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = sceneGame01.hpp; sourceTree = "<group>"; };
@@ -476,27 +463,10 @@
 		395799FA1FF579C000FC09D3 /* RenderEngine */ = {
 			isa = PBXGroup;
 			children = (
-				395799FE1FF579C000FC09D3 /* Manager */,
 				395799FB1FF579C000FC09D3 /* RenderEngine.cpp */,
 				39579A091FF579C000FC09D3 /* RenderEngine.hpp */,
 			);
 			path = RenderEngine;
-			sourceTree = "<group>";
-		};
-		395799FE1FF579C000FC09D3 /* Manager */ = {
-			isa = PBXGroup;
-			children = (
-				395799FF1FF579C000FC09D3 /* GhostsManager.cpp */,
-				39579A051FF579C000FC09D3 /* GhostsManager.hpp */,
-				39579A061FF579C000FC09D3 /* GridManager.cpp */,
-				39579A001FF579C000FC09D3 /* GridManager.hpp */,
-				39579A041FF579C000FC09D3 /* Manager.hpp */,
-				39579A071FF579C000FC09D3 /* PacmanManager.cpp */,
-				39579A011FF579C000FC09D3 /* PacmanManager.hpp */,
-				39AE371F2001620E0080B365 /* UIElementManager.cpp */,
-				39AE37202001620E0080B365 /* UIElementManager.hpp */,
-			);
-			path = Manager;
 			sourceTree = "<group>";
 		};
 		3976C3B71FC42A03008CC4F1 /* Core */ = {
@@ -1162,7 +1132,6 @@
 				39AE37152001611B0080B365 /* PacGum.cpp in Sources */,
 				39C2BA6C1FF59BC400589342 /* Asset.cpp in Sources */,
 				39AE370B2001611B0080B365 /* Fruit.cpp in Sources */,
-				39AE37212001620E0080B365 /* UIElementManager.cpp in Sources */,
 				3966C13D200566E000C527EA /* primitives.cpp in Sources */,
 				39B5E6EF1FC387C000B99CC2 /* Mesh.cpp in Sources */,
 				39B5E6FD1FC38F0800B99CC2 /* Shader.cpp in Sources */,
@@ -1188,18 +1157,15 @@
 				393375E61FF5580000024EB1 /* FontImporter.cpp in Sources */,
 				39AE37112001611B0080B365 /* Floor.cpp in Sources */,
 				39B5E6EB1FC3875D00B99CC2 /* Sound.cpp in Sources */,
-				39579A0D1FF579C000FC09D3 /* GhostsManager.cpp in Sources */,
 				39B5E7091FC3908B00B99CC2 /* ShaderImporter.cpp in Sources */,
 				39B4672B2006404100F2BA94 /* sceneGame01.cpp in Sources */,
 				3976C3BA1FC42A84008CC4F1 /* Core.cpp in Sources */,
-				39579A111FF579C000FC09D3 /* PacmanManager.cpp in Sources */,
 				39AE371C2001611C0080B365 /* GameEngine.cpp in Sources */,
 				39BC2F1D1FC4313F00FE22E8 /* (null) in Sources */,
 				39C2BB751FF7D7FB00589342 /* glm.cpp in Sources */,
 				3976C3BD1FC42ACC008CC4F1 /* Igniter.cpp in Sources */,
 				39579A0A1FF579C000FC09D3 /* RenderEngine.cpp in Sources */,
 				39C2BB741FF7D7FB00589342 /* dummy.cpp in Sources */,
-				39579A101FF579C000FC09D3 /* GridManager.cpp in Sources */,
 				39AE37122001611B0080B365 /* Wall.cpp in Sources */,
 				39AE37132001611B0080B365 /* Ghost.cpp in Sources */,
 			);

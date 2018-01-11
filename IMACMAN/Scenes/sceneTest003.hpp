@@ -50,11 +50,10 @@ public:
 	~sceneTest003() {}
 
 private:
-	rId m_sceneID;
 
 	Mesh * m_mesh;
 	Image * m_tex;
-	Mesh * m_tile;
+	Font * m_font;
 
 	Selector m_menu;
 };

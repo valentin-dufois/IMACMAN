@@ -53,6 +53,13 @@ public:
 	 */
 	void setHeight(const float &newSize);
 
+	/**
+	 Return the height of the font
+
+	 @return the font height
+	 */
+	inline float getHeight() const { return m_size; };
+
 
 	/**
 	 Generate and return the FontFace
@@ -61,6 +68,13 @@ public:
 	 */
 	FontFace genFontFace();
 
+	/**
+	 Generate a 2D tile with the caption as its texture
+	 THe return Mesh is raw, it as not been generated and as no program attached
+
+	 @param caption The text to display
+	 @return The tile in a mesh
+	 */
 	Mesh * genCaption(const std::string &caption);
 
 	~Font();
@@ -72,8 +86,6 @@ private:
 	float m_size;
 
 	FontFace m_fontFace;
-
-	ShaderProgram * m_program;
 
 	/**
 	 Generate and store in OpenGL the specified character

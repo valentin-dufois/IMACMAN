@@ -170,8 +170,6 @@ Mesh * RessourcesEngine::gen2DTile(const float &posX, const float &posY, const f
 	tile->getCursor()
 		->translate(posX, posY, 0)
 		->scale(width, height, 0);
-
-	tile->generate(PACMAN_M);
 	tile->setProgram(GameObj->getDefaultProgram());
 
 	return tile;

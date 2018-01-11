@@ -16,7 +16,6 @@
 #include "Utils/DrawCursor.hpp"
 #include "Engines/RessourcesEngine/Elements/Mesh.hpp"
 
-#include "Manager/Manager.hpp"
 #include "Core/GameObject.hpp"
 
 #include <map>
@@ -54,18 +53,13 @@ public:
 	 */
 	void setProjection2D(const float &width, const float &height);
 
-	inline DrawCursor * getCameraCursor() { return &m_MVMatrix; };
-
 	/**
-	 Return the object manager for the given type
+	 Return the cursor of the camera.
+	 Allow for camera manipulation
 
-	 @param type Type of the manager
-	 @return The Manager
+	 @return The camera cursor
 	 */
-	Manager * getManager(enum MANAGER_TYPE type);
-
-	//getters
-	GLuint * getBufferPtr(enum MANAGER_TYPE type);
+	inline DrawCursor * getCameraCursor() { return &m_MVMatrix; };
 
 	///////
 	//Utils
@@ -74,17 +68,15 @@ public:
 	 Generate the VBO for the given mesh
 
 	 @param mesh Mesh to generate
-	 @param type Generator to use
 	 */
-	void initVBO(Mesh * mesh, enum MANAGER_TYPE type);
+	void initVBO(Mesh * mesh);
 
 	/**
 	 Generate the VAO for the given mesh
 
 	 @param mesh Mesh to generate
-	 @param type Generator to use
 	 */
-	void initVAO(Mesh * mesh, enum MANAGER_TYPE type);
+	void initVAO(Mesh * mesh);
 
 	/**
 	 Render the given mesh at the given location

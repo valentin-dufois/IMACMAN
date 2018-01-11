@@ -46,13 +46,8 @@ public:
 
 private:
 
-	ShaderProgram * m_program;
 	Font * m_font;
 	FontFace m_fontFace;
-
-	GLuint m_vao;
-	Mesh * m_tile;
-	Mesh * m_caption;
 
 	Selector m_menu;
 };

@@ -28,9 +28,6 @@ public:
 		Asset(MESH),
 		m_vertexList(vertexList),
 		m_vertexCount((uint)vertexList.size()),
-		m_positionOffset(3),
-		m_normalOffset(3),
-		m_textureOffset(2),
 		m_textureID(0)
 	{}
 
@@ -38,9 +35,6 @@ public:
 		Asset(MESH),
 		m_vertexList(),
 		m_vertexCount(0),
-		m_positionOffset(3),
-		m_normalOffset(3),
-		m_textureOffset(2),
 		m_textureID(0) {};
 
 	//Getters
@@ -118,10 +112,8 @@ public:
 
 	/**
 	 Generate OpenGL buffers for the mesh
-
-	 @param type Type of object
 	 */
-	void generate(MANAGER_TYPE type);
+	void generate();
 
 	GLuint vbo = 0;
 	GLuint vao = 0;
@@ -139,10 +131,6 @@ private:
 	//Vertex
 	std::vector<Vertex> m_vertexList;
 	uint m_vertexCount;
-
-	uint m_positionOffset;
-	uint m_normalOffset;
-	uint m_textureOffset;
 
 	//Position
 	DrawCursor m_cursor;

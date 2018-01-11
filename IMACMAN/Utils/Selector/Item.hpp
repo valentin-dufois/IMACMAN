@@ -11,9 +11,16 @@
 
 #include "libraries.hpp"
 #include "Engines/RessourcesEngine/Elements/Mesh.hpp"
+#include "Engines/RessourcesEngine/Elements/Font.hpp"
 
 #include <iostream>
 #include <functional>
+
+enum ITEM_TYPE
+{
+	ITEM_IMAGE,
+	ITEM_TEXT
+};
 
 class Item
 {
@@ -26,10 +33,9 @@ public:
 	 @param posY y/row position
 	 @param width Width of the Item (ignored if small)
 	 @param height Height of the Item (ignored if small)
-	 @param caption Text of the Item
 	 @param callback Item callback
 	 */
-	Item(const uint &posX, const uint &posY, const uint &width, const uint &height, const std::string &caption, std::function<void()> callback);
+	Item(const ITEM_TYPE &type, const uint &posX, const uint &posY, const uint &width, const uint &height, std::function<void()> callback);
 
 	/**
 	 Set neighboor Items
@@ -49,6 +55,23 @@ public:
 	 @param activeTexture Texture GL ID
 	 */
 	void setTextures(const GLuint &idleTexture, const GLuint &activeTexture);
+
+	/**
+	 Set the font to use
+	 The item height is redifined to match the font height.
+	 Item width is ignored at rendering
+
+	 @param font A font object
+	 */
+	void setFont(Font * font, const std::string &caption);
+
+	/**
+	 Update the caption to display
+	 This regenerate the tile
+
+	 @param caption New caption
+	 */
+	void setCaption(const std::string &caption);
 
 	/**
 	 Return the top neighboor
@@ -125,6 +148,7 @@ private:
 
 	//Display properties
 	bool m_display;
+	ITEM_TYPE m_type;
 
 	//Positionning
 	uint m_posX;
@@ -133,9 +157,6 @@ private:
 	//Dimensions
 	uint m_width;
 	uint m_height;
-
-	//Caption
-	std::string m_caption;
 
 	//current state
 	bool m_selected;
@@ -152,6 +173,10 @@ private:
 	//The textures
 	GLuint m_idleTexture;
 	GLuint m_activeTexture;
+
+	//The text
+	Font * m_font;
+	std::string m_caption;
 
 	std::function<void()> m_callback;
 };

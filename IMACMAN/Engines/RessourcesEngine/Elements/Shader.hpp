@@ -14,7 +14,7 @@
 class Shader : public Asset
 {
 public:
-	Shader(std::string shaderPath, GLenum shaderType): Asset(SHADER), m_shaderPath(shaderPath), m_shaderID(glCreateShader(shaderType)), m_shaderType(shaderType) {};
+	Shader(std::string shaderPath, GLenum shaderType): Asset(SHADER), m_shaderPath(shaderPath), m_shaderID(glCreateShader(shaderType)) {};
 
 	inline void setSource(const char * source)
 	{
@@ -30,7 +30,6 @@ private:
 	//Shader infos
 	std::string m_shaderPath;
 	GLuint m_shaderID;
-	GLenum m_shaderType;
 
 	const std::string getCompileLog() const;
 };

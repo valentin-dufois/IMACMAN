@@ -95,7 +95,7 @@ public:
             tmpMesh = GameObj->ressourcesEngine->genCube(scale, meshColor);
         }
 
-        tmpMesh->generate(GRID_M);
+        tmpMesh->generate();
         tmpMesh->setProgram(shader);
         tmpMesh->getCursor()->translate(glm::vec3(position.x, position.y, 0));
 

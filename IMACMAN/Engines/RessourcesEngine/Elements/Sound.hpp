@@ -17,7 +17,7 @@ class Sound : public Asset
 	//Structural infos
 	
 	//Sound infos
-	unsigned int m_duration;
+	//unsigned int m_duration;
 };
 
 #endif /* Sound_hpp */
