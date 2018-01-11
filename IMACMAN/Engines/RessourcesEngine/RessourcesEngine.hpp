@@ -71,6 +71,9 @@ public:
 	 */
 	inline FT_Library getFTLibrary() const { return m_FTLibrary; };
 
+	/////////////////////////
+	//Basic assets generation
+
  	/**
  	 Generate a 3D cube as a mesh
 
@@ -88,6 +91,8 @@ public:
 	 @return The sphere in a mesh object
 	 */
 	Mesh * genSphere(const float &radius, const uint &precisionLat, const uint &precisionLong, glm::vec4 baseColor = glm::vec4(255, 255, 255, 1));
+
+	Mesh * gen2DTile(const float &posX, const float &posY, const float width, const float height);
 
 private:
 	//Singleton

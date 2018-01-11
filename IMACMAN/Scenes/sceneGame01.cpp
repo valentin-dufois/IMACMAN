@@ -27,7 +27,6 @@ void sceneGame01::init()
 	m_gridLevel = GameObj->gameEngine->getGrid();
 
 	//Init renderer values
-	float screenRatio = (float) GameObj->screenWidth / GameObj->screenHeight;
 	float levelHalfWidth = (float) GameObj->gameEngine->getGrid()->getWidth() / 2;
 	float levelHalfHeight = (float) GameObj->gameEngine->getGrid()->getHeight() / 2;
 

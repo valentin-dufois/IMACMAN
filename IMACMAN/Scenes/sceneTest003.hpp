@@ -15,6 +15,7 @@
 #include "Engines/RenderEngine/RenderEngine.hpp"
 #include "Utils/ShaderProgram.hpp"
 #include "Utils/Enums.hpp"
+#include "Utils/Selector/Selector.hpp"
 
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtx/string_cast.hpp>
@@ -53,6 +54,9 @@ private:
 
 	Mesh * m_mesh;
 	Image * m_tex;
+	Mesh * m_tile;
+
+	Selector m_menu;
 };
 
 #endif /* sceneTest003_hpp */

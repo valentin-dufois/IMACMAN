@@ -23,8 +23,8 @@ struct Vertex
 
 	Vertex(glm::vec3 pos, glm::vec3 aNormal):
 		position(pos),
-		color(glm::vec4(1, 1, 1, 1)),
-		normal(aNormal) {};
+		normal(aNormal),
+		color(glm::vec4(1, 1, 1, 1)) {};
 
 	Vertex(glm::vec3 pos, glm::vec2 aUV):
 		position(pos),

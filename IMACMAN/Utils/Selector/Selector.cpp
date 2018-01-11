@@ -8,6 +8,9 @@
 
 #include "Selector.hpp"
 
+#include "Core/GameObject.hpp"
+#include "Engines/GameEngine/GameEngine.hpp"
+
 Selector::Selector():
 	m_currentItem(nullptr)
 {}
@@ -50,6 +53,8 @@ void Selector::execute()
 
 void Selector::render()
 {
+	GameObj->renderEngine->setProjection2D();
+
 	for(std::vector<Item *>::iterator it = m_items.begin(); it != m_items.end(); ++it)
         (*it)->print();
 }

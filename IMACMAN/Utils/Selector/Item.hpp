@@ -9,6 +9,9 @@
 #ifndef Item_hpp
 #define Item_hpp
 
+#include "libraries.hpp"
+#include "Engines/RessourcesEngine/Elements/Mesh.hpp"
+
 #include <iostream>
 #include <functional>
 
@@ -26,7 +29,7 @@ public:
 	 @param caption Text of the Item
 	 @param callback Item callback
 	 */
-	Item(uint posX, uint posY, uint width, uint height, std::string caption, std::function<void()> callback);
+	Item(const uint &posX, const uint &posY, const uint &width, const uint &height, const std::string &caption, std::function<void()> callback);
 
 	/**
 	 Set neighboor Items
@@ -38,6 +41,14 @@ public:
 	 @param left Left Item
 	 */
 	void setNeighboors(Item * top, Item * right, Item * bottom, Item * left);
+
+	/**
+	 Set the textures used by the item
+
+	 @param idleTexture Texture GL ID
+	 @param activeTexture Texture GL ID
+	 */
+	void setTextures(const GLuint &idleTexture, const GLuint &activeTexture);
 
 	/**
 	 Return the top neighboor
@@ -66,11 +77,6 @@ public:
 	 @return Left neighboor
 	 */
 	Item * getLeftNeighboor();
-
-	/**
-	 Mark Item as small
-	 */
-	void setSmall();
 
 	/**
 	 Tell if Item is selected or not
@@ -118,7 +124,6 @@ public:
 private:
 
 	//Display properties
-	bool m_smallItem;
 	bool m_display;
 
 	//Positionning
@@ -140,6 +145,13 @@ private:
 	Item * m_rightItem;
 	Item * m_bottomItem;
 	Item * m_leftItem;
+
+	//The tile
+	Mesh * m_tile;
+
+	//The textures
+	GLuint m_idleTexture;
+	GLuint m_activeTexture;
 
 	std::function<void()> m_callback;
 };

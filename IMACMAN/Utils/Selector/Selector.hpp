@@ -9,8 +9,6 @@
 #ifndef Selector_hpp
 #define Selector_hpp
 
-#include "Core/GameObject.hpp"
-#include "Engines/GameEngine/GameEngine.hpp"
 #include "Item.hpp"
 #include <vector>
 

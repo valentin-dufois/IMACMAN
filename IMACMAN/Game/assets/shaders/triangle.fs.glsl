@@ -22,4 +22,5 @@ void main()
 	//color
 	//fFragColor = vec4(normalize(vNormal_vs), 1);
 	fFragColor = vColor_vs;
+	//fFragColor = vec4(1, 1, 1, 1);
 }

@@ -11,7 +11,6 @@
 
 //Forward declaration
 class Shader;
-class ShaderProgram;
 
 #include "libraries.hpp"
 #include "Core/GameObject.hpp"

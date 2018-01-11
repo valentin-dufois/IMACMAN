@@ -8,8 +8,7 @@
 
 #include "Item.hpp"
 
-Item::Item(uint posX, uint posY, uint width, uint height, std::string caption, std::function<void()> callback):
-	m_smallItem(false),
+Item::Item(const uint &posX, const uint &posY, const uint &width, const uint &height, const std::string &caption, std::function<void()> callback):
 	m_display(true),
 	m_posX(posX),
 	m_posY(posY),
@@ -21,7 +20,10 @@ Item::Item(uint posX, uint posY, uint width, uint height, std::string caption, s
 	m_rightItem(nullptr),
 	m_bottomItem(nullptr),
     m_leftItem(nullptr),
-	m_callback(callback) {}
+	m_tile(GameObj->ressourcesEngine->gen2DTile(m_posX, m_posY, m_width, m_height)),
+	m_callback(callback)
+{
+}
 
 void Item::setNeighboors(Item *top, Item *right, Item *bottom, Item *left)
 {
@@ -29,6 +31,12 @@ void Item::setNeighboors(Item *top, Item *right, Item *bottom, Item *left)
 	m_rightItem = right;
 	m_bottomItem = bottom;
 	m_leftItem = left;
+}
+
+void Item::setTextures(const GLuint &idleTexture, const GLuint &activeTexture)
+{
+	m_idleTexture = idleTexture;
+	m_activeTexture = activeTexture;
 }
 
 Item * Item::getTopNeighboor()
@@ -66,11 +74,6 @@ void Item::deSelect()
 	m_selected = false;
 }
 
-void Item::setSmall()
-{
-	m_smallItem = true;
-}
-
 bool Item::isShown()
 {
     return m_display;
@@ -92,8 +95,14 @@ void Item::print()
 	if(!m_display)
 		return;
 
+	//Set item texture according to state
+	if(isSelected())
+		m_tile->setTexture(m_activeTexture);
+	else
+		m_tile->setTexture(m_idleTexture);
+
 	//Display item
-	//TODO
+	GameObj->renderEngine->render(m_tile, m_tile->getCursor());
 }
 
 void Item::action()
