@@ -105,20 +105,39 @@ public:
 	 @param farthest Distance to the farthest point
 	 @return Cursor for chaining
 	 */
-	DrawCursor * perspective(float fov, float aspect, float nearest, float farthest);
+	DrawCursor * perspective(const float &fov, const float &aspect, const float &nearest, const float &farthest);
 
+	/**
+	 Generate a 2D ortho matrix for the given coordinates
+
+	 @param left Left point
+	 @param right Right point
+	 @param bottom Bottom point
+	 @param top Top point
+	 @return Cursor for chaining
+	 */
+	DrawCursor * ortho(const float &left, const float &right, const float &bottom, const float &top);
+
+	/**
+	 Replace the current cursor matrix with the given one
+	 The source cursor is conserved
+
+	 @param mat The new matrix
+	 @return Cursor for chaining
+	 */
+	DrawCursor * setMatrix(const glm::mat4 &mat);
 
 	/**
 	 Return the matrix depicting the cursor state
 
 	 @return The cursor as a mat4
 	 */
-	inline glm::mat4 getMatrix() { return m_cursor; };
+	inline glm::mat4 getMatrix() const { return m_cursor; };
 
 	/**
 	 Move back the cursos to its starting state
 	 */
-	void reset() { m_cursor = m_sourceCursor; };
+	inline DrawCursor * reset() { m_cursor = m_sourceCursor; return this; };
 
 	//////////////////////
 	//Comparison operators
@@ -129,7 +148,7 @@ public:
 	 @param cursor The cursor to compare to
 	 @return True if equals, false otherwise
 	 */
-	bool operator == (const DrawCursor &cursor)
+	bool operator == (const DrawCursor &cursor) const
 	{
 		if(m_cursor == cursor.m_cursor)
 			return true;
@@ -143,7 +162,7 @@ public:
 	 @param cursor The mat4 to compare to
 	 @return True if equals, false otherwise
 	 */
-	bool operator == (const glm::mat4 &cursor)
+	bool operator == (const glm::mat4 &cursor) const
 	{
 		if(m_cursor == cursor)
 			return true;
@@ -156,7 +175,7 @@ public:
 
 	 @return The cursor's matrix
 	 */
-	operator glm::mat4 ()
+	operator glm::mat4 () const
 	{
 		return m_cursor;
 	}
@@ -167,7 +186,7 @@ public:
 	 @param term Another mat4/DrawCursor
 	 @return A new cursor with the resulting value
 	 */
-	DrawCursor operator * (glm::mat4 term)
+	DrawCursor operator * (glm::mat4 term) const
 	{
 		return DrawCursor(m_cursor * term);
 	}

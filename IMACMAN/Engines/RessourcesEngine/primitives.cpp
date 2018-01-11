@@ -152,3 +152,26 @@ Mesh * RessourcesEngine::genSphere(const float &radius, const uint &precisionLat
 
 	return new Mesh(vertices);
 }
+
+
+Mesh * RessourcesEngine::gen2DTile(const float &posX, const float &posY, const float width, const float height)
+{
+	std::vector<Vertex> tileV;
+	tileV.push_back(Vertex(glm::vec3(0.0, 0.0, 0.0), glm::vec2(0.0, 0.0)));
+	tileV.push_back(Vertex(glm::vec3(1.0, 0.0, 0.0), glm::vec2(1.0, 0.0)));
+	tileV.push_back(Vertex(glm::vec3(1.0, 1.0, 0.0), glm::vec2(1.0, 1.0)));
+
+	tileV.push_back(Vertex(glm::vec3(0.0, 0.0, 0.0), glm::vec2(0.0, 0.0)));
+	tileV.push_back(Vertex(glm::vec3(1.0, 1.0, 0.0), glm::vec2(1.0, 1.0)));
+	tileV.push_back(Vertex(glm::vec3(0.0, 1.0, 0.0), glm::vec2(0.0, 1.0)));
+
+	Mesh * tile = new Mesh(tileV);
+	tile->generate(PACMAN_M);
+	tile->setProgram(GameObj->getDefaultProgram());
+
+	tile->getCursor()
+		->translate(posX, posY, 0)
+		->scale(width, height, 0);
+
+	return tile;
+}

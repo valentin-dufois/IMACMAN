@@ -8,6 +8,12 @@
 
 #include "DrawCursor.hpp"
 
+DrawCursor * DrawCursor::setMatrix(const glm::mat4 &mat)
+{
+	m_cursor = mat;
+	return this;
+};
+
 DrawCursor * DrawCursor::translate(const glm::vec3 &vector)
 {
 	m_cursor = glm::translate(m_cursor, vector);
@@ -22,7 +28,7 @@ DrawCursor * DrawCursor::scale(const glm::vec3 &vector)
 
 DrawCursor * DrawCursor::rotate(const float &angle, const glm::vec3 &vector)
 {
-	m_cursor = glm::rotate(m_cursor, angle, vector);
+	m_cursor = glm::rotate(m_cursor, glm::radians(angle), vector);
 	return this;
 }
 
@@ -38,8 +44,14 @@ DrawCursor * DrawCursor::transpose()
 	return this;
 }
 
-DrawCursor * DrawCursor::perspective(float fov, float aspect, float nearest, float farthest)
+DrawCursor * DrawCursor::perspective(const float &fov, const float &aspect, const float &nearest, const float &farthest)
 {
 	m_cursor = glm::perspective(glm::radians(fov), aspect, nearest, farthest);
+	return this;
+}
+
+DrawCursor * DrawCursor::ortho(const float &left, const float &right, const float &bottom, const float &top)
+{
+	m_cursor = glm::ortho(left, right, bottom, top);
 	return this;
 }
