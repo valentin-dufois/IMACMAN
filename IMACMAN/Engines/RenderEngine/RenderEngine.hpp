@@ -36,6 +36,9 @@ public:
 	 */
 	void initRender();
 
+	void setProjection3D();
+	void setProjection2D();
+
 	inline DrawCursor * getCameraCursor() { return &m_MVMatrix; };
 
 	/**
@@ -100,6 +103,9 @@ private:
 	DrawCursor m_ProjectionMatrix;
 	DrawCursor m_MVMatrix;
 	DrawCursor m_NormalMatrix;
+
+	DrawCursor m_storedMVMatrix;
+	bool m_stored;
 
 	//Constructor
 	RenderEngine();

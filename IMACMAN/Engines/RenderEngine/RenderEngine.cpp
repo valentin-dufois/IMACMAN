@@ -26,7 +26,8 @@ void RenderEngine::instanciate()
 /**
  * Private constructor
  */
-RenderEngine::RenderEngine()
+RenderEngine::RenderEngine():
+	m_stored(false)
 {
 	GLuint gridVBO, pacmanVBO, blinkyVBO, pinkyVBO, inkyVBO, clydeVBO;
 	
@@ -42,17 +43,37 @@ RenderEngine::RenderEngine()
 
 void RenderEngine::initRender()
 {
-	float screenRatio = (float) GameObj->screenWidth / GameObj->screenHeight;
-
-	//Projection Matrix
-	m_ProjectionMatrix.perspective(70.f, screenRatio, 0.1f, 100.f);
-
 	//MV Matrix <- The camera in a sort
-	//m_MVMatrix;
+	m_MVMatrix.setMatrix(glm::mat4(1.0));
 
 	//Normal
 	m_NormalMatrix = m_MVMatrix;
 	m_NormalMatrix.inverse()->transpose();
+
+	setProjection3D();
+}
+
+void RenderEngine::setProjection3D()
+{
+	float screenRatio = (float) GameObj->screenWidth / GameObj->screenHeight;
+	m_ProjectionMatrix.reset()->perspective(70.f, screenRatio, 0.1f, 100.f);
+
+	if(m_stored)
+	{
+		m_stored = false;
+		m_MVMatrix = m_storedMVMatrix;
+	}
+}
+
+void RenderEngine::setProjection2D()
+{
+	glClear(GL_DEPTH_BUFFER_BIT);
+	
+	m_ProjectionMatrix.setMatrix(glm::ortho(0.f, (float)GameObj->screenWidth, (float)GameObj->screenHeight, 0.f));
+
+	m_storedMVMatrix = m_MVMatrix;
+	m_MVMatrix.reset();
+	m_stored = true;
 }
 
 
