@@ -36,8 +36,23 @@ public:
 	 */
 	void initRender();
 
+	/**
+	 Set up the projection Matrix for 3D render
+	 */
 	void setProjection3D();
+
+	/**
+	 Fast forward call to setProjection2D with window dimensions
+	 */
 	void setProjection2D();
+	
+	/**
+	 Set up the projection matrix for 2D render
+
+	 @param width Width in px of the screen
+	 @param height Height in px of the screen
+	 */
+	void setProjection2D(const float &width, const float &height);
 
 	inline DrawCursor * getCameraCursor() { return &m_MVMatrix; };
 

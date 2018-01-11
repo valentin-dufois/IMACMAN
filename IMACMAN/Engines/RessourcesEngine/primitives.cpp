@@ -166,12 +166,13 @@ Mesh * RessourcesEngine::gen2DTile(const float &posX, const float &posY, const f
 	tileV.push_back(Vertex(glm::vec3(0.0, 1.0, 0.0), glm::vec2(0.0, 1.0)));
 
 	Mesh * tile = new Mesh(tileV);
-	tile->generate(PACMAN_M);
-	tile->setProgram(GameObj->getDefaultProgram());
 
 	tile->getCursor()
 		->translate(posX, posY, 0)
 		->scale(width, height, 0);
+
+	tile->generate(PACMAN_M);
+	tile->setProgram(GameObj->getDefaultProgram());
 
 	return tile;
 }

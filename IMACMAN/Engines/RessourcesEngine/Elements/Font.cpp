@@ -13,8 +13,8 @@ Font::Font(FT_Face &face): Asset(FONT), m_face(face) {}
 void Font::setHeight(const float &newSize)
 {
 	m_size = newSize;
-
-	FT_Set_Char_Size(m_face, 0, m_size * 64, 0, SDL::getWindowDPI());
+	//FT_Set_Char_Size(m_face, 0, m_size * 64, 0, SDL::getWindowDPI());
+	FT_Set_Pixel_Sizes(m_face, 0, m_size);
 }
 
 FontFace Font::genFontFace()
@@ -41,75 +41,76 @@ Mesh * Font::genCaption(const std::string &caption)
 	//Gather informations for rendering
 	uint textureWidth = 0;
 	uint textureHeight = m_fontFace.size;
+	//float baseline =
 
 	for(char c : caption)
 	{
 		textureWidth += m_fontFace.chars[c].advance;
 	}
 
+	FontCharacter * lastChar = &m_fontFace.chars[caption[caption.size()-1]];
+	textureWidth -= lastChar->advance;
+	textureWidth += lastChar->bearing.x + lastChar->size.x;
+
 	//generate the frameBuffer & texture
 	GLuint frameBuffer;
 	GLuint texture;
 	prepareTexture(textureWidth, textureHeight, frameBuffer, texture);
 
-	//Set program
-	m_program = new ShaderProgram("textRenderer.fs.glsl", "textRenderer.vs.glsl");
-	m_program->use();
-
-	GLuint tile = genTile(0);
-
 	std::cout << "texture size : " << textureWidth << "x" << textureHeight << std::endl;
 
-	glViewport(0, 0, textureWidth, textureHeight);
+	GameObj->renderEngine->setProjection2D(textureWidth, textureHeight);
 
-	uint pointerX = 0;
+	uint advanceX = 0;
 	FontCharacter fChar;
 
-	glm::mat4 baseMatrix(1.0f);
-	glm::mat4 transformedPos;
-	baseMatrix = glm::translate(baseMatrix, glm::vec3(-textureWidth/2, 0, 0));
+	glBindFramebuffer(GL_FRAMEBUFFER, frameBuffer);
+	glClear(GL_COLOR_BUFFER_BIT);
 
-	//glBindFramebuffer(GL_FRAMEBUFFER, frameBuffer);
-	//glBindTexture(GL_TEXTURE_2D, texture);
-	glBindVertexArray(tile);
+	Mesh * charMesh;
 
 	for(char c : caption)
 	{
-		std::cout << c << std::endl;
-		
 		fChar = m_fontFace.chars[c];
 
-		transformedPos = glm::scale(glm::translate(baseMatrix, glm::vec3(pointerX + fChar.bearing.x, 0, 0)), glm::vec3(fChar.size.x, fChar.size.y, 1));
+		charMesh = GameObj->ressourcesEngine->gen2DTile(
+			advanceX + fChar.bearing.x,
+			fChar.size.y,
+			fChar.size.x,
+			fChar.size.y);
 
-		/////////////////
-		check_gl_error();
-		/////////////////
+		std::cout << textureHeight << " : " << fChar.size.y << std::endl;
 
-		//Set position and texture
-		glUniform1i(glGetUniformLocation(m_program->getProgramID(), "uTexture"), fChar.texture);
-		glUniformMatrix4fv(glGetUniformLocation(m_program->getProgramID(), "uMVPMatrix"), 1, GL_FALSE, glm::value_ptr(transformedPos));
+		charMesh->setTexture(fChar.texture);
+		charMesh->generate(PACMAN_M);
+		charMesh->getCursor()->scale(1, -1, 1);
 
 		/////////////////
 		check_gl_error();
 		/////////////////
 
 		//Render char
-		glDrawArrays(GL_TRIANGLES, 0, 6);
+		GameObj->renderEngine->render(charMesh, charMesh->getCursor());
 
 		/////////////////
 		check_gl_error();
 		/////////////////
 
 		//advance
-		pointerX += fChar.advance;
-	}
+		advanceX += fChar.advance;
 
-	glBindVertexArray(0);
-	//glBindTexture(GL_TEXTURE_2D, 0);
-	//glBindFramebuffer(GL_FRAMEBUFFER, 0);
+		delete charMesh;
+	}
+	//GameObj->renderEngine->getCameraCursor()->reset();
+
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+	glViewport(0, 0, 800, 600);
 
 	///////////////
-	return nullptr;
+	Mesh * mesh = GameObj->ressourcesEngine->gen2DTile(0, 0, textureWidth, textureHeight);
+	mesh->setTexture(texture);
+	mesh->generate(PACMAN_M);
+	return mesh;
 }
 
 FontCharacter Font::genFontCharacter(char charID)
@@ -144,40 +145,44 @@ FontCharacter Font::genFontCharacter(char charID)
 
 	character.texture = texture;
 
-	character.size.x = m_face->glyph->bitmap.width / 64;
-	character.size.y = m_face->glyph->bitmap.rows / 64;
+	character.size.x = m_face->glyph->bitmap.width;
+	character.size.y = m_face->glyph->bitmap.rows;
 
-	character.bearing.x = m_face->glyph->bitmap_left / 64;
-	character.bearing.y = m_face->glyph->bitmap_top / 64;
+	character.bearing.x = m_face->glyph->bitmap_left / 64.f;
+	character.bearing.y = m_face->glyph->bitmap_top / 64.f;
 
-	character.advance = (GLuint)m_face->glyph->advance.x / 64;
+	character.advance = m_face->glyph->advance.x / 64.f;
 
 	return character;
 }
 
 bool Font::prepareTexture(const uint &width, const uint &height, GLuint &frameBuffer, GLuint &texture)
 {
+	GLuint format = GL_RGBA;
+
 	//generate the frameBuffer
 	glGenFramebuffers(1, &frameBuffer);
 	glBindFramebuffer(GL_FRAMEBUFFER, frameBuffer);
 
-	//Generate the texture
+	//Generate and bind the texture
 	glGenTextures(1, &texture);
-
-	//Bind the newly created texture
 	glBindTexture(GL_TEXTURE_2D, texture);
 
-
 	// Give an empty image to OpenGL ( the last "0" )
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RED, width, height, 0, GL_RED, GL_UNSIGNED_BYTE, 0);
+	glTexImage2D(GL_TEXTURE_2D, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, 0);
 
+	//filters
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 
-	glFramebufferTexture(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, texture, 0);
+	//Link texture to framebuffer
+	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, texture, 0);
 
 	GLenum DrawBuffers[1] = {GL_COLOR_ATTACHMENT0};
 	glDrawBuffers(1, DrawBuffers);
+
+	////
+	check_gl_error();
 
 	if(glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
 		return false;

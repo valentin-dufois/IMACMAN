@@ -26,6 +26,7 @@ class Asset;
 struct FontCharacter
 {
 	GLuint texture;
+
 	glm::vec2 size;
 	glm::vec2 bearing;
 	GLuint advance;

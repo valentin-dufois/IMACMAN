@@ -56,7 +56,9 @@ void RenderEngine::initRender()
 void RenderEngine::setProjection3D()
 {
 	float screenRatio = (float) GameObj->screenWidth / GameObj->screenHeight;
+
 	m_ProjectionMatrix.reset()->perspective(70.f, screenRatio, 0.1f, 100.f);
+	glViewport(0, 0, GameObj->screenWidth, GameObj->screenHeight);
 
 	if(m_stored)
 	{
@@ -67,15 +69,20 @@ void RenderEngine::setProjection3D()
 
 void RenderEngine::setProjection2D()
 {
+	setProjection2D((float)GameObj->screenWidth, (float)GameObj->screenHeight);
+}
+
+void RenderEngine::setProjection2D(const float &width, const float &height)
+{
 	glClear(GL_DEPTH_BUFFER_BIT);
-	
-	m_ProjectionMatrix.setMatrix(glm::ortho(0.f, (float)GameObj->screenWidth, (float)GameObj->screenHeight, 0.f));
+
+	m_ProjectionMatrix.setMatrix(glm::ortho(0.f, width, height, 0.f));
+	glViewport(0, 0, width, height);
 
 	m_storedMVMatrix = m_MVMatrix;
 	m_MVMatrix.reset();
 	m_stored = true;
 }
-
 
 void RenderEngine::initVBO(Mesh * mesh, enum MANAGER_TYPE type)
 {

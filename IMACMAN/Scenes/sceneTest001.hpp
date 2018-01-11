@@ -14,6 +14,7 @@
 #include "Engines/RenderEngine/RenderEngine.hpp"
 #include "Utils/ShaderProgram.hpp"
 #include "Utils/Vertex.hpp"
+#include "Utils/Selector/Selector.hpp"
 
 class sceneTest001: public Scene
 {
@@ -46,10 +47,14 @@ public:
 private:
 
 	ShaderProgram * m_program;
+	Font * m_font;
 	FontFace m_fontFace;
 
 	GLuint m_vao;
 	Mesh * m_tile;
+	Mesh * m_caption;
+
+	Selector m_menu;
 };
 
 #endif /* sceneTest001_hpp */

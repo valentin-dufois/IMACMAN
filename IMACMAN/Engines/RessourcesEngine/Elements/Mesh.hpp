@@ -123,10 +123,17 @@ public:
 	 */
 	void generate(MANAGER_TYPE type);
 
-	GLuint vbo;
-	GLuint vao;
+	GLuint vbo = 0;
+	GLuint vao = 0;
 
+	/**
+	 Return the drawing cursor of the object
+
+	 @return The cursor
+	 */
 	inline DrawCursor * getCursor() { return &m_cursor; };
+
+	void applyCursor();
 
 private:
 	//Vertex

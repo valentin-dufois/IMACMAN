@@ -24,3 +24,19 @@ void Mesh::generate(MANAGER_TYPE type)
 
 	GameObj->renderEngine->initVAO(this, type);
 }
+
+void Mesh::applyCursor()
+{
+	Vertex temp;
+
+	for(std::vector<Vertex>::iterator it = m_vertexList.begin(); it!= m_vertexList.end(); ++it)
+	{
+		temp = *it;
+		temp.position = glm::vec4((*it).position, 1) * m_cursor.getMatrix();
+		temp.normal = glm::vec4((*it).normal, 0) * m_cursor.getMatrix();
+
+		*it = temp;
+	}
+
+	m_cursor.setMatrix(glm::mat4());
+}
