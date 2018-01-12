@@ -42,6 +42,10 @@ void Selector::execute()
 	if(m_currentItem == nullptr)
 		return;
 
+	//Tempo between action (.08s)
+	if(SDL_GetTicks() - m_lastAction < 80)
+		return GameObj->gameEngine->flushKeys();
+
 	if(GameObj->gameEngine->getKeys().DOWN)
 		return moveCursor(m_currentItem->getBottomNeighboor());
 
@@ -55,7 +59,10 @@ void Selector::execute()
 		return moveCursor(m_currentItem->getLeftNeighboor());
 
 	if(GameObj->gameEngine->getKeys().ENTER)
+	{
+		m_lastAction = SDL_GetTicks();
 		return m_currentItem->action();
+	}
 }
 
 void Selector::render()
@@ -71,10 +78,6 @@ void Selector::render()
 void Selector::moveCursor(Item * item)
 {
 	if(item == nullptr)
-		return;
-
-	//Tempo between action (.08s)
-	if(SDL_GetTicks() - m_lastAction < 80)
 		return;
     
     if(!item->isShown())

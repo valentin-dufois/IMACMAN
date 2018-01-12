@@ -45,12 +45,16 @@ private:
 
 	//Elements
 	Selector m_menu;
+	Item * m_controls;
+	Item * m_helpBtn;
 
 	//Ressources
 	rId m_mainLogo;
 	rId m_startBtnIdle; rId m_startBtnActive;
 	rId m_helpBtnIdle;  rId m_helpBtnActive;
+	rId m_helpBtnTiltIdle;  rId m_helpBtnTiltActive;
 	rId m_quitBtnIdle;  rId m_quitBtnActive;
+	rId m_controlsID;
 	rId m_background;
 
 	void loadAssets();
