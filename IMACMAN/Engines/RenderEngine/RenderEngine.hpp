@@ -97,12 +97,6 @@ private:
 	const GLuint VERTEX_ATTR_COLOR = 3;
 	const GLuint VERTEX_ATTR_UV = 4;
 
-	//Attributs
-	GLuint * m_gridVBO;
-	GLuint * m_pacmanVBO;
-	std::vector<GLuint *> m_ghostsVBO;
-	uint m_VBOCountIndex;
-
 	//Cameras
 	bool thirdPersCamera = false;
 

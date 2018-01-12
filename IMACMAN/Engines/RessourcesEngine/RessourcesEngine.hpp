@@ -94,6 +94,8 @@ public:
 
 	Mesh * gen2DTile(const float &posX, const float &posY, const float width, const float height);
 
+	~RessourcesEngine();
+
 private:
 	//Singleton
 	static bool m_instanciated;

@@ -1,22 +1,19 @@
 //
-//  sceneTest001.hpp
+//  loadingScene.hpp
 //  IMACMAN
 //
-//  Created by Valentin Dufois on 28/12/2017.
-//  Copyright © 2017 Valentin Dufois. All rights reserved.
+//  Created by Valentin Dufois on 11/01/2018.
+//  Copyright © 2018 Valentin Dufois. All rights reserved.
 //
 
-#ifndef sceneTest001_hpp
-#define sceneTest001_hpp
+#ifndef loadingScene_hpp
+#define loadingScene_hpp
 
 #include "Scene.hpp"
 #include "Engines/RessourcesEngine/Elements/Asset.hpp"
-#include "Engines/RenderEngine/RenderEngine.hpp"
-#include "Utils/ShaderProgram.hpp"
-#include "Utils/Vertex.hpp"
 #include "Utils/Selector/Selector.hpp"
 
-class sceneTest001: public Scene
+class loadingScene: public Scene
 {
 public:
 	/**
@@ -42,14 +39,19 @@ public:
 	/**
 	 Destructor, used to properly free all the memory used by the scene
 	 */
-	~sceneTest001() {};
+	~loadingScene() {};
 
 private:
 
-	Font * m_font;
-	FontFace m_fontFace;
+	//Elements
+	Selector m_interface;
 
-	Selector m_menu;
+	//Ressources
+	rId m_background;
+
+	void loadAssets();
+
+	bool m_firstPass = true;
 };
 
-#endif /* sceneTest001_hpp */
+#endif /* loadingScene_hpp */

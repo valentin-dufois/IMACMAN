@@ -17,16 +17,15 @@
 
 Asset * LevelImporter::getAsset(std::string path)
 {
-    if (path.substr(path.find_last_of('.') + 1) != "txt") {
+    if (path.substr(path.find_last_of('.') + 1) != "txt")
 		throw std::runtime_error("Error: bad file extention! (.txt authorized only)");
-	}
 	
     //Create stream
 	std::ifstream file(path);
 	
-	if (!file.is_open()) {
+	if (!file.is_open())
 		throw std::runtime_error("Error while opening file: " + path);
-	}
+
 
     //Read width and height params from File for Level constructor
     std::string param;
@@ -48,12 +47,12 @@ Asset * LevelImporter::getAsset(std::string path)
 
 	//std::cout << "grid_size: " << grid.size() << std::endl;
 
-	if (file.bad()) {
+	if (file.bad())
 		throw std::runtime_error("Error while reading file: " + path);
-	}
+
 	file.close();
 
-    return  new Level(width, height, grid);
+    return new Level(width, height, grid);
 }
 
 LevelImporter::~LevelImporter()

@@ -7,7 +7,7 @@ class Pacman: public DynamicItem
 {
 public:
 	//CONSTRUCTOR
-	Pacman(Mesh * mesh, glm::vec2 position, std::string name = "player", uint score = 0, enum ITEM_SYNTAX type = PACMAN, int lives = 3, bool isSuper = false):
+	Pacman(Mesh * mesh, glm::vec2 position, std::string name = "player", uint score = 0, ITEM_SYNTAX type = PACMAN, int lives = 3, bool isSuper = false):
 		DynamicItem(mesh, position, name, score, type, DIRECTION::RIGHT),
 		m_lives(lives),
 		m_isSuper(isSuper),

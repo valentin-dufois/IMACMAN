@@ -8,9 +8,11 @@
 
 #include "DynamicItem.hpp"
 
+#include "Engines/RessourcesEngine/Elements/Mesh.hpp"
+
 glm::vec2 DynamicItem::getNextPosition(glm::vec3 &translation) const
 {
-	glm::vec2 nextPos = this->getPosition();
+	glm::vec2 nextPos = getPosition();
 
 	switch (m_currentDirection) {
 		case DIRECTION::UP:
@@ -40,9 +42,9 @@ glm::vec2 DynamicItem::getNextPosition(glm::vec3 &translation) const
 	return nextPos;
 }
 
-glm::vec2 DynamicItem::getNextPosition(const enum DIRECTION & nextDirection) const
+glm::vec2 DynamicItem::getNextPosition(const DIRECTION & nextDirection) const
 {
-	glm::vec2 nextPos = this->getPosition();
+	glm::vec2 nextPos = getPosition();
 
 	switch (nextDirection) {
 		case DIRECTION::UP:
@@ -65,4 +67,28 @@ glm::vec2 DynamicItem::getNextPosition(const enum DIRECTION & nextDirection) con
 			break;
 	}
 	return nextPos;
+}
+
+void DynamicItem::updateMeshPosition()
+{
+	glm::vec3 translation;
+	float offsetValue = .1f;
+
+	switch (m_currentDirection)
+	{
+	case DIRECTION::UP:
+			translation = glm::vec3(-offsetValue, 0, 0);
+		break;
+	case DIRECTION::DOWN:
+			translation = glm::vec3(offsetValue, 0, 0);
+		break;
+	case DIRECTION::LEFT:
+			translation = glm::vec3(0, -offsetValue, 0);
+		break;
+	case DIRECTION::RIGHT:
+			translation = glm::vec3(0, offsetValue, 0);
+		break;
+	}
+
+	//getMesh()->getCursor()->translate(translation);
 }

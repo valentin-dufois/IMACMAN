@@ -9,7 +9,7 @@
 #include "Player.hpp"
 
 //SETTERS
-void Player::setType(enum PLAYER_TYPE type){
+void Player::setType(PLAYER_TYPE type){
 	m_type = type;
 }
 
@@ -26,7 +26,7 @@ void Player::setScore(double score){
 }
 
 //GETTERS
-enum PLAYER_TYPE Player::getPlayerType() const{
+PLAYER_TYPE Player::getPlayerType() const{
 	return m_type;
 }
 

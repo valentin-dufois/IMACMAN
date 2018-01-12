@@ -34,3 +34,8 @@ const std::string Shader::getCompileLog() const
 
 	return logString;
 }
+
+Shader::~Shader()
+{
+	glDeleteShader(m_shaderID);
+}

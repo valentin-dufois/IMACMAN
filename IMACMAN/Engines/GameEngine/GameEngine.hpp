@@ -53,28 +53,8 @@ struct keyboard
 	bool ENTER = false;
 };
 
-class GameEngine{
-private:
-	//Singleton
-	static bool m_instanciated;
-	GameEngine() = default;
-
-	//Events
-	keyboard m_keys;
-	void parseEvents();
-
-	//Attributs
-	Grid m_level;
-	
-	Pacman * m_pacman;
-	int m_realScore;
-
-	Ghost * m_Blinky;
-	Ghost * m_Pinky;
-	Ghost * m_Inky;
-	Ghost * m_Clyde;
-	Fruit * m_fruit;
-
+class GameEngine
+{
 public:
 	//Instanciate the GameEngine in the GameObj as a Singleton
 	static void instanciate();
@@ -105,6 +85,26 @@ public:
 	void manageSpecialMode();
 
 	inline Pacman * getPacman() { return m_pacman; };
+	
+private:
+	//Singleton
+	static bool m_instanciated;
+	GameEngine() = default;
+
+	//Events
+	keyboard m_keys;
+	void parseEvents();
+
+	//Attributs
+	Grid m_level;
+
+	Pacman * m_pacman;
+
+	Ghost * m_Blinky;
+	Ghost * m_Pinky;
+	Ghost * m_Inky;
+	Ghost * m_Clyde;
+	Fruit * m_fruit;
 };
 
 #endif /* GameEngine_hpp */

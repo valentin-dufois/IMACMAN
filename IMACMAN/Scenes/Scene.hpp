@@ -89,13 +89,14 @@ private:
 };
 
 #include "mainMenu.hpp"
+#include "loadingScene.hpp"
 #include "gameOverlay.hpp"
+#include "gameScene.hpp"
+#include "victoryScene.hpp"
+#include "gameOverScene.hpp"
 
 //TestScenes
-#include "sceneTest001.hpp"
-#include "sceneGame01.hpp"
 #include "sceneConsole.hpp"
-#include "sceneTest003.hpp"
 
 
 #endif /* Scene_h */

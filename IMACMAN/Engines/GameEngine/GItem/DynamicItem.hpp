@@ -8,7 +8,7 @@ class DynamicItem: public GItem
 public:
 	/////////////
     //CONSTRUCTOR
-	DynamicItem(Mesh * mesh, glm::vec2 position, std::string name, uint score, enum ITEM_SYNTAX type, enum DIRECTION dir):
+	DynamicItem(Mesh * mesh, glm::vec2 position, std::string name, uint score, ITEM_SYNTAX type, DIRECTION dir):
         GItem(mesh, position, score, type),
         m_name(name),
         m_firstPosition(position),
@@ -56,7 +56,12 @@ public:
 
 	 @param direction The new direction
 	 */
-	void updateDirection(enum DIRECTION direction) { m_currentDirection = direction; };
+	void updateDirection(DIRECTION direction) { m_currentDirection = direction; };
+
+	/**
+	 Update the position of the mesh on the grid
+	 */
+	void updateMeshPosition();
 
 	/////////
     //METHODS
@@ -78,8 +83,10 @@ public:
 
 protected:
 	std::string m_name;
+
 	glm::vec2 m_firstPosition;
-	enum DIRECTION m_currentDirection;
+
+	DIRECTION m_currentDirection;
 };
 
 #endif /* DYNAMIC_ITEM_HPP */

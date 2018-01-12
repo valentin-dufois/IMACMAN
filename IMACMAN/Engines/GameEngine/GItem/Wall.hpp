@@ -7,7 +7,7 @@ class Wall: public StaticItem {
 private:
 public:
 	//CONSTRUCTOR
-	Wall(Mesh * mesh, glm::vec2 position, uint score = 0, enum ITEM_SYNTAX type = WALL):
+	Wall(Mesh * mesh, glm::vec2 position, uint score = 0, ITEM_SYNTAX type = WALL):
         StaticItem(mesh, position, score, type)
     {}
     //DESTRUCTOR

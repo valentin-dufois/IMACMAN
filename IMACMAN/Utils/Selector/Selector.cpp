@@ -33,6 +33,12 @@ void Selector::addItem(Item * newItem)
 
 void Selector::execute()
 {
+	if(m_waitBeforeExecute > 0)
+	{
+		m_waitBeforeExecute--;
+		return;
+	}
+	
 	if(m_currentItem == nullptr)
 		return;
 
@@ -50,8 +56,6 @@ void Selector::execute()
 
 	if(GameObj->gameEngine->getKeys().ENTER)
 		return m_currentItem->action();
-
-	GameObj->gameEngine->flushKeys();
 }
 
 void Selector::render()

@@ -63,6 +63,9 @@ void Item::setFont(Font * font, const std::string &caption)
 
 void Item::setCaption(const std::string &caption)
 {
+	if(m_caption == caption)
+		return;
+	
 	m_caption = caption;
 
 	m_tile = m_font->genCaption(m_caption);

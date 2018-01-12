@@ -19,6 +19,9 @@ void Font::setHeight(const float &newSize)
 
 FontFace Font::generate()
 {
+	if(m_fontFace.chars.size() != 0)
+		cleanFontFace();
+
 	m_fontFace.size = m_size;
 
 	//Disable GL Alignement
@@ -247,6 +250,16 @@ GLuint Font::genTile(const GLuint &textureID)
 	/////////////////
 
 	return vao;
+}
+
+void Font::cleanFontFace()
+{
+	for(FontCharacter fChar : m_fontFace.chars)
+	{
+		glDeleteTextures(1, &fChar.texture);
+	}
+
+	m_fontFace.chars.clear();
 }
 
 Font::~Font()

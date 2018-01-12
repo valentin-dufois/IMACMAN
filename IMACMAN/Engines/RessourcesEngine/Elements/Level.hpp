@@ -14,14 +14,6 @@
 
 class Level : public Asset
 {
-private:
-	//Structural infos
-	
-	//level infos
-	uint m_width;
-	uint m_height;
-	std::vector<int> m_levelGrid;
-	
 public:
 	//Constructors
 	Level(uint width, uint height, std::vector<int> grid):
@@ -35,8 +27,16 @@ public:
 	uint getWidth() const;
 	uint getHeight() const;
 	std::vector<int> getLevelGrid() const;
-	
-	//Utils
+
+	~Level() {}; 
+
+private:
+	//Structural infos
+
+	//level infos
+	uint m_width;
+	uint m_height;
+	std::vector<int> m_levelGrid;
 };
 
 #endif /* Level_hpp */

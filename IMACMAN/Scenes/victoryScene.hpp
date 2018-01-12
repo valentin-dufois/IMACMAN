@@ -1,21 +1,22 @@
 //
-//  gameOverlay.hpp
+//  victoryScene.hpp
 //  IMACMAN
 //
-//  Created by Valentin Dufois on 11/01/2018.
+//  Created by Valentin Dufois on 12/01/2018.
 //  Copyright © 2018 Valentin Dufois. All rights reserved.
 //
 
-#ifndef gameOverlay_hpp
-#define gameOverlay_hpp
+#ifndef victoryScene_hpp
+#define victoryScene_hpp
 
 //Forward declaration
 class Font;
 
 #include "Scene.hpp"
+#include "Engines/RessourcesEngine/Elements/Asset.hpp"
 #include "Utils/Selector/Selector.hpp"
 
-class gameOverlay: public Scene
+class victoryScene: public Scene
 {
 public:
 	/**
@@ -41,21 +42,23 @@ public:
 	/**
 	 Destructor, used to properly free all the memory used by the scene
 	 */
-	~gameOverlay();
+	~victoryScene();
 
 private:
 
 	//Elements
 	Selector m_interface;
 
-	Item * m_liveItem;
-	Item * m_scoreItem;
-	Item * m_superItem;
 
+	
 	//Ressources
 	Font * m_font;
+
+	rId m_background;
+	rId m_startBtnIdle; rId m_startBtnActive;
+	rId m_quitBtnIdle;  rId m_quitBtnActive;
 
 	void loadAssets();
 };
 
-#endif /* gameOverlay_hpp */
+#endif /* victoryScene_hpp */

@@ -11,26 +11,8 @@
 
 #include "GItemFactory.hpp"
 
-class Grid {
-private:
-    std::vector<GItem *> m_gridItems;
-    uint m_width;
-    uint m_height;
-    int m_nbOfGums;
-
-    std::map<enum ITEM_SYNTAX, char> m_displayMap = {
-		{ITEM_SYNTAX::FLOOR, ' '},
-		{ITEM_SYNTAX::WALL, '@'},
-		{ITEM_SYNTAX::PAC_GUM, '.'},
-		{ITEM_SYNTAX::SUPER_PAC_GUM, '*'},
-		{ITEM_SYNTAX::FRUIT, 'F'},
-		{ITEM_SYNTAX::PACMAN, 'P'},
-		{ITEM_SYNTAX::BLINKY, 'B'},
-		{ITEM_SYNTAX::PINKY, 'Y'},
-		{ITEM_SYNTAX::INKY, 'I'},
-		{ITEM_SYNTAX::CLYDE, 'C'}
-	};
-
+class Grid
+{
 public:
     //CONSTRUCTOR
     Grid() = default;
@@ -44,14 +26,61 @@ public:
     //DESTRUCTOR
     ~Grid() = default;
 
+	/////////
     //GETTERS
+
+    /**
+     Return the width of the grid
+
+     @return The grid's width
+     */
     inline uint getWidth() const { return m_width; }
+
+    /**
+     Return the height of the grid
+
+     @return Grid's height
+     */
     inline uint getHeight() const { return m_height; }
-    std::vector<GItem *> * getGrid();
+
+    /**
+     Return all the item in the grid
+
+     @return The items in a GItem* vector
+     */
+	inline std::vector<GItem *> * getGrid() { return &m_gridItems; };
+
+    /**
+     Return the item at the given position
+
+     @param position Position on the grid
+     @return The item
+     */
     std::vector<GItem *> getItem(glm::vec2 position) const;
-    GItem * getItem(enum ITEM_SYNTAX type) const;
-    std::vector<GItem *> getItemList(enum ITEM_SYNTAX type) const;
-    bool checkItemsExist(std::vector<enum ITEM_SYNTAX> types) const;
+
+    /**
+     Return the item of the given type
+
+     @param type Item's type
+     @return Pointer to the item
+     */
+    GItem * getItem(ITEM_SYNTAX type) const;
+
+    /**
+     Return all the item of a certain type
+
+     @param type Item type
+     @return The items in a GItem* vector
+     */
+    std::vector<GItem *> getItemList(ITEM_SYNTAX type) const;
+
+    /**
+     Check if the given item types exists in the grid
+
+     @param types The types to check in a vector
+	 @return True if all exists; false otherwise
+     */
+    bool checkItemsExist(std::vector<ITEM_SYNTAX> types) const;
 
     //SETTERS
     int loadGrid(std::vector<int> level);
@@ -70,16 +99,35 @@ public:
     uint ghostPacmanCollision(Pacman * pac, Ghost * ghost);
     
     void displayGrid();
-    
-    glm::vec3 translateMesh(glm::vec2 currentPosition, glm::vec2 nextPosition);
+
 
     void handleIA(DynamicItem * dItem);
-    bool isNextReachable(DynamicItem * dItem, enum DIRECTION direction);
-    enum DIRECTION randomMoveIA(DynamicItem * dItem);
-    enum DIRECTION turnRightIA();
-    enum DIRECTION stalkerIA();
-    enum DIRECTION terminatorIA();
-    enum DIRECTION afraidIA();
+    bool isNextReachable(DynamicItem * dItem, DIRECTION direction);
+
+	DIRECTION randomMoveIA(DynamicItem * dItem);
+    DIRECTION turnRightIA();
+    DIRECTION stalkerIA();
+    DIRECTION terminatorIA();
+	DIRECTION afraidIA();
+
+private:
+	std::vector<GItem *> m_gridItems;
+	uint m_width;
+	uint m_height;
+	int m_nbOfGums;
+
+	std::map<ITEM_SYNTAX, char> m_displayMap = {
+		{ITEM_SYNTAX::FLOOR, ' '},
+		{ITEM_SYNTAX::WALL, '@'},
+		{ITEM_SYNTAX::PAC_GUM, '.'},
+		{ITEM_SYNTAX::SUPER_PAC_GUM, '*'},
+		{ITEM_SYNTAX::FRUIT, 'F'},
+		{ITEM_SYNTAX::PACMAN, 'P'},
+		{ITEM_SYNTAX::BLINKY, 'B'},
+		{ITEM_SYNTAX::PINKY, 'Y'},
+		{ITEM_SYNTAX::INKY, 'I'},
+		{ITEM_SYNTAX::CLYDE, 'C'}
+	};
 };
 
 #endif /* GRID_HPP */

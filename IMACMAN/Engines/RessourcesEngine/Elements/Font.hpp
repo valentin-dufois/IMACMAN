@@ -98,6 +98,8 @@ private:
 	bool prepareTexture(const uint &width, const uint &height, GLuint &frameBuffer, GLuint &texture);
 
 	GLuint genTile(const GLuint &textureID);
+
+	void cleanFontFace();
 };
 
 #endif /* Font_hpp */

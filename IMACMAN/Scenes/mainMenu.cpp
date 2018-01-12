@@ -30,16 +30,17 @@ void mainMenu::init()
 
 	Item * startBtn = new Item(ITEM_IMAGE, 320, 280, 77, 76, [this](){
 		GameObj->removeScene(this);
-		sceneGame01::load();
+		loadingScene::load();
 	});
-	startBtn->setTextures(m_startBtnIdle, m_startBtnActive);
 
 	Item * helpBtn = new Item(ITEM_IMAGE, 420, 280, 77, 76, nullptr);
-	helpBtn->setTextures(m_helpBtnIdle, m_helpBtnActive);
 
 	Item * quitBtn = new Item(ITEM_IMAGE, 520, 280, 77, 76, [](){
 		GameObj->endGame();
 	});
+
+	startBtn->setTextures(m_startBtnIdle, m_startBtnActive);
+	helpBtn->setTextures(m_helpBtnIdle, m_helpBtnActive);
 	quitBtn->setTextures(m_quitBtnIdle, m_quitBtnActive);
 
 	startBtn->setNeighboors(nullptr, helpBtn, nullptr, nullptr);

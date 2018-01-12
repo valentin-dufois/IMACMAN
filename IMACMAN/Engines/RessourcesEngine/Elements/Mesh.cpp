@@ -41,3 +41,9 @@ void Mesh::applyCursor()
 
 	m_cursor.setMatrix(glm::mat4(1.0f));
 }
+
+Mesh::~Mesh()
+{
+	glDeleteBuffers(1, &vbo);
+	glDeleteBuffers(2, &vao);
+}

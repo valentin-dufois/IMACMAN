@@ -21,7 +21,7 @@
 
 class GItemFactory {
 public:
-    static GItem * createItem(enum ITEM_SYNTAX itemType, glm::vec2 position) {
+    static GItem * createItem(ITEM_SYNTAX itemType, glm::vec2 position) {
         GItem * newItem;
         Mesh * mesh = genMeshWithAttributs(position, itemType);
 
@@ -41,7 +41,8 @@ public:
         return newItem;
     }
 
-    static Mesh * genMeshWithAttributs(glm::vec2 position, enum ITEM_SYNTAX itemType) {
+    static Mesh * genMeshWithAttributs(glm::vec2 position, ITEM_SYNTAX itemType)
+	{
         ShaderProgram * shader = new ShaderProgram("triangle.vs.glsl", "triangle.fs.glsl");
         Mesh * tmpMesh;
         glm::vec4 meshColor;
@@ -51,7 +52,7 @@ public:
         switch(itemType) {
             case ITEM_SYNTAX::WALL:
                 isSphere = false;
-                meshColor = glm::vec4(0, 185, 161, 1);
+                meshColor = glm::vec4(26.f/255.f, 45.f/255.f, 212.f/255.f, 1);
                 break;
             case ITEM_SYNTAX::PAC_GUM:
                 scale = 0.1f;
@@ -88,11 +89,26 @@ public:
             default:
                 break;
         }
-        
-        if (isSphere) {
-            tmpMesh = GameObj->ressourcesEngine->genSphere(scale, 24, 24, meshColor);
-        } else {
+
+		if(itemType == PACMAN)
+		{
+			std::cout << "pac" << std::endl;
+			rId pacRId = GameObj->ressourcesEngine->loadAsset("pacman.blend", MESH);
+			tmpMesh = *GameObj->ressourcesEngine->getAsset(pacRId);
+		}
+		else if (isSphere)
+		{
+			tmpMesh = GameObj->ressourcesEngine->genSphere(scale, 24, 24, meshColor);
+		}
+		else
+		{
             tmpMesh = GameObj->ressourcesEngine->genCube(scale, meshColor);
+
+			if(itemType == WALL)
+			{
+				tmpMesh->getCursor()->scale(1, 1, .5);
+				tmpMesh->applyCursor();
+			}
         }
 
         tmpMesh->generate();

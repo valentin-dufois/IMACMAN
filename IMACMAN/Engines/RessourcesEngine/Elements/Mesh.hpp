@@ -125,7 +125,13 @@ public:
 	 */
 	inline DrawCursor * getCursor() { return &m_cursor; };
 
+	/**
+	 Apply the cursor matrix to the mesh vertex
+	 then reset cursor
+	 */
 	void applyCursor();
+
+	~Mesh();
 
 private:
 	//Vertex

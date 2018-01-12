@@ -6,17 +6,17 @@
 //  Copyright © 2017 Valentin Dufois. All rights reserved.
 //
 
-#include "sceneGame01.hpp"
+#include "gameScene.hpp"
 
-void sceneGame01::load()
+void gameScene::load()
 {
-	Scene * scene = new sceneGame01();
+	Scene * scene = new gameScene();
 	scene->init();
 
 	GameObj->addScene(scene);
 }
 
-void sceneGame01::init()
+void gameScene::init()
 {
 	//Load level
 	rId levelID = GameObj->ressourcesEngine->loadAsset("level01.txt", LEVEL);
@@ -31,8 +31,10 @@ void sceneGame01::init()
 	float levelHalfHeight = (float) GameObj->gameEngine->getGrid()->getHeight() / 2;
 
 	GameObj->renderEngine->getCameraCursor()
+	->setMatrix(glm::mat4(1.0f))
 	->rotate(-90.f, glm::vec3(0, 0, 1))
-	->translate(-levelHalfWidth, -levelHalfHeight, -22);
+	->rotate(-9.f, glm::vec3(0, 1, 0))
+	->translate(-(levelHalfWidth+4), -levelHalfHeight, -22);
 
 	std::cout << "sceneGame loaded" << std::endl;
 
@@ -40,7 +42,7 @@ void sceneGame01::init()
 	gameOverlay::load();
 }
 
-void sceneGame01::execute()
+void gameScene::execute()
 {
 	GameObj->gameEngine->inGameChecks();
 
@@ -62,27 +64,48 @@ void sceneGame01::execute()
 	std::cout << "sceneGame executed" << std::endl;
 }
 
-void sceneGame01::render()
+void gameScene::render()
 {
-	this->renderMeshList(m_gridLevel->getGrid());
+	renderMeshList(m_gridLevel->getGrid());
 
 	std::cout << "sceneGame rendered" << std::endl;
 }
 
-void sceneGame01::renderMesh(Mesh * mesh) {
+void gameScene::renderMesh(Mesh * mesh)
+{
 	GameObj->renderEngine->render(
 		mesh,
 		mesh->getCursor()
 	);
 }
 
-void sceneGame01::renderMeshList(std::vector<GItem *> * meshList) {
+void gameScene::renderMeshList(std::vector<GItem *> * meshList)
+{
 	std::vector<GItem *>::const_iterator it;
 
-	for (it = m_gridLevel->getGrid()->begin(); it != m_gridLevel->getGrid()->end(); ++it) {
+	for (it = m_gridLevel->getGrid()->begin(); it != m_gridLevel->getGrid()->end(); ++it)
+	{
+		DrawCursor curs = (*it)->getMesh()->getCursor()->getMatrix();
+
+		if((*it)->getItemType() == PACMAN)
+		{
+			DynamicItem * dItem = reinterpret_cast<DynamicItem *>(*it);
+			DIRECTION dir = dItem->getDirection();
+			
+			switch (dir)
+			{
+				case DIRECTION::UP: curs.rotate(180, 0, 0, 1); break;
+				case DIRECTION::DOWN: break;
+				case DIRECTION::LEFT: curs.rotate(-90, 0, 0, 1); break;
+				case DIRECTION::RIGHT: curs.rotate(90, 0, 0, 1); break;
+			}
+		}
+
 		GameObj->renderEngine->render(
 			(*it)->getMesh(),
-			(*it)->getMesh()->getCursor()
+			&curs
 		);
 	}
 }
+
+gameScene::~gameScene() {}

@@ -20,7 +20,7 @@
 #include <glm/gtx/string_cast.hpp>
 #include <glm/ext.hpp>
 
-class sceneGame01: public Scene
+class gameScene: public Scene
 {
 public:
 	/**
@@ -49,7 +49,7 @@ public:
 	/**
 	 Destructor, used to properly free all the memory used by the scene
 	 */
-	~sceneGame01() {}
+	~gameScene();
 
 private:
 	

@@ -97,4 +97,9 @@ const std::string ShaderProgram::getCompileLog() const
 	return logString;
 }
 
+ShaderProgram::~ShaderProgram()
+{
+	glDeleteProgram(m_programID);
+}
+
 GLuint ShaderProgram::currentProgram = 0;

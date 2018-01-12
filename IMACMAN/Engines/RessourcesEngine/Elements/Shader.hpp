@@ -25,6 +25,8 @@ public:
 
 	inline GLuint getShaderID() const { return m_shaderID; };
 
+	~Shader();
+
 private:
 	
 	//Shader infos

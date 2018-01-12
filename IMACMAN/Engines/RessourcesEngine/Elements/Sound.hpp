@@ -13,6 +13,9 @@
 
 class Sound : public Asset
 {
+
+	~Sound() {};
+
 	private:
 	//Structural infos
 	

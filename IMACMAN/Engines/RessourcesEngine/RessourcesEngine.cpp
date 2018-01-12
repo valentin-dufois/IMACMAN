@@ -78,6 +78,15 @@ Asset * RessourcesEngine::getAsset(rId assetID)
 	return m_assets[assetID];
 }
 
+RessourcesEngine::~RessourcesEngine()
+{
+	for(std::map<rId, Asset *>::iterator it = m_assets.begin(); it != m_assets.end(); ++it)
+	{
+		delete (*it).second;
+	}
+}
+
+
 
 
 /////////

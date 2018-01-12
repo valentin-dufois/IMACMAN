@@ -53,6 +53,8 @@ private:
 
 	//Tempo moves to prevent sliding
 	Uint32 m_lastAction;
+
+	int m_waitBeforeExecute = 3;
 };
 
 #endif /* Selector_hpp */

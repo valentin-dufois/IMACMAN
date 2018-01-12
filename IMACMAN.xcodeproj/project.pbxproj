@@ -12,13 +12,13 @@
 		3912B41D1FC4B93800982C49 /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3912B41C1FC4B93800982C49 /* SDL2_image.framework */; };
 		393375DC1FF5337200024EB1 /* Item.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 393375D81FF5337100024EB1 /* Item.cpp */; };
 		393375DD1FF5337200024EB1 /* Selector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 393375D91FF5337100024EB1 /* Selector.cpp */; };
-		393375E01FF5404700024EB1 /* sceneTest001.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 393375DE1FF5404700024EB1 /* sceneTest001.cpp */; };
 		393375E31FF54C5200024EB1 /* libfreetype.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 393375E11FF54C0A00024EB1 /* libfreetype.6.dylib */; };
 		393375E61FF5580000024EB1 /* FontImporter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 393375E41FF5580000024EB1 /* FontImporter.cpp */; };
 		393375E91FF563DC00024EB1 /* Font.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 393375E71FF563DC00024EB1 /* Font.cpp */; };
+		3954055520083B6600FA3868 /* victoryScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3954055320083B6600FA3868 /* victoryScene.cpp */; };
+		395405582008475000FA3868 /* gameOverScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 395405562008475000FA3868 /* gameOverScene.cpp */; };
 		39579A0A1FF579C000FC09D3 /* RenderEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 395799FB1FF579C000FC09D3 /* RenderEngine.cpp */; };
 		39579A151FF57A6600FC09D3 /* SDL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39579A131FF57A6600FC09D3 /* SDL.cpp */; };
-		3966C13B200564D100C527EA /* sceneTest003.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3966C139200564D100C527EA /* sceneTest003.cpp */; };
 		3966C13D200566E000C527EA /* primitives.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3966C13C200566E000C527EA /* primitives.cpp */; };
 		3966C13F2005687200C527EA /* libassimp.4.0.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3966C13E2005687200C527EA /* libassimp.4.0.1.dylib */; };
 		3966C14420056E4400C527EA /* sceneConsole.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3966C14220056E4400C527EA /* sceneConsole.cpp */; };
@@ -40,7 +40,8 @@
 		39B2139B2007C92600335BC4 /* mainMenu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39B213992007C92600335BC4 /* mainMenu.cpp */; };
 		39B2139D2007DC9600335BC4 /* DynamicItem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39B2139C2007DC9600335BC4 /* DynamicItem.cpp */; };
 		39B213A02007E05500335BC4 /* gameOverlay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39B2139E2007E05500335BC4 /* gameOverlay.cpp */; };
-		39B4672B2006404100F2BA94 /* sceneGame01.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39B4672A2006404100F2BA94 /* sceneGame01.cpp */; };
+		39B213B120081C6500335BC4 /* loadingScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39B213AF20081C6500335BC4 /* loadingScene.cpp */; };
+		39B4672B2006404100F2BA94 /* gameScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39B4672A2006404100F2BA94 /* gameScene.cpp */; };
 		39B5E6DE1FC364C200B99CC2 /* RessourcesEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39B5E6DC1FC364C200B99CC2 /* RessourcesEngine.cpp */; };
 		39B5E6E51FC371E900B99CC2 /* Image.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39B5E6E31FC371E900B99CC2 /* Image.cpp */; };
 		39B5E6E81FC3727700B99CC2 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39B5E6E71FC3727700B99CC2 /* OpenGL.framework */; };
@@ -79,19 +80,19 @@
 		393375D91FF5337100024EB1 /* Selector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Selector.cpp; sourceTree = "<group>"; };
 		393375DA1FF5337100024EB1 /* Item.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Item.hpp; sourceTree = "<group>"; };
 		393375DB1FF5337200024EB1 /* Selector.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Selector.hpp; sourceTree = "<group>"; };
-		393375DE1FF5404700024EB1 /* sceneTest001.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = sceneTest001.cpp; sourceTree = "<group>"; };
-		393375DF1FF5404700024EB1 /* sceneTest001.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = sceneTest001.hpp; sourceTree = "<group>"; };
 		393375E11FF54C0A00024EB1 /* libfreetype.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfreetype.6.dylib; path = ../../../../../usr/local/Cellar/freetype/2.8/lib/libfreetype.6.dylib; sourceTree = "<group>"; };
 		393375E41FF5580000024EB1 /* FontImporter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = FontImporter.cpp; sourceTree = "<group>"; };
 		393375E51FF5580000024EB1 /* FontImporter.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = FontImporter.hpp; sourceTree = "<group>"; };
 		393375E71FF563DC00024EB1 /* Font.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Font.cpp; sourceTree = "<group>"; };
 		393375E81FF563DC00024EB1 /* Font.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Font.hpp; sourceTree = "<group>"; };
+		3954055320083B6600FA3868 /* victoryScene.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = victoryScene.cpp; sourceTree = "<group>"; };
+		3954055420083B6600FA3868 /* victoryScene.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = victoryScene.hpp; sourceTree = "<group>"; };
+		395405562008475000FA3868 /* gameOverScene.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = gameOverScene.cpp; sourceTree = "<group>"; };
+		395405572008475000FA3868 /* gameOverScene.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = gameOverScene.hpp; sourceTree = "<group>"; };
 		395799FB1FF579C000FC09D3 /* RenderEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RenderEngine.cpp; sourceTree = "<group>"; };
 		39579A091FF579C000FC09D3 /* RenderEngine.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = RenderEngine.hpp; sourceTree = "<group>"; };
 		39579A131FF57A6600FC09D3 /* SDL.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SDL.cpp; sourceTree = "<group>"; };
 		39579A141FF57A6600FC09D3 /* SDL.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SDL.hpp; sourceTree = "<group>"; };
-		3966C139200564D100C527EA /* sceneTest003.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = sceneTest003.cpp; sourceTree = "<group>"; };
-		3966C13A200564D100C527EA /* sceneTest003.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = sceneTest003.hpp; sourceTree = "<group>"; };
 		3966C13C200566E000C527EA /* primitives.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = primitives.cpp; sourceTree = "<group>"; };
 		3966C13E2005687200C527EA /* libassimp.4.0.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libassimp.4.0.1.dylib; path = ../../../../../usr/local/Cellar/assimp/4.0.1/lib/libassimp.4.0.1.dylib; sourceTree = "<group>"; };
 		3966C14120056E4400C527EA /* sceneConsole.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = sceneConsole.hpp; sourceTree = "<group>"; };
@@ -158,8 +159,16 @@
 		39B213A82007E6F100335BC4 /* Play_Select.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Play_Select.png; sourceTree = "<group>"; };
 		39B213A92007E6F100335BC4 /* Control_Select.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Control_Select.png; sourceTree = "<group>"; };
 		39B213AA2007E6F100335BC4 /* Menu_Background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Menu_Background.jpg; sourceTree = "<group>"; };
-		39B467292006404100F2BA94 /* sceneGame01.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = sceneGame01.hpp; sourceTree = "<group>"; };
-		39B4672A2006404100F2BA94 /* sceneGame01.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sceneGame01.cpp; sourceTree = "<group>"; };
+		39B213AB2008118300335BC4 /* level01.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = level01.txt; sourceTree = "<group>"; };
+		39B213AC2008118300335BC4 /* level000.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = level000.txt; sourceTree = "<group>"; };
+		39B213AD2008118400335BC4 /* level00.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = level00.txt; sourceTree = "<group>"; };
+		39B213AE200813E400335BC4 /* pacman.blend */ = {isa = PBXFileReference; lastKnownFileType = file; path = pacman.blend; sourceTree = "<group>"; };
+		39B213AF20081C6500335BC4 /* loadingScene.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = loadingScene.cpp; sourceTree = "<group>"; };
+		39B213B020081C6500335BC4 /* loadingScene.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = loadingScene.hpp; sourceTree = "<group>"; };
+		39B213B220081CC800335BC4 /* Loading_Background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Loading_Background.jpg; sourceTree = "<group>"; };
+		39B213BB20081CC900335BC4 /* pacman-layout-1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "pacman-layout-1.jpg"; sourceTree = "<group>"; };
+		39B467292006404100F2BA94 /* gameScene.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = gameScene.hpp; sourceTree = "<group>"; };
+		39B4672A2006404100F2BA94 /* gameScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gameScene.cpp; sourceTree = "<group>"; };
 		39B5E6DA1FC3642000B99CC2 /* main.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = main.hpp; sourceTree = "<group>"; tabWidth = 4; usesTabs = 1; };
 		39B5E6DC1FC364C200B99CC2 /* RessourcesEngine.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = RessourcesEngine.cpp; sourceTree = "<group>"; };
 		39B5E6DD1FC364C200B99CC2 /* RessourcesEngine.hpp */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.cpp.h; path = RessourcesEngine.hpp; sourceTree = "<group>"; tabWidth = 4; usesTabs = 1; };
@@ -588,6 +597,8 @@
 			isa = PBXGroup;
 			children = (
 				39B213A32007E6F100335BC4 /* Buttons */,
+				39B213BA20081CC900335BC4 /* Elements */,
+				39B213B220081CC800335BC4 /* Loading_Background.jpg */,
 				39B213AA2007E6F100335BC4 /* Menu_Background.jpg */,
 				39B213A22007E6F000335BC4 /* Menu_Pacman.png */,
 			);
@@ -604,6 +615,9 @@
 		3997F0D11FC22C72009CECC9 /* levels */ = {
 			isa = PBXGroup;
 			children = (
+				39B213AD2008118400335BC4 /* level00.txt */,
+				39B213AC2008118300335BC4 /* level000.txt */,
+				39B213AB2008118300335BC4 /* level01.txt */,
 			);
 			path = levels;
 			sourceTree = "<group>";
@@ -611,6 +625,7 @@
 		3997F0D21FC22C78009CECC9 /* meshs */ = {
 			isa = PBXGroup;
 			children = (
+				39B213AE200813E400335BC4 /* pacman.blend */,
 			);
 			path = meshs;
 			sourceTree = "<group>";
@@ -649,11 +664,11 @@
 			children = (
 				39AE36EB2001611B0080B365 /* GItem */,
 				39AE37012001611B0080B365 /* GameEngine.hpp */,
+				39AE37092001611B0080B365 /* GameEngine.cpp */,
 				39AE37022001611B0080B365 /* GItemFactory.hpp */,
 				39AE37032001611B0080B365 /* Player.cpp */,
 				39AE37052001611B0080B365 /* Grid.hpp */,
 				39AE37082001611B0080B365 /* Grid.cpp */,
-				39AE37092001611B0080B365 /* GameEngine.cpp */,
 				39AE370A2001611B0080B365 /* Player.hpp */,
 			);
 			path = GameEngine;
@@ -663,6 +678,7 @@
 			isa = PBXGroup;
 			children = (
 				39AE36FB2001611B0080B365 /* DynamicItem.hpp */,
+				39B2139C2007DC9600335BC4 /* DynamicItem.cpp */,
 				39AE36EE2001611B0080B365 /* StaticItem.hpp */,
 				39AE36F42001611B0080B365 /* Floor.cpp */,
 				39AE36F82001611B0080B365 /* Floor.hpp */,
@@ -677,7 +693,6 @@
 				39AE37002001611B0080B365 /* Pacman.hpp */,
 				39AE36F62001611B0080B365 /* Wall.cpp */,
 				39AE36FA2001611B0080B365 /* Wall.hpp */,
-				39B2139C2007DC9600335BC4 /* DynamicItem.cpp */,
 			);
 			path = GItem;
 			sourceTree = "<group>";
@@ -693,6 +708,14 @@
 				39B213A92007E6F100335BC4 /* Control_Select.png */,
 			);
 			path = Buttons;
+			sourceTree = "<group>";
+		};
+		39B213BA20081CC900335BC4 /* Elements */ = {
+			isa = PBXGroup;
+			children = (
+				39B213BB20081CC900335BC4 /* pacman-layout-1.jpg */,
+			);
+			path = Elements;
 			sourceTree = "<group>";
 		};
 		39B5E6DB1FC3649F00B99CC2 /* RessourcesEngine */ = {
@@ -1070,19 +1093,21 @@
 		39DC5FAA1FC2E5F8001515C0 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				39B4672A2006404100F2BA94 /* sceneGame01.cpp */,
-				39B467292006404100F2BA94 /* sceneGame01.hpp */,
-				3966C14220056E4400C527EA /* sceneConsole.cpp */,
-				3966C14120056E4400C527EA /* sceneConsole.hpp */,
-				3984E4B31FE9791900808799 /* Scene.hpp */,
-				393375DE1FF5404700024EB1 /* sceneTest001.cpp */,
-				393375DF1FF5404700024EB1 /* sceneTest001.hpp */,
-				3966C139200564D100C527EA /* sceneTest003.cpp */,
-				3966C13A200564D100C527EA /* sceneTest003.hpp */,
-				39B213992007C92600335BC4 /* mainMenu.cpp */,
-				39B2139A2007C92600335BC4 /* mainMenu.hpp */,
 				39B2139E2007E05500335BC4 /* gameOverlay.cpp */,
 				39B2139F2007E05500335BC4 /* gameOverlay.hpp */,
+				39B4672A2006404100F2BA94 /* gameScene.cpp */,
+				39B467292006404100F2BA94 /* gameScene.hpp */,
+				39B213AF20081C6500335BC4 /* loadingScene.cpp */,
+				39B213B020081C6500335BC4 /* loadingScene.hpp */,
+				39B213992007C92600335BC4 /* mainMenu.cpp */,
+				39B2139A2007C92600335BC4 /* mainMenu.hpp */,
+				3984E4B31FE9791900808799 /* Scene.hpp */,
+				3966C14220056E4400C527EA /* sceneConsole.cpp */,
+				3966C14120056E4400C527EA /* sceneConsole.hpp */,
+				3954055320083B6600FA3868 /* victoryScene.cpp */,
+				3954055420083B6600FA3868 /* victoryScene.hpp */,
+				395405562008475000FA3868 /* gameOverScene.cpp */,
+				395405572008475000FA3868 /* gameOverScene.hpp */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -1173,12 +1198,12 @@
 				39C2BA6C1FF59BC400589342 /* Asset.cpp in Sources */,
 				39AE370B2001611B0080B365 /* Fruit.cpp in Sources */,
 				3966C13D200566E000C527EA /* primitives.cpp in Sources */,
+				3954055520083B6600FA3868 /* victoryScene.cpp in Sources */,
 				39B5E6EF1FC387C000B99CC2 /* Mesh.cpp in Sources */,
 				39B5E6FD1FC38F0800B99CC2 /* Shader.cpp in Sources */,
 				3912B4141FC47BA700982C49 /* main.cpp in Sources */,
 				39B5E7001FC3902800B99CC2 /* SoundImporter.cpp in Sources */,
 				39B5E6E51FC371E900B99CC2 /* Image.cpp in Sources */,
-				393375E01FF5404700024EB1 /* sceneTest001.cpp in Sources */,
 				39AE370F2001611B0080B365 /* Pacman.cpp in Sources */,
 				39B5E7031FC3905300B99CC2 /* MeshImporter.cpp in Sources */,
 				3966C14420056E4400C527EA /* sceneConsole.cpp in Sources */,
@@ -1189,7 +1214,6 @@
 				39B5E7061FC3907C00B99CC2 /* LevelImporter.cpp in Sources */,
 				393375DD1FF5337200024EB1 /* Selector.cpp in Sources */,
 				39B5E6FA1FC38D1100B99CC2 /* ImageImporter.cpp in Sources */,
-				3966C13B200564D100C527EA /* sceneTest003.cpp in Sources */,
 				393375DC1FF5337200024EB1 /* Item.cpp in Sources */,
 				39AE371B2001611C0080B365 /* Grid.cpp in Sources */,
 				39579A151FF57A6600FC09D3 /* SDL.cpp in Sources */,
@@ -1198,9 +1222,11 @@
 				39AE37112001611B0080B365 /* Floor.cpp in Sources */,
 				39B5E6EB1FC3875D00B99CC2 /* Sound.cpp in Sources */,
 				39B5E7091FC3908B00B99CC2 /* ShaderImporter.cpp in Sources */,
-				39B4672B2006404100F2BA94 /* sceneGame01.cpp in Sources */,
+				39B4672B2006404100F2BA94 /* gameScene.cpp in Sources */,
+				395405582008475000FA3868 /* gameOverScene.cpp in Sources */,
 				3976C3BA1FC42A84008CC4F1 /* Core.cpp in Sources */,
 				39AE371C2001611C0080B365 /* GameEngine.cpp in Sources */,
+				39B213B120081C6500335BC4 /* loadingScene.cpp in Sources */,
 				39BC2F1D1FC4313F00FE22E8 /* (null) in Sources */,
 				39C2BB751FF7D7FB00589342 /* glm.cpp in Sources */,
 				3976C3BD1FC42ACC008CC4F1 /* Igniter.cpp in Sources */,

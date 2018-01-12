@@ -24,13 +24,13 @@ void gameOverlay::init()
 {
 	loadAssets();
 
-	m_liveItem = new Item(ITEM_TEXT, 25, 10, 0, 0, nullptr);
+	m_liveItem = new Item(ITEM_TEXT, 55, 7, 0, 0, nullptr);
 	m_liveItem->setFont(m_font, "LIVES:0");
 
-	m_scoreItem = new Item(ITEM_TEXT, 225, 10, 0, 0, nullptr);
+	m_scoreItem = new Item(ITEM_TEXT, 275, 7, 0, 0, nullptr);
 	m_scoreItem->setFont(m_font, "SCORE:0");
 
-	m_superItem = new Item(ITEM_TEXT, 475, 10, 0, 0, nullptr);
+	m_superItem = new Item(ITEM_TEXT, 555, 7, 0, 0, nullptr);
 	m_superItem->setFont(m_font, "SUPERTIME:0");
 
 	m_interface.addItem(m_liveItem);
@@ -64,7 +64,8 @@ void gameOverlay::loadAssets()
 {
 	rId fontRId = GameObj->ressourcesEngine->loadAsset("Joystix.ttf", FONT);
 	m_font = *GameObj->ressourcesEngine->getAsset(fontRId);
-	m_font->setHeight(25.f);
+	m_font->setHeight(20.f);
 	m_font->generate();
 }
 
+gameOverlay::~gameOverlay() {}

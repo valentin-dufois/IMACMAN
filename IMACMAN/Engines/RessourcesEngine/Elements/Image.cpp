@@ -53,3 +53,9 @@ GLenum Image::getImageFormat(SDL_Surface * image)
 			return 0;
 	}
 }
+
+Image::~Image()
+{
+	SDL_FreeSurface(m_surface);
+	glDeleteTextures(1, &m_textureID);
+}

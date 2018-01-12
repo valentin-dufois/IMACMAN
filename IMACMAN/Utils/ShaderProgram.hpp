@@ -56,6 +56,8 @@ public:
 	 */
 	void setUniformUint(const std::string &uniformName, const uint &value);
 
+	~ShaderProgram();
+
 private:
 	GLuint m_programID;
 

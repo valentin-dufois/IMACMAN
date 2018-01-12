@@ -10,21 +10,20 @@ private:
 
 public:
 	//CONSTRUCTOR
-	Fruit(Mesh * mesh, glm::vec2 position, uint score = 500, enum ITEM_SYNTAX type = FRUIT) :
+	Fruit(Mesh * mesh, glm::vec2 position, uint score = 500, ITEM_SYNTAX type = FRUIT) :
 		StaticItem(mesh, position, score, type),
 		m_eaten(true),
 		m_popCounter(50)
 	{};
+	
 	//DESTRUCTOR
 	~Fruit() = default;
 	
 	//GETTERS
-	bool getEatenState() { return m_eaten; }
+	bool getEatenState() { return m_eaten; };
 
 	//SETTERS
-	inline void updateIsEaten() {
-		this->m_eaten = m_popCounter > 0;
-	}
+	inline void updateIsEaten() { m_eaten = m_popCounter > 0; };
 	void updatePopCounter(const int time);
 };
 

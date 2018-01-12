@@ -14,9 +14,10 @@ class GItem
 public:
 	/////////////
     //CONSTRUCTOR
-	GItem(Mesh * mesh, glm::vec2 position, uint score, enum ITEM_SYNTAX type):
+	GItem(Mesh * mesh, glm::vec2 position, uint score, ITEM_SYNTAX type):
         m_mesh(mesh),
         m_position(position),
+		m_positionOffset(0),
         m_score(score),
         m_type(type)
     {};
@@ -40,6 +41,9 @@ public:
      @return Position as Vec2
      */
 	inline glm::vec2 getPosition() const { return m_position; };
+
+	inline int incrementPositionOffset() { return ++m_positionOffset; };
+	inline int getPositionOffset() const { return m_positionOffset; };
 
     /**
      Return the score of the object (if any)
@@ -83,6 +87,8 @@ public:
 	{
         m_position.y = newPosition.y >= 0 ? ((int)newPosition.y % gridWidth) : ((int)newPosition.y + gridWidth);
         m_position.x = newPosition.x >= 0 ? ((int)newPosition.x % gridHeight) : ((int)newPosition.x + gridHeight);
+
+		m_positionOffset = -2;
     }
 
 	/**
@@ -95,11 +101,15 @@ public:
 protected:
 
 	Mesh * m_mesh;
+
 	glm::vec2 m_position;
+	int m_positionOffset;
+
+	int m_offsetSize = 2;
 
 	uint m_score;
 
-	enum ITEM_SYNTAX m_type;
+	ITEM_SYNTAX m_type;
 };
 
 #endif /* GITEM_HPP */

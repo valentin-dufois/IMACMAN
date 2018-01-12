@@ -83,6 +83,8 @@ public:
 	 */
 	operator Image*();
 
+	virtual ~Asset() {};
+
 protected:
 	ressourceType m_type;
 };

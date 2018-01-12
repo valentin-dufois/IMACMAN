@@ -21,6 +21,8 @@ public:
 
 	inline GLuint getTextureID() const { return m_textureID; };
 
+	~Image();
+
 private:
 
 	SDL_Surface * m_surface;

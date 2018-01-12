@@ -8,7 +8,7 @@ protected:
 
 public:
     //CONSTRUCTOR
-	StaticItem(Mesh * mesh, glm::vec2 position, uint score, enum ITEM_SYNTAX type):
+	StaticItem(Mesh * mesh, glm::vec2 position, uint score, ITEM_SYNTAX type):
         GItem(mesh, position, score, type)
     {}
     //DESTRUCTOR
