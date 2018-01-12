@@ -19,20 +19,20 @@ Mesh * RessourcesEngine::genCube(const uint &size, glm::vec4 baseColor)
 	UV(0.f, 0.f);
 
 	glm::vec3
-	A(-demisize, -demisize, -demisize),
-	B(-demisize, -demisize,  demisize),
-	C( demisize, -demisize,  demisize),
-	D( demisize, -demisize, -demisize),
-	E(-demisize,  demisize, -demisize),
-	F(-demisize,  demisize,  demisize),
-	G( demisize,  demisize,  demisize),
-	H( demisize,  demisize, -demisize),
-	normalFront(0, 0, -1),
-	normalBack(0, 0, 1),
-	normalLeft(-1, 0, 0),
-	normalRight(1, 0, 0),
-	normalBottom(0, -1, 0),
-	normalTop(0, 1, 0);
+		A(-demisize, -demisize, -demisize),
+		B(-demisize, -demisize,  demisize),
+		C( demisize, -demisize,  demisize),
+		D( demisize, -demisize, -demisize),
+		E(-demisize,  demisize, -demisize),
+		F(-demisize,  demisize,  demisize),
+		G( demisize,  demisize,  demisize),
+		H( demisize,  demisize, -demisize),
+		normalFront(0, 0, -1),
+		normalBack(0, 0, 1),
+		normalLeft(-1, 0, 0),
+		normalRight(1, 0, 0),
+		normalBottom(0, -1, 0),
+		normalTop(0, 1, 0);
 
 	//Front
 	vertexList.push_back(Vertex(A, normalFront, sideColor, UV));

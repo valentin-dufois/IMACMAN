@@ -37,7 +37,7 @@ void gameOverlay::init()
 	m_interface.addItem(m_scoreItem);
 	m_interface.addItem(m_superItem);
 
-	std::cout << "loaded" << std::endl;
+	//std::cout << "loaded" << std::endl;
 }
 
 void gameOverlay::execute()
@@ -50,14 +50,14 @@ void gameOverlay::execute()
 	m_scoreItem->setCaption("SCORE:" + std::to_string(pacman->getRealScore()));
 	m_superItem->setCaption("SUPERTIME:" + std::to_string(pacman->getSuperCounter()));
 
-	std::cout << "executed" << std::endl;
+	//std::cout << "executed" << std::endl;
 }
 
 void gameOverlay::render()
 {
 	m_interface.render();
 
-	std::cout << "rendered" << std::endl;
+	//std::cout << "rendered" << std::endl;
 }
 
 void gameOverlay::loadAssets()

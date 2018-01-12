@@ -24,7 +24,7 @@ endif
 OBJECTS := $(SOURCES:.$(SRCEXT)=.o)
 
 # COMPILER FLAGS
-CXXFLAGS := -g -std=c++11 -Wall -pedantic -I$(LIBDIR) -I.
+CXXFLAGS := -g -std=c++11 -w -pedantic -I$(LIBDIR) -I.
 LDLIBS := `pkg-config --libs assimp` `pkg-config --libs freetype2`
 LDFLAGS := `pkg-config --cflags assimp` `pkg-config --cflags freetype2`
 

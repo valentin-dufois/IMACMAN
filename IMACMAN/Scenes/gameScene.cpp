@@ -36,7 +36,7 @@ void gameScene::init()
 	->rotate(-9.f, glm::vec3(0, 1, 0))
 	->translate(-(levelHalfWidth+4), -levelHalfHeight, -22);
 
-	std::cout << "sceneGame loaded" << std::endl;
+	//std::cout << "sceneGame loaded" << std::endl;
 
 	//Load interface
 	gameOverlay::load();
@@ -61,14 +61,14 @@ void gameScene::execute()
 
 	GameObj->gameEngine->inGameChecks();
 
-	std::cout << "sceneGame executed" << std::endl;
+	//std::cout << "sceneGame executed" << std::endl;
 }
 
 void gameScene::render()
 {
 	renderMeshList(m_gridLevel->getGrid());
 
-	std::cout << "sceneGame rendered" << std::endl;
+	//std::cout << "sceneGame rendered" << std::endl;
 }
 
 void gameScene::renderMesh(Mesh * mesh)

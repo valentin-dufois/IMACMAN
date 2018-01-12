@@ -176,25 +176,27 @@ void GameEngine::inGameChecks()
 	if (m_pacman->getLives() <= 0)
 	{
 		//TODO change Scene to GameOver
-		std::cout << "gameOver" << std::endl;
+		//std::cout << "gameOver" << std::endl;
 
 		std::vector<Scene *> scenes = GameObj->getScenes();
 		for(Scene * scene : scenes)
 			GameObj->removeScene(scene);
 
 		gameOverScene::load();
+		return;
 	}
 
 	//Check wether there is still one pack gum or not
 	if (!m_level->checkItemsExist({ITEM_SYNTAX::PAC_GUM, ITEM_SYNTAX::SUPER_PAC_GUM}))
 	{
 		//TODO change Scene to Victory
-		std::cout << "Victory" << std::endl;
+		//std::cout << "Victory" << std::endl;
 
 		std::vector<Scene *> scenes = GameObj->getScenes();
 		for(Scene * scene : scenes)
 			GameObj->removeScene(scene);
 
 		victoryScene::load();
+		return;
 	}
 }

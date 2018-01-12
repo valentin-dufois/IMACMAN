@@ -70,20 +70,20 @@ void mainMenu::init()
 
 	m_menu.moveCursor(startBtn);
 
-	std::cout << "mainMenu loaded" << std::endl;
+	//std::cout << "mainMenu loaded" << std::endl;
 }
 
 void mainMenu::execute()
 {
 	m_menu.execute();
-	std::cout << "mainMenu executed" << std::endl;
+	//std::cout << "mainMenu executed" << std::endl;
 }
 
 void mainMenu::render()
 {
 	m_menu.render();
 
-	std::cout << "mainMenu rendered" << std::endl;
+	//std::cout << "mainMenu rendered" << std::endl;
 }
 
 void mainMenu::loadAssets()

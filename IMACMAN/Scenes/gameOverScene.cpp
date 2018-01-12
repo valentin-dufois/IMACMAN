@@ -51,21 +51,21 @@ void gameOverScene::init()
 	m_interface.addItem(victoryText);
 	m_interface.addItem(background);
 
-	std::cout << "victoryScene loaded" << std::endl;
+	//std::cout << "gameOverScene loaded" << std::endl;
 }
 
 void gameOverScene::execute()
 {
 	m_interface.execute();
 
-	std::cout << "victoryScene executed" << std::endl;
+	//std::cout << "gameOverScene executed" << std::endl;
 }
 
 void gameOverScene::render()
 {
 	m_interface.render();
 
-	std::cout << "victoryScene rendered" << std::endl;
+	//std::cout << "gameOverScene rendered" << std::endl;
 }
 
 void gameOverScene::loadAssets()

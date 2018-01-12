@@ -88,7 +88,7 @@ public:
 
 	void deleteGrid()
 	{
-		std::cout << "delete grid" << std::endl;
+		//std::cout << "delete grid" << std::endl;
 		delete m_level;
 	};
 	

@@ -52,21 +52,21 @@ void victoryScene::init()
 	m_interface.addItem(victoryText);
 	m_interface.addItem(background);
 
-	std::cout << "victoryScene loaded" << std::endl;
+	//std::cout << "victoryScene loaded" << std::endl;
 }
 
 void victoryScene::execute()
 {
 	m_interface.execute();
 
-	std::cout << "victoryScene executed" << std::endl;
+	//std::cout << "victoryScene executed" << std::endl;
 }
 
 void victoryScene::render()
 {
 	m_interface.render();
 
-	std::cout << "victoryScene rendered" << std::endl;
+	//std::cout << "victoryScene rendered" << std::endl;
 }
 
 void victoryScene::loadAssets()

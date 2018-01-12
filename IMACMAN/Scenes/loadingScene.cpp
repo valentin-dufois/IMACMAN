@@ -26,7 +26,7 @@ void loadingScene::init()
 
 	m_interface.addItem(background);
 
-	std::cout << "loadingScene loaded" << std::endl;
+	//std::cout << "loadingScene loaded" << std::endl;
 }
 
 void loadingScene::execute()
@@ -39,7 +39,7 @@ void loadingScene::execute()
 		gameScene::load();
 	}
 
-	std::cout << "loadingScene executed" << std::endl;
+	//std::cout << "loadingScene executed" << std::endl;
 }
 
 void loadingScene::render()
@@ -48,7 +48,7 @@ void loadingScene::render()
 
 	m_firstPass = false;
 
-	std::cout << "loadingScene rendered" << std::endl;
+	//std::cout << "loadingScene rendered" << std::endl;
 }
 
 void loadingScene::loadAssets()

@@ -24,12 +24,12 @@ class Mesh : public Asset
 {
 public:
 	//Constructor
-	Mesh(const std::vector<Vertex> &vertexList):
+	Mesh(const std::vector<Vertex> vertexList):
 		Asset(MESH),
 		m_vertexList(vertexList),
 		m_vertexCount((uint)vertexList.size()),
 		m_textureID(0)
-	{}
+	{};
 
 	Mesh():
 		Asset(MESH),
