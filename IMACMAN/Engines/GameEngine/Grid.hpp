@@ -23,8 +23,6 @@ public:
     {
         m_nbOfGums = loadGrid(level);
     }
-    //DESTRUCTOR
-    ~Grid() = default;
 
 	/////////
     //GETTERS
@@ -109,6 +107,20 @@ public:
     DIRECTION stalkerIA();
     DIRECTION terminatorIA();
 	DIRECTION afraidIA();
+
+	//DESTRUCTOR
+	~Grid()
+	{
+		if(m_gridItems.size() == 0)
+			return;
+
+		for(std::vector<GItem*>::iterator it = m_gridItems.begin(); it != m_gridItems.end(); ++it)
+		{
+			delete *it;
+		}
+
+		m_gridItems.clear();
+	}
 
 private:
 	std::vector<GItem *> m_gridItems;

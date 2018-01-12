@@ -7,6 +7,7 @@
 //
 
 #include "GameObject.hpp"
+#include "Scenes/Scene.hpp"
 
 #include <iostream>
 
@@ -26,8 +27,15 @@ void GameObject::instanciate(std::string appPath)
 
 void GameObject::removeScene(Scene * scene)
 {
-	for(std::vector<Scene *>::iterator it = m_scenes.begin(); it != m_scenes.end(); ++it) {
-		if((*it) == scene) {
+	std::cout << "removing scene " << scene->getUUID() << std::endl;
+
+	for(std::vector<Scene *>::iterator it = m_scenes.begin(); it != m_scenes.end(); ++it)
+	{
+		if((*it) == scene)
+		{
+
+			std::cout << "removing scene " << (*it)->getUUID() << std::endl;
+			delete (*it);
 			m_scenes.erase(it);
 			return;
 		}

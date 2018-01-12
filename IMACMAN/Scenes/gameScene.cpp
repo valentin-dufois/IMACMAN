@@ -21,7 +21,7 @@ void gameScene::init()
 	//Load level
 	rId levelID = GameObj->ressourcesEngine->loadAsset("level01.txt", LEVEL);
 	Level * level = *GameObj->ressourcesEngine->getAsset(levelID);
-
+	
 	//Load the level inside the Game Engine and get the Grid as reference
 	GameObj->gameEngine->loadLevel(level);
 	m_gridLevel = GameObj->gameEngine->getGrid();
@@ -44,8 +44,6 @@ void gameScene::init()
 
 void gameScene::execute()
 {
-	GameObj->gameEngine->inGameChecks();
-
 	//Get Pacman to handle moves and render
 	DynamicItem * pacman = reinterpret_cast<DynamicItem *>(m_gridLevel->getItem(ITEM_SYNTAX::PACMAN));
 
@@ -60,6 +58,8 @@ void gameScene::execute()
 	}
 
 	m_gridLevel->moveItems();
+
+	GameObj->gameEngine->inGameChecks();
 
 	std::cout << "sceneGame executed" << std::endl;
 }
@@ -108,4 +108,7 @@ void gameScene::renderMeshList(std::vector<GItem *> * meshList)
 	}
 }
 
-gameScene::~gameScene() {}
+gameScene::~gameScene()
+{
+	GameObj->gameEngine->deleteGrid();
+}

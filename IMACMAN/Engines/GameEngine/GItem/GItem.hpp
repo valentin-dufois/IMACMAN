@@ -6,6 +6,7 @@
 #include <glm/glm.hpp>
 
 #include "Utils/Enums.hpp"
+#include "Engines/RessourcesEngine/Elements/Mesh.hpp"
 
 class Mesh;
 
@@ -21,10 +22,6 @@ public:
         m_score(score),
         m_type(type)
     {};
-
-	////////////
-    //DESTRUCTOR
-	~GItem() = default;
 
 	//////////
     //GETTERS
@@ -97,6 +94,15 @@ public:
 	 @param points Points to add
 	 */
 	inline void updateScore(const uint &points) { m_score += points; };
+
+
+	////////////
+	//DESTRUCTOR
+	~GItem()
+	{
+		if(m_type != PACMAN)
+			delete m_mesh;
+	};
 
 protected:
 

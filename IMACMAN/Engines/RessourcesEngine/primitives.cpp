@@ -13,6 +13,8 @@ Mesh * RessourcesEngine::genCube(const uint &size, glm::vec4 baseColor)
 	std::vector<Vertex> vertexList;
 	float demisize = (float)size / 2.0;
 
+	glm::vec4 sideColor = baseColor * .7f;
+
 	glm::vec2
 	UV(0.f, 0.f);
 
@@ -33,36 +35,36 @@ Mesh * RessourcesEngine::genCube(const uint &size, glm::vec4 baseColor)
 	normalTop(0, 1, 0);
 
 	//Front
-	vertexList.push_back(Vertex(A, normalFront, baseColor, UV));
-	vertexList.push_back(Vertex(C, normalFront, baseColor, UV));
-	vertexList.push_back(Vertex(B, normalFront, baseColor, UV));
-	vertexList.push_back(Vertex(A, normalFront, baseColor, UV));
-	vertexList.push_back(Vertex(D, normalFront, baseColor, UV));
-	vertexList.push_back(Vertex(C, normalFront, baseColor, UV));
+	vertexList.push_back(Vertex(A, normalFront, sideColor, UV));
+	vertexList.push_back(Vertex(C, normalFront, sideColor, UV));
+	vertexList.push_back(Vertex(B, normalFront, sideColor, UV));
+	vertexList.push_back(Vertex(A, normalFront, sideColor, UV));
+	vertexList.push_back(Vertex(D, normalFront, sideColor, UV));
+	vertexList.push_back(Vertex(C, normalFront, sideColor, UV));
 
 	//Back
-	vertexList.push_back(Vertex(E, normalBack, baseColor, UV));
-	vertexList.push_back(Vertex(F, normalBack, baseColor, UV));
-	vertexList.push_back(Vertex(H, normalBack, baseColor, UV));
-	vertexList.push_back(Vertex(H, normalBack, baseColor, UV));
-	vertexList.push_back(Vertex(F, normalBack, baseColor, UV));
-	vertexList.push_back(Vertex(G, normalBack, baseColor, UV));
+	vertexList.push_back(Vertex(E, normalBack, sideColor, UV));
+	vertexList.push_back(Vertex(F, normalBack, sideColor, UV));
+	vertexList.push_back(Vertex(H, normalBack, sideColor, UV));
+	vertexList.push_back(Vertex(H, normalBack, sideColor, UV));
+	vertexList.push_back(Vertex(F, normalBack, sideColor, UV));
+	vertexList.push_back(Vertex(G, normalBack, sideColor, UV));
 
 	//Left
-	vertexList.push_back(Vertex(A, normalLeft, baseColor, UV));
-	vertexList.push_back(Vertex(B, normalLeft, baseColor, UV));
-	vertexList.push_back(Vertex(E, normalLeft, baseColor, UV));
-	vertexList.push_back(Vertex(E, normalLeft, baseColor, UV));
-	vertexList.push_back(Vertex(B, normalLeft, baseColor, UV));
-	vertexList.push_back(Vertex(F, normalLeft, baseColor, UV));
+	vertexList.push_back(Vertex(A, normalLeft, sideColor, UV));
+	vertexList.push_back(Vertex(B, normalLeft, sideColor, UV));
+	vertexList.push_back(Vertex(E, normalLeft, sideColor, UV));
+	vertexList.push_back(Vertex(E, normalLeft, sideColor, UV));
+	vertexList.push_back(Vertex(B, normalLeft, sideColor, UV));
+	vertexList.push_back(Vertex(F, normalLeft, sideColor, UV));
 
 	//Right
-	vertexList.push_back(Vertex(D, normalRight, baseColor, UV));
-	vertexList.push_back(Vertex(H, normalRight, baseColor, UV));
-	vertexList.push_back(Vertex(G, normalRight, baseColor, UV));
-	vertexList.push_back(Vertex(D, normalRight, baseColor, UV));
-	vertexList.push_back(Vertex(G, normalRight, baseColor, UV));
-	vertexList.push_back(Vertex(C, normalRight, baseColor, UV));
+	vertexList.push_back(Vertex(D, normalRight, sideColor, UV));
+	vertexList.push_back(Vertex(H, normalRight, sideColor, UV));
+	vertexList.push_back(Vertex(G, normalRight, sideColor, UV));
+	vertexList.push_back(Vertex(D, normalRight, sideColor, UV));
+	vertexList.push_back(Vertex(G, normalRight, sideColor, UV));
+	vertexList.push_back(Vertex(C, normalRight, sideColor, UV));
 
 	//Bottom
 	vertexList.push_back(Vertex(A, normalBottom, baseColor, UV));
@@ -121,7 +123,6 @@ Mesh * RessourcesEngine::genSphere(const float &radius, const uint &precisionLat
 			vertex.normal.x = sin(i * dPhi) * cosTheta;
 			vertex.normal.y = sinTheta;
 			vertex.normal.z = cos(i * dPhi) * cosTheta;
-
 
 			vertex.color = baseColor;
 

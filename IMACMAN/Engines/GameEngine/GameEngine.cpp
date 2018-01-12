@@ -123,29 +123,29 @@ void GameEngine::parseEvents()
 }
 
 void GameEngine::loadLevel(Level * level){
-	m_level = Grid(
+	m_level = new Grid(
 		level->getWidth(),
 		level->getHeight(),
 		level->getLevelGrid()
 	);
 	
-	m_pacman = reinterpret_cast<Pacman *>(m_level.getItem(ITEM_SYNTAX::PACMAN));
+	m_pacman = reinterpret_cast<Pacman *>(m_level->getItem(ITEM_SYNTAX::PACMAN));
 
-	m_Blinky = reinterpret_cast<Ghost *>(m_level.getItem(ITEM_SYNTAX::BLINKY));
-	m_Pinky = reinterpret_cast<Ghost *>(m_level.getItem(ITEM_SYNTAX::PINKY));
-	m_Inky = reinterpret_cast<Ghost *>(m_level.getItem(ITEM_SYNTAX::INKY));
-	m_Clyde = reinterpret_cast<Ghost *>(m_level.getItem(ITEM_SYNTAX::CLYDE));
-	m_fruit = reinterpret_cast<Fruit *>(m_level.getItem(ITEM_SYNTAX::FRUIT));
+	m_Blinky = reinterpret_cast<Ghost *>(m_level->getItem(ITEM_SYNTAX::BLINKY));
+	m_Pinky = reinterpret_cast<Ghost *>(m_level->getItem(ITEM_SYNTAX::PINKY));
+	m_Inky = reinterpret_cast<Ghost *>(m_level->getItem(ITEM_SYNTAX::INKY));
+	m_Clyde = reinterpret_cast<Ghost *>(m_level->getItem(ITEM_SYNTAX::CLYDE));
+	m_fruit = reinterpret_cast<Fruit *>(m_level->getItem(ITEM_SYNTAX::FRUIT));
 }
 
 Grid * GameEngine::getGrid()
 {
-	return &m_level;
+	return m_level;
 }
 
 void GameEngine::displayLevel()
 {
-	m_level.displayGrid();
+	m_level->displayGrid();
 }
 
 void GameEngine::displayInfo()
@@ -169,6 +169,9 @@ void GameEngine::manageSpecialMode() {
 
 void GameEngine::inGameChecks()
 {
+	//Update all counters
+	manageSpecialMode();
+
 	//Check VICTORY / DEFEAT conditions
 	if (m_pacman->getLives() <= 0)
 	{
@@ -183,7 +186,7 @@ void GameEngine::inGameChecks()
 	}
 
 	//Check wether there is still one pack gum or not
-	if (!m_level.checkItemsExist({ITEM_SYNTAX::PAC_GUM, ITEM_SYNTAX::SUPER_PAC_GUM}))
+	if (!m_level->checkItemsExist({ITEM_SYNTAX::PAC_GUM, ITEM_SYNTAX::SUPER_PAC_GUM}))
 	{
 		//TODO change Scene to Victory
 		std::cout << "Victory" << std::endl;
@@ -194,7 +197,4 @@ void GameEngine::inGameChecks()
 
 		victoryScene::load();
 	}
-
-	//Update all counters
-	manageSpecialMode();
 }

@@ -43,7 +43,6 @@ public:
 
     static Mesh * genMeshWithAttributs(glm::vec2 position, ITEM_SYNTAX itemType)
 	{
-        ShaderProgram * shader = new ShaderProgram("triangle.vs.glsl", "triangle.fs.glsl");
         Mesh * tmpMesh;
         glm::vec4 meshColor;
         float scale = 1.f;
@@ -56,35 +55,35 @@ public:
                 break;
             case ITEM_SYNTAX::PAC_GUM:
                 scale = 0.1f;
-                meshColor = glm::vec4(255, 255, 0, 1);
+                meshColor = glm::vec4(255.f/255.f, 255.f/255.f, 0, 1);
                 break;
             case ITEM_SYNTAX::SUPER_PAC_GUM:
                 scale = 0.2f;
-                meshColor = glm::vec4(255, 255, 255, 1);
+                meshColor = glm::vec4(255.f/255.f, 255.f/255.f, 255.f/255.f, 1);
                 break;
             case ITEM_SYNTAX::FRUIT:
                 scale = 0.3f;
-                meshColor = glm::vec4(255, 0, 0, 1);
+                meshColor = glm::vec4(255.f/255.f, 0, 0, 1);
                 break;
             case ITEM_SYNTAX::PACMAN:
                 scale = 0.5f;
-                meshColor = glm::vec4(255, 255, 0, 1);
+                meshColor = glm::vec4(255.f/255.f, 255.f/255.f, 0, 1);
                 break;
             case ITEM_SYNTAX::BLINKY:
                 scale = 0.5f;
-                meshColor = glm::vec4(252, 38, 1, 1);
+                meshColor = glm::vec4(252.f/255.f, 38.f/255.f, 1.f/255.f, 1);
                 break;
             case ITEM_SYNTAX::PINKY:
                 scale = 0.5f;
-                meshColor = glm::vec4(249, 181, 180, 1);
+                meshColor = glm::vec4(249.f/255.f, 181.f/255.f, 180.f/255.f, 1);
                 break;
             case ITEM_SYNTAX::INKY:
                 scale = 0.5f;
-                meshColor = glm::vec4(28, 219, 221, 1);
+                meshColor = glm::vec4(28.f/255.f, 219.f/255.f, 221.f/255.f, 1);
                 break;
             case ITEM_SYNTAX::CLYDE:
                 scale = 0.5f;
-                meshColor = glm::vec4(250, 162, 14, 1);
+                meshColor = glm::vec4(250.f/255.f, 162.f/255.f, 14.f/255.f, 1);
                 break;
             default:
                 break;
@@ -92,7 +91,6 @@ public:
 
 		if(itemType == PACMAN)
 		{
-			std::cout << "pac" << std::endl;
 			rId pacRId = GameObj->ressourcesEngine->loadAsset("pacman.blend", MESH);
 			tmpMesh = *GameObj->ressourcesEngine->getAsset(pacRId);
 		}
@@ -106,13 +104,13 @@ public:
 
 			if(itemType == WALL)
 			{
-				tmpMesh->getCursor()->scale(1, 1, .5);
+				tmpMesh->getCursor()->scale(1, 1, .8);
 				tmpMesh->applyCursor();
 			}
         }
 
         tmpMesh->generate();
-        tmpMesh->setProgram(shader);
+        tmpMesh->setProgram(GameObj->getDefaultProgram());
         tmpMesh->getCursor()->translate(glm::vec3(position.x, position.y, 0));
 
         return tmpMesh;

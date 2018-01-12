@@ -85,6 +85,12 @@ public:
 	void manageSpecialMode();
 
 	inline Pacman * getPacman() { return m_pacman; };
+
+	void deleteGrid()
+	{
+		std::cout << "delete grid" << std::endl;
+		delete m_level;
+	};
 	
 private:
 	//Singleton
@@ -96,7 +102,7 @@ private:
 	void parseEvents();
 
 	//Attributs
-	Grid m_level;
+	Grid * m_level;
 
 	Pacman * m_pacman;
 
