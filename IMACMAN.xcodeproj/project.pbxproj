@@ -76,6 +76,7 @@
 		3912B4151FC47BC600982C49 /* GameObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameObject.cpp; sourceTree = "<group>"; };
 		3912B4161FC47BC600982C49 /* GameObject.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GameObject.hpp; sourceTree = "<group>"; };
 		3912B41C1FC4B93800982C49 /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = ../../../../../Library/Frameworks/SDL2_image.framework; sourceTree = "<group>"; };
+		392C9E8E2008C63B0006ECB9 /* Controls.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Controls.png; sourceTree = "<group>"; };
 		393375D81FF5337100024EB1 /* Item.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Item.cpp; sourceTree = "<group>"; };
 		393375D91FF5337100024EB1 /* Selector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Selector.cpp; sourceTree = "<group>"; };
 		393375DA1FF5337100024EB1 /* Item.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Item.hpp; sourceTree = "<group>"; };
@@ -596,6 +597,7 @@
 		3997F0CE1FC22C60009CECC9 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				392C9E8E2008C63B0006ECB9 /* Controls.png */,
 				39B213A32007E6F100335BC4 /* Buttons */,
 				39B213BA20081CC900335BC4 /* Elements */,
 				39B213B220081CC800335BC4 /* Loading_Background.jpg */,
